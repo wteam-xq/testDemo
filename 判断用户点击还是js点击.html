@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>测试用户点击和js点击</title>
+    <script src='jquery-1.10.2.min.js'></script>
+  </head>
+  <body>
+    <button id="btn">Click</button>
+    <script>
+      // dom加载完执行
+      $(document).ready(function(){
+        var btn = $('#btn');
+        btn.click(function() {
+          console.log(btn.click.caller);
+          if(null === btn.click.caller) {
+            // 用户点击的
+            console.log('用户点击了');
+          }else {
+            // JS代码调的
+            console.log('JS点击了');
+          }
+        });
+        function a() {
+          btn.click();
+        }
+        a();
+      });
+    </script>
+  </body>
+</html>
