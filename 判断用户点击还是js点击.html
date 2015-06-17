@@ -7,13 +7,18 @@
   <body>
     <button id="btn">Click</button>
     <script>
-      // dom加载完执行$(function(){}).call(this);
       // 来源：http://www.zhihu.com/question/31259853
       $(document).ready(function(){
-
-        var btn = $('#btn');
+        // 方式1
+        a();
+        // 方式2
+        // b();
+        // b2();
+        // 方式3
+        // c();
         // 方式1：btn.click.caller
         function a() {
+          var btn = $('#btn');
           // 赋予事件
           btn.click(function() {
             console.log(btn.click.caller);
@@ -27,8 +32,9 @@
           });
           btn.click();
         }
-        // 方式2: e.originalEvent（jquery） pageX, clientX（非jquery）
+        // 方式2: e.originalEvent（jquery） 
         function b(){
+          var btn = $('#btn');
           // 赋予事件
           btn.click(function(event) {
             // event.originalEvent => MouseEvent
@@ -42,16 +48,36 @@
           });
           btn.click();
         }
-        // 方式3: event.isTrusted 
-        function c(){
-
+        // 方式2：pageX, clientX（原生js），也阔以是offsetX/layerX/screenX
+        function b2(){
+          // 原生js实现
+          var btn2 = document.getElementById('btn');
+          // DOM0级事件实现
+          btn2.onclick = function(event){
+            if (event.pageX){
+              alert('用户点击了');
+            }else{
+              alert('JS点击了');
+            }
+          }
+          btn2.click();
         }
-        // 方式1
-        // a();
-        // 方式2
-        b();
-        // 方式3
-        // c();
+        // 方式3: event.isTrusted IE9+/firefox支持
+        function c(){
+          var btn = $('#btn');
+          // 赋予事件
+          btn.click(function(event) {
+            // event.originalEvent => MouseEvent
+            if(event.isTrusted) {
+              // 用户点击的
+              alert('用户点击了');
+            }else {
+              // JS代码调的
+              alert('JS点击了');
+            }
+          });
+          btn.click();
+        }
       });
     </script>
   </body>
