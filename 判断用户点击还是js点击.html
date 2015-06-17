@@ -7,23 +7,51 @@
   <body>
     <button id="btn">Click</button>
     <script>
-      // dom加载完执行
+      // dom加载完执行$(function(){}).call(this);
+      // 来源：http://www.zhihu.com/question/31259853
       $(document).ready(function(){
+
         var btn = $('#btn');
-        btn.click(function() {
-          console.log(btn.click.caller);
-          if(null === btn.click.caller) {
-            // 用户点击的
-            console.log('用户点击了');
-          }else {
-            // JS代码调的
-            console.log('JS点击了');
-          }
-        });
+        // 方式1：btn.click.caller
         function a() {
+          // 赋予事件
+          btn.click(function() {
+            console.log(btn.click.caller);
+            if(null === btn.click.caller) {
+              // 用户点击的
+              alert('用户点击了');
+            }else {
+              // JS代码调的
+              alert('JS点击了');
+            }
+          });
           btn.click();
         }
-        a();
+        // 方式2: e.originalEvent（jquery） pageX, clientX（非jquery）
+        function b(){
+          // 赋予事件
+          btn.click(function(event) {
+            // event.originalEvent => MouseEvent
+            if(event.originalEvent) {
+              // 用户点击的
+              alert('用户点击了');
+            }else {
+              // JS代码调的
+              alert('JS点击了');
+            }
+          });
+          btn.click();
+        }
+        // 方式3: event.isTrusted 
+        function c(){
+
+        }
+        // 方式1
+        // a();
+        // 方式2
+        b();
+        // 方式3
+        // c();
       });
     </script>
   </body>
