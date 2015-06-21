@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            闭包使用场景
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>闭包使用场景</h3>
+
+        <script>
+          // 1.1.使用闭包可以再JavaScript中模拟块级作用域（JavaScript本身没有块级作用域的概念）
+          function outputNumbers(count){
+            (function(){
+              for(var i = 0; i < count; i++){
+                alert(i);
+              }
+            })();
+            alert(i); //导致一个错误！
+          }
+
+          // 1.2.闭包可以用于在对象中创建私有变量
+          function MyObject(){
+            // 私有变量和私有函数
+            var privateVariable = 10;
+            function privateFunction(){
+              return false;
+            }
+            // 特权方法,调用私有方法、函数
+            this.publicMethod = function(){
+              privateVariable++;
+              return privateFunction();
+            }
+          }
+        </script>
+
+    </body>
+</html>
