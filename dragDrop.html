@@ -1,0 +1,197 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            原生js实现拖放
+        </title>
+        <style type="text/css">
+            .draggable{
+                position: absolute;
+                background:red;
+                width: 200px;
+                height: 200px;
+            }
+            .status{
+                margin-top: 200px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h3>原生js实现拖放, 实现原理: 点击某个对象，并按住鼠标按钮不放，将鼠标移动到另一区域，然后释放鼠标将对象“放”在这里</h3>
+        <!-- 红色小方块 -->
+        <div class="draggable" id="dragDom"></div>
+        
+        <!-- 拖动提示内容 -->
+        <div id="status" class="status"></div>
+
+        <script>
+          // 自定义事件
+          function EventTarget(){
+            this.handlers = {};
+          }
+          // 自定义事件的原型，给实例的方法
+          EventTarget.prototype = {
+            constructor: EventTarget,
+            addHandler: function(type, handler){
+                if (typeof this.handlers[type] == "undefined"){
+                    this.handlers[type] = [];
+                }
+                this.handlers[type].push(handler);
+            },
+            fire: function(event){
+                if (!event.target){
+                    event.target = this;
+                }
+                if (this.handlers[event.type] instanceof Array){
+                    var handlers = this.handlers[event.type];
+                    for (var i = 0, len = handlers.length; i < len; i++){
+                        handlers[i](event);
+                    }
+                }
+            },
+            removeHandler: function(type, handler){
+                if (this.handlers[type] instanceof Array){
+                    var handlers = this.handlers[type];
+                    for (var i = 0, len = handlers.length; i < len; i++){
+                        if (handlers[i] === handler){
+                            break;
+                        }
+                    }
+                    handlers.splice(i, 1);
+                }
+            }
+          };
+
+          // 事件兼容处理公共类
+          var EventUtil = {
+            // 添加事件
+            addHandler: function(element, type, handler){
+                if (element.addEventListener){
+                    element.addEventListener(type, handler, false);
+                }else if (element.attachEvent){
+                    element.attachEvent("on" + type, handler);
+                }else{
+                    element["on" + type] = handler;
+                }
+            },
+            getEvent: function(event){
+                return event ? event : window.event;
+            },
+            getTarget: function(event){
+                return event.target || event.srcElement;
+            },
+            // 阻止默认方法
+            preventDefault: function(event){
+                if (event.preventDefault){
+                    event.preventDefault();
+                }else{
+                    event.returnValue = false;
+                }
+            },
+            // 移除事件
+            removeHandler: function(element, type, handler){
+                if (element.addEventListener){
+                    element.removeEventListener(type, handler, false);
+                }else if (element.detachEvent){
+                    element.detachEvent("on" + type, handler);
+                }else{
+                    element["on" + type] = null;
+                }
+            },
+            // 阻止冒泡
+            stopPropagation: function(event){
+                if (event.stopPropagation){
+                    event.stopPropagation();
+                }else{
+                    event.cancelBubble = true;
+                }
+            }
+          };
+
+          // 原生js实现拖放
+          var DragDrop = function(dragId){
+            var dragdrop = new EventTarget(),
+                dragging = null,
+                diffX = 0,
+                diffY = 0;
+            // 获得待移动的dom节点
+            var DragDom = document.getElementById(dragId);
+            if (DragDom == null){
+                return null;
+            }
+
+            function handleEvent(event){
+                // 获取事件和对象
+                event = EventUtil.getEvent(event);
+                var target = EventUtil.getTarget(event);
+                // 确定事件类型
+                switch(event.type){
+                    case "mousedown":
+                        if (target.id === dragId){
+                            dragging = target;
+                            diffX = event.clientX - target.offsetLeft;
+                            diffY = event.clientY - target.offsetTop;
+                            dragdrop.fire({type:"dragstart", target:dragging, x: event.clientX, y: event.clientY});
+                        }
+                        break;
+                    case "mousemove":
+                        if (dragging !== null){
+                            // 指定位置
+                            dragging.style.left = (event.clientX - diffX) + "px";
+                            dragging.style.top = (event.clientY - diffY) + "px";
+                            // 触发自定义事件
+                            dragdrop.fire({type:"drag", target:dragging, x: event.clientX, y: event.clientY});
+                        }
+                        break;
+                    case "mouseup":
+                        if (dragging !== null){
+                            dragdrop.fire({type:"dragend", target: dragging, x: event.clientX, y: event.clientY});
+                            dragging = null;
+                        }
+                        break;
+                }
+            };
+            // 公共接口
+            dragdrop.enable = function(){
+                EventUtil.addHandler(DragDom, "mousedown", handleEvent);
+                EventUtil.addHandler(DragDom, "mousemove", handleEvent);
+                EventUtil.addHandler(DragDom, "mouseup", handleEvent);
+            };
+            dragdrop.disable = function(){
+                EventUtil.removeHandler(DragDom, "mousedown", handleEvent);
+                EventUtil.removeHandler(DragDom, "mousemove", handleEvent);
+                EventUtil.removeHandler(DragDom, "mouseup", handleEvent);
+            };
+
+            return dragdrop;
+          };
+
+          // 使用拖动类
+          function useDrag(dragId, dragTipId){
+            // 使用拖动类
+            var dragdrop_instance = DragDrop(dragId);
+            if (dragdrop_instance){
+
+                dragdrop_instance.enable();
+                dragdrop_instance.addHandler("dragstart", function(event){
+                    var status = document.getElementById(dragTipId);
+                    status.innerHTML = event.target.id + " start drag";
+                });
+                dragdrop_instance.addHandler("drag", function(event){
+                    var status = document.getElementById(dragTipId);
+                    status.innerHTML += "<br/>" + event.target.id + " Dragging" + " to(" + event.x + "," + event.y + ")";
+                });
+                dragdrop_instance.addHandler("dragend", function(event){
+                    var status = document.getElementById(dragTipId);
+                    status.innerHTML += "<br/>" + event.target.id + " end drag" + " at (" + event.x + "," + event.y + ")";
+                });
+            }
+          }
+          // 赋予拖动事件 参数1：移动Dom id 参数2：拖动提示内容
+          useDrag("dragDom", "status");
+
+        </script>
+
+    </body>
+</html>
