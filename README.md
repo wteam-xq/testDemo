@@ -11,3 +11,6 @@
 
 * 4.原生js 实现拖放：
   * [dragDrop.html](https://github.com/wteam-xq/testDemo/blob/master/dragDrop.html)
+
+* 5.原生js 处理节点：
+  * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/nodeOperate.html)
