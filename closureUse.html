@@ -35,6 +35,44 @@
               return privateFunction();
             }
           }
+
+          //理解闭包： 来源：http://www.zhihu.com/question/31383111
+          //最简单：一个父函数
+          function superFn(){
+            // 局部变量
+            var _super_a = 1;
+
+            var subFn = function(){
+              // _super_a++;
+              alert('_super_a: ' + _super_a);
+            }
+
+            return subFn;
+          }
+
+          // superFn() 得到的是subFn，superFn()()等于subFn()
+          superFn()();
+
+          //多一个父函数试试
+          function superTopFn(arg_num){
+            // 局部变量
+            var _super_a = arg_num;
+            // 不同作用域了，所以函数名可以跟上一个Demo一样
+            function superFn(){
+              var subFn = function(){
+                // _super_a++;
+                alert('_super_a: ' + _super_a);
+              }
+              return subFn;
+            }
+            return superFn;
+          }
+          // 获得superFn
+          // var superFoo = superTopFn(3);
+          // 获得subFn
+          // var subFoo = superFoo();
+          // subFoo();
+
         </script>
 
     </body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            正则表达式使用
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>正则表达式使用</h3>
+        
+        <script>
+          var str = '';
+          // 校验邮箱
+          str = '123@qq.com';
+          var reg_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+          var reg_email2 = /\S+@\S+\.\S+/;
+          reg_email.test(str);
+
+          // 校验手机号
+          str = '56465';
+          var reg_mobile = /^1\d{10}$/.test(str);
+          var reg_mobile2 = /^1\d{10}$/.test(str);
+
+          // 校验浮点型数字
+          str = '452.23';
+          var reg_float = /^([1-9]\d*|(0|[1-9]\d*)\.\d*[0-9])$/.test(str);
+        </script>
+
+    </body>
+</html>

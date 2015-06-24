@@ -6,7 +6,7 @@
 * 2.计时器实现：
   * [timer(jq).html](https://github.com/wteam-xq/testDemo/blob/master/timer(jq).html)
 
-* 3.闭包运用（待合并）:
+* 3.闭包运用:
   * [closureUse.html](https://github.com/wteam-xq/testDemo/blob/master/closureUse.html)
 
 * 4.原生js 实现拖放：
@@ -14,3 +14,6 @@
 
 * 5.原生js 处理节点：
   * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/nodeOperate.html)
+
+* 6.正则使用：
+  * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/regexp.html)
