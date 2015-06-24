@@ -31,7 +31,7 @@
             }
           }
 
-          // 数组去重的4个方法
+          // 数组去重的5个方法
           function unique1(array){
             var n = []; //一个新的临时数组
             //遍历当前数组
@@ -82,12 +82,24 @@
             }
             return re;
           }
+
+          // 思路：获取没重复的最右一值放入新数组
+          function unique5(array){
+            var r = [];
+            for(var i = 0, l = array.length; i < l; i++) {
+              for(var j = i + 1; j < l; j++)
+                if (array[i] === array[j]) j = ++i;
+              r.push(array[i]);
+            }
+              return r;
+          }
           // 测试以上函数
           var t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           alert(unique1(t_array));
           alert(unique2(t_array));
           alert(unique3(t_array));
           alert(unique4(t_array));
+          alert(unique5(t_array));
 
         </script>
 
