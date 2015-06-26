@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            作用域理解
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>作用域理解</h3>
+
+        <script>
+          // 1. 函数、变量上升
+          var a = 2; 
+          // 后面函数也能调用
+          // scopeVar();
+          function scopeVar(){
+            alert(a);
+            var a = 0;
+            a++;
+            alert(a);
+          }
+
+          // 2. this 工作原理 5种情况：
+          // 2.1 全局范围 this
+          // 2.2 函数调用 foo()
+          // 2.3 方法调用 test.foo()
+          // 2.4 构造函数调用 new foo()
+          // 2.5 显式设置this apply call方法
+
+          // 笔试题1
+          var a_obj = {
+            a: 1,
+            aFun: function(){
+              alert(this.a);
+            }
+          }
+          var b = a_obj.aFun;
+          // 2.2 函数调用
+          b();
+          // 2.3 方法调用
+          a_obj.aFun();
+
+        </script>
+
+    </body>
+</html>
