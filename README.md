@@ -20,3 +20,6 @@
 
 * 7.数组用法：
   * [array.html](https://github.com/wteam-xq/testDemo/blob/master/array.html)
+ 
+* 8.作用域：
+  * [scope.html](https://github.com/wteam-xq/testDemo/blob/master/scope.html)
