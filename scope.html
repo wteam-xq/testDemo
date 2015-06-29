@@ -17,31 +17,31 @@
           // 后面函数也能调用
           // scopeVar();
           function scopeVar(){
-            alert(a);
+            alert(a);  //undefined
             var a = 0;
             a++;
-            alert(a);
+            alert(a); // 1
           }
 
           // 2. this 工作原理 5种情况：
-          // 2.1 全局范围 this
-          // 2.2 函数调用 foo()
-          // 2.3 方法调用 test.foo()
-          // 2.4 构造函数调用 new foo()
-          // 2.5 显式设置this apply call方法
+          // 2.1 全局范围 this : window
+          // 2.2 函数调用 foo() : window
+          // 2.3 方法调用 test.foo() : test
+          // 2.4 构造函数调用 new foo(): 新的实例
+          // 2.5 显式设置this apply call方法 : 参数1
 
           // 笔试题1
           var a_obj = {
             a: 1,
             aFun: function(){
-              alert(this.a);
+              alert(this.a); 
             }
           }
           var b = a_obj.aFun;
           // 2.2 函数调用
-          b();
+          b(); // 2
           // 2.3 方法调用
-          a_obj.aFun();
+          a_obj.aFun(); // 1
 
         </script>
 
