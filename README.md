@@ -23,3 +23,6 @@
  
 * 8.作用域：
   * [scope.html](https://github.com/wteam-xq/testDemo/blob/master/scope.html)
+
+* 9.HTTP状态码：
+  * [httpStatus.html](https://github.com/wteam-xq/testDemo/blob/master/httpStatus.html)
