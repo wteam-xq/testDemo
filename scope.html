@@ -10,7 +10,12 @@
     
     <body>
         <h3>作用域理解</h3>
-
+        <!-- 测试按钮 -->
+        <button id='btn1'>按钮1</button>
+        <button id='btn2'>按钮2</button>
+        <button id='btn3'>按钮3</button>
+        <button id='btn4'>按钮4</button>
+        <button id='btn5'>按钮5</button>
         <script>
           // 1. 函数、变量上升
           var a = 2; 
@@ -39,9 +44,25 @@
           }
           var b = a_obj.aFun;
           // 2.2 函数调用
-          b(); // 2
+          // b(); // 2
           // 2.3 方法调用
-          a_obj.aFun(); // 1
+          // a_obj.aFun(); // 1
+          
+          //循环里创建函数 
+          window.onload = function(){
+            // 循环按钮
+            var btns = document.getElementsByTagName('button');
+            var btn = null;
+            for(var i = 0, len = btns.length; i < len; i++){
+              btn = btns[i];
+              btn.onclick = function(){
+                btn.style.background = 'blue'; //btn 永远为 btns[len -1]即最后一个按钮
+                console.log(i);// len 即 5
+                this.style.background = 'red';// this 为当前点击的按钮
+
+              }
+            }
+          }
 
         </script>
 
