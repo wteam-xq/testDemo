@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            递归函数
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>递归函数</h3>
+        <!-- 测试按钮 -->
+        <!-- <button id='btn1'>按钮1</button> -->
+        
+        <script>
+          // 斐波那契数列实现
+          function fibonac(n){
+            if (n <= 0){
+              return 0;
+            }else if(n == 1){
+              return 1;
+            }else{
+              return fibonac(n-1) + fibonac(n-2);
+            }
+          }
+          function fibonac2(n){
+            if (n <= 0){
+              return 0;
+            }else if(n == 1){
+              return 1;
+            }else{
+              return arguments.callee(n-1) + arguments.callee(n-2);
+            }
+          }
+          // var test_res = fibonac(8);
+          var test_res = fibonac2(8);
+          alert(test_res);
+
+        </script>
+
+    </body>
+</html>
