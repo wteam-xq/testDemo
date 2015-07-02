@@ -17,8 +17,7 @@
         <button id='btn4'>按钮4</button>
         <button id='btn5'>按钮5</button>
         <script>
-          // 1. 函数、变量上升
-          var a = 2; 
+          
           // 后面函数也能调用
           // scopeVar();
           function scopeVar(){
@@ -36,18 +35,21 @@
           // 2.5 显式设置this apply call方法 : 参数1
 
           // 笔试题1
-          var a_obj = {
-            a: 1,
-            aFun: function(){
-              alert(this.a); 
+          function test1(){
+            var a_obj = {
+              a: 1,
+              aFun: function(){
+                alert(this.a); 
+              }
             }
+            var b = a_obj.aFun;
+            // 2.2 函数调用
+            b(); // undefined
+            // 2.3 方法调用
+            a_obj.aFun(); // 1
           }
-          var b = a_obj.aFun;
-          // 2.2 函数调用
-          // b(); // 2
-          // 2.3 方法调用
-          // a_obj.aFun(); // 1
-          
+          // test1();
+
           //循环里创建函数 
           window.onload = function(){
             // 循环按钮
@@ -63,6 +65,25 @@
               }
             }
           }
+
+          // 笔试题2
+          var name = "The Window";
+          function test2(){
+            var object = {
+              name : "My Object",
+              getNameFunc : function(){
+                  alert('1.' + this.name);
+                  return function(){
+                      return this.name;
+                  };
+              }
+            };
+            var func = object.getNameFunc(); // 1. My Object
+            alert('2.' + func()); // 2. The Window
+            alert('3.' + func.call(object)); //3. My Object 
+            alert('4.' + func.apply(object)); //4. My Object
+          }
+          test2();
 
         </script>
 

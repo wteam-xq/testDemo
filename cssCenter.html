@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            各种CSS
+        </title>
+        <style>
+          .testframes{
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation:mymove 2s infinite;
+            -moz-animation:mymove 2s infinite; /* Firefox */
+            -webkit-animation:mymove 2s infinite; /* Safari and Chrome */
+            -o-animation:mymove 2s infinite; /* Opera */
+          }
+          @keyframes mymove{
+            0% {left:0px;}
+            100% {left:100px;}
+          }
+          @-moz-keyframes mymove /* Firefox */
+          {
+            0% {left:0px;}
+            100% {left:100px;}
+          }
+          @-webkit-keyframes mymove /* Safari 和 Chrome */
+          {
+            0% {left:0px;}
+            100% {left:100px;}
+          }
+          @-o-keyframes mymove /* Opera */
+          {
+            0% {left:0px;}
+            100% {left:100px;}
+          }
+          
+          .clearfix{
+            zoom: 1;
+          }
+          .clearfix:before,.clearfix:after{
+            content:'';
+            display: table;
+          }
+          .clearfix:after{
+            clear:both;
+          }
+          .c-wrap{
+            border:1px solid #ccc;
+            width: 600px;
+            height: 600px;
+            position: relative;
+            margin: 0 auto;
+          }
+          .c-cont{
+            position: absolute;
+            margin:-100px 0 0 -100px;
+            top:50%;
+            left:50%;
+            width:200px;
+            height:200px;
+            background-color:green;
+          }
+          .test1{
+            display:none;
+          }
+          .test2{
+            display: block;
+          }
+          #main {
+            float: left;
+            width: 100%;
+          }
+          #mainContainer {
+            margin: 0 200px;
+            height: 200px;
+            background: green;
+          }
+          #left {
+            float: left;
+            margin-left: -100%;
+            width: 200px
+          }
+          #right {
+            float: left;
+            margin-left: -200px;
+            width: 200px;
+          }
+          #left .inner,
+          #right .inner {
+            background: orange;
+            margin: 0 10px;
+            height: 200px;
+          }
+
+        </style>
+
+    </head>
+    
+    <body>
+      <div class='test1'>
+        <h3>CSS3动画</h3>
+        <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
+        
+        <h3>css实现水平垂直居中</h3>
+        <div class='c-wrap'>
+          <div class='c-cont'>
+            水平居中的元素
+          </div>
+        </div>
+      </div>
+      
+      <div class='test2'>
+        <h3>用DIV+CSS实现三栏布局（左右固定200px，中间自适应）</h3>
+        <div id="main">
+          <div id="mainContainer">main content</div>
+        </div>
+        <div id="left">
+          <div id="leftContainer" class="inner">left content</div>
+        </div>
+        <div id="right">
+           <div id="rightContainer" class="inner">right</div>
+        </div>
+      </div>
+        
+
+        <script>
+          var moveDom = document.getElementById('moveElement');
+        </script>
+
+    </body>
+</html>

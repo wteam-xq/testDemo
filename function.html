@@ -29,7 +29,7 @@
             return f
           }
 
-          alert(add(10)(20)(30))   //60
+          // alert(add(10)(20)(30))   //60
           //看结果的时候必须用alert ，因为alert接收的必须是字符串，所以它会自动调用toString()方法
           console.log(add(20).toString());
 
@@ -57,6 +57,25 @@
           // var test_res = fibonac2(8);
           // alert(test_res);
           
+          // call apply 用法
+          var a = {
+            a_num: 2,
+            a_str: '3'
+          };
+          function callFun(arg1, arg2, arg3){
+            var a_num = 1;
+            var arg_count = arg1 + arg2 + arg3;
+            alert(this.a_num);
+            alert(arg_count);
+          }
+          function applyFun(arg1, arg2, arg3){
+            var a_str = '1';
+            var arg_count = arg1 + arg2 + arg3;
+            alert(this.a_str);
+            alert(arg_count);
+          }
+          // callFun.call(a, 1, 2, 3);
+          applyFun.apply(a, [1,2,3]);
         </script>
 
     </body>
