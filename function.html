@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            函数理解
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>函数理解</h3>
+        
+        <script>
+          // 函数 add可以实现连续的加法运算， 函数add的语法如下：
+          // add(num1)(num2)(num3)...;
+          // 使用举例：
+          // add(10)(10) = 20
+          // add(10)(20)(50) = 80
+          // add(10)(20)(50)(100) = 180
+          // 请使用js代码实现函数add
+          function add(a) {
+            var sum = a
+            function f(b) {
+              sum += b
+              return f
+            }
+            f.toString = function() { return sum }
+            return f
+          }
+
+          alert(add(10)(20)(30))   //60
+          //看结果的时候必须用alert ，因为alert接收的必须是字符串，所以它会自动调用toString()方法
+          console.log(add(20).toString());
+
+          // 递归函数
+          // 斐波那契数列实现
+          function fibonac(n){
+            if (n <= 0){
+              return 0;
+            }else if(n == 1){
+              return 1;
+            }else{
+              return fibonac(n-1) + fibonac(n-2);
+            }
+          }
+          function fibonac2(n){
+            if (n <= 0){
+              return 0;
+            }else if(n == 1){
+              return 1;
+            }else{
+              return arguments.callee(n-1) + arguments.callee(n-2);
+            }
+          }
+          // var test_res = fibonac(8);
+          // var test_res = fibonac2(8);
+          // alert(test_res);
+          
+        </script>
+
+    </body>
+</html>

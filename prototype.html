@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            原型理解
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>原型理解</h3>
+        
+        <script>
+          // 来源： http://www.zhihu.com/question/31824560/answer/53528151
+          // 因为实例__proto__属性指向它构造函数的原型对象，
+          // 所以Foo.__proto__.age相当于给其Function构造函数添加了age属性。
+          // 我想问的问题是，通过Foo.age访问到的age的属性值是从Function继承而来的？
+          // 还是因为Foo是Function构造函数的实例，age属性是通过“实例.属性”访问得来的？
+          function Foo(){
+
+          };
+          var foo = new Foo(); 
+
+          Foo.__proto__.age = 10;
+
+          alert(Foo.age);//10 
+
+        </script>
+
+    </body>
+</html>

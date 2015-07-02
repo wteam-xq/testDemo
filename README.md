@@ -27,5 +27,8 @@
 * 9.HTTP状态码：
   * [httpStatus.html](https://github.com/wteam-xq/testDemo/blob/master/httpStatus.html)
 
-* 10.递归函数：
-  * [recursion.html](https://github.com/wteam-xq/testDemo/blob/master/recursion.html)
+* 10.函数：
+  * [function.html](https://github.com/wteam-xq/testDemo/blob/master/function.html)
+
+* 11.原型理解：
+  * [prototype.html](https://github.com/wteam-xq/testDemo/blob/master/prototype.html)

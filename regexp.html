@@ -22,7 +22,7 @@
           // 校验手机号
           str = '56465';
           var reg_mobile = /^1\d{10}$/.test(str);
-          var reg_mobile2 = /^1\d{10}$/.test(str);
+          var reg_mobile2 = /[0-9]{4,15}/.test(str);
 
           // 校验浮点型数字
           str = '452.23';
