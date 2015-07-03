@@ -31,7 +31,7 @@
 
           // alert(add(10)(20)(30))   //60
           //看结果的时候必须用alert ，因为alert接收的必须是字符串，所以它会自动调用toString()方法
-          console.log(add(20).toString());
+          // console.log(add(20).toString());
 
           // 递归函数
           // 斐波那契数列实现
@@ -76,6 +76,17 @@
           }
           // callFun.call(a, 1, 2, 3);
           applyFun.apply(a, [1,2,3]);
+
+          // 有关javascript函数对象（函数当对象字面量使用竟然不报错！） 来源：http://www.zhihu.com/question/31863910
+          // "age:"被看作了标签语句（label statement）不会起作用
+          function Persion(){
+            age: 20;
+          }
+          alert(Persion.age);
+
+          Persion.age = 20;
+          alert(Persion.age);
+
         </script>
 
     </body>
