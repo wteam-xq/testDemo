@@ -32,3 +32,6 @@
 
 * 11.原型理解：
   * [prototype.html](https://github.com/wteam-xq/testDemo/blob/master/prototype.html)
+
+* 12.样式理解：
+  * [cssDemo.html](https://github.com/wteam-xq/testDemo/blob/master/cssDemo.html)
