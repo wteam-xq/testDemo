@@ -26,6 +26,7 @@
 
 * 9.HTTP状态码：
   * [httpStatus.html](https://github.com/wteam-xq/testDemo/blob/master/httpStatus.html)
+  * [演示地址](http://wteamxq.com/testDemo/httpStatus.html) 
 
 * 10.函数：
   * [function.html](https://github.com/wteam-xq/testDemo/blob/master/function.html)
