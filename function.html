@@ -71,21 +71,39 @@
           function applyFun(arg1, arg2, arg3){
             var a_str = '1';
             var arg_count = arg1 + arg2 + arg3;
-            alert(this.a_str);
+            alert(this.a_str); 
             alert(arg_count);
           }
           // callFun.call(a, 1, 2, 3);
-          applyFun.apply(a, [1,2,3]);
+          // applyFun.apply(a, [1,2,3]);
 
           // 有关javascript函数对象（函数当对象字面量使用竟然不报错！） 来源：http://www.zhihu.com/question/31863910
           // "age:"被看作了标签语句（label statement）不会起作用
           function Persion(){
             age: 20;
           }
-          alert(Persion.age);
+          // alert(Persion.age);
 
           Persion.age = 20;
-          alert(Persion.age);
+          // alert(Persion.age);
+
+          // 如何在JavaScript里指定一个对象作为上下文去eval字符串？
+          // 来源 http://www.zhihu.com/question/31930691
+          // 比如 d = {x: 1, y: 2} , expr = "x * 2 + y" , 然后evalWith(d, expr) 就返回4
+          var d = {x:1, y:2};
+          var expr = "x*2 + y";
+          var imports = ''
+          for(var k in d){
+              if( !k.isPrototypeOf(d) ) {
+                imports += 'var ' + k + ' = this.' + k + ';';
+              }
+          }
+          // Assume that `expr` is an expression
+          function evalWith(d, expr) { 
+            // return new Function('with (this) { return ' + expr + ' }').call(d); 
+            return (new Function(imports + 'return (' + expr + ')')).call(d)
+          }
+          alert( evalWith(d, expr) );
 
         </script>
 

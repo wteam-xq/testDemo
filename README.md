@@ -1,4 +1,4 @@
-### 前端零散代码集合
+### 前端代码集合
 
 * 1.判断用户点击还是js点击；
   * [isTrusted.html](https://github.com/wteam-xq/testDemo/blob/master/isTrusted.html)
@@ -28,7 +28,7 @@
   * [httpStatus.html](https://github.com/wteam-xq/testDemo/blob/master/httpStatus.html)
   * [演示地址](http://wteamxq.com/testDemo/httpStatus.html) 
 
-* 10.函数：
+* 10.函数用法：
   * [function.html](https://github.com/wteam-xq/testDemo/blob/master/function.html)
 
 * 11.原型理解：
