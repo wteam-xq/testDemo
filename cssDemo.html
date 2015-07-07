@@ -62,12 +62,6 @@
             height:200px;
             background-color:green;
           }
-          .test1{
-            display:block;
-          }
-          .test2{
-            display: none;
-          }
           #main {
             float: left;
             width: 100%;
@@ -94,15 +88,35 @@
             height: 200px;
           }
 
+          .radius-btn{
+            border-radius: 5px;
+            cursor:pointer;
+            padding:5px;
+            margin: 5px;
+            background-color: #eee;
+          }
+          .radius-btn:hover{
+            background-color:#ddd;
+          }
+
         </style>
 
     </head>
     
     <body>
-      <div class='test1'>
+
+     <div class='btn-cont'>
+        <button id="tBtn1" class="radius-btn">css3动画</button>
+        <button id="tBtn2" class="radius-btn">css水平垂直居中</button>
+        <button id="tBtn3" class="radius-btn">css三栏布局</button>
+      </div>
+
+      <div id='test1'>
         <h3>CSS3动画</h3>
         <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
-        
+      </div>
+
+      <div id="test2">
         <h3>css实现水平垂直居中</h3>
         <div class='c-wrap'>
           <div class='c-cont'>
@@ -111,7 +125,7 @@
         </div>
       </div>
       
-      <div class='test2'>
+      <div id='test3'>
         <h3>用DIV+CSS实现三栏布局（左右固定200px，中间自适应）</h3>
         <div id="main">
           <div id="mainContainer">main content</div>
@@ -124,10 +138,62 @@
         </div>
       </div>
         
+      <script>
+        var btn1 = document.getElementById('tBtn1');
+        var btn2 = document.getElementById('tBtn2');
+        var btn3 = document.getElementById('tBtn3');
+        // 获得对应demo节点
+        var demo1 = document.getElementById('test1');
+        var demo2 = document.getElementById('test2');
+        var demo3 = document.getElementById('test3');
 
-        <script>
-          var moveDom = document.getElementById('moveElement');
-        </script>
+        btn1.onclick = demoClickHandler;
+        btn2.onclick = demoClickHandler;
+        btn3.onclick = demoClickHandler;
+
+        hideAllDemo();
+        function demoClickHandler(){
+          var targetDemo = null;
+          var num = 0;
+          num = /\d/.exec(this.id)[0];
+          switch(num){
+            case '1':
+              targetDemo = demo1;
+              break;
+            case '2':
+              targetDemo = demo2;
+              break;
+            case '3':
+              targetDemo = demo3;
+              break;
+            default:
+              targetDemo = demo1
+          }
+          hideAllDemo();
+          showDemo(targetDemo);
+        }
+        function showAllDemo(){
+          demo1.style.display = 'block';
+          demo2.style.display = 'block';
+          demo3.style.display = 'block';
+        }
+        function hideAllDemo(){
+          demo1.style.display = 'none';
+          demo2.style.display = 'none';
+          demo3.style.display = 'none';
+        }
+        function showDemo(demo){
+          if (demo && demo.style){
+            demo.style.display = 'block';
+          }
+        }
+        function hideDemo(demo){
+          if (demo && demo.style){
+            demo.style.display = 'none';
+          }
+        }
+
+      </script>
 
     </body>
 </html>
