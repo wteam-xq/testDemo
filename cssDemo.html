@@ -48,18 +48,18 @@
           }
           .c-wrap{
             border:1px solid #ccc;
-            width: 600px;
-            height: 600px;
+            width: 300px;
+            height: 300px;
             position: relative;
             margin: 0 auto;
           }
           .c-cont{
             position: absolute;
-            margin:-100px 0 0 -100px;
+            margin:-50px 0 0 -50px;
             top:50%;
             left:50%;
-            width:200px;
-            height:200px;
+            width:100px;
+            height:100px;
             background-color:green;
           }
           #main {
@@ -98,6 +98,23 @@
           .radius-btn:hover{
             background-color:#ddd;
           }
+          /*垂直居中对齐*/
+          .vertical-wrap{
+            display:table-cell; width:550px; 
+            height:100px; 
+            padding:0 15px; 
+            border:4px solid #beceeb; 
+            color:#069; 
+            font-size:14px; 
+            vertical-align:middle;
+          }
+          .ver-txt{
+            display:inline-block; 
+            font-size:14px; 
+            vertical-align:middle;
+          }
+          /*图片水平居中*/
+          
 
         </style>
 
@@ -117,12 +134,20 @@
       </div>
 
       <div id="test2">
-        <h3>css实现水平垂直居中</h3>
+        <h3>css实现水平垂直居中(容器高度固定)</h3>
         <div class='c-wrap'>
           <div class='c-cont'>
             水平居中的元素
           </div>
         </div>
+        <h3> 高度固定，多行文字垂直居中</h3>
+        <div class="vertical-wrap">
+          <span class="ver-txt">
+            这里的文字用来做多行垂直居中对齐</br>
+            这是第二行，本行是用图像的display属性：inline-block
+          </span>
+        </div>
+
       </div>
       
       <div id='test3'>
