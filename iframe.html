@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            iframe用法
+        </title>
+
+    </head>
+    
+    <body>
+        <h3>iframe自适应高度（跨域通信）:演示需放置tomcat中</h3>
+        <iframe src="http://wteamxq.com/photoDemo/" frameborder="0" scrolling="no" width="100%" height="460" id="testIframe"></iframe>
+        
+        <script>
+          // 跨域通信原理：1.通过在iframe.src后添加“#” + 本页面url,让iframe框架页能访问本页面url；
+          // 2.子页面（iframe页）内修改window.top.location（“#”+“height=xxx”），使父页面（本页）url改变而不刷新；
+          // 3.本页面通过window.location.hash获取"#"后iframe传递的参数；
+          var iframe = document.getElementById('testIframe');
+          var href = window.location.href, index = href.indexOf("#"), time_id = 0;
+          if (index !== -1) {
+              href = href.slice(0, index);
+          }
+          iframe.src = iframe.src + "#" + href;
+
+          // 轮询改变高度
+          var iframeHeight = function() {    
+            var hash = window.location.hash.slice(1);
+            if (hash && /height=/.test(hash)) {
+              iframe.height = hash.replace("height=", "");
+              // 高度加载完，结束轮询
+              clearTimeout(time_id);
+            }
+            time_id = setTimeout(iframeHeight, 200);
+          };
+          iframeHeight();
+
+          // "http://wteamxq.com/photoDemo/"  中配合脚本：
+          // window.onload = function(){
+          //   // 设置父类url
+          //   var hostUrl = window.location.hash.slice(1);
+          //   // 设置url失败时， 不改变父location
+          //   if (hostUrl == ""){
+          //     return false;
+          //   }
+          //   var self_h = window.innerHeight || document.body.clientHeight;
+          //   hostUrl += "#height=" + self_h;
+          //   window.top.location = hostUrl;
+          // }
+
+        </script>
+
+    </body>
+</html>

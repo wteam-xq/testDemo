@@ -41,3 +41,6 @@
 
 * 13.事件理解：
   * [event.html](https://github.com/wteam-xq/testDemo/blob/master/event.html)
+
+* 14.iframe用法：
+  * [iframe.html](https://github.com/wteam-xq/testDemo/blob/master/iframe.html)
