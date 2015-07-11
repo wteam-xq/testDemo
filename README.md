@@ -44,3 +44,6 @@
 
 * 14.iframe用法：
   * [iframe.html](https://github.com/wteam-xq/testDemo/blob/master/iframe.html)
+
+* 15.ajax理解：
+  * [ajax.html](https://github.com/wteam-xq/testDemo/blob/master/ajax.html)

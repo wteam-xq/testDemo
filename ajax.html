@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>
+          ajax用法
+      </title>
+      <style>
+        .radius-btn{
+          border-radius: 5px;
+          cursor:pointer;
+          padding:5px;
+          margin: 5px;
+          background-color: #eee;
+        }
+        .radius-btn:hover{
+          background-color:#ddd;
+        }
+        .res-cont{
+          border:2px solid #becceb; 
+          padding: 10px;
+        }
+        #tForm{
+          margin: 20px 10px;
+        }
+      </style>
+    </head>
+    
+    <body>
+        <h3>ajax测试码（原生js实现）:演示防止跨源建议将此文件放置于后台项目文件中</h3>
+        <div class='btn-cont'>
+          <button id="getBtn" class="radius-btn">发送GET请求</button>
+          <button id="postBtn" class="radius-btn">发送POST请求</button>
+        </div>
+
+        <form id="tForm">
+          <label>输入传递给后台的参数：</label>
+          <input id="putVal" value="" />
+        </form>
+
+        <div class="res-cont">
+          <h4>返回结果：</h4>
+          <p id="showResult"></p>
+        </div>
+
+        <script>
+          var get_btn = document.getElementById('getBtn');
+          var post_btn = document.getElementById('postBtn');
+          var put_val = document.getElementById('putVal');
+          var show_res = document.getElementById('showResult');
+          get_btn.onclick = getBtnClick;
+          post_btn.onclick = postBtnClick;
+
+          function getBtnClick(){
+            var _param = put_val.value;
+            xhrGet('/test_get', {name: _param}, function(err, res){
+              if (err) {
+                alert(err + ' 错误码： ' + res);
+                return false;
+              }
+              show_res.innerHTML = '请求成功：' + res;
+            });
+          }
+          function postBtnClick(){
+            var _param = put_val.value;
+            xhrPost('/test_post', {name: _param}, function(err, res){
+              if (err) {
+                alert(err + ' 错误码： ' + res);
+                return false;
+              }
+              show_res.innerHTML = '请求成功：' + res;
+            });
+          }
+          // 获得XHR对象
+          function createXHR(){
+            if (typeof XMLHttpRequest != "undefined"){
+              return new XMLHttpRequest();
+            }else if(typeof ActiveXObject != "undefined"){
+              // IE7以下浏览器（IE7开始支持 XMLHttpRequest对象）
+              if (typeof arguments.callee.activeXString != "string"){
+                // 使用 "Microsoft.XMLHTTP"可能 403 
+                var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'],
+                i;
+
+                for (i = 0, len = versions.length; i < len; i++){
+                  try{
+                    new ActiveXObject(versions[i]);
+                    arguments.callee.activeXString = versions[i];
+                  }catch(e){
+                    // 跳过
+                  }
+                }
+              }
+              return new ActiveXObject(arguments.callee.activeXString);
+            }else{
+              throw new Error('No XHR object available.');
+            }
+          }
+          // XHR对象 发送GET请求
+          function xhrGet(url, params, cbf){
+            var xhr = createXHR(), 
+            i, len, _param;
+            for (i in params) {
+              if (params.hasOwnProperty(i)) {
+                url = addURLParam(url, i, params[i]);
+              }
+            }
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4){
+                if ( (xhr.status >= 200 && xhr.status < 300) || xhr.status == 304 ) {
+                  cbf(null, xhr.responseText);
+                }else{
+                  cbf('请求失败', xhr.status);
+                }
+              }
+            }
+            xhr.open('get', url, false);
+            xhr.send(null);
+          }
+          // XHR对象 发送POST请求
+          function xhrPost(url, params, cbf){
+            var xhr = createXHR();
+            
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4){
+                if ( (xhr.status >= 200 && xhr.status < 300) || xhr.status == 304 ) {
+                  cbf(null, xhr.responseText);
+                }else{
+                  cbf('请求失败', xhr.status);
+                }
+              }
+            }
+            xhr.open('post', url, false);
+            // 设置成表单提交
+            xhr.setRequestHeader("content-Type", "application/x-www-form-urlencoded");
+            xhr.send(params);
+          }
+          // 拼凑GET url参数
+          function addURLParam(url, name, value){
+            url += (url.indexOf("?") == -1 ? "?" : "&");
+            url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
+            return url;
+          }
+
+        </script>
+
+    </body>
+</html>
