@@ -47,3 +47,6 @@
 
 * 15.ajax理解：
   * [ajax.html](https://github.com/wteam-xq/testDemo/blob/master/ajax.html)
+
+* 16.canvas理解：
+  * [canvas.html](https://github.com/wteam-xq/testDemo/blob/master/canvas.html)

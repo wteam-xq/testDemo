@@ -16,6 +16,25 @@
           .radius-btn:hover{
             background-color:#ddd;
           }
+          .clear-btn{
+            background-color:#93B5EC;
+          }
+          .clear-btn:hover{
+            background-color:#8080FF;
+          }
+          .canvas{
+            /*margin 设置了也没用*/
+            height:500px;
+            width: 800px;
+          }
+          #noSupport{
+            display: none;
+          }
+          #clearRectBtn{
+            position: absolute;
+            top: 350px;
+            left: 300px;
+          }
 
         </style>
 
@@ -30,8 +49,19 @@
       </div>
 
       <div id='fillStyle'>
-        <h3>填充和描边: fillstyle strokeStyle</h3>
-        <canvas id="fillCanvas" height="500" width="80%">浏览器不支持Canavas</canvas>
+        <h3>填充和描边: strokeStyle fillStyle </h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='rect'>
+        <h3>绘制矩形: strokeRect fillRect clearRect</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+        <button class="radius-btn clear-btn" id="clearRectBtn">点击清除 fillRect矩形</button>
+      </div>
+
+      <div id='path'>
+        <h3>绘制路径: arc arcTo bezierCurveTo lineTo moveTo quadraticCurveTo rect</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
       <div id='noSupport'>
@@ -42,21 +72,154 @@
       <script>
         var div_list = document.getElementsByTagName('div');
         var btn_cont = document.getElementById('btnCont');
-        var fill_style = document.getElementById('fillStyle');
         var support_tip = document.getElementById('noSupport');
         hideAllCanvas();
-        btn_cont.style.display = 'block';
+        // 按钮事件初始化
+        btnEventInit();
         init();
 
         function init(){
           // 测试浏览器兼容
-          var _canvas = getCanvasNode(fill_style);
-          if (!_canvas || !_canvas.getContext('2d')){
+          var fill_style = document.getElementById('fillStyle');
+          var _canvas = getCanvasNode(fill_style), _context;
+          try{
+            _context = _canvas.getContext('2d');
+          }catch(e){
             support_tip.style.display = 'block';
-          }else{
-            fill_style.style.display = 'block';
+            return false
           }
+          // 默认显示“填充描边”
+          fillStroke();
         }
+        // 赋予按钮事件
+        function btnEventInit(){
+          // 填充、描边按钮
+          var fillStyleBtn = document.getElementById('fillStyleBtn');
+          fillStyleBtn.onclick = fillStroke;
+          // 矩形按钮
+          var rectBtn = document.getElementById('rectBtn');
+          rectBtn.onclick = drawRect;
+          // 清除fillRect按钮
+          var clearRectBtn = document.getElementById('clearRectBtn');
+          clearRectBtn.onclick = clearRect;
+          // 路径按钮
+          var pathBtn = document.getElementById('pathBtn');
+          pathBtn.onclick = drawPath;
+        }
+        // 绘制填充跟描边
+        function fillStroke(){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var fill_style = document.getElementById('fillStyle');
+          var _canvas = getCanvasNode(fill_style);
+          var ctx = _canvas.getContext('2d');
+          fill_style.style.display = 'block';
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 500, 500);
+          // 绘制无填充矩形
+          ctx.beginPath();
+          ctx.strokeStyle = 'red';
+          ctx.rect(0, 0, 200, 200);
+          ctx.stroke();
+          // 添加说明
+          ctx.font = '12px Verdana';
+          ctx.fillText('ctx.beginPath();', 12, 20);
+          ctx.fillText('ctx.strokeStyle = "red";', 12, 40);
+          ctx.fillText('ctx.rect(0, 0, 200, 200);', 12, 60);
+          ctx.fillText('ctx.stroke();', 12, 80);
+
+          // 绘制填充矩形
+          ctx.beginPath();
+          ctx.fillStyle = '#decced';
+          ctx.rect(300, 0, 200, 200);
+          ctx.fill();
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.fillStyle = "#decced";', 312, 40);
+          ctx.fillText('ctx.rect(300, 0, 200, 200);', 312, 60);
+          ctx.fillText('ctx.fill();', 312, 80);
+        }
+        // 绘制矩形
+        function drawRect(){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var rect = document.getElementById('rect');
+          var _canvas = getCanvasNode(rect);
+          var ctx = _canvas.getContext('2d');
+          rect.style.display = 'block';
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 500, 500);
+          // 绘制无填充矩形
+          ctx.strokeStyle = '#ff0000';
+          ctx.strokeRect(0, 0, 200, 200);
+         
+          // 添加说明
+          ctx.font = '12px Verdana';
+          ctx.fillText('ctx.strokeStyle = "#ff0000";', 12, 20);
+          ctx.fillText('ctx.strokeRect(0, 0, 200, 200);', 12, 40);
+
+          // 绘制填充矩形
+          ctx.fillStyle = 'rgba(0, 0,255, 0.5)';
+          ctx.fillRect(300, 0, 200, 200);
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.fillStyle = "rgba(0, 0,255, 0.5)";', 312, 20);
+          ctx.fillText('ctx.fillRect(300, 0, 200, 200);', 312, 40);
+        }
+        // 清除fillRect
+        function clearRect(){
+          var rect = document.getElementById('rect');
+          var _canvas = getCanvasNode(rect);
+          var ctx = _canvas.getContext('2d');
+          // 清空画板重新绘制
+          ctx.clearRect(300, 0, 200, 200);
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.clearRect(300, 0, 200, 200);', 312, 20);
+        }
+        // 绘制路径
+        function drawPath(){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var path = document.getElementById('path');
+          var _canvas = getCanvasNode(path);
+          var ctx = _canvas.getContext('2d');
+          path.style.display = 'block';
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 800, 800);
+          // 绘制钟表
+          ctx.beginPath();
+          // 绘制外圆
+          ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);
+          // 绘制内圆
+          ctx.moveTo(194, 100);
+          ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+          // 绘制分钟
+          ctx.moveTo(100, 100);
+          ctx.lineTo(100, 15);
+          // 绘制时钟
+          ctx.moveTo(100, 100);
+          ctx.lineTo(35, 100);
+          // 描边路径
+          ctx.stroke();
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);', 312, 40);
+          ctx.fillText('ctx.moveTo(194, 100);', 312, 60);
+          ctx.fillText('ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);', 312, 80);
+          ctx.fillText('ctx.moveTo(100, 100);', 312, 100);
+          ctx.fillText('ctx.lineTo(100, 15);', 312, 120);
+          ctx.fillText('ctx.moveTo(100, 100);', 312, 140);
+          ctx.fillText('ctx.lineTo(35, 100);', 312, 160);
+          ctx.fillText('ctx.stroke();', 312, 180);
+        }
+
         // 获得div内的canvas节点(有多个的话， 只获得第一个)
         function getCanvasNode(p_node){
           var _node_list = p_node.childNodes, i , _node, len, result = null;
