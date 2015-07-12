@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            canvas简单用法
+        </title>
+        <style>
+          .radius-btn{
+            border-radius: 5px;
+            cursor:pointer;
+            padding:5px;
+            margin: 5px;
+            background-color: #eee;
+          }
+          .radius-btn:hover{
+            background-color:#ddd;
+          }
+
+        </style>
+
+    </head>
+    
+    <body>
+
+     <div class='btn-cont' id="btnCont">
+        <button id="fillStyleBtn" class="radius-btn">填充和描边</button>
+        <button id="rectBtn" class="radius-btn">绘制矩形</button>
+        <button id="pathBtn" class="radius-btn">绘制路径</button>
+      </div>
+
+      <div id='fillStyle'>
+        <h3>填充和描边: fillstyle strokeStyle</h3>
+        <canvas id="fillCanvas" height="500" width="80%">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='noSupport'>
+        <h3>您当前浏览器不支持 canvas标签， 请换一个浏览器试试！</h3>
+      </div>
+
+        
+      <script>
+        var div_list = document.getElementsByTagName('div');
+        var btn_cont = document.getElementById('btnCont');
+        var fill_style = document.getElementById('fillStyle');
+        var support_tip = document.getElementById('noSupport');
+        hideAllCanvas();
+        btn_cont.style.display = 'block';
+        init();
+
+        function init(){
+          // 测试浏览器兼容
+          var _canvas = getCanvasNode(fill_style);
+          if (!_canvas || !_canvas.getContext('2d')){
+            support_tip.style.display = 'block';
+          }else{
+            fill_style.style.display = 'block';
+          }
+        }
+        // 获得div内的canvas节点(有多个的话， 只获得第一个)
+        function getCanvasNode(p_node){
+          var _node_list = p_node.childNodes, i , _node, len, result = null;
+          for (i = 0, len = _node_list.length; i < len; i++) {
+            _node = _node_list[i];
+            if (_node.nodeType === 1 && _node.nodeName.toLocaleLowerCase() == 'canvas') {
+              result = _node;
+              break;
+            }
+          }
+          return result;
+        }
+
+        function showAllCanvas(){
+          var _len, i, div_item;
+          for (i = 0, _len = div_list.length; i < _len; i++ ) {
+            div_item = div_list[i];
+            div_item.style.display = 'block';
+          }
+        }
+        function hideAllCanvas(){
+          var _len, i, div_item;
+          for (i = 0, _len = div_list.length; i < _len; i++ ) {
+            div_item = div_list[i];
+            div_item.style.display = 'none';
+          }
+        }
+
+        // IE8及IE8以下浏览器不支持getElementsByClassName
+        function getNodesByClass(){
+
+        }
+
+      </script>
+
+    </body>
+</html>
