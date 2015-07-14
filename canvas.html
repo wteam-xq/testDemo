@@ -47,6 +47,7 @@
         <button id="rectBtn" class="radius-btn">绘制矩形</button>
         <button id="pathBtn" class="radius-btn">绘制路径</button>
         <button id="textBtn" class="radius-btn">绘制文本</button>
+        <button id="transformBtn" class="radius-btn">绘制变换</button>
       </div>
 
       <div id='fillStyle'>
@@ -62,6 +63,11 @@
 
       <div id='path'>
         <h3>绘制路径: arc arcTo bezierCurveTo lineTo moveTo quadraticCurveTo rect</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='transform'>
+        <h3>绘制变换: rotate scale translate transform setTransform</h3>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
@@ -109,6 +115,9 @@
           // 文本按钮
           var textBtn = document.getElementById('textBtn');
           textBtn.onclick = drawText;
+          // 变化按钮
+          var transformBtn = document.getElementById('transformBtn');
+          transformBtn.onclick = drawTransform;
         }
         // 绘制填充跟描边
         function fillStroke(){
@@ -265,6 +274,61 @@
           // 终点对齐
           ctx.textAlign = 'end';
           ctx.fillText('12', 100, 60);
+        }
+
+        // 绘制变换
+        function drawTransform(){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var transform = document.getElementById('transform');
+          var _canvas = getDivNode(transform, 'canvas');
+          var ctx = _canvas.getContext('2d');
+          transform.style.display = 'block';
+
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 800, 800);
+          // 绘制钟表
+          ctx.beginPath();
+          // 绘制外圆
+          ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);
+          // 绘制内圆
+          ctx.moveTo(194, 100);
+          ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+          // 变换原点
+          ctx.translate(100, 100);
+          // 旋转表钟
+          ctx.rotate(1);
+
+          // 绘制分钟
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -85);
+          // 绘制时钟
+          ctx.moveTo(0, 0);
+          ctx.lineTo(-65, 0);
+          // 描边路径
+          ctx.stroke();
+
+          // 添加说明
+          ctx.rotate(-1);
+          ctx.translate(-100, -100);
+          ctx.textAlign = 'start';
+
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);', 312, 40);
+          ctx.fillText('ctx.moveTo(194, 100);', 312, 60);
+          ctx.fillText('ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);', 312, 80);
+          ctx.fillText('ctx.translate(100, 100);', 312, 100);
+          ctx.fillText('ctx.rotate(1);', 312, 120);
+          ctx.fillText('ctx.moveTo(0, 0);', 312, 140);
+          ctx.fillText('ctx.lineTo(0, -85);', 312, 160);
+          ctx.fillText('ctx.moveTo(0, 0);', 312, 180);
+          ctx.fillText('ctx.lineTo(-65, 0);', 312, 200);
+          ctx.fillText('ctx.stroke();', 312, 220);
+
+          return ctx;
         }
 
         // 修改h3文字
