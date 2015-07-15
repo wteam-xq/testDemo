@@ -35,6 +35,9 @@
             top: 350px;
             left: 300px;
           }
+          .fb{
+            font-weight: bold;
+          }
 
         </style>
 
@@ -48,6 +51,7 @@
         <button id="pathBtn" class="radius-btn">绘制路径</button>
         <button id="textBtn" class="radius-btn">绘制文本</button>
         <button id="transformBtn" class="radius-btn">绘制变换</button>
+        <button id="imgBtn" class="radius-btn">绘制图像</button>
       </div>
 
       <div id='fillStyle'>
@@ -68,6 +72,20 @@
 
       <div id='transform'>
         <h3>绘制变换: rotate scale translate transform setTransform</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='imageDiv'>
+        <h3>绘制图像: drawImage</h3>
+        <p>可以绘制图像对象，也可以将另一canvas对象绘制</p>
+        <p>多种参数情况：
+          <br/> 
+          <span>3个参数：</span><span class="fb">要绘制的图像、图像起点x坐标、图像起点y坐标</span>
+          <br/>
+          <span>5个参数：</span><span class="fb">要绘制的图像、图像起点x坐标、图像起点y坐标、图像宽度、图像高度</span>
+          <br/>
+          <span>9个参数：</span><span class="fb">要绘制的图像、源图像的x坐标、源图像的y坐标、源图像的宽度、源图像的高度、目标图像的x坐标、目标图像的y坐标、目标图像的宽度、目标图像的高度</span>
+        </p>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
@@ -115,18 +133,26 @@
           // 文本按钮
           var textBtn = document.getElementById('textBtn');
           textBtn.onclick = drawText;
-          // 变化按钮
+          // 变换按钮
           var transformBtn = document.getElementById('transformBtn');
           transformBtn.onclick = drawTransform;
+          // 图像按钮
+          var imgBtn = document.getElementById('imgBtn');
+          imgBtn.onclick = drawImage;
+        }
+        // 切换demo画板canvas
+        function toggleDemo(d_id){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var newDiv = document.getElementById(d_id);
+          var _canvas = getDivNode(newDiv, 'canvas');
+          var ctx = _canvas.getContext('2d');
+          newDiv.style.display = 'block';
+          return ctx;
         }
         // 绘制填充跟描边
         function fillStroke(){
-          hideAllCanvas();
-          btn_cont.style.display = 'block';
-          var fill_style = document.getElementById('fillStyle');
-          var _canvas = getDivNode(fill_style, 'canvas');
-          var ctx = _canvas.getContext('2d');
-          fill_style.style.display = 'block';
+          var ctx = toggleDemo('fillStyle');
           // 清空画板重新绘制
           ctx.clearRect(0, 0, 500, 500);
           // 绘制无填充矩形
@@ -156,11 +182,7 @@
         }
         // 绘制矩形
         function drawRect(){
-          hideAllCanvas();
-          btn_cont.style.display = 'block';
-          var rect = document.getElementById('rect');
-          var _canvas = getDivNode(rect, 'canvas');
-          var ctx = _canvas.getContext('2d');
+          var ctx = toggleDemo('rect');
           rect.style.display = 'block';
           // 清空画板重新绘制
           ctx.clearRect(0, 0, 500, 500);
@@ -196,12 +218,7 @@
         }
         // 绘制圆形
         function drawCircular(){
-          hideAllCanvas();
-          btn_cont.style.display = 'block';
-          var path = document.getElementById('path');
-          var _canvas = getDivNode(path, 'canvas');
-          var ctx = _canvas.getContext('2d');
-          path.style.display = 'block';
+          var ctx = toggleDemo('path');
 
           // 清空画板重新绘制
           ctx.clearRect(0, 0, 800, 800);
@@ -278,13 +295,8 @@
 
         // 绘制变换
         function drawTransform(){
-          hideAllCanvas();
-          btn_cont.style.display = 'block';
-          var transform = document.getElementById('transform');
-          var _canvas = getDivNode(transform, 'canvas');
-          var ctx = _canvas.getContext('2d');
-          transform.style.display = 'block';
 
+          var ctx = toggleDemo('transform');
           // 清空画板重新绘制
           ctx.clearRect(0, 0, 800, 800);
           // 绘制钟表
@@ -329,6 +341,24 @@
           ctx.fillText('ctx.stroke();', 312, 220);
 
           return ctx;
+        }
+        // 绘制图像
+        function drawImage(){
+          var ctx = toggleDemo('imageDiv');
+          // 开始绘制图像
+          var imageObj = new Image();
+          imageObj.src = './dlam.jpg';
+          imageObj.onload = function(){
+            // ctx.drawImage(imageObj, 0, 0);
+            ctx.drawImage(imageObj, 0, 0, 208, 150);
+            // ctx.drawImage(imageObj, 20, 50, 208, 150, 0, 0, 208, 150);
+
+            ctx.fillText("var imageObj = new Image();", 312, 20);
+            ctx.fillText("imageObj.src = './dlam.jpg';", 312, 40);
+            ctx.fillText("imageObj.onload = function(){", 312, 60);
+            ctx.fillText("    ctx.drawImage(imageObj, 0, 0, 208, 150);", 312, 80);
+            ctx.fillText("};", 312, 100);
+          };
         }
 
         // 修改h3文字
