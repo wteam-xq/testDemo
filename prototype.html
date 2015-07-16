@@ -26,6 +26,13 @@
 
           alert(Foo.age);//10 
 
+          // 实现继承的简单方法
+          function object(o){
+            function F () {};
+            F.prototype = o;
+            return new F();
+          }
+
         </script>
 
     </body>
