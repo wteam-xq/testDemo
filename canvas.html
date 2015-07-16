@@ -52,6 +52,7 @@
         <button id="textBtn" class="radius-btn">绘制文本</button>
         <button id="transformBtn" class="radius-btn">绘制变换</button>
         <button id="imgBtn" class="radius-btn">绘制图像</button>
+        <button id="shadowBtn" class="radius-btn">绘制阴影</button>
       </div>
 
       <div id='fillStyle'>
@@ -91,6 +92,11 @@
 
       <div id='noSupport'>
         <h3>您当前浏览器不支持 canvas标签， 请换一个浏览器试试！</h3>
+      </div>
+
+      <div id='shadow'>
+        <h3>阴影绘制: shadowColor shadowOffsetX shadowOffsetY shadowBlur</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
         
@@ -139,6 +145,9 @@
           // 图像按钮
           var imgBtn = document.getElementById('imgBtn');
           imgBtn.onclick = drawImage;
+          // 阴影按钮
+          var shadowBtn = document.getElementById('shadowBtn');
+          shadowBtn.onclick = drawShadow;
         }
         // 切换demo画板canvas
         function toggleDemo(d_id){
@@ -359,6 +368,37 @@
             ctx.fillText("    ctx.drawImage(imageObj, 0, 0, 208, 150);", 312, 80);
             ctx.fillText("};", 312, 100);
           };
+        }
+        // 绘制阴影
+        function drawShadow(){
+          var ctx = toggleDemo('shadow');
+          // 设置阴影
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+          ctx.shadowOffsetX = 3;
+          ctx.shadowOffsetY = 3;
+          ctx.shawBlur = 4;
+          // 绘制红色矩形
+          ctx.fillStyle = '#ff0000';
+          ctx.fillRect(10, 10, 50, 50);
+          // 绘制蓝色矩形
+          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          ctx.fillRect(30, 30, 50, 50);
+
+          // 绘制提示
+          ctx.shadowBlur = 0;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 0;
+          ctx.font = 'bold arial 12px';
+          ctx.fillStyle = '#000';
+          ctx.fillText("ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';", 312, 20);
+          ctx.fillText("ctx.shadowOffsetX = 3;", 312, 40);
+          ctx.fillText("ctx.shadowOffsetY = 3;", 312, 60);
+          ctx.fillText("ctx.shawBlur = 4;", 312, 80);
+          ctx.fillText("ctx.fillStyle = '#ff0000';", 312, 100);
+          ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 312, 120);
+          ctx.fillText("ctx.fillStyle = 'rgba(0, 0, 255, 1)';", 312, 140);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 312, 160);
+          ctx.fillText("", 312, 180);
         }
 
         // 修改h3文字
