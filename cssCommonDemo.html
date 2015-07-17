@@ -48,6 +48,7 @@
             clear:both;
           }
 
+          /*垂直、水平居中*/
           .c-wrap{
             border:1px solid #ccc;
             width: 300px;
@@ -55,9 +56,11 @@
             position: relative;
             margin: 0 auto;
           }
+          /*transform IE9+兼容 ，另如果将top、left、right、top都设置成0然后margin设置成auto则能兼容IE8+*/
           .c-cont{
             position: absolute;
             margin:-50px 0 0 -50px; /*父元素 宽度的一半 高度的一半*/
+            /*transform:translate(-50%, -50%);*/
             top:50%;
             left:50%;
             width:100px;  
@@ -200,21 +203,27 @@
           hideAllDemo();
           showDemo(targetDemo);
         }
+
+
         function showAllDemo(){
           demo1.style.display = 'block';
           demo2.style.display = 'block';
           demo3.style.display = 'block';
         }
+
+        // 待优化： 使用自定义getElementsByClassName获取
         function hideAllDemo(){
           demo1.style.display = 'none';
           demo2.style.display = 'none';
           demo3.style.display = 'none';
         }
+
         function showDemo(demo){
           if (demo && demo.style){
             demo.style.display = 'block';
           }
         }
+
         function hideDemo(demo){
           if (demo && demo.style){
             demo.style.display = 'none';
