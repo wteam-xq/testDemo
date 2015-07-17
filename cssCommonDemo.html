@@ -46,6 +46,7 @@
           }
           .clearfix:after{
             clear:both;
+            visibility: hidden;
           }
 
           /*垂直、水平居中*/
@@ -120,6 +121,9 @@
             font-size:14px; 
             vertical-align:middle;
           }
+          .demo {
+            display: none;
+          }
 
         </style>
 
@@ -127,19 +131,20 @@
     
     <body>
 
-     <div class='btn-cont'>
+      <div class='btn-cont'>
         <button id="tBtn1" class="radius-btn">css3动画</button>
         <button id="tBtn2" class="radius-btn">css水平垂直居中</button>
         <button id="tBtn3" class="radius-btn">css三栏布局</button>
+        <button id="tBtn4" class="radius-btn">双栏布局</button>
       </div>
 
-      <div id='test1'>
+      <div id='test1' class="demo demo2">
         <h3>CSS3动画</h3>
         <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
       </div>
 
       <!-- 垂直居中相关教程：http://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/ -->
-      <div id="test2">
+      <div id="test2" class="demo">
         <h3>css实现水平垂直居中(容器高度固定)</h3>
         <div class='c-wrap'>
           <div class='c-cont'>
@@ -153,10 +158,9 @@
             这是第二行，本行是用图像的display属性：inline-block
           </span>
         </div>
-
       </div>
       
-      <div id='test3'>
+      <div id='test3' class="demo">
         <h3>用DIV+CSS实现三栏布局（左右固定200px，中间自适应）</h3>
         <div id="main">
           <div id="mainContainer">main content</div>
@@ -168,62 +172,61 @@
            <div id="rightContainer" class="inner">right</div>
         </div>
       </div>
-        
+
+      <div id='test4' class="demo">
+        <h2>准备双栏布局</h2>
+      </div>
+      
+      <script src="./utils.js" type="text/javascript"></script>
+
       <script>
-        var btn1 = document.getElementById('tBtn1');
-        var btn2 = document.getElementById('tBtn2');
-        var btn3 = document.getElementById('tBtn3');
-        // 获得对应demo节点
-        var demo1 = document.getElementById('test1');
-        var demo2 = document.getElementById('test2');
-        var demo3 = document.getElementById('test3');
+        var i, len, btn;
+        // 按钮列表 
+        var btn_list = getElementsByClassName('button', 'radius-btn');
+        // 获得demo集合 参数1：标签名， 参数2：类名
+        var demo_list = getElementsByClassName('div', 'demo');
 
-        btn1.onclick = demoClickHandler;
-        btn2.onclick = demoClickHandler;
-        btn3.onclick = demoClickHandler;
+        for (i = 0, len = btn_list.length; i < len; i++) {
+          btn = btn_list[i];
+          btn.onclick = demoClickHandler;
+        }
 
-        hideAllDemo();
-        function demoClickHandler(){
-          var targetDemo = null;
-          var num = 0;
+        // 根据点击对象 获得对应节点
+        function demoClickHandler(event){
+          var targetDemo = null, num = 0, str = '';
           num = /\d/.exec(this.id)[0];
-          switch(num){
-            case '1':
-              targetDemo = demo1;
-              break;
-            case '2':
-              targetDemo = demo2;
-              break;
-            case '3':
-              targetDemo = demo3;
-              break;
-            default:
-              targetDemo = demo1
-          }
+          str = 'test' + num;
+          targetDemo = document.getElementById(str);
           hideAllDemo();
           showDemo(targetDemo);
         }
 
 
         function showAllDemo(){
-          demo1.style.display = 'block';
-          demo2.style.display = 'block';
-          demo3.style.display = 'block';
+          var i , len, n_item;
+          for (i = 0, len = demo_list.length; i < len; i++) {
+            n_item = demo_list[i];
+            n_item.style.display = 'block';
+          }
         }
 
-        // 待优化： 使用自定义getElementsByClassName获取
+        // 使用自定义getElementsByClassName获取（utils.js 公用库中）
         function hideAllDemo(){
-          demo1.style.display = 'none';
-          demo2.style.display = 'none';
-          demo3.style.display = 'none';
+          var i , len, n_item;
+          for (i = 0, len = demo_list.length; i < len; i++) {
+            n_item = demo_list[i];
+            n_item.style.display = 'none';
+          }
         }
 
+        // 显示某一demo
         function showDemo(demo){
           if (demo && demo.style){
             demo.style.display = 'block';
           }
         }
 
+        // 隐藏某一demo
         function hideDemo(demo){
           if (demo && demo.style){
             demo.style.display = 'none';

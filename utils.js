@@ -82,4 +82,32 @@ var EventUtil = {
   }
 };
 
-// 根据样式名 获得子类的节点
+// 根据节点类型、样式名 获得子类的节点
+function getElementsByClassName(node_type, class_name){
+  var i, j, j_len, len, n_item, node_list, item_classes, r = [];
+  // 如果浏览器支持该方法直接返回
+  if (document.getElementsByClassName) {
+    node_list = document.getElementsByClassName(class_name);
+    for (i = 0, len = node_list.length; i < len; i++) {
+      n_item = node_list[i];
+      if (n_item.nodeName.toLocaleLowerCase() == node_type) {
+        r.push(n_item);
+      }
+    }
+  } else {
+    node_list = document.getElementsByTagName(node_type);
+    for (i = 0, len = node_list.length; i < len; i++) {
+      n_item = node_list[i];
+      item_classes = n_item.getAttribute('class');
+      // 通过空格 获得类名数组
+      item_classes = !item_classes?[]:item_classes.split(' ');
+      for (j = 0, j_len = item_classes.length; j < j_len; j++) {
+        if (item_classes[j] === class_name) {
+          r.push(n_item);
+          break;
+        }
+      }
+    }
+  }
+  return r;
+}
