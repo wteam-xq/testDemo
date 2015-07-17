@@ -82,7 +82,7 @@ var EventUtil = {
   }
 };
 
-// 根据节点类型、样式名 获得子类的节点
+// 根据节点类型、样式名 获得节点列表
 function getElementsByClassName(node_type, class_name){
   var i, j, j_len, len, n_item, node_list, item_classes, r = [];
   // 如果浏览器支持该方法直接返回
@@ -110,4 +110,28 @@ function getElementsByClassName(node_type, class_name){
     }
   }
   return r;
+}
+
+function getElementsByClassName2(classNmae){
+  //如果不存在这个方法
+  if (!document.getElementsByClassName) {
+    //定义一个空数组用来存储获取到指定className元素
+    var ret = [];
+    //获取页面所有元素
+    var els = document.getElementsByTagName('*');
+    //获取页面元素的className等于传入的那个名字
+    for (var i = 0; i < els.length; i++) {
+      if (!!els[i].className && (els[i].className === cls
+              || els[i].className.indexOf(cls + ' ') >= 0
+              || els[i].className.indexOf(' ' + cls + ' ') >= 0
+              || els[i].className.indexOf(' ' + cls) >= 0 ) ) {
+        //把获取到的元素压入空数组ret【】中
+        ret.push(els[i]);
+      }
+    }
+    //返回这个结果集，相当于之前的getElementsByClassName返回的 结果集。
+    return ret;
+  }else{
+    return document.getElementsByClassName(classNmae);
+  }
 }
