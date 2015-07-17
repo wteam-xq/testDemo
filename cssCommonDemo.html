@@ -36,6 +36,7 @@
             100% {left:100px;}
           }
           
+          /*清除浮动 常用样式*/
           .clearfix{
             zoom: 1;
           }
@@ -46,6 +47,7 @@
           .clearfix:after{
             clear:both;
           }
+
           .c-wrap{
             border:1px solid #ccc;
             width: 300px;
@@ -55,10 +57,10 @@
           }
           .c-cont{
             position: absolute;
-            margin:-50px 0 0 -50px;
+            margin:-50px 0 0 -50px; /*父元素 宽度的一半 高度的一半*/
             top:50%;
             left:50%;
-            width:100px;
+            width:100px;  
             height:100px;
             background-color:green;
           }
@@ -98,9 +100,11 @@
           .radius-btn:hover{
             background-color:#ddd;
           }
-          /*垂直居中对齐*/
+
+          /*文字垂直居中对齐*/
           .vertical-wrap{
-            display:table-cell; width:550px; 
+            display:table-cell; 
+            width:550px; 
             height:100px; 
             padding:0 15px; 
             border:4px solid #beceeb; 
@@ -113,8 +117,6 @@
             font-size:14px; 
             vertical-align:middle;
           }
-          /*图片水平居中*/
-          
 
         </style>
 
@@ -133,6 +135,7 @@
         <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
       </div>
 
+      <!-- 垂直居中相关教程：http://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/ -->
       <div id="test2">
         <h3>css实现水平垂直居中(容器高度固定)</h3>
         <div class='c-wrap'>

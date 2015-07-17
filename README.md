@@ -35,8 +35,8 @@
 * 11.原型理解：
   * [prototype.html](https://github.com/wteam-xq/testDemo/blob/master/prototype.html)
 
-* 12.样式理解：
-  * [cssDemo.html](https://github.com/wteam-xq/testDemo/blob/master/cssDemo.html)
+* 12.常见样式布局：
+  * [cssCommonDemo.html](https://github.com/wteam-xq/testDemo/blob/master/cssCommonDemo.html)
   * [演示地址](http://wteamxq.com/testDemo/cssDemo.html)
 
 * 13.事件理解：
@@ -50,3 +50,6 @@
 
 * 16.canvas理解：
   * [canvas.html](https://github.com/wteam-xq/testDemo/blob/master/canvas.html)
+
+* 17.css3 伸缩布局盒：
+  * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)

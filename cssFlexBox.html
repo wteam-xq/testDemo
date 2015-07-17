@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            伸缩布局盒
+        </title>
+        <style>
+          body {
+            /*direction: rtl;*/
+          }
+          .demo-container{
+            display: -webkt-flex;
+            display: flex;
+            -webkit-align-content: center;
+            align-content: center;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+          }
+          .demo-item{
+            margin: 10px;
+          }
+
+          .flex-container {
+            display: -webkit-flex;
+            display: flex;
+            width: 300px;
+            height: 240px;
+            background-color: Silver;
+
+            /*主轴方向*/
+            /*-webkit-flex-direction: column;
+            flex-direction: column;*/
+            
+            /*主轴对齐*/
+            /*-webkit-justify-content: center;
+            justify-content: center;*/
+            
+            /*侧轴对齐*/
+            /*-webkit-align-items: center;
+            align-items: center;*/
+            
+            /*flex-flow: flex-direction 和 flex-wrap 的缩写*/
+            
+            /*伸缩行换行*/
+            /*-webkit-flex-wrap: wrap;
+            flex-wrap: wrap;*/
+            
+            /*align-content 堆栈伸缩行 对齐伸缩行*/
+            -webkit-align-content: center;
+            align-content: center;
+          }
+          .flex-container1 {
+            display: -webkit-flex;
+            display: flex;
+            width: 300px;
+            height: 240px;
+            background-color: Silver;
+            /*主轴对齐*/
+            -webkit-justify-content: center;
+            justify-content: center;
+          }
+
+          .first {
+            -webkit-order: -1;
+            order: -1;
+          }
+
+          .flex-item {
+            background-color: DeepSkyBlue;
+            width: 50px;
+            height: 100px;
+            margin: 5px;
+          }
+          .flex-item:first-child {
+            /*margin-right: auto;*/
+          }
+          .flex-item1{
+            background-color: DeepSkyBlue;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+          }
+
+
+          .item1 {
+            -webkit-align-self: flex-start;
+            align-self: flex-start;
+          }
+          .item2 {
+            -webkit-align-self: flex-end;
+            align-self: flex-end;
+          }
+
+          .item3 {
+            -webkit-align-self: center;
+            align-self: center;
+          }
+
+          .item4 {
+            -webkit-align-self: baseline;
+            align-self: baseline;
+          }
+
+          .item5 {
+            -webkit-align-self: baseline;
+            align-self: baseline;
+            padding: 2em 0;
+          }
+
+          .item6 {
+            -webkit-align-self: stretch;
+            align-self: stretch;
+          }
+
+          .item7 {
+            -webkit-flex: 3;
+            flex: 3;
+          }
+          .item8 {
+            -webkit-flex: 1;
+            flex: 1;
+          }
+          .item9 {
+            -webkit-flex: 1;
+            flex: 1;
+          }
+
+        </style>
+    </head>
+    
+    <body>
+        <div class="demo-container">
+
+          <div class="demo-item">
+            <h3> 设置优先级 order</h3>
+            <div class="flex-container">
+              <div class="flex-item">flex item 1</div>
+              <div class="flex-item first">flex item 2（flex-order:-1）</div>
+              <div class="flex-item">flex item 3</div>
+            </div>
+          </div>
+
+          <div class="demo-item">
+            <h3>  margin:auto 真居中对齐</h3>
+            <div class="flex-container">
+              <div class="flex-item1">I'm centered!</div>
+            </div>
+          </div>
+
+          <div class="demo-item">
+            <h3> align-itme align-self 侧轴对齐</h3>
+            <div class="flex-container">
+              <div class="flex-item item1">flex-start</div>
+              <div class="flex-item item2">flex-end</div>
+              <div class="flex-item item3">center</div>
+              <div class="flex-item item4">base</div>
+              <div class="flex-item item5">line</div>
+              <div class="flex-item item6">stretch</div>
+            </div>
+          </div>
+
+          <div class="demo-item">
+            <h3>  伸缩性flex[num]3 1 1</h3>
+            <div class="flex-container">
+              <div class="flex-item item7">flex2</div>
+              <div class="flex-item item8">flex1</div>
+              <div class="flex-item item9">flex1</div>
+            </div>
+          </div>
+
+          <div class="demo-item">
+            <h3>  主轴对齐 justify-content</h3>
+            <div class="flex-container1">
+              <div class="flex-item1">flex2</div>
+              <div class="flex-item1">flex1</div>
+            </div>
+          </div>
+          
+        </div>
+
+        <script>
+
+        </script>
+
+    </body>
+</html>
