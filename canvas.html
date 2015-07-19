@@ -88,6 +88,10 @@
           <br/>
           <span>9个参数：</span><span class="fb">要绘制的图像、源图像的x坐标、源图像的y坐标、源图像的宽度、源图像的高度、目标图像的x坐标、目标图像的y坐标、目标图像的宽度、目标图像的高度</span>
         </p>
+
+        <br/>
+        <h3>绘制模式： pattern</h3>
+        <p>像css 的repeate, 重复渲染canvas image videos</p>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
@@ -375,7 +379,19 @@
             ctx.fillText("imageObj.onload = function(){", 312, 60);
             ctx.fillText("    ctx.drawImage(imageObj, 0, 0, 208, 150);", 312, 80);
             ctx.fillText("};", 312, 100);
+
+            // 绘制模式图像
+            var pattern = ctx.createPattern(imageObj, "repeat");
+            // 绘制矩形
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 170, 208, 300);
+            ctx.fillStyle = '#000';
+            ctx.fillText('var pattern = ctx.createPattern(image, "repeat");', 312, 210);
+            ctx.fillText('ctx.fillStyle = pattern;', 312, 230);
+            ctx.fillText('ctx.fillRect(210, 170, 300, 300);', 312, 250);
           };
+
+          
         }
         // 绘制阴影
         function drawShadow(){
