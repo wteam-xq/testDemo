@@ -112,6 +112,7 @@ function getElementsByClassName(node_type, class_name){
   return r;
 }
 
+// IE8 及IE8以下浏览器不支持getElementsByClassName， 自定义js实现之
 function getElementsByClassName2(classNmae){
   //如果不存在这个方法
   if (!document.getElementsByClassName) {
