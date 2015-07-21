@@ -38,6 +38,12 @@
           .fb{
             font-weight: bold;
           }
+          /*绘制图像按钮，灰阶过滤*/
+          .gray-btn{
+            position: absolute;
+            top:450px;
+            left:300px;
+          }
 
         </style>
 
@@ -78,7 +84,7 @@
       </div>
 
       <div id='imageDiv'>
-        <h3>绘制图像: drawImage</h3>
+        <h3>绘制图像（图1）: drawImage</h3>
         <p>可以绘制图像对象，也可以将另一canvas对象绘制</p>
         <p>多种参数情况：
           <br/> 
@@ -90,8 +96,9 @@
         </p>
 
         <br/>
-        <h3>绘制模式： pattern</h3>
+        <h3>绘制模式（图2）： pattern</h3>
         <p>像css 的repeate, 重复渲染canvas image videos</p>
+        <button class="radius-btn gray-btn" id="grayBtn" data-type="gray">灰阶过滤</button>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
@@ -154,12 +161,16 @@
           // 图像按钮
           var imgBtn = document.getElementById('imgBtn');
           imgBtn.onclick = drawImage;
+          // 灰阶过滤按钮
+          var grayBtn = document.getElementById('grayBtn');
+          grayBtn.onclick = imgGray;
           // 阴影按钮
           var shadowBtn = document.getElementById('shadowBtn');
           shadowBtn.onclick = drawShadow;
           // 渐变按钮
           var gradientBtn = document.getElementById('gradientBtn');
           gradientBtn.onclick = drawGradient;
+
         }
         // 切换demo画板canvas
         function toggleDemo(d_id){
@@ -368,14 +379,14 @@
           var ctx = toggleDemo('imageDiv');
           // 开始绘制图像
           var imageObj = new Image();
-          imageObj.src = './dlam.jpg';
+          imageObj.src = 'images/dlam.jpg';
           imageObj.onload = function(){
             // ctx.drawImage(imageObj, 0, 0);
             ctx.drawImage(imageObj, 0, 0, 208, 150);
             // ctx.drawImage(imageObj, 20, 50, 208, 150, 0, 0, 208, 150);
 
             ctx.fillText("var imageObj = new Image();", 312, 20);
-            ctx.fillText("imageObj.src = './dlam.jpg';", 312, 40);
+            ctx.fillText("imageObj.src = 'images/dlam.jpg';", 312, 40);
             ctx.fillText("imageObj.onload = function(){", 312, 60);
             ctx.fillText("    ctx.drawImage(imageObj, 0, 0, 208, 150);", 312, 80);
             ctx.fillText("};", 312, 100);
@@ -390,9 +401,54 @@
             ctx.fillText('ctx.fillStyle = pattern;', 312, 230);
             ctx.fillText('ctx.fillRect(210, 170, 300, 300);', 312, 250);
           };
+          return ctx;
+        }
+        // 图像灰阶过滤
+        function imgGray(){
+          var ctx, data_type, grayBtn;
 
+          grayBtn = document.getElementById('grayBtn');
+          data_type = grayBtn.getAttribute('data-type');
+          ctx = toggleDemo('imageDiv');
+
+          if (data_type === 'gray') {
+            // 将按钮状态变为“恢复”
+            grayBtn.setAttribute('data-type', 'restore');
+            grayBtn.innerHTML = '灰阶恢复';
+            // ctx.clearRect(0, 0, 800, 150);
+            setImgGray(ctx);
+          }else if (data_type === 'restore') {
+            // 将按钮状态变为“制灰”
+            grayBtn.setAttribute('data-type', 'gray');
+            grayBtn.innerHTML = '灰阶过滤';
+            ctx.clearRect(0, 0, 800, 150);
+            drawImage();
+          }
+          // 获得图像信息， 得将该文件放置在tomcat中
+          function setImgGray(ctx){
+            var i , len;
+            // 取得图像数据
+            imageData = ctx.getImageData(0, 0, 208, 150);
+            data = imageData.data;
+            for (var i = 0, len = data.length; i < len; i+=4) {
+              red = data[i];
+              green = data[i + 1];
+              blue = data[i + 2];
+              alpha = data[i + 3];
+              // 求得rgb平均值
+              average = Math.floor( (red + green + blue)/3 );
+              // 设置颜色值， 透明度不变
+              data[i] = average;
+              data[i + 1] = average;
+              data[i + 2] = average;
+            }
+            // 回写图像数据并显示结果
+            imageData.data = data;
+            ctx.putImageData(imageData, 0, 0);
+          }
           
         }
+
         // 绘制阴影
         function drawShadow(){
           var ctx = toggleDemo('shadow');

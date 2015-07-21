@@ -9,6 +9,7 @@
 * 20150714 canvas context.translate 改动后会将设置保存在内存中（下次获取 该元素的context位置还是translate后的）
 * 解决方案： 使用完后将位置变回去， es： context(100, 100); afater used: context(-100, -100);
 
+* 20150721 canvas ctx.getImageData方法： 读取图像文件需要tomcat服务器环境
 
 ### 设计本项目代码的笔试题：
 
