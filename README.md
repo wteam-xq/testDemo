@@ -37,7 +37,7 @@
 
 * 12.常见样式布局：
   * [cssCommonDemo.html](https://github.com/wteam-xq/testDemo/blob/master/cssCommonDemo.html)
-  * [演示地址](http://wteamxq.com/testDemo/cssDemo.html)
+  * [演示地址](http://wteamxq.com/testDemo/cssCommonDemo.html)
 
 * 13.事件理解：
   * [event.html](https://github.com/wteam-xq/testDemo/blob/master/event.html)
