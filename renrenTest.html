@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            人人网笔试题
+        </title>
+        <link rel="stylesheet" href="./common.css" type="text/style"/>
+        <style>
+          ol li{
+            line-height: 1.5em;
+          }
+        </style>
+    </head>
+    
+    <body>
+        <h3>人人网笔试题: （涉及知识点较多）</h3>
+        <div class='btn-list' id="btnCont">
+          <button id="showImgBtn" class="radius-btn">图片展示</button>
+          <button id="modalBtn" class="radius-btn">提示控件</button>
+          <button id="inputTipsBtn" class="radius-btn">智能提示</button>
+          <button id="secMenuBtn" class="radius-btn">二级菜单</button>
+          <button id="onlineEditorBtn" class="radius-btn">编辑器</button>
+        </div>
+
+        <div class="demo" id="showImg">
+          <h3>一、在页面的固定区域内实现图片的展示</h3>
+          <img src="images/rrt_1.png" title="题目1" alt="题目1" />
+          <ol>
+            <li>每点击一次右箭头，图片区域向左滚动出一张图片，反之相同； </li>
+            <li>当发现图片滚动到末尾时，响应的箭头变成不可点击状态；   </li>
+            <li>鼠标在图片区域内滑动滚轮，图片会随着鼠标滚轮的方向进行响应的滚动；</li>
+          </ol>
+        </div>
+
+        <div class="demo" id="modal">
+          <h3>二、用  js、html、css实现一个弹出提示控件： </h3>
+          <ol>
+            <li>分别实现类似于系统的  alert、confirm、prompt对话框；</li>
+            <li> 对话框大小根据提示内容进行自适应（有一个最小宽高），默认出现在页面的水平垂直居中的位置；</li>
+            <li>对话框可拖动；  </li>
+            <li>对话框中的事件模拟系统对话框的事件（例如：alert 对话框，点击确定按钮，对话框消失）；</li>
+            <li> 解决IE6被 select控件遮挡的问题；</li>
+          </ol>
+        </div>
+
+        <div class="demo" id="inputTips">
+          <h3>三、实现 input 输入框的自动匹配</h3>
+          <img src="images/rrt_3.png" title="题目3" alt="题目3" />
+          <ol>
+            <li>对 input框中输入的字符进行匹配，将匹配到的内容以菜单的形式展现在  input框的下方；</li>
+            <li>只针对英文字符进行匹配，并且匹配到的内容在菜单中加粗；  </li>
+            <li>通过键盘上的上下箭头可以对菜单进行选择，按下回车后将选中的内容写入到 input框中；</li>
+          </ol>
+        </div>
+
+        <div class="demo" id="inputTips">
+          <h3>四、在页面上实现一个二级菜单控件 </h3>
+          <img src="images/rrt_4.png" title="题目4" alt="题目4" />
+          <ol>
+            <li>这个控件可以绑定到页面上的任意一个元素，当点击页面元素出现菜单；  </li>
+            <li>菜单出现的方向根据所在页面的位置自动进行调整，例如：  </li>
+            <li>一级菜单中的元素，鼠标划过后，将会在相应的位置出现二级菜单，二级菜单中的元素点击将会有事件响应   </li>
+          </ol>
+        </div>
+
+        <div class="demo" id="inputTips">
+          <h3>五、实现一个所见即所得编辑器（选作）  </h3>
+          <p>需提供以下功能： </p>
+          <ol>
+            <li>字体加粗；</li>
+            <li>文本左对齐、右对齐、居中； </li>
+            <li>设置字体；</li>
+            <li>设置字号；</li>
+            <li>设置字体颜色； </li>
+            <li>插入超链接；</li>
+            <li>插入图片； </li>
+          </ol>
+        </div>
+        
+        <script src="utils.js" type="text/javascript"></script>
+        <script type="text/javascript">
+          var btn_list = getElementsByClassName('button', 'radius-btn');
+
+          function init(){
+            var i , len , btn_item;
+            // 默认显示第一项
+            showDemoByIndex(0);
+            
+            // 初始化按钮事件
+            for (i = 0, len = btn_list.length; i < len; i++) {
+              btn_item = btn_list[i];
+              btn_item.setAttribute('data-no', i);
+              // 闭包实现块级作用域
+              btn_item.onclick = showDemoByIndex;
+            }
+
+            // 其他demo隐藏， 对应下标demo出现
+            function showDemoByIndex(index){
+              var  i , len, _demo, demo_list = getElementsByClassName('div', 'demo');
+              if (index == null || demo_list.length == 0) {
+                return false;
+              }else if ((typeof index) != 'number'){
+                index = parseInt(this.getAttribute('data-no'), 10);
+              }
+
+              for (i = 0, len = demo_list.length; i < len; i++) {
+                _demo = demo_list[i];
+                _demo.style.display = 'none';
+              }
+              if (demo_list[index] && demo_list[index].style) {
+                demo_list[index].style.display = 'block';
+              }
+            }
+
+          }
+
+          init();
+
+        </script>
+
+    </body>
+</html>
