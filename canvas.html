@@ -60,6 +60,7 @@
         <button id="imgBtn" class="radius-btn">绘制图像</button>
         <button id="shadowBtn" class="radius-btn">绘制阴影</button>
         <button id="gradientBtn" class="radius-btn">绘制渐变</button>
+        <button id="compBtn" class="radius-btn">绘制合成</button>
       </div>
 
       <div id='fillStyle'>
@@ -94,6 +95,10 @@
           <br/>
           <span>9个参数：</span><span class="fb">要绘制的图像、源图像的x坐标、源图像的y坐标、源图像的宽度、源图像的高度、目标图像的x坐标、目标图像的y坐标、目标图像的宽度、目标图像的高度</span>
         </p>
+        <p>
+          <strong>ps:</strong>
+          <span>“灰阶过滤”需要在类似tomcat的服务器环境下运行</span> 
+        </p>
 
         <br/>
         <h3>绘制模式（图2）： pattern</h3>
@@ -109,6 +114,12 @@
 
       <div id='gradient'>
         <h3>绘制渐变: createLinearGradient createRadialGradient gradient.addColorStop</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='comp'>
+        <h3>绘制合成: globalAlpha globalCompositionOperation</h3>
+        <p><em>ps:</em>更新信息查看<a href="https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html" target="_blank">火狐实验室</a></p>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
       </div>
 
@@ -170,6 +181,9 @@
           // 渐变按钮
           var gradientBtn = document.getElementById('gradientBtn');
           gradientBtn.onclick = drawGradient;
+          // 合成按钮
+          var compBtn = document.getElementById('compBtn');
+          compBtn.onclick = drawComp;
 
         }
         // 切换demo画板canvas
@@ -504,6 +518,34 @@
           ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 200, 100);
           ctx.fillText("ctx.fillStyle = gradient;", 200, 120);
           ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 140);
+        }
+        // 绘制合成
+        function drawComp() {
+          var ctx = toggleDemo('comp');
+          // 绘制红色矩形框
+          ctx.fillStyle = '#ff0000';
+          ctx.fillRect(10, 10, 50, 50);
+          // 修改全局透明度
+          ctx.globalAlpha = 0.5;
+          // 绘制蓝色矩形
+          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          ctx.fillRect(30, 30, 50, 50);
+          // 重置全局透明度
+          ctx.globalAlpha = 1;
+
+          // 绘制说明
+          ctx.font = 'bold arial 12px';
+          ctx.fillStyle = '#000';
+          ctx.fillText("ctx.fillStyle = '#ff0000';", 200, 40);
+          ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 200, 60);
+          ctx.fillText("ctx.globalAlpha = 0.5;", 200, 80);
+          ctx.fillText("ctx.fillStyle = 'rgba(0, 0, 255, 1)';", 200, 100);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 120);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 140);
+          ctx.fillText("ctx.globalAlpha = 1;", 200, 160);
+
+          // 绘制 合成效果图
+          
         }
 
         // 修改h3文字
