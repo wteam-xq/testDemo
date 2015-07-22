@@ -10,6 +10,88 @@
           ol li{
             line-height: 1.5em;
           }
+          ul{
+            font-size: 100%;
+            padding: 0;
+            margin: 0;
+          }
+
+          /*滚动 相册样式*/
+          .thumbs {
+            overflow: hidden;
+          }
+          .thumbs ul {
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: auto;
+            font-size: 1px;
+            _width: expression(document.documentElement.clientWidth-280);
+          }
+          .thumbs li {
+            list-style: none;
+            display: inline;
+          }
+          .thumbs a {
+            border: 2px solid #B7B7B7;
+            text-decoration: none;
+            display: inline-block;
+            outline: none;
+            margin: 0 9px;
+          }
+          .thumbs img {
+            vertical-align: top;
+            width: 115px;
+            height: 85px;
+          }
+          .thumbs a:hover {
+            border-color: #65B6DD;
+          }
+          .thumbs a:focus,
+          .thumbs a:active {
+            border-color: #0084B4;
+          }
+          .thumbs .scroll_left,
+          .thumbs .scroll_right {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            font-family: SimHei;
+            background: #65B6DD;
+            text-align: center;
+            line-height: 85px;
+            overflow: hidden;
+            font-size: 20px;
+            cursor: pointer;
+            height: 85px;
+            width: 20px;
+            color: #fff;
+            behavior: url("PIE.htc");
+          }
+          .thumbs .scroll_left {
+            -webkit-border-radius: 10px 3px 3px 10px;
+               -moz-border-radius: 10px 3px 3px 10px;
+                border-radius: 10px 3px 3px 10px;
+            margin-right: 15px;
+            float: left;
+          }
+          .thumbs .scroll_right {
+            -webkit-border-radius: 3px 10px 10px 3px;
+               -moz-border-radius: 3px 10px 10px 3px;
+                border-radius: 3px 10px 10px 3px;
+            margin-left: 15px;
+            float: right;
+          }
+          * html .thumbs .scroll_left,
+          * html .thumbs .scroll_right {
+            _margin: 0;
+          }
+          .thumbs .disabled {
+            cursor: not-allowed;
+            background: #CCC;
+            color: #999;
+          }
+
         </style>
     </head>
     
@@ -31,6 +113,39 @@
             <li>当发现图片滚动到末尾时，响应的箭头变成不可点击状态；   </li>
             <li>鼠标在图片区域内滑动滚轮，图片会随着鼠标滚轮的方向进行响应的滚动；</li>
           </ol>
+          <h4>具体实现效果如下：</h4>
+          <br/>
+          <div id="wrap">
+            <div class="thumbs" unselectable="on">
+              <a class="scroll_left">←</a>
+              <a class="scroll_right">→</a>
+              <ul>
+                <li><a href="#"><img src="images/s4.jpg"></a></li>
+                <li><a href="#"><img src="images/twopop.jpg"></a></li>
+                <li><a href="#"><img src="images/twomm.jpg"></a></li>
+                <li><a href="#"><img src="images/girl2.jpg"></a></li>
+                <li><a href="#"><img src="images/car.jpg"></a></li>
+                <li><a href="#"><img src="images/war.jpg"></a></li>
+                <li><a href="#"><img src="images/twomm.jpg"></a></li>
+                <li><a href="#"><img src="images/girl2.jpg"></a></li>
+                <li><a href="#"><img src="images/car.jpg"></a></li>
+                <li><a href="#"><img src="images/war.jpg"></a></li>
+                <li><a href="#"><img src="images/twomm.jpg"></a></li>
+                <li><a href="#"><img src="images/girl2.jpg"></a></li>
+                <li><a href="#"><img src="images/car.jpg"></a></li>
+                <li><a href="#"><img src="images/war.jpg"></a></li>
+                <li><a href="#"><img src="images/twomm.jpg"></a></li>
+                <li><a href="#"><img src="images/girl2.jpg"></a></li>
+                <li><a href="#"><img src="images/car.jpg"></a></li>
+                <li><a href="#"><img src="images/war.jpg"></a></li>
+                <li><a href="#"><img src="images/twomm.jpg"></a></li>
+                <li><a href="#"><img src="images/girl2.jpg"></a></li>
+                <li><a href="#"><img src="images/car.jpg"></a></li>
+                <li><a href="#"><img src="images/war.jpg"></a></li>
+              </ul>
+            
+            </div>
+          </div>
         </div>
 
         <div class="demo" id="modal">
@@ -79,6 +194,7 @@
         </div>
         
         <script src="utils.js" type="text/javascript"></script>
+        <script type="text/javascript" src = "base.js"></script>
         <script type="text/javascript">
           var btn_list = getElementsByClassName('button', 'radius-btn');
 
@@ -94,7 +210,8 @@
               // 闭包实现块级作用域
               btn_item.onclick = showDemoByIndex;
             }
-
+            // demo1事件触发
+            demo1();
             // 其他demo隐藏， 对应下标demo出现
             function showDemoByIndex(index){
               var  i , len, _demo, demo_list = getElementsByClassName('div', 'demo');
@@ -113,8 +230,54 @@
               }
             }
 
-          }
+            // demo1逻辑代码
+            function demo1(){
+              document.realy(function($){
+                var thumbs = document.querySelector(".thumbs"),
+                  left = thumbs.querySelector(".scroll_left"),
+                  right = thumbs.querySelector(".scroll_right"),
+                  cont = thumbs.querySelector("ul"),
+                  items = cont.querySelectorAll("li");
+                //console.log(scrollStep);
 
+                function scrollFun(val){
+                  val = cont.scrollLeft += (items[1].offsetLeft - items[0].offsetLeft) * val;
+                  if(val<=0){
+                    $.addClass(left, "disabled");
+                  }else if (val >= (cont.scrollWidth - cont.clientWidth)){
+                    $.addClass(right, "disabled");
+                  }
+                }
+
+                function sLeft(){
+                  scrollFun(-1);
+                  $.delClass(right, "disabled");
+                  return false;
+                }
+                
+                function sRight(){
+                  scrollFun(1);
+                  $.delClass(left, "disabled");
+                  return false;
+                }
+
+                left.onclick = sLeft;
+                right.onclick = sRight;
+
+                cont.addEventListener("onmousewheel" in cont ? "mousewheel" : "DOMMouseScroll", function(e){
+                  if(( e.detail || -e.wheelDelta) > 0){
+                    sRight();
+                  }else{
+                    sLeft();
+                  }
+                  e.preventDefault();
+                  return false;
+                },true);
+              });//realy
+
+            }//demo1
+
+          }
           init();
 
         </script>
