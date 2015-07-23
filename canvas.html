@@ -545,7 +545,37 @@
           ctx.fillText("ctx.globalAlpha = 1;", 200, 160);
 
           // 绘制 合成效果图
-          
+          var comp_list = [
+            {x:10, y:200, opra:'source-over'},
+            {x:100, y:200, opra:'xor'}
+          ];
+          var i , len, _comp;
+          for (i = 0, len = comp_list.length; i < len; i++) {
+            _comp = comp_list[i];
+            drawCompOpera(ctx, _comp);
+          }
+        }
+        // 绘制合并图像
+        function drawCompOpera(ctx, params){
+          var x, y, opra, x2, y2;
+          x = params.x;
+          y = params.y;
+          opra = params.opra;
+          x2 = x + 20;
+          y2 = y + 20;
+          // 设置合成操作
+          ctx.globalCompositeOperation = opra;
+          // 绘制红色矩形
+          ctx.fillStyle = '#ff0000';
+          ctx.fillRect(x, y, 50, 50);
+          // 绘制蓝色矩形
+          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          ctx.fillRect(x2, y2, 50, 50);
+          // 刻上类型
+          ctx.font = 'bolder arial 24px';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#000';
+          ctx.fillText(opra, x+25, y-5);
         }
 
         // 修改h3文字
