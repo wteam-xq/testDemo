@@ -44,6 +44,12 @@
             top:450px;
             left:300px;
           }
+          /*合成样式*/
+          .comp-list{
+            position: absolute;
+            top: 360px;
+            left: 20px;
+          }
 
         </style>
 
@@ -121,6 +127,7 @@
         <h3>绘制合成: globalAlpha globalCompositionOperation</h3>
         <p><em>ps:</em>更新信息查看<a href="https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html" target="_blank">火狐实验室</a></p>
         <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+        <div id="cmpList"></div>
       </div>
 
       <div id='noSupport'>
@@ -521,7 +528,11 @@
         }
         // 绘制合成
         function drawComp() {
-          var ctx = toggleDemo('comp');
+          var ctx = toggleDemo('comp'),
+          compDom = document.getElementById('comp');
+
+          // 先清除屏幕
+          ctx.clearRect(0, 0, 800, 800);
           // 绘制红色矩形框
           ctx.fillStyle = '#ff0000';
           ctx.fillRect(10, 10, 50, 50);
@@ -547,13 +558,26 @@
           // 绘制 合成效果图
           var comp_list = [
             {x:10, y:200, opra:'source-over'},
-            {x:100, y:200, opra:'xor'}
+            {x:100, y:200, opra:'source-in'},
+            {x:200, y:200, opra:'source-out'},
+            {x:300, y:200, opra:'source-atop'},
+            {x:400, y:200, opra:'destination-over'},
+            {x:500, y:200, opra:'source-in'},
+            {x:600, y:200, opra:'source-out'},
+            {x:700, y:200, opra:'source-atop'}
+            // {x:300, y:200, opra:'xor'}
           ];
-          var i , len, _comp;
+          var i , len, _comp, new_ele, comp_doms;
+          comp_doms = document.getElementById('cmpList');
+          comp_doms.innerHTML = '';
           for (i = 0, len = comp_list.length; i < len; i++) {
             _comp = comp_list[i];
-            drawCompOpera(ctx, _comp);
+            new_ele = drawCompOpera(ctx, _comp);
+            comp_doms.appendChild(new_ele);
           }
+          // 设置canvas列表样式
+          comp_doms.setAttribute('class', 'comp-list');
+          comp_doms.style.display = 'block';
         }
         // 绘制合并图像
         function drawCompOpera(ctx, params){
@@ -561,21 +585,34 @@
           x = params.x;
           y = params.y;
           opra = params.opra;
-          x2 = x + 20;
-          y2 = y + 20;
+
+          // 生成一个新的canvas dom节点
+          var canvas_dom = document.createElement('canvas'),
+          can_ctx = canvas_dom.getContext('2d'), ctx_pattern;
+          // 设置新ctx的宽度、高度
+          canvas_dom.setAttribute('width', '90');
+          canvas_dom.setAttribute('height', '90');
+          canvas_dom.setAttribute('opra', opra);
+
           // 设置合成操作
-          ctx.globalCompositeOperation = opra;
+          can_ctx.globalCompositeOperation = opra;
           // 绘制红色矩形
-          ctx.fillStyle = '#ff0000';
-          ctx.fillRect(x, y, 50, 50);
+          can_ctx.fillStyle = '#ff0000';
+          can_ctx.fillRect(10, 10, 50, 50);
           // 绘制蓝色矩形
-          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-          ctx.fillRect(x2, y2, 50, 50);
+          can_ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          can_ctx.fillRect(30, 30, 50, 50);
           // 刻上类型
-          ctx.font = 'bolder arial 24px';
-          ctx.textAlign = 'center';
-          ctx.fillStyle = '#000';
-          ctx.fillText(opra, x+25, y-5);
+          can_ctx.font = 'bolder arial 24px';
+          can_ctx.textAlign = 'center';
+          can_ctx.fillStyle = '#000';
+          can_ctx.fillText(opra, 35, 5);
+
+          // 使用模式导入总canvas面板
+          // ctx_pattern = ctx.createPattern(canvas_dom, 'repeat');
+          // ctx.fillStyle = ctx_pattern;
+          // ctx.fillRect(x, y, 90, 90);
+          return canvas_dom;
         }
 
         // 修改h3文字

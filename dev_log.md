@@ -10,6 +10,9 @@
 * 解决方案： 使用完后将位置变回去， es： context(100, 100); afater used: context(-100, -100);
 
 * 20150721 canvas ctx.getImageData方法： 读取图像文件需要tomcat服务器环境
+* 20150724 canvas ctx.globalCompositeOperation 作用区间是整个canvas画布，演示所有参数得使用ctx.createPattern在画布上绘制画布。
+* 解决方案： 新生成一个canvas节点， 然后在这个节点操作合成。
+
 
 ### 设计本项目代码的笔试题：
 
