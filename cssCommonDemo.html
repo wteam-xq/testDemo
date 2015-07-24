@@ -147,6 +147,34 @@
             background:#ffe6b8; 
             height:600px;
           }
+          /*媒体查询样式*/
+          #test5 h1 {
+            margin: 0;
+            padding: 0;
+          }
+          .header {
+            background-color: red;
+            height: 50px;
+          }
+          .sidebar {
+            background-color: green;
+            height: 50px;
+          }
+          .content {
+            background-color: blue;
+            height: 50px;
+          }
+
+          @media screen and (min-width: 600px) {
+            .sidebar {
+              width: 200px;
+              float: left;
+            }
+            .content {
+              margin-left: 200px;
+            }
+
+          }
 
         </style>
 
@@ -159,6 +187,7 @@
         <button id="tBtn2" class="radius-btn">css水平垂直居中</button>
         <button id="tBtn3" class="radius-btn">css三栏布局</button>
         <button id="tBtn4" class="radius-btn">多栏布局</button>
+        <button id="tBtn5" class="radius-btn">媒体查询</button>
       </div>
 
       <div id='test1' class="demo demo2">
@@ -202,6 +231,21 @@
           <div class="d-col-l">左边，无高度属性，自适应于最高一栏的高度</div>
           <div class="d-col-r">右边，无高度属性，自适应于最高一栏的高度</div>
           <div class="d-col-c">中间，高度600像素，左右两栏的高度与之自适应</div>
+        </div>
+      </div>
+
+      <div id='test5' class="demo">
+        <h2>媒体查询</h2>
+        <div>
+          <div class='header'>
+            <h1>header</h1>
+          </div>
+          <div class="sidebar">
+            <h1>sidebar</h1>
+          </div>
+          <div class="content">
+            <h1>content</h1>
+          </div>
         </div>
       </div>
       
