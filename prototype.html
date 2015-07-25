@@ -10,7 +10,7 @@
     
     <body>
         <h3>原型理解</h3>
-        
+        <canvas id="canvas"></canvas>
         <script>
           // 来源： http://www.zhihu.com/question/31824560/answer/53528151
           // 因为实例__proto__属性指向它构造函数的原型对象，
@@ -24,7 +24,7 @@
 
           Foo.__proto__.age = 10;
 
-          alert(Foo.age);//10 
+          // alert(Foo.age);//10 
 
           // 实现继承的简单方法
           function object(o){
@@ -32,6 +32,16 @@
             F.prototype = o;
             return new F();
           }
+
+          // canvas 合成测试代码
+          var canvas = document.getElementById('canvas'),
+          ctx = canvas.getContext('2d');
+          ctx.globalCompositeOperation = "destination-out";
+
+          ctx.fillStyle = "blue";
+          ctx.fillRect(10, 10, 100, 100);
+          ctx.fillStyle = "red";
+          ctx.fillRect(50, 50, 100, 100);
 
         </script>
 
