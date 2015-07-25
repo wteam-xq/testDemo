@@ -1,89 +1,313 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            原生js 节点操作
-        </title>
+  <head>
+    <meta charset="utf-8">
+    <title>
+        原生js 节点操作
+    </title>
+    <link rel="stylesheet" href="common.css" type="text/css" />
+    <style>
+      #btnList{
+        margin: 20px 0px 0px;
+      }
+      #tipCont{
+        margin: 100px 0px 0px;
+      }
+      .nodeDetail{
+        position:absolute;
+        border:2px solid #ccc;
+        width: 600px;
+        height: 400px;
+      }
+      .modal-head{
+        height:35px;
+        width:100%;
+        background-color: #bcbcbc;
+        line-height: 35px;
+        color:#fff;
+        text-align: center;
+      }
+      .close{
+        position: absolute;
+        width:30px;
+        height:30px;
+        top:0px;
+        right:0px;
+        cursor: pointer;
+        font-size:30px;
+        text-align:center;
+      }
+    </style>
+  </head>
 
-    </head>
-    
-    <body>
-      <h3>原生JS节点操作</h3>
-      <div id="nodeList">
-        <div id="aId">a</div>
-        <div id="bId">b</div>
-        <div id="cId">c</div>
-        <div id="dId">d</div>
+  <body>
+    <h3>原生JS节点操作</h3>
+    <div id="nodeList">
+      <div id="no1" data-no="1">节点1</div>
+      <div id="no2" data-no="2">节点2</div>
+      <div id="no3" data-no="3">节点3</div>
+      <div id="no4" data-no="4">节点4</div>
+    </div>
+
+    <div id="btnList">
+      <button id="createBtn" class="radius-btn">增加节点</button>
+      <button id="removeBtn" class="radius-btn">删除节点</button>
+      <button id="modifyBtn" class="radius-btn">修改节点</button>
+      <button id="searchBtn" class="radius-btn">查询节点</button>
+    </div>
+
+    <div id="tipCont">
+      <h4>提示内容:</h4>
+      <span id="tips"></span>
+    </div>
+
+    <div id="nodeDetail" class="nodeDetail">
+      <div class="modal-head">节点详情</div>
+      <span id='closeBtn' class="close">X<span>
+      <div class="search" id="search">
+        
       </div>
-
-      <script>
-      // 《javascript高级程序设计》 第10章第一节
-        window.onload = function(){
-          // 1.1.在上面的 aId 和 bId 间插入一个 DIV对象
-          function insertNode(){
-            var a_dom = document.getElementById('aId');
-            var b_dom = document.getElementById('bId');
-            var a_parent = a_dom.parentNode;
-            // 创建一新节点
-            var new_dom = document.createElement("div");
-            new_dom.innerHTML = "b_before";
-            a_parent.insertBefore(new_dom, b_dom);
-          }
-          insertNode();
-
-          var node_list = document.getElementById('nodeList');
-          var children_node = getChildNodes(node_list); 
-        }
+      <div class="modify" id="modify">
         
-        // 获得元素的子节点（元素）
-        function getChildNodes(p_nodes){
-          var i, _len, _node_item, _child_nodes, _result = [];
-          _child_nodes = p_nodes.childNodes;
-          for (i = 0, _len = _child_nodes.length; i < _len; i++) {
-            _node_item = _child_nodes[i];
-            // nodeType 返回节点类型：元素 1， 属性 2， 文本 3， 注释 4， 文档 9
-            if (_node_item.nodeType === 1) {
-              _result.push(_node_item);
-              // 在IE浏览器中nodeName返回的是小写， 而在chrome返回的是大写，
-              // toLocaleLowerCase方法统一返回值
-              console.log(_node_item.nodeName.toLocaleLowerCase());
-            }
-          }
-          return _result;
+      </div>
+    </div>
+
+    <script>
+    // 《javascript高级程序设计》 第10章第一节
+      window.onload = function(){
+        // 1.1.在上面的 aId 和 bId 间插入一个 DIV对象
+        function insertNode(){
+          var a_dom = document.getElementById('no1');
+          var b_dom = document.getElementById('no2');
+          var a_parent = a_dom.parentNode;
+          // 创建一新节点
+          var new_dom = document.createElement("div");
+          new_dom.innerHTML = "noNew";
+          a_parent.insertBefore(new_dom, b_dom);
+        }
+        // insertNode();
+
+        var node_list = document.getElementById('nodeList');
+        var children_node = getChildNodes(node_list);
+        var nodeDetail = document.getElementById('nodeDetail');
+        var no_de_l, no_de_t, clientObj;
+        clientObj = getClientHW();
+        no_de_l = clientObj.w/2 - 300;
+        no_de_t = clientObj.h/2 - 200;
+        // 弹出框居中显示
+        nodeDetail.style.left = no_de_l + 'px';
+        nodeDetail.style.top = no_de_t + 'px';
+        // 节点增删改查操作
+        initBtnFun();
+
+        // 初始化按钮事件
+        function initBtnFun(){
+          var createBtn, removeBtn, modifyBtn, searchBtn, closeBtn;
+          createBtn = document.getElementById('createBtn');
+          removeBtn = document.getElementById('removeBtn');
+          modifyBtn = document.getElementById('modifyBtn');
+          searchBtn = document.getElementById('searchBtn');
+          closeBtn = document.getElementById('closeBtn');
+          createBtn.onclick = createNode;
+          removeBtn.onclick = deleteNode;
+          modifyBtn.onclick = modifyNode;
+          searchBtn.onclick = searchNode;
+          closeBtn.onclick = closeModal;
         }
 
-        // IE8及IE8以下浏览器不支持getElementsByClassName
-        function getElementsByClassName(className,context){
-          context = context || document;
-           
-          if(context.getElementsByClassName){
-              return context.getElementsByClassName(className);
+        // 新增节点
+        function createNode(){
+          var node_list = document.getElementById('nodeList'),
+          last_node, last_no, new_node, new_no, node_array,tips;
+
+          // 获得子节点数组
+          node_array = getChildNodes(node_list);
+          if (node_array.length > 0) {
+            last_node = node_array[node_array.length - 1];
+            last_no = last_node.getAttribute('data-no');
+            new_no = parseInt(last_no, 10) + 1;
+          }else{
+            new_no = 1;
           }
-           
-          var nodes = context.getElementsByTagName('*');
-          var rets = [];
-          for(var i = 0; i < nodes.length; i++){
-              if(hasClass(className,nodes[i])){
-                  rets.push(nodes[i]);
-              }
-          }
-           
-          return rets;
+          new_node = document.createElement('div');
+          new_node.setAttribute('data-no', new_no);
+          new_node.appendChild(document.createTextNode('节点' + new_no));
+          node_list.appendChild(new_node);
+          // 提示内容更新
+          updateTips('新增节点成功！');
         }
-        // 判断某节点是否有指定类名
-        function hasClass(className,node){
-          var classNames = node.className.split(/\s+/);
-           
-          for(var i = 0; i < classNames.length; i++){
-              if(classNames[i] == className){
-                  return true;
-              }
+        //删除节点 
+        function deleteNode(){
+          var node_list = document.getElementById('nodeList'),
+          last_node, node_array;
+
+          tips = document.getElementById('tips');
+          // 获得子节点数组
+          node_array = getChildNodes(node_list);
+          if (node_array.length == 0) {
+            // 提示内容更新
+            updateTips('无节点可删除');
+            return false;
           }
-          return false;
+          last_node = node_array[node_array.length - 1];
+          node_list.removeChild(last_node);
+          // 提示内容更新
+          updateTips('删除节点成功！');
+        }
+        // 修改节点
+        function modifyNode(){
+          var tipCont = document.getElementById('tipCont'),
+          new_select, sel_val;
+          updateTips('请选择要修改的节点');
+          new_select = updateSelect('m');
+          if (!!new_select && (new_select.getAttribute('data-new') == 'true')) {
+            tipCont.appendChild(new_select);
+          }
+        }
+        // 查询节点
+        function searchNode(){
+          var tipCont = document.getElementById('tipCont'),
+          new_select, sel_val;
+          updateTips('请选择要查询的节点');
+          new_select = updateSelect('s');
+          if (!!new_select && (new_select.getAttribute('data-new') == 'true')) {
+            tipCont.appendChild(new_select);
+          }
+        }
+        // 更新节点select节点,返回最新select
+        function updateSelect(type){
+          var new_select, node_list = document.getElementById('nodeList'),
+          varItem, i, len, sel_id;
+          switch (type){
+            case 'm':
+              sel_id = 'sel_m';
+              break;
+            case 's':
+              sel_id = 'sel_s';
+              break;
+            default:
+              sel_id = 'sel_m';
+          }
+          // 搜索是否含有select
+          if (!!document.getElementById(sel_id)) {
+            new_select = document.getElementById(sel_id);
+            // 清空选项
+            new_select.options.length = 0
+            new_select.setAttribute('data-new','false');
+          }else{
+            new_select = document.createElement('select');
+            new_select.id = sel_id;
+            new_select.setAttribute('data-new','true');
+          }
+          // 获得子节点数组
+          node_array = getChildNodes(node_list);
+          if (node_array.length == 0) {
+            updateTips('无节点可修改');
+            return null;
+          }
+          for (i = 0, len = node_array.length; i < len; i++) {
+            // 更新select
+            varItem = new Option(node_array[i].innerHTML, node_array[i].getAttribute('data-no'));      
+            new_select.options.add(varItem); 
+          }
+          return new_select;
+        }
+        // 更新提示内容
+        function updateTips(str){
+          var tipCont = document.getElementById('tipCont'),
+          tips, htips; 
+          tipCont.innerHTML = '';
+          tips = document.createElement('span');
+          tips.id = 'tips';
+          htips = document.createElement('h4');
+          htips.appendChild(document.createTextNode('提示内容：'));
+          tips.appendChild(document.createTextNode(str));
+          tipCont.appendChild(htips);
+          tipCont.appendChild(tips);
+        }
+        // 查询节点事件
+        function showNodeDetail(){
+
+        }
+        // 关闭弹出框
+        function closeModal(){
+          var nodeDetail = document.getElementById('nodeDetail');
+          nodeDetail.style.display = 'none';
+        }
+        function openModal(){
+          var nodeDetail = document.getElementById('nodeDetail');
+          nodeDetail.style.display = 'block';
+        }
+      }
+      // 取得浏览器可见视图的宽、高
+      function getClientHW(){
+        var _result, pageWidth, pageHeight;
+        
+        pageWidth = window.innerWidth;
+        pageHeight = window.innerHeight;
+
+        if (typeof pageWidth != 'number'){
+          if (document.compatMode == "css1Compat") {
+            pageWidth = document.documentElement.clientWidth;
+            pageHeight = documentElement.clientHeight;
+          } else {
+            pageHeight = document.body.clientHeight;
+            pageWidth = document.body.clientWidth;
+          }
         } 
-        
-      </script>
+        _result = {
+          h: pageHeight,
+          w: pageWidth
+        };
+        return _result;
+      }
+      // 获得元素的子节点（元素）
+      function getChildNodes(p_nodes){
+        var i, _len, _node_item, _child_nodes, _result = [];
+        _child_nodes = p_nodes.childNodes;
+        for (i = 0, _len = _child_nodes.length; i < _len; i++) {
+          _node_item = _child_nodes[i];
+          // nodeType 返回节点类型：元素 1， 属性 2， 文本 3， 注释 4， 文档 9
+          if (_node_item.nodeType === 1) {
+            _result.push(_node_item);
+            // 在IE浏览器中nodeName返回的是小写， 而在chrome返回的是大写，
+            // toLocaleLowerCase方法统一返回值
+            // console.log(_node_item.nodeName.toLocaleLowerCase());
+          }
+        }
+        return _result;
+      }
 
-    </body>
+      // IE8及IE8以下浏览器不支持getElementsByClassName
+      function getElementsByClassName(className,context){
+        context = context || document;
+         
+        if(context.getElementsByClassName){
+            return context.getElementsByClassName(className);
+        }
+         
+        var nodes = context.getElementsByTagName('*');
+        var rets = [];
+        for(var i = 0; i < nodes.length; i++){
+            if(hasClass(className,nodes[i])){
+                rets.push(nodes[i]);
+            }
+        }
+         
+        return rets;
+      }
+      // 判断某节点是否有指定类名
+      function hasClass(className,node){
+        var classNames = node.className.split(/\s+/);
+         
+        for(var i = 0; i < classNames.length; i++){
+            if(classNames[i] == className){
+                return true;
+            }
+        }
+        return false;
+      } 
+      
+    </script>
+  </body>
 </html>
