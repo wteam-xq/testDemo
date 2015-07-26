@@ -18,6 +18,7 @@
         border:2px solid #ccc;
         width: 600px;
         height: 400px;
+        display: none;
       }
       .modal-head{
         height:35px;
@@ -26,6 +27,12 @@
         line-height: 35px;
         color:#fff;
         text-align: center;
+      }
+      .search{
+        padding: 10px;
+      }
+      .modify{
+        padding: 10px;
       }
       .close{
         position: absolute;
@@ -36,6 +43,10 @@
         cursor: pointer;
         font-size:30px;
         text-align:center;
+      }
+      .m-tips{
+        display: none;
+        color: red;
       }
     </style>
   </head>
@@ -63,12 +74,13 @@
 
     <div id="nodeDetail" class="nodeDetail">
       <div class="modal-head">节点详情</div>
-      <span id='closeBtn' class="close">X<span>
-      <div class="search" id="search">
-        
-      </div>
-      <div class="modify" id="modify">
-        
+      <span id='closeBtn' class="close">X</span>
+      <div class="search node-info" id="search"></div>
+      <div class="modify node-info" id="modify">
+        <h3 class="m-h3">输入节点1更新后的节点文字:</h3>
+        <input class="m-input" data-id="no1" type="text" value='' >
+        <button id="confirmMBtn" class="radius-btn">确定修改</button>
+        <span id="mTips" class="m-tips">修改提示信息</span>
       </div>
     </div>
 
@@ -102,17 +114,19 @@
 
         // 初始化按钮事件
         function initBtnFun(){
-          var createBtn, removeBtn, modifyBtn, searchBtn, closeBtn;
+          var createBtn, removeBtn, modifyBtn, searchBtn, closeBtn, confirmMBtn;
           createBtn = document.getElementById('createBtn');
           removeBtn = document.getElementById('removeBtn');
           modifyBtn = document.getElementById('modifyBtn');
           searchBtn = document.getElementById('searchBtn');
           closeBtn = document.getElementById('closeBtn');
+          confirmMBtn = document.getElementById('confirmMBtn');
           createBtn.onclick = createNode;
           removeBtn.onclick = deleteNode;
           modifyBtn.onclick = modifyNode;
           searchBtn.onclick = searchNode;
           closeBtn.onclick = closeModal;
+          confirmMBtn.onclick = setNodeText;
         }
 
         // 新增节点
@@ -130,6 +144,7 @@
             new_no = 1;
           }
           new_node = document.createElement('div');
+          new_node.id = 'no' + new_no;
           new_node.setAttribute('data-no', new_no);
           new_node.appendChild(document.createTextNode('节点' + new_no));
           node_list.appendChild(new_node);
@@ -163,6 +178,10 @@
           if (!!new_select && (new_select.getAttribute('data-new') == 'true')) {
             tipCont.appendChild(new_select);
           }
+          // 选择控件选择项事件
+          new_select.onchange = showNodeDetail;
+          // 首次调用选择项事件
+          showNodeDetail.apply(new_select);
         }
         // 查询节点
         function searchNode(){
@@ -173,7 +192,81 @@
           if (!!new_select && (new_select.getAttribute('data-new') == 'true')) {
             tipCont.appendChild(new_select);
           }
+
+          // 选择控件选择项事件
+          new_select.onchange = showNodeDetail;
+          // 首次调用选择项事件
+          showNodeDetail.apply(new_select);
         }
+
+        // 弹出提示框
+        function showNodeDetail(){
+         var _sel_val, node_detail,
+          sel_node, search_panel, node_info,
+          i, len;
+
+          _sel_val = this.value;
+          node_detail = document.getElementById('nodeDetail');
+          search_panel = document.getElementById('search');
+          modify_panel = document.getElementById('modify');
+          // 显示对应节点详情
+          sel_node = document.getElementById('no' + _sel_val);
+          // 显示弹出框
+          node_detail.style.display = 'block';
+
+          // 其他node-info均设为不可见
+          node_info = getElementsByClassName('node-info');
+          for (i = 0, len = node_info.length; i < len; i++) {
+            node_info[i].style.display = 'none';
+          }
+          
+          if (this.id == 'sel_s') {
+            search_panel.style.display = 'block';
+            // 改变标题
+            getElementsByClassName('modal-head', node_detail)[0].innerHTML = '查询节点';
+            // 清空文本节点
+            search_panel.innerHTML = '';
+            if (!!sel_node) {
+              search_panel.appendChild(document.createTextNode(sel_node.outerHTML));
+            }
+          }else if (this.id == 'sel_m'){
+            var m_input = getElementsByClassName('m-input', modify_panel)[0],
+            m_h3 = getElementsByClassName('m-h3', modify_panel)[0],
+            m_tips = getElementsByClassName('m-tips', modify_panel)[0];
+            
+            m_tips.style.display = 'none';
+            m_h3.innerHTML = '输入 "' + sel_node.innerHTML + '" 更新后的节点文字';
+            m_input.setAttribute('data-id', sel_node.id);
+            modify_panel.style.display = 'block';
+            getElementsByClassName('modal-head', node_detail)[0].innerHTML = '修改节点';
+          }
+        }
+        // 确认修改节点信息
+        function setNodeText(){
+          var modify_panel, m_tips, m_input, m_h3, sel_node, modifyBtn;
+          modify_panel = document.getElementById('modify');
+          m_tips = getElementsByClassName('m-tips', modify_panel)[0];
+          m_input = getElementsByClassName('m-input', modify_panel)[0];
+          m_h3 = getElementsByClassName('m-h3', modify_panel)[0];
+          sel_node = document.getElementById(m_input.getAttribute('data-id'));
+          modifyBtn = document.getElementById('modifyBtn');
+
+          if (m_input.value == '') {
+            m_tips.innerHTML = '新节点文字不能为空';
+            m_tips.style.display = 'block';
+            return false;
+          } else {
+            // 修改节点文字
+            sel_node.innerHTML = m_input.value;
+            m_tips.innerHTML = '修改成功！';
+            m_tips.style.display = 'block';
+            // 修改成功后触发 "修改节点"按钮
+            modifyBtn.click();
+            // 输入框内容清空
+            m_input.value = '';
+          }
+        }
+
         // 更新节点select节点,返回最新select
         function updateSelect(type){
           var new_select, node_list = document.getElementById('nodeList'),
@@ -225,10 +318,7 @@
           tipCont.appendChild(htips);
           tipCont.appendChild(tips);
         }
-        // 查询节点事件
-        function showNodeDetail(){
-
-        }
+        
         // 关闭弹出框
         function closeModal(){
           var nodeDetail = document.getElementById('nodeDetail');
@@ -239,6 +329,7 @@
           nodeDetail.style.display = 'block';
         }
       }
+
       // 取得浏览器可见视图的宽、高
       function getClientHW(){
         var _result, pageWidth, pageHeight;
@@ -283,7 +374,7 @@
         context = context || document;
          
         if(context.getElementsByClassName){
-            return context.getElementsByClassName(className);
+          return context.getElementsByClassName(className);
         }
          
         var nodes = context.getElementsByTagName('*');
@@ -293,13 +384,11 @@
                 rets.push(nodes[i]);
             }
         }
-         
         return rets;
       }
       // 判断某节点是否有指定类名
       function hasClass(className,node){
         var classNames = node.className.split(/\s+/);
-         
         for(var i = 0; i < classNames.length; i++){
             if(classNames[i] == className){
                 return true;
