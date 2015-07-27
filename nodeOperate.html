@@ -104,8 +104,12 @@
         var nodeDetail = document.getElementById('nodeDetail');
         var no_de_l, no_de_t, clientObj;
         clientObj = getClientHW();
-        no_de_l = clientObj.w/2 - 300;
-        no_de_t = clientObj.h/2 - 200;
+        
+        var no_de_h = getDomStyle(nodeDetail, 'height');
+        var no_de_w = getDomStyle(nodeDetail, 'width');
+
+        no_de_l = clientObj.w/2 - parseInt(no_de_w, 10)/2;
+        no_de_t = clientObj.h/2 - parseInt(no_de_h, 10)/2;
         // 弹出框居中显示
         nodeDetail.style.left = no_de_l + 'px';
         nodeDetail.style.top = no_de_t + 'px';
@@ -350,6 +354,20 @@
           h: pageHeight,
           w: pageWidth
         };
+        return _result;
+      }
+      // 获得元素 类的取值(例如， 获得li.className1的height)
+      function getDomStyle(dom, classKey){
+        var oStyle, _result;
+        if (!dom) {
+          return '0';
+        }
+        oStyle = dom.currentStyle? dom.currentStyle : window.getComputedStyle(dom, null);
+        if (oStyle.getPropertyValue) {
+          _result = oStyle.getPropertyValue(classKey);
+        } else {
+          _result = oStyle.getAttribute(classKey);
+        }
         return _result;
       }
       // 获得元素的子节点（元素）

@@ -13,8 +13,9 @@
   * [dragDrop.html](https://github.com/wteam-xq/testDemo/blob/master/dragDrop.html)
   * [演示地址](http://wteamxq.com/testDemo/dragDrop.html)
 
-* 5.原生js 处理节点：
+* 5.原生js 节点操作：
   * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/nodeOperate.html)
+  * [演示地址](http://wteamxq.com/testDemo/nodeOperate.html) 
 
 * 6.正则用法：
   * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/regexp.html)
@@ -50,6 +51,8 @@
 
 * 16.canvas理解：
   * [canvas.html](https://github.com/wteam-xq/testDemo/blob/master/canvas.html)
+  * [演示地址](http://wteamxq.com/testDemo/canvas.html)
 
 * 17.css3 伸缩布局盒：
   * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)
+  * [演示地址](http://wteamxq.com/testDemo/cssFlexBox.html)
