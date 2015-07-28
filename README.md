@@ -56,3 +56,8 @@
 * 17.css3 伸缩布局盒：
   * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)
   * [演示地址](http://wteamxq.com/testDemo/cssFlexBox.html)
+
+
+* other:
+  * [人人网鄙视题](https://github.com/wteam-xq/testDemo/blob/master/renrenTest.html)
+  * [演示地址](http://wteamxq.com/testDemo/renrenTest.html)

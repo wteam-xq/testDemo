@@ -48,3 +48,13 @@
   [最全前端面试问题及答案总结](http://segmentfault.com/a/1190000002562454)  
   [如何面试一名前端开发工程师？](http://www.html-js.com/article/Large-search-front-team-column%202961)  
   [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)  
+
+
+* 最近将要收藏的歌曲：
+  * 不值得 - 梦飞船
+  * 时间都去哪了 - 王诤亮
+  * 其实都没有 - 杨宗纬
+  * 安河桥 - 宋冬野
+  * what makes you beautifu - one direction
+  * 暗香 - 林海
+  * 再回首 - 姜育恒

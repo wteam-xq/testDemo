@@ -91,6 +91,114 @@
             background: #CCC;
             color: #999;
           }
+          /*试题2 对话框*/
+          #dialogbg {
+            background: rgba(0,0,0,.2);
+            overflow: hidden;
+            position: fixed;
+          }
+          #dialogbg,
+          #dialogbg .bgcolor {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            left: 0;
+            top: 0;
+          }
+          #dialogbg .bgcolor {
+            filter: alpha(opacity=20);
+            background: #000;
+            position: absolute;
+          }
+          :root #dialogbg .bgcolor {
+            display: none;
+          }
+          * html #dialogbg {
+            _position: absolute;
+            _top: expression(offsetParent.scrollTop);
+          }
+          #dialogbg .dialog {
+            -webkit-border-radius: 5px 5px 0 0;
+               -moz-border-radius: 5px 5px 0 0;
+                border-radius: 5px 5px 0 0;
+            border: 1px solid #666;
+            display: inline-block;
+            position: absolute;
+            background: white;
+            text-align: left;
+            overflow: hidden;
+            margin: auto;
+            left: 50%;
+            top: 50%;
+            behavior: url("PIE.htc");
+            *behavior: none;
+          }
+          .dialog .title {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00aaee,endColorstr=#0066cc);
+            background: #0095cd;
+            background: -webkit-gradient(linear, left top, left bottom, from(#00aaee), to(#0066cc));
+            background: -webkit-linear-gradient(top, #00aaee, #0066cc);
+            background:    -moz-linear-gradient(top, #00aaee, #0066cc);
+            background:     -ms-linear-gradient(top, #00aaee, #0066cc);
+            background:      -o-linear-gradient(top, #00aaee, #0066cc);
+            background:         linear-gradient(top, #00aaee, #0066cc);
+            text-shadow: 0 0 1px black;
+            font-weight: bold;
+            line-height: 28px;
+            overflow: hidden;
+            cursor: move;
+            color: white;
+            *width: expression(this.parentNode.clientWidth);
+          }
+          .dialog .title div {
+            padding: 0 8px;
+          }
+          .dialog .text,
+          .dialog .content {
+              margin: 20px;
+          }
+          .dialog .text{
+            text-align: center;
+          }
+          .dialog .content {
+            word-break: keep-all;
+            white-space: nowrap;
+          }
+          .dialog input,
+          .dialog .content {
+            min-width: 200px;
+            _width: 200px;
+          }
+          .dialog input {
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -ms-box-sizing:border-box;
+            box-sizing:border-box;
+            display: block;
+            width: 100%;
+            *width: auto;
+          }
+          .dialog .btns {
+            text-align: center;
+            margin: 10px 5px;
+          }
+          .dialog .btns * {
+            border: 1px solid #CCC;
+            text-decoration: none;
+            background: none;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #000;
+          }
+          #dialogbg, .dialog,.dialog .winbtns .size,.dialog input  {
+              /*display: none ;*/
+          }
+          #dialogbg, .dialog {
+            display: block;
+          }
 
         </style>
     </head>
@@ -148,7 +256,7 @@
           </div>
         </div>
 
-        <div class="demo" id="modal">
+        <div class="demo" id="dialog">
           <h3>二、用  js、html、css实现一个弹出提示控件： </h3>
           <ol>
             <li>分别实现类似于系统的  alert、confirm、prompt对话框；</li>
@@ -157,6 +265,23 @@
             <li>对话框中的事件模拟系统对话框的事件（例如：alert 对话框，点击确定按钮，对话框消失）；</li>
             <li> 解决IE6被 select控件遮挡的问题；</li>
           </ol>
+
+          <h4>具体实现效果如下：</h4>
+          <div id="wrap2">
+            <select class="select">
+              <option>看看有没有遮住对话框</option>
+              <option>看看有没有遮住对话框</option>
+              <option>看看有没有遮住对话框</option>
+            </select>
+            <br>
+            请点击下面的链接弹出对框框
+            <br>
+            <a href="javascript:msgbox('你好，欢迎使用 Windows 8 旗舰版')">alert</a>
+            <br>
+            <a href="javascript:msgbox('您确定要关闭计算机吗?',function(t){alert(t)})">confirm</a>
+            <br>
+            <a href="javascript:msgbox('请输入您的姓名',function(t){alert(t)},'匿名')">prompt</a>
+          </div>
         </div>
 
         <div class="demo" id="inputTips">
@@ -230,55 +355,134 @@
               }
             }
 
-            // demo1逻辑代码
-            function demo1(){
-              document.realy(function($){
-                var thumbs = document.querySelector(".thumbs"),
-                  left = thumbs.querySelector(".scroll_left"),
-                  right = thumbs.querySelector(".scroll_right"),
-                  cont = thumbs.querySelector("ul"),
-                  items = cont.querySelectorAll("li");
-                //console.log(scrollStep);
-
-                function scrollFun(val){
-                  val = cont.scrollLeft += (items[1].offsetLeft - items[0].offsetLeft) * val;
-                  if(val<=0){
-                    $.addClass(left, "disabled");
-                  }else if (val >= (cont.scrollWidth - cont.clientWidth)){
-                    $.addClass(right, "disabled");
-                  }
-                }
-
-                function sLeft(){
-                  scrollFun(-1);
-                  $.delClass(right, "disabled");
-                  return false;
-                }
-                
-                function sRight(){
-                  scrollFun(1);
-                  $.delClass(left, "disabled");
-                  return false;
-                }
-
-                left.onclick = sLeft;
-                right.onclick = sRight;
-
-                cont.addEventListener("onmousewheel" in cont ? "mousewheel" : "DOMMouseScroll", function(e){
-                  if(( e.detail || -e.wheelDelta) > 0){
-                    sRight();
-                  }else{
-                    sLeft();
-                  }
-                  e.preventDefault();
-                  return false;
-                },true);
-              });//realy
-
-            }//demo1
-
           }
           init();
+
+          // demo1逻辑代码
+          function demo1(){
+            document.realy(function($){
+              var thumbs = document.querySelector(".thumbs"),
+                left = thumbs.querySelector(".scroll_left"),
+                right = thumbs.querySelector(".scroll_right"),
+                cont = thumbs.querySelector("ul"),
+                items = cont.querySelectorAll("li");
+              //console.log(scrollStep);
+
+              function scrollFun(val){
+                val = cont.scrollLeft += (items[1].offsetLeft - items[0].offsetLeft) * val;
+                if(val<=0){
+                  $.addClass(left, "disabled");
+                }else if (val >= (cont.scrollWidth - cont.clientWidth)){
+                  $.addClass(right, "disabled");
+                }
+              }
+
+              function sLeft(){
+                scrollFun(-1);
+                $.delClass(right, "disabled");
+                return false;
+              }
+              
+              function sRight(){
+                scrollFun(1);
+                $.delClass(left, "disabled");
+                return false;
+              }
+
+              left.onclick = sLeft;
+              right.onclick = sRight;
+
+              cont.addEventListener("onmousewheel" in cont ? "mousewheel" : "DOMMouseScroll", function(e){
+                if(( e.detail || -e.wheelDelta) > 0){
+                  sRight();
+                }else{
+                  sLeft();
+                }
+                e.preventDefault();
+                return false;
+              },true);
+            });//realy
+          }//demo1
+
+          // demo2 对话框脚本
+          function msgbox(msg, fun, text){
+            var dialogbg = document.querySelector("#dialogbg");
+            if(!dialogbg){
+              dialogbg = document.createElement("div");
+              dialogbg.id = "dialogbg";
+              document.body.appendChild(dialogbg);
+            }
+            dialogbg.innerHTML = '<div class="bgcolor"></div><div class="dialog"><div class="title" unselectable="on"><div>消息</div></div><div class="content"></div><div class="text"><input type="text"></div><div class="btns"><button class="ok">确定</button><button class="cancel">取消</button></div></div>';
+            
+            dialogbg.querySelector(".content").innerHTML = msg || "&nbsp;";
+            function hide( sel ){
+              dialogbg.querySelector(sel).style.display = "none";
+            }
+            var btnOk = dialogbg.querySelector(".ok"),
+              btnCancel = dialogbg.querySelector(".cancel");
+            if(fun){
+              if(text == undefined){
+                hide(".text");
+                btnOk.onclick = function(){
+                  fun(true);
+                }
+                btnCancel.onclick = function(){
+                  fun(false);
+                }
+              }else{
+                var textbox = dialogbg.querySelector("input");
+                textbox.value = text;
+                btnOk.onclick = function(){
+                  fun.call(textbox, textbox.value);
+                }
+              }
+            }else{
+              hide(".cancel");
+              hide(".text");
+            }
+
+            function btnClose(){
+              dialogbg.style.display = "none";
+            }
+
+            btnOk.addEventListener("click", btnClose, true);
+            btnCancel.addEventListener("click", btnClose, true);
+
+            dialogbg.style.display = "block";
+
+            var dialog = dialogbg.querySelector(".dialog");
+            dialog.style.left = (dialogbg.offsetWidth - dialog.offsetWidth) / 2 + "px";
+            dialog.style.top = (dialogbg.offsetHeight - dialog.offsetHeight) / 2 + "px";
+            drag(dialog, dialog.querySelector(".title"));
+          }
+          function drag(dialog, titleBar){
+            var onDrag,
+              pos = {},
+              dialogbg = document.querySelector("html");
+
+            titleBar.addEventListener("mousedown", function(e){
+              pos.left = dialog.offsetLeft;
+              pos.top = dialog.offsetTop;
+              pos.x = e.pageX;
+              pos.y = e.pageY;
+              onDrag = true;
+            }, false);
+
+            dialogbg.addEventListener("mousemove", function(e){
+              if(onDrag){
+                dialog.style.left = (pos.left + e.pageX - pos.x) + "px";
+                dialog.style.top = (pos.top + e.pageY - pos.y) + "px";
+              }
+            }, false);
+
+            titleBar.onselectstart = function(){
+              return false;
+            }
+
+            dialogbg.onmouseup = function(){
+              onDrag = false;
+            }
+          }
 
         </script>
 
