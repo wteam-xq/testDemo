@@ -15,15 +15,21 @@
       }
       .nodeDetail{
         position:absolute;
-        border:2px solid #ccc;
+        border:1px solid #000;
         width: 600px;
         height: 400px;
         display: none;
       }
+      .dialog-mask{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color:#;
+      }
       .modal-head{
         height:35px;
         width:100%;
-        background-color: #bcbcbc;
+        background-color: #0085DB;
         line-height: 35px;
         color:#fff;
         text-align: center;
@@ -71,7 +77,12 @@
       <h4>提示内容:</h4>
       <span id="tips"></span>
     </div>
-
+    
+    <!-- 弹出框遮罩层 -->
+    <div class="dialog">
+      
+    </div>
+    <div class="dialog-mask" id="dialogMask"></div>
     <div id="nodeDetail" class="nodeDetail">
       <div class="modal-head">节点详情</div>
       <span id='closeBtn' class="close">X</span>
