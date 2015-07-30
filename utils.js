@@ -112,10 +112,9 @@ function getElementsByClassName(node_type, class_name){
   return r;
 }
 
-// IE8 及IE8以下浏览器不支持getElementsByClassName， 自定义js实现之
-function getElementsByClassName2(classNmae){
-  //如果不存在这个方法
-  if (!document.getElementsByClassName) {
+// 兼容浏览器 getElementsByClassName
+if (!document.getElementsByClassName) {
+  document.getElementsByClassName = function(cls){
     //定义一个空数组用来存储获取到指定className元素
     var ret = [];
     //获取页面所有元素
@@ -132,8 +131,6 @@ function getElementsByClassName2(classNmae){
     }
     //返回这个结果集，相当于之前的getElementsByClassName返回的 结果集。
     return ret;
-  }else{
-    return document.getElementsByClassName(classNmae);
   }
 }
 

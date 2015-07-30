@@ -202,7 +202,42 @@
           #dialogbg, .dialog {
             display: block;
           }
-
+          /*demo3 自动提示功能*/
+          .datalist {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            box-shadow: 2px 2px 2px #777;
+            border: 1px solid black;
+            background: window;
+            position: absolute;
+            overflow: hidden;
+            cursor: default;
+            color: menutext;
+            z-index: 99999;
+            display: none;
+            font: menu;
+            padding: 0;
+            margin: 0;
+            behavior: url("PIE.htc");
+          }
+          :root .datalist {
+            behavior: none;
+            -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+               -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+                box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+          }
+          .datalist li {
+            line-height: 20px;
+            list-style: none;
+            font-size: 14px;
+            padding: 0 10px;
+            display: block;
+          }
+          .datalist li.highlight {
+            background: highlight;
+            color: highlighttext;
+          }
         </style>
     </head>
     
@@ -295,6 +330,23 @@
             <li>只针对英文字符进行匹配，并且匹配到的内容在菜单中加粗；  </li>
             <li>通过键盘上的上下箭头可以对菜单进行选择，按下回车后将选中的内容写入到 input框中；</li>
           </ol>
+
+          <div id="wrap3">
+            <input type="email" list="url_list" id="autoInput" autofocus="" autocomplete="off">
+            <datalist id="url_list">
+              <option label="gucong@gmail.com" value="mailto:gucong@gmail.com">
+              </option><option label="gucongbbs@163.com" value="mailto:gucongbbs@163.com">
+              </option><option label="gucong.student@sina.com" value="mailto:gucong.student@sina.com">
+              </option><option label="gucong520@hotmail.com" value="mailto:gucong520@hotmail.com">
+              </option><option label="gucong@foxmail.com" value="mailto:gucong@foxmail.com">
+              </option><option label="35803719@qq.com" value="mailto:35803719@qq.com">
+              </option><option label="64272001@qq.com" value="mailto:64272001@qq.com">
+              </option>
+            </datalist>
+            <br>
+            请输入gucong来作为测试数据
+          </div>
+
         </div>
 
         <div class="demo" id="inputTips">
@@ -324,7 +376,7 @@
         <script src="utils.js" type="text/javascript"></script>
         <script type="text/javascript" src = "base.js"></script>
         <script type="text/javascript">
-          var btn_list = getElementsByClassName('button', 'radius-btn');
+          var btn_list = document.getElementsByClassName('radius-btn');
 
           function init(){
             var i , len , btn_item;
@@ -340,9 +392,11 @@
             }
             // demo1事件触发
             demo1();
+            // demo3 事件触发
+            autoComplete();
             // 其他demo隐藏， 对应下标demo出现
             function showDemoByIndex(index){
-              var  i , len, _demo, demo_list = getElementsByClassName('div', 'demo');
+              var  i , len, _demo, demo_list = document.getElementsByClassName('demo');
               if (index == null || demo_list.length == 0) {
                 return false;
               }else if ((typeof index) != 'number'){
@@ -485,6 +539,143 @@
             dialogbg.onmouseup = function(){
               onDrag = false;
             }
+          }
+          // demo3 自动补全
+          function autoComplete(){
+            // document.createElement("datalist");
+            function autocomplete(textbox){
+              var $ = window.xq;
+              textbox = document.querySelector(textbox);
+              var datalist = document.getElementById(textbox.getAttribute("list")),
+                optList = datalist.children,
+                datalist = document.createElement("ul"),
+                demo3_dom = document.getElementById("wrap3");
+
+              $.each(optList, function(){
+                var li = document.createElement("li");
+                li.setAttribute("label" ,this.getAttribute("label"));
+                li.setAttribute("value" ,this.getAttribute("value"));
+                datalist.appendChild(li);
+              });
+              
+              textbox.setAttribute("list", "");
+              $.addClass(datalist, "datalist");
+              demo3_dom.appendChild(datalist);
+
+              textbox.autocomplete="off";
+              textbox.addEventListener("keydown", function(e){
+                switch(e.keyCode) {
+                  case 38: // up
+                    e.preventDefault();
+                    moveSelect(-1);
+                    break;
+                  case 40: // down
+                    e.preventDefault();
+                    moveSelect(1);
+                    break;
+                  case 9:  // tab
+                  case 13: // return
+                    var opt = datalist.querySelector(".highlight");
+                    if(opt){
+                      selectOpt(opt)
+                      e.preventDefault();
+                      return false;
+                    }
+                    break;
+                  default:
+                    window.setTimeout(onChange,0);;
+                }
+              }, true);
+
+              textbox.addEventListener("input", onChange, false);
+              textbox.addEventListener("blur", function(){
+                datalist.style.display = "none";
+              }, false);
+
+              function onChange() {
+                if(textbox.value){
+                  optList = [];
+                  var match = new RegExp( textbox.value , "ig"),
+                  pos = $.findPos(textbox),
+                  count = 0;
+                  $.each(datalist.children, function(){
+                    var str = this.getAttribute("label");
+                    if(match.test(str)){
+                      this.innerHTML = str.replace(match, function(str){
+                        return "<b>" + str + "</b>"
+                      });
+                      this.style.display = "block";
+                      optList[count] = this;
+                      count++;
+                    }else{
+                      this.style.display = "none";
+                    }
+                  });
+                  datalist.style.display = count ? "block" : "none";
+                  datalist.style.left = pos.x + "px";
+                  datalist.style.top = pos.y + textbox.offsetHeight + "px";
+                } else {
+                  datalist.style.display = "none";
+                }
+              }
+              function filter(elm){
+                return /li/i.test(elm.tagName) ? elm : null;
+              }
+
+              function moveSelect(setp){
+                var sel = datalist.querySelector(".highlight"),
+                index;
+                if(sel){
+                  $.each(optList,function(i){
+                    if(sel == this){
+                      index = i;
+                      return false;
+                    }
+                  });
+                } else {
+                  index = optList.length * -setp;
+                }
+                index += setp
+                if(index < 0){
+                  index = 0;
+                } else if(index >= optList.length){
+                  index = optList.length - 1;
+                }
+                hoverOpt(optList[index]);
+                
+              }
+
+              function selectOpt(elm){
+                elm = filter(elm);
+                if(elm){
+                  textbox.value = elm.getAttribute("value");
+                }
+                datalist.style.display = "none";
+              }
+
+              function hoverOpt(elm){
+                elm = filter(elm);
+                $.each(datalist.children, function(){
+                  if(this == elm){
+                    $.addClass(this, "highlight");
+                  }else{
+                    $.delClass(this, "highlight");
+                  }
+                });
+              }
+
+              datalist.addEventListener("mouseover", function(e){
+                hoverOpt(e.target);
+              });
+
+              datalist.addEventListener("click", function(e){
+                selectOpt(e.target);
+              });
+            }
+
+            document.realy(function($){
+              autocomplete("#autoInput");
+            });
           }
 
         </script>

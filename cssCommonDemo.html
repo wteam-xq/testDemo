@@ -145,7 +145,7 @@
           .d-col-c{
             margin:0 410px 0 210px; 
             background:#ffe6b8; 
-            height:600px;
+            height:400px;
           }
           /*媒体查询样式*/
           #test5 h1 {
@@ -254,7 +254,7 @@
       <script>
         var i, len, btn;
         // 按钮列表 
-        var btn_list = getElementsByClassName('button', 'radius-btn');
+        var btn_list = document.getElementsByClassName('radius-btn');
 
         for (i = 0, len = btn_list.length; i < len; i++) {
           btn = btn_list[i];
@@ -273,8 +273,8 @@
 
 
         function showAllDemo(){
-          // 获得demo集合 参数1：标签名， 参数2：类名, getElementsByClassName获取（utils.js 公用库中）
-          var demo_list = getElementsByClassName('div', 'demo');
+          // 获得demo集合 getElementsByClassName utils.js已做兼容处理
+          var demo_list = document.getElementsByClassName('demo');
           var i , len, n_item;
           for (i = 0, len = demo_list.length; i < len; i++) {
             n_item = demo_list[i];
@@ -283,8 +283,8 @@
         }
 
         function hideAllDemo(){
-          // 获得demo集合 参数1：标签名， 参数2：类名, getElementsByClassName获取（utils.js 公用库中）
-          var demo_list = getElementsByClassName('div', 'demo');
+          // 获得demo集合 
+          var demo_list = document.getElementsByClassName('demo');
           var i , len, n_item;
           for (i = 0, len = demo_list.length; i < len; i++) {
             n_item = demo_list[i];
