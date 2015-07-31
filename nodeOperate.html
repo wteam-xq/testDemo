@@ -94,9 +94,10 @@
         <span id="mTips" class="m-tips">修改提示信息</span>
       </div>
     </div>
-
+    
+    <script type="text/javascript" src="utils.js"></script>
     <script>
-    // 《javascript高级程序设计》 第10章第一节
+      // 《javascript高级程序设计》 第10章第一节
       window.onload = function(){
         // 1.1.在上面的 aId 和 bId 间插入一个 DIV对象
         function insertNode(){
@@ -230,7 +231,7 @@
           node_detail.style.display = 'block';
 
           // 其他node-info均设为不可见
-          node_info = getElementsByClassName('node-info');
+          node_info = document.getElementsByClassName('node-info');
           for (i = 0, len = node_info.length; i < len; i++) {
             node_info[i].style.display = 'none';
           }
@@ -238,31 +239,31 @@
           if (this.id == 'sel_s') {
             search_panel.style.display = 'block';
             // 改变标题
-            getElementsByClassName('modal-head', node_detail)[0].innerHTML = '查询节点';
+            document.getElementsByClassName('modal-head')[0].innerHTML = '查询节点';
             // 清空文本节点
             search_panel.innerHTML = '';
             if (!!sel_node) {
               search_panel.appendChild(document.createTextNode(sel_node.outerHTML));
             }
           }else if (this.id == 'sel_m'){
-            var m_input = getElementsByClassName('m-input', modify_panel)[0],
-            m_h3 = getElementsByClassName('m-h3', modify_panel)[0],
-            m_tips = getElementsByClassName('m-tips', modify_panel)[0];
+            var m_input = document.getElementsByClassName('m-input')[0],
+            m_h3 = document.getElementsByClassName('m-h3')[0],
+            m_tips = document.getElementsByClassName('m-tips')[0];
             
             m_tips.style.display = 'none';
             m_h3.innerHTML = '输入 "' + sel_node.innerHTML + '" 更新后的节点文字';
             m_input.setAttribute('data-id', sel_node.id);
             modify_panel.style.display = 'block';
-            getElementsByClassName('modal-head', node_detail)[0].innerHTML = '修改节点';
+            document.getElementsByClassName('modal-head')[0].innerHTML = '修改节点';
           }
         }
         // 确认修改节点信息
         function setNodeText(){
           var modify_panel, m_tips, m_input, m_h3, sel_node, modifyBtn;
           modify_panel = document.getElementById('modify');
-          m_tips = getElementsByClassName('m-tips', modify_panel)[0];
-          m_input = getElementsByClassName('m-input', modify_panel)[0];
-          m_h3 = getElementsByClassName('m-h3', modify_panel)[0];
+          m_tips = document.getElementsByClassName('m-tips')[0];
+          m_input = document.getElementsByClassName('m-input')[0];
+          m_h3 = document.getElementsByClassName('m-h3')[0];
           sel_node = document.getElementById(m_input.getAttribute('data-id'));
           modifyBtn = document.getElementById('modifyBtn');
 
@@ -397,34 +398,6 @@
         }
         return _result;
       }
-
-      // IE8及IE8以下浏览器不支持getElementsByClassName
-      function getElementsByClassName(className,context){
-        context = context || document;
-         
-        if(context.getElementsByClassName){
-          return context.getElementsByClassName(className);
-        }
-         
-        var nodes = context.getElementsByTagName('*');
-        var rets = [];
-        for(var i = 0; i < nodes.length; i++){
-            if(hasClass(className,nodes[i])){
-                rets.push(nodes[i]);
-            }
-        }
-        return rets;
-      }
-      // 判断某节点是否有指定类名
-      function hasClass(className,node){
-        var classNames = node.className.split(/\s+/);
-        for(var i = 0; i < classNames.length; i++){
-            if(classNames[i] == className){
-                return true;
-            }
-        }
-        return false;
-      } 
       
     </script>
   </body>

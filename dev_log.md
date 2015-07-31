@@ -13,6 +13,8 @@
 * 20150724 canvas ctx.globalCompositeOperation 作用区间是整个canvas画布，演示所有参数得使用ctx.createPattern在画布上绘制画布。
 * 解决方案： 新生成一个canvas节点， 然后在这个节点操作合成。
 
+* 20150731 新增“其他”文件夹（others），放置相关代码，例如人人测试题及基本知识的其他实现；
+
 
 ### 设计本项目代码的笔试题：
 
