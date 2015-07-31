@@ -238,6 +238,32 @@
             background: highlight;
             color: highlighttext;
           }
+          /*demo5 富文本编辑器*/
+          #wrap5 {
+            padding: 100px;
+          }
+          #wrap5 p {
+            padding-bottom: 20px;
+            line-height: 30px;
+          }
+          #wrap5 p * {
+            vertical-align: middle;
+          }
+          button {
+            padding: 0 10px;
+          }
+          #editor {
+            border: 2px inset #ccc;
+            font-family: SimSun;
+            overflow: hidden;
+            cursor: text;
+            margin: auto;
+          }
+          #editor div{
+            height: 500px;
+            outline: none;
+            padding: 10px;
+          }
         </style>
     </head>
     
@@ -330,6 +356,8 @@
             <li>只针对英文字符进行匹配，并且匹配到的内容在菜单中加粗；  </li>
             <li>通过键盘上的上下箭头可以对菜单进行选择，按下回车后将选中的内容写入到 input框中；</li>
           </ol>
+          <h4>具体实现效果如下：</h4>
+          <br/>
 
           <div id="wrap3">
             <input type="email" list="url_list" id="autoInput" autofocus="" autocomplete="off">
@@ -371,6 +399,72 @@
             <li>插入超链接；</li>
             <li>插入图片； </li>
           </ol>
+          <h4>具体实现效果如下：</h4>
+          <br/>
+
+          <div id="wrap5">
+            <p>
+              对齐方式：
+              <input type="radio" id="left" name="textAlign" value="left" checked="">
+              <label for="left">左对齐</label>
+              <input type="radio" id="center" name="textAlign" value="center">
+              <label for="center">居中对齐</label>
+              <input type="radio" id="right" name="textAlign" value="right">
+              <label for="right">右对齐</label>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <input type="checkbox" id="bold" name="fontWeight" value="bold">
+              <label for="bold"><b>字体加粗</b></label>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <button id="lnk">插入超链接</button>
+              <button id="img">插入图片</button>
+              <br>
+              设置字体
+              <select id="fontFamily">
+                <option value="SimSun" selected="">宋体</option>
+                <option value="NSimSun" selected="">新宋体</option>
+                <option value="SimHei" selected="">黑体</option>
+                <option value="FangSong">仿宋</option>
+                <option value="FangSong_GB2312">仿宋_GB2312</option>
+                <option value="KaiTi">楷体</option>
+                <option value="KaiTi_GB2312">楷体_GB2312</option>
+              </select>
+              &nbsp; 设置字号
+              <select id="fontSize">
+                <option selected="">12px</option>
+                <option>14px</option>
+                <option>16px</option>
+                <option>18px</option>
+                <option>20px</option>
+              </select>
+              &nbsp; 设置字体颜色:
+              <select id="color">
+                <option selected="">black
+                </option><option>silver</option>
+                <option>gray</option>
+                <option>white</option>
+                <option>maroon</option>
+                <option>red</option>
+                <option>purple</option>
+                <option>fuchsia</option>
+                <option>green</option>
+                <option>lime</option>
+                <option>olive</option>
+                <option>yellow</option>
+                <option>navy</option>
+                <option>blue</option>
+                <option>teal</option>
+                <option>aqua</option>
+              </select>
+            </p>
+            <div id="editor">
+              <div contenteditable="" style="color: black; font-size: 12px; font-family: SimHei;"></div>
+            </div>
+          </div>
+
         </div>
         
         <script src="../utils.js" type="text/javascript"></script>
@@ -394,6 +488,8 @@
             demo1();
             // demo3 事件触发
             autoComplete();
+            // demo5 事件触发
+            onlineEditor();
             // 其他demo隐藏， 对应下标demo出现
             function showDemoByIndex(index){
               var  i , len, _demo, demo_list = document.getElementsByClassName('demo');
@@ -449,7 +545,7 @@
               left.onclick = sLeft;
               right.onclick = sRight;
 
-              cont.addEventListener("onmousewheel" in cont ? "mousewheel" : "DOMMouseScroll", function(e){
+              EventUtil.addHandler(cont, "onmousewheel" in cont ? "mousewheel" : "DOMMouseScroll", function(e){
                 if(( e.detail || -e.wheelDelta) > 0){
                   sRight();
                 }else{
@@ -457,7 +553,8 @@
                 }
                 e.preventDefault();
                 return false;
-              },true);
+              });
+              
             });//realy
           }//demo1
 
@@ -502,8 +599,8 @@
               dialogbg.style.display = "none";
             }
 
-            btnOk.addEventListener("click", btnClose, true);
-            btnCancel.addEventListener("click", btnClose, true);
+            EventUtil.addHandler(btnOk, 'click', btnClose);
+            EventUtil.addHandler(btnCancel, 'click', btnClose);
 
             dialogbg.style.display = "block";
 
@@ -517,20 +614,19 @@
               pos = {},
               dialogbg = document.querySelector("html");
 
-            titleBar.addEventListener("mousedown", function(e){
+            EventUtil.addHandler(titleBar, "mousedown", function(e){
               pos.left = dialog.offsetLeft;
               pos.top = dialog.offsetTop;
               pos.x = e.pageX;
               pos.y = e.pageY;
               onDrag = true;
-            }, false);
-
-            dialogbg.addEventListener("mousemove", function(e){
+            });
+            EventUtil.addHandler(dialogbg, "mousemove", function(e){
               if(onDrag){
                 dialog.style.left = (pos.left + e.pageX - pos.x) + "px";
                 dialog.style.top = (pos.top + e.pageY - pos.y) + "px";
               }
-            }, false);
+            });
 
             titleBar.onselectstart = function(){
               return false;
@@ -563,7 +659,7 @@
               demo3_dom.appendChild(datalist);
 
               textbox.autocomplete="off";
-              textbox.addEventListener("keydown", function(e){
+              EventUtil.addHandler(textbox, "keydown", function(e){
                 switch(e.keyCode) {
                   case 38: // up
                     e.preventDefault();
@@ -585,12 +681,12 @@
                   default:
                     window.setTimeout(onChange,0);;
                 }
-              }, true);
+              });
 
-              textbox.addEventListener("input", onChange, false);
-              textbox.addEventListener("blur", function(){
+              EventUtil.addHandler(textbox, "input", onChange);
+              EventUtil.addHandler(textbox, "blur", function(){
                 datalist.style.display = "none";
-              }, false);
+              });
 
               function onChange() {
                 if(textbox.value){
@@ -664,11 +760,11 @@
                 });
               }
 
-              datalist.addEventListener("mouseover", function(e){
+              EventUtil.addHandler(datalist, "mouseover", function(e){
                 hoverOpt(e.target);
               });
 
-              datalist.addEventListener("click", function(e){
+              EventUtil.addHandler(datalist, "click", function(e){
                 selectOpt(e.target);
               });
             }
@@ -676,6 +772,79 @@
             document.realy(function($){
               autocomplete("#autoInput");
             });
+          }
+
+          // demo5 富文本编辑器
+          function onlineEditor(){
+            window.onload = function(){
+              var editor = document.getElementById("editor").children[0];
+              var setting = {
+                'left': '',
+                'center': '',
+                'right': ''
+              };
+              function setBtn(id, styleName){
+                var elm = document.getElementById(id);
+                elm.onclick = function(){
+                  editor.style[styleName] = setting[id] = !setting[id] ? id : "";
+                }
+              }
+
+              //setBtn("bold", "fontWeight");
+              setBtn("left", "textAlign");
+              setBtn("center", "textAlign");
+              setBtn("right", "textAlign");
+
+              function setMenu(id, styleName){
+                var elm = document.getElementById(id);
+                function change(){
+                  editor.style[id] = elm.value || elm.children[elm.selectedIndex].innerHTML;
+                }
+                change();
+                elm.onchange = change;
+              }
+
+              setMenu("color");
+              setMenu("fontSize");
+              setMenu("fontFamily");
+              
+              function setChecked(id, styleName){
+                var elm = document.getElementById(id);
+                function change(){
+                  editor.style[elm.name] = elm.checked ? this.value : "";
+                }
+                change();
+                elm.onchange = elm.onpropertychange = change;
+              }
+              
+              setChecked("bold");
+              setChecked("left");
+              setChecked("center");
+              setChecked("right");
+              var link = document.getElementById("link"),
+                img = document.getElementById("img");
+              
+              document.getElementById("img").onclick = function(){
+                var url = prompt("请输入图片url", "http://"),
+                  img;
+                if(url){
+                  img = new Image();
+                  img.src = url;
+                  editor.appendChild(img)
+                }
+              }
+
+              document.getElementById("lnk").onclick = function(){
+                var url = prompt("请输入链接url", "http://"),
+                  lnk;
+                if(url){
+                  lnk = document.createElement("a");
+                  lnk.href = url;
+                  lnk.innerHTML = prompt("请输入链接文字或者点击取消", "") || url;
+                  editor.appendChild(lnk)
+                }
+              }
+            };
           }
 
         </script>
