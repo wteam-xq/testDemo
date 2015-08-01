@@ -683,11 +683,6 @@
                 }
               });
 
-              EventUtil.addHandler(textbox, "input", onChange);
-              EventUtil.addHandler(textbox, "blur", function(){
-                datalist.style.display = "none";
-              });
-
               function onChange() {
                 if(textbox.value){
                   optList = [];
@@ -760,13 +755,27 @@
                 });
               }
 
-              EventUtil.addHandler(datalist, "mouseover", function(e){
-                hoverOpt(e.target);
-              });
-
               EventUtil.addHandler(datalist, "click", function(e){
                 selectOpt(e.target);
               });
+
+              EventUtil.addHandler(datalist, "mouseover", function(e){
+                hoverOpt(e.target);
+                // 全局标志位， 鼠标在ul标签内blur事件失效
+                $.blur_able = false;
+              });
+              EventUtil.addHandler(datalist, "mouseout", function(e){
+                // 全局标志位， 鼠标不在ul标签内blur事件生效
+                $.blur_able = true;
+              });
+
+              EventUtil.addHandler(textbox, "input", onChange);
+              EventUtil.addHandler(textbox, "blur", function(){
+                if ($.blur_able) {
+                  datalist.style.display = "none";
+                }
+              });
+
             }
 
             document.realy(function($){
