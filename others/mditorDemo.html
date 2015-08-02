@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>
+          剧中人markdown 编辑器
+      </title>
+      <style>
+        
+      </style>
+    </head>
+    
+    <body>
+      <h3>Mditor演示demo</h3>
+      <textarea id="mditor_dom"></textarea>
+
+      <script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="mditor.js"></script>
+      <script>
+
+        //获取textarea dom对象
+        var ele_textarea = document.getElementById('mditor_dom');
+        //实例化Mditor
+        var editor = new mditor(ele_textarea,{
+          //自定义显示效果class
+          previewClass : 'article'
+        });
+
+      </script>
+
+    </body>
+</html>

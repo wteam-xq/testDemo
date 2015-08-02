@@ -44,11 +44,19 @@
         position: absolute;
         width:30px;
         height:30px;
+        line-height: 30px;
         top:0px;
         right:0px;
         cursor: pointer;
         font-size:30px;
         text-align:center;
+        color: #ccc;
+        font-weight: bold;
+        font-family: 'simsun';
+      }
+      .close:hover{
+        color: #ddd;
+        text-decoration: none;
       }
       .m-tips{
         display: none;
@@ -85,7 +93,7 @@
     <div class="dialog-mask" id="dialogMask"></div>
     <div id="nodeDetail" class="nodeDetail">
       <div class="modal-head">节点详情</div>
-      <span id='closeBtn' class="close">X</span>
+      <a id='closeBtn' class="close">x</a>
       <div class="search node-info" id="search"></div>
       <div class="modify node-info" id="modify">
         <h3 class="m-h3">输入节点1更新后的节点文字:</h3>

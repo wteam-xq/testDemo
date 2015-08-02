@@ -50,3 +50,24 @@
   [最全前端面试问题及答案总结](http://segmentfault.com/a/1190000002562454)  
   [如何面试一名前端开发工程师？](http://www.html-js.com/article/Large-search-front-team-column%202961)  
   [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)  
+
+  #### 今天试着使用您这个插件发现的问题如下：
+
+* 1.教程语法错误；
+ ```javascript
+//获取textarea dom对象
+var ele_textarea = document.getElementByID('mditor');
+```
+document对象没有“getElementByID”这个方法， 应该写成“getElementById”吧;
+
+* 2.在chrome浏览器中如果按照教程的写法：
+ ```javascript
+<textarea id="mditor">……</textarea>
+//获取textarea dom对象
+var ele_textarea = document.getElementById('mditor');
+//实例化Mditor
+  var editor = new mditor(ele_textarea);
+```
+会出现“object is not a function”的错误，调试发现是textarea 这个标签id命名成 mditor后， `new mditor`中的`mditor`变成dom节点对象（textarea）了;
+
+* 3.在[编辑器官网](http://bh-lay.github.io/mditor/)点击下载按钮下载的 mditor.js，以上两问题解决后，发现编辑器
