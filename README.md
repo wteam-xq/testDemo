@@ -60,7 +60,8 @@
 * 18.浏览器检测:
   * [client.js](https://github.com/wteam-xq/testDemo/blob/master/client.js)
 
-
 * other:
   * [人人网鄙视题](https://github.com/wteam-xq/testDemo/blob/master/others/renrenTest.html)
+  * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
+  * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [演示地址](http://wteamxq.com/testDemo/others/renrenTest.html)

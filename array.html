@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>
-            数组使用
-        </title>
-
+      <meta charset="utf-8">
+      <title>
+          数组使用
+      </title>
+      <link rel="stylesheet" type="text/css" href="common.css"/>
     </head>
     
     <body>
         <h3>数组用法</h3>
-        
+        <div class='btn-list' id="btnCont">
+          <button id="showImgBtn" class="radius-btn">数组去重</button>
+          <button id="modalBtn" class="radius-btn">数组排序</button>
+        </div>
         <script>
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
@@ -93,13 +96,27 @@
             }
               return r;
           }
-          // 测试以上函数
+          // 测试以上函数 方便演示代码， 添加代码高亮插件
           var t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
-          alert(unique1(t_array));
-          alert(unique2(t_array));
-          alert(unique3(t_array));
-          alert(unique4(t_array));
-          alert(unique5(t_array));
+          // alert(unique1(t_array));
+          // alert(unique2(t_array));
+          // alert(unique3(t_array));
+          // alert(unique4(t_array));
+          // alert(unique5(t_array));
+          
+          //数组排序算法总结：
+          //http://jsdo.it/norahiko/oxIy/fullscreen（日本人编写的排序动画）
+          
+          //1.插入排序
+          //2.二分插入排序
+          //3.希尔排序  
+          //4.冒泡排序
+          //5.改进冒泡排序
+          //6.快速排序
+          //7.选择排序
+          //8.堆排序
+          //9.归并排序
+          
 
         </script>
 
