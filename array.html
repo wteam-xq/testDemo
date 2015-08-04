@@ -6,15 +6,69 @@
           数组使用
       </title>
       <link rel="stylesheet" type="text/css" href="common.css"/>
+      <style type="text/css">
+        .radio-list{
+          font-size: 16px;
+          text-align: left;
+        }
+        .radio-list input{
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+        }
+      </style>
     </head>
     
     <body>
         <h3>数组用法</h3>
         <div class='btn-list' id="btnCont">
-          <button id="showImgBtn" class="radius-btn">数组去重</button>
-          <button id="modalBtn" class="radius-btn">数组排序</button>
+          <button id="uniqueBtn" class="radius-btn">数组去重</button>
+          <button id="sortBtn" class="radius-btn">数组排序</button>
         </div>
+
+        <div id="uniquePanel" class="panel">
+          <p>数组去重</p>
+          <div class="radio-list">
+            <input type="radio" name="unique"/>
+            <label>遍历数组法</label>
+            <input type="radio" name="unique"/>
+            <label>对象键值对法</label>
+            <input type="radio" name="unique"/>
+            <label>数组下标判断法</label>
+            <input type="radio" name="unique"/>
+            <label>排序后相邻去除法</label>
+            <input type="radio" name="unique" checked="checked" />
+            <label>优化遍历数组法</label>
+          </div>
+        </div>
+        
+        <div id="sortPanel" class="panel">
+          <p>数组排序</p>
+          <div class="radio-list">
+            <input type="radio" name="sort"/>
+            <label>插入排序</label>
+            <input type="radio" name="sort"/>
+            <label>二分插入排序</label>
+            <input type="radio" name="sort"/>
+            <label>希尔排序</label>
+            <input type="radio" name="sort"/>
+            <label>冒泡排序</label>
+            <input type="radio" name="sort"/>
+            <label>改进冒泡排序</label>
+            <input type="radio" name="sort" checked="checked" />
+            <label>快速排序</label>
+            <input type="radio" name="sort"/>
+            <label>选择排序</label>
+            <input type="radio" name="sort"/>
+            <label>堆排序</label>
+            <input type="radio" name="sort"/>
+            <label>归并排序</label>
+          </div>
+        </div>
+
+        <script type="text/javascript" src="utils.js"></script>
         <script>
+          
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
             // 新增indexOf方法
@@ -85,7 +139,6 @@
             }
             return re;
           }
-
           // 思路：获取没重复的最右一值放入新数组
           function unique5(array){
             var r = [];
@@ -94,8 +147,40 @@
                 if (array[i] === array[j]) j = ++i;
               r.push(array[i]);
             }
-              return r;
+            return r;
           }
+          function init(){
+            var unique_btn, sort_btn;
+
+            unique_btn = document.getElementById('uniqueBtn');
+            sort_btn = document.getElementById('sortBtn');
+
+            // 默认显示第一项
+            showUniquePanel();
+            unique_btn.onclick = showUniquePanel;
+            sort_btn.onclick = showSortPanel;
+          }
+          function showUniquePanel(){
+            showPanel('uniquePanel');
+          }
+          function showSortPanel(){
+            showPanel('sortPanel');
+          }
+          function hideAllPanel(){
+            var panel_list, i, len, p_item;
+            panel_list = document.getElementsByClassName('panel');
+            for (i = 0, len = panel_list.length; i < len; i++) {
+              p_item = panel_list[i];
+              p_item.style.display = 'none';
+            }
+          }
+          function showPanel(p_id){
+            var p_item; 
+            hideAllPanel();
+            p_item = document.getElementById(p_id);
+            p_item.style.display = 'block';
+          }
+          init();
           // 测试以上函数 方便演示代码， 添加代码高亮插件
           var t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           // alert(unique1(t_array));

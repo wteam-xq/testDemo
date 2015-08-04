@@ -83,7 +83,32 @@
             alert('3.' + func.call(object)); //3. My Object 
             alert('4.' + func.apply(object)); //4. My Object
           }
-          test2();
+          // test2();
+          
+          // 题目3：知乎 http://www.zhihu.com/question/33960636
+          // 判断this指向的方法：
+          // 1.函数是否new调用？若是， 则，this指向新对象；
+          // 2.函数是否是bind方法返回？若是，则this指向指定对象；
+          // 3.函数是否通过apply/call调用？若是，则this指向指定对象；
+          // 4.是否作为对象的方法调用？若是，则this指向该对象；
+          // 5.this指向全局。
+
+          // 全局变量
+          var length = 10;
+          function test3(){
+            function fn() {
+              alert(this.length);
+            }
+            var obj = {
+              length: 5,
+              method: function(fn) {
+                fn(); // 根据第五步判断，得出this指向全局对象
+                arguments[0]();
+              }
+            }
+            obj.method(fn, 1); //根据第四步判断，得出this指向arguments对象
+          }
+          test3();
 
         </script>
 

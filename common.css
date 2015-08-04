@@ -11,3 +11,6 @@
 .demo {
   display: none;
 }
+body {
+  background-color: #EFEFEF;
+}
