@@ -104,7 +104,8 @@
             }
           }
           function init(){
-            var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios;
+            var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios,
+            unique_fns;
 
             unique_btn = document.getElementById('uniqueBtn');
             sort_btn = document.getElementById('sortBtn');
@@ -119,7 +120,8 @@
             sort_panel = document.getElementById('sortPanel');
             unique_radios = document.getElementsByName('unique');
             sort_radios = document.getElementsByName('sort');
-
+            // 初始化 数组去重radio事件
+            unique_fns = initRadios(unique_radios);
           }
           function showUniquePanel(){
             showPanel('uniquePanel');
@@ -144,14 +146,23 @@
 
           // 初始化 radio按钮事件
           function initRadios(btn_list){
+            var i, len, btn, b_id, unique_fns = {};
 
+            for (i = 0, len = btn_list.length; i < len; i++) {
+              btn = btn_lsit[i];
+              b_id = btn.getAttribute('data-id');
+              unique_fns[b_id] = function(){
+
+              }
+            }
+            return unique_fns
           }
           // 隐藏指定类型的所有详情面板
           function hideAllDetail(detail_list){
 
           }
           // 显示某一详情面板
-          function showUnDetail(u_id){
+          function showUnDetail(u_id, p_id){
 
           }
 
