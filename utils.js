@@ -111,8 +111,23 @@ function getElementsByClassName(node_type, class_name){
   }
   return r;
 }
+// getElementsByName 该方法不兼容ie6、ie7
+if (!document.getElementsByName){
+  document.getElementsByName = function(name){
+    // 获取
+    var result = [], i, len, el, els;
+    els = document.getElementsByTagName('*');
+    for (i = 0, len = els.length; i < len; i++) {
+      el = els[i];
+      if (el.name === name) {
+        result.push(el);
+      }
+    }
+    return result;
+  }
+}
 
-// 兼容浏览器 getElementsByClassName
+// 兼容浏览器 getElementsByClassName 不兼容 ie6、ie7、ie8
 if (!document.getElementsByClassName) {
   document.getElementsByClassName = function(cls){
     //定义一个空数组用来存储获取到指定className元素

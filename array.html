@@ -16,6 +16,12 @@
           height: 16px;
           cursor: pointer;
         }
+        .panel {
+          display: none;
+        }
+        .un-detail {
+          display: none;
+        }
       </style>
     </head>
     
@@ -29,9 +35,9 @@
         <div id="uniquePanel" class="panel">
           <p>数组去重</p>
           <div class="radio-list">
-            <input type="radio" name="unique"/>
+            <input type="radio" name="unique" data-id="r1"/>
             <label>遍历数组法</label>
-            <input type="radio" name="unique"/>
+            <input type="radio" name="unique" data-id="r2"/>
             <label>对象键值对法</label>
             <input type="radio" name="unique"/>
             <label>数组下标判断法</label>
@@ -40,9 +46,20 @@
             <input type="radio" name="unique" checked="checked" />
             <label>优化遍历数组法</label>
           </div>
+
+          <div class="unique-details" id="unDetail">
+            <div class="un-detail" id="r1">
+              遍历数组法
+            </div>
+            <div class="un-detail" id="r2">
+              对象键值对法
+            </div>
+          </div>
+
         </div>
         
         <div id="sortPanel" class="panel">
+          <p>数组排序算法总结：<a href="http://jsdo.it/norahiko/oxIy/fullscreen" alt="jpan">日本人编写的排序动画</a></p>
           <p>数组排序</p>
           <div class="radio-list">
             <input type="radio" name="sort"/>
@@ -68,7 +85,6 @@
 
         <script type="text/javascript" src="utils.js"></script>
         <script>
-          
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
             // 新增indexOf方法
@@ -87,6 +103,59 @@
               return result;
             }
           }
+          function init(){
+            var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios;
+
+            unique_btn = document.getElementById('uniqueBtn');
+            sort_btn = document.getElementById('sortBtn');
+
+            // 默认显示第一项
+            showUniquePanel();
+            unique_btn.onclick = showUniquePanel;
+            sort_btn.onclick = showSortPanel;
+
+            // raido 事件处理
+            unique_panel = document.getElementById('uniquePanel');
+            sort_panel = document.getElementById('sortPanel');
+            unique_radios = document.getElementsByName('unique');
+            sort_radios = document.getElementsByName('sort');
+
+          }
+          function showUniquePanel(){
+            showPanel('uniquePanel');
+          }
+          function showSortPanel(){
+            showPanel('sortPanel');
+          }
+          function hideAllPanel(){
+            var panel_list, i, len, p_item;
+            panel_list = document.getElementsByClassName('panel');
+            for (i = 0, len = panel_list.length; i < len; i++) {
+              p_item = panel_list[i];
+              p_item.style.display = 'none';
+            }
+          }
+          function showPanel(p_id){
+            var p_item; 
+            hideAllPanel();
+            p_item = document.getElementById(p_id);
+            p_item.style.display = 'block';
+          }
+
+          // 初始化 radio按钮事件
+          function initRadios(btn_list){
+
+          }
+          // 隐藏指定类型的所有详情面板
+          function hideAllDetail(detail_list){
+
+          }
+          // 显示某一详情面板
+          function showUnDetail(u_id){
+
+          }
+
+          init();
 
           // 数组去重的5个方法
           function unique1(array){
@@ -149,38 +218,7 @@
             }
             return r;
           }
-          function init(){
-            var unique_btn, sort_btn;
-
-            unique_btn = document.getElementById('uniqueBtn');
-            sort_btn = document.getElementById('sortBtn');
-
-            // 默认显示第一项
-            showUniquePanel();
-            unique_btn.onclick = showUniquePanel;
-            sort_btn.onclick = showSortPanel;
-          }
-          function showUniquePanel(){
-            showPanel('uniquePanel');
-          }
-          function showSortPanel(){
-            showPanel('sortPanel');
-          }
-          function hideAllPanel(){
-            var panel_list, i, len, p_item;
-            panel_list = document.getElementsByClassName('panel');
-            for (i = 0, len = panel_list.length; i < len; i++) {
-              p_item = panel_list[i];
-              p_item.style.display = 'none';
-            }
-          }
-          function showPanel(p_id){
-            var p_item; 
-            hideAllPanel();
-            p_item = document.getElementById(p_id);
-            p_item.style.display = 'block';
-          }
-          init();
+          
           // 测试以上函数 方便演示代码， 添加代码高亮插件
           var t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           // alert(unique1(t_array));
@@ -189,20 +227,6 @@
           // alert(unique4(t_array));
           // alert(unique5(t_array));
           
-          //数组排序算法总结：
-          //http://jsdo.it/norahiko/oxIy/fullscreen（日本人编写的排序动画）
-          
-          //1.插入排序
-          //2.二分插入排序
-          //3.希尔排序  
-          //4.冒泡排序
-          //5.改进冒泡排序
-          //6.快速排序
-          //7.选择排序
-          //8.堆排序
-          //9.归并排序
-          
-
         </script>
 
     </body>
