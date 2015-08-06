@@ -12,5 +12,6 @@
   display: none;
 }
 body {
-  background-color: #EFEFEF;
+  /*background-color: #EFEFEF;*/
+  background-color: #fff;
 }

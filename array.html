@@ -19,8 +19,9 @@
         .panel {
           display: none;
         }
-        .un-detail {
+        .un-detail,.sort-detail {
           display: none;
+          margin: 20px 0px;
         }
       </style>
     </head>
@@ -34,16 +35,17 @@
 
         <div id="uniquePanel" class="panel">
           <p>数组去重</p>
+          <p>原始数组： [4, 2, 5, 5, 8, 12, 43, 7, 2]</p>
           <div class="radio-list">
             <input type="radio" name="unique" data-id="r1"/>
             <label>遍历数组法</label>
             <input type="radio" name="unique" data-id="r2"/>
             <label>对象键值对法</label>
-            <input type="radio" name="unique"/>
+            <input type="radio" name="unique" data-id="r3"/>
             <label>数组下标判断法</label>
-            <input type="radio" name="unique"/>
+            <input type="radio" name="unique" data-id="r4"/>
             <label>排序后相邻去除法</label>
-            <input type="radio" name="unique" checked="checked" />
+            <input type="radio" name="unique" data-id="r5" checked="checked" />
             <label>优化遍历数组法</label>
           </div>
 
@@ -54,6 +56,15 @@
             <div class="un-detail" id="r2">
               对象键值对法
             </div>
+            <div class="un-detail" id="r3">
+              数组下标判断法
+            </div>
+            <div class="un-detail" id="r4">
+              排序后相邻去除法
+            </div>
+            <div class="un-detail" id="r5">
+              优化遍历数组法
+            </div>
           </div>
 
         </div>
@@ -62,29 +73,66 @@
           <p>数组排序算法总结：<a href="http://jsdo.it/norahiko/oxIy/fullscreen" alt="jpan">日本人编写的排序动画</a></p>
           <p>数组排序</p>
           <div class="radio-list">
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s1"/>
             <label>插入排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s2"/>
             <label>二分插入排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s3"/>
             <label>希尔排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s4"/>
             <label>冒泡排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s5"/>
             <label>改进冒泡排序</label>
-            <input type="radio" name="sort" checked="checked" />
+            <input type="radio" name="sort" checked="checked" data-id="s6" />
             <label>快速排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s7"/>
             <label>选择排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s8"/>
             <label>堆排序</label>
-            <input type="radio" name="sort"/>
+            <input type="radio" name="sort" data-id="s9"/>
             <label>归并排序</label>
           </div>
+
+          <div class="sort-details" id="sortDetail">
+            <div class="sort-detail" id="s1">
+              插入排序
+            </div>
+            <div class="sort-detail" id="s2">
+              二分插入排序
+            </div>
+            <div class="sort-detail" id="s3">
+              希尔排序
+            </div>
+            <div class="sort-detail" id="s4">
+              冒泡排序
+            </div>
+            <div class="sort-detail" id="s5">
+              改进冒泡排序
+            </div>
+            <div class="sort-detail" id="s6">
+              快速排序
+            </div>
+            <div class="sort-detail" id="s7">
+              选择排序
+            </div>
+            <div class="sort-detail" id="s8">
+              堆排序
+            </div>
+            <div class="sort-detail" id="s9">
+              归并排序
+            </div>
+          </div>
+
         </div>
 
         <script type="text/javascript" src="utils.js"></script>
         <script>
+          // 全局变量命名空间
+          var xq = {};
+          // 测试以上函数 方便演示代码， 添加代码高亮插件
+          xq.t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
+          xq.unique_fns = {};
+          xq.sort_fns = [];
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
             // 新增indexOf方法
@@ -103,10 +151,12 @@
               return result;
             }
           }
+          init();
+
           function init(){
             var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios,
             unique_fns;
-
+            
             unique_btn = document.getElementById('uniqueBtn');
             sort_btn = document.getElementById('sortBtn');
 
@@ -120,8 +170,26 @@
             sort_panel = document.getElementById('sortPanel');
             unique_radios = document.getElementsByName('unique');
             sort_radios = document.getElementsByName('sort');
+
+            // 初始化 去重函数
+            initUniqueFns();
+
             // 初始化 数组去重radio事件
-            unique_fns = initRadios(unique_radios);
+            initRadios(unique_radios, 'un-detail');
+            // 显示默认项
+            showDetail('r5', 'un-detail');
+
+            // 初始化 数组去重radio事件
+            initRadios(sort_radios, 'sort-detail');
+            // 显示默认项
+            showDetail('s6', 'sort-detail');
+          }
+          function initUniqueFns(){
+            xq.unique_fns['r1'] = unique1;
+            xq.unique_fns['r2'] = unique2;
+            xq.unique_fns['r3'] = unique3;
+            xq.unique_fns['r4'] = unique4;
+            xq.unique_fns['r5'] = unique5;
           }
           function showUniquePanel(){
             showPanel('uniquePanel');
@@ -145,28 +213,44 @@
           }
 
           // 初始化 radio按钮事件
-          function initRadios(btn_list){
-            var i, len, btn, b_id, unique_fns = {};
+          function initRadios(btn_list, p_class){
+            var i, len, btn, b_id;
 
             for (i = 0, len = btn_list.length; i < len; i++) {
-              btn = btn_lsit[i];
-              b_id = btn.getAttribute('data-id');
-              unique_fns[b_id] = function(){
-
+              btn = btn_list[i];
+              btn.onclick = function(){
+                var b_id = this.getAttribute('data-id');
+                showDetail(b_id, p_class);
               }
             }
-            return unique_fns
           }
           // 隐藏指定类型的所有详情面板
           function hideAllDetail(detail_list){
-
+            var i , len, detail;
+            if (!detail_list || detail_list.length == 0) {
+              return false;
+            }
+            for (i = 0, len = detail_list.length; i < len; i++) {
+              detail = detail_list[i];
+              detail.style.display = 'none';
+            }
           }
           // 显示某一详情面板
-          function showUnDetail(u_id, p_id){
-
+          function showDetail(u_id, p_class){
+            var detail_list, show_detail, result;
+            if (!u_id) {
+              return false;
+            }
+            detail_list = document.getElementsByClassName(p_class);
+            show_detail = document.getElementById(u_id);
+            hideAllDetail(detail_list);
+            show_detail.style.display = 'block';
+            if (p_class === 'un-detail' && (typeof xq.unique_fns[u_id]) === 'function') {
+              // 执行对应函数
+              result = xq.unique_fns[u_id](xq.t_array);
+              alert(result);
+            }
           }
-
-          init();
 
           // 数组去重的5个方法
           function unique1(array){
@@ -229,14 +313,6 @@
             }
             return r;
           }
-          
-          // 测试以上函数 方便演示代码， 添加代码高亮插件
-          var t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
-          // alert(unique1(t_array));
-          // alert(unique2(t_array));
-          // alert(unique3(t_array));
-          // alert(unique4(t_array));
-          // alert(unique5(t_array));
           
         </script>
 
