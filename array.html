@@ -51,19 +51,24 @@
 
           <div class="unique-details" id="unDetail">
             <div class="un-detail" id="r1">
-              遍历数组法
+              <strong>遍历数组法</strong>
+              <p id='r1-res'></p>
             </div>
             <div class="un-detail" id="r2">
-              对象键值对法
+              <strong>对象键值对法</strong>
+              <p id="r2-res"></p>
             </div>
             <div class="un-detail" id="r3">
-              数组下标判断法
+              <strong>数组下标判断法</strong>
+              <p id="r3-res"></p>
             </div>
             <div class="un-detail" id="r4">
-              排序后相邻去除法
+              <strong>排序后相邻去除法</strong>
+              <p id="r4-res"></p>
             </div>
             <div class="un-detail" id="r5">
-              优化遍历数组法
+              <strong>优化遍历数组法</strong>
+              <p id="r5-res"></p>
             </div>
           </div>
 
@@ -237,7 +242,7 @@
           }
           // 显示某一详情面板
           function showDetail(u_id, p_class){
-            var detail_list, show_detail, result;
+            var detail_list, show_detail, result, result_panel;
             if (!u_id) {
               return false;
             }
@@ -248,7 +253,10 @@
             if (p_class === 'un-detail' && (typeof xq.unique_fns[u_id]) === 'function') {
               // 执行对应函数
               result = xq.unique_fns[u_id](xq.t_array);
-              alert(result);
+              // 结果显示在对应面板中
+              result_panel = document.getElementById(u_id + '-res');
+              result_panel.innerHTML = '';
+              result_panel.appendChild(document.createTextNode(result));
             }
           }
 
