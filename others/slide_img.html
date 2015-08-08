@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>
+          简单的幻灯片效果（非js）
+      </title>
+      <style type="text/css">
+        img {
+          display: none;
+          width: 100px;
+          height: 100px;
+        }
+        input:checked + img {
+          /*动画效果*/
+          display: block;
+          animation: mymove 2s ease-in 1;
+          -webkit-animation: mymove 2s ease-in 1;
+          -moz-animation: mymove 2s ease-in 1;
+          -o-animation: mymove 2s ease-in 1;
+        }
+        @keyframes mymove{
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+        }
+        @-webkit-keyframes mymove{
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+        }
+        @-moz-keyframes mymove{
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+        }
+        @-o-keyframes mymove{
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+        }
+        input + img{
+          /*opacity: 0;*/
+        }
+        input {
+          position: absolute;
+          left: -9999px;
+        }
+        label {
+          cursor: pointer;
+        }
+      </style>
+
+    </head>
+    
+    <body>
+      <h3>简单的幻灯片效果（非js）</h3>
+      <div id="cont">
+        <input id="img1" name="img" type="radio" checked="checked">
+        <img src="../images/car.jpg">
+        <input id="img2" name="img" type="radio">
+        <img src="../images/dlam.jpg">
+      </div>
+
+      <div id="nav">
+        <label for="img1">第一张</label>
+        <label for="img2">第二张</label>
+      </div>
+
+    </body>
+</html>
