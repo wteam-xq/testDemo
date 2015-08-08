@@ -24,6 +24,9 @@
           margin: 20px 0px;
         }
       </style>
+      <script src="syntax_highlighter/brush.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="syntax_highlighter/shCore.css" />
+      <link rel="stylesheet" type="text/css" href="syntax_highlighter/shThemeDefault.css" />
     </head>
     
     <body>
@@ -51,24 +54,119 @@
 
           <div class="unique-details" id="unDetail">
             <div class="un-detail" id="r1">
-              <strong>遍历数组法</strong>
+              <strong>结果：</strong>
               <p id='r1-res'></p>
+              <p>检测浏览器是否支持ECMA5</p>
+              <pre class='brush: javascript'>
+                // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
+                if (!Array.prototype.indexOf){
+                  // 新增indexOf方法
+                  Array.prototype.indexOf = function(item){
+                    var result = -1, a_item = null;
+                    if (this.length == 0){
+                      return result;
+                    }
+                    for(var i = 0, len = this.length; i < len; i++){
+                      a_item = this[i];
+                      if (a_item === item){
+                        result = i;
+                        break;
+                      }  
+                    }
+                    return result;
+                  }
+                }
+              </pre>
+              <p>普通遍历数组法：</p>
+              <pre class='brush: javascript'>
+                // 最简单数组去重法
+                function unique1(array){
+                  var n = []; //一个新的临时数组
+                  //遍历当前数组
+                  for(var i = 0; i < array.length; i++){
+                    //如果当前数组的第i已经保存进了临时数组，那么跳过，
+                    //否则把当前项push到临时数组里面
+                    if (n.indexOf(array[i]) == -1) n.push(array[i]);
+                  }
+                  return n;
+                }
+              </pre>
             </div>
             <div class="un-detail" id="r2">
-              <strong>对象键值对法</strong>
+              <strong>结果：</strong>
               <p id="r2-res"></p>
+              <p>对象键值对法：</p>
+              <pre class='brush: javascript'>
+                // 速度最快， 占空间最多（空间换时间）
+                function unique2(array){
+                  var n = {}, r = [], len = array.length, val, type;
+                    for (var i = 0; i < array.length; i++) {
+                        val = array[i];
+                        type = typeof val;
+                        if (!n[val]) {
+                            n[val] = [type];
+                            r.push(val);
+                        } else if (n[val].indexOf(type) < 0) {
+                            n[val].push(type);
+                            r.push(val);
+                        }
+                    }
+                    return r;
+                }
+              </pre>
             </div>
             <div class="un-detail" id="r3">
-              <strong>数组下标判断法</strong>
+              <strong>结果：</strong>
               <p id="r3-res"></p>
+              <p>数组下标判断法</p>
+              <pre class="brush:javascript">
+                function unique3(array){
+                  var n = [array[0]]; //结果数组
+                  //从第二项开始遍历
+                  for(var i = 1; i < array.length; i++) {
+                    //如果当前数组的第i项在当前数组中第一次出现的位置不是i，
+                    //那么表示第i项是重复的，忽略掉。否则存入结果数组
+                    if (array.indexOf(array[i]) == i) n.push(array[i]);
+                  }
+                  return n;
+                }
+              </pre>
             </div>
             <div class="un-detail" id="r4">
-              <strong>排序后相邻去除法</strong>
+              <strong>结果：</strong>
               <p id="r4-res"></p>
+              <p>排序后相邻去除法</p>
+              <pre class="brush:javascript">
+                // 将相同的值相邻，然后去除
+                function unique4(array){
+                  array.sort(); 
+                  var re=[array[0]];
+                  for(var i = 1; i < array.length; i++){
+                    if( array[i] !== re[re.length-1])
+                    {
+                      re.push(array[i]);
+                    }
+                  }
+                  return re;
+                }
+              </pre>
             </div>
             <div class="un-detail" id="r5">
-              <strong>优化遍历数组法</strong>
+              <strong>结果：</strong>
               <p id="r5-res"></p>
+              <p>优化遍历数组法</p>
+              <pre class="brush:javascript">
+                // 思路：获取没重复的最右一值放入新数组
+                function unique5(array){
+                  var r = [];
+                  for(var i = 0, l = array.length; i < l; i++) {
+                    for(var j = i + 1; j < l; j++)
+                      if (array[i] === array[j]) j = ++i;
+                    r.push(array[i]);
+                  }
+                  return r;
+                }
+              </pre>
             </div>
           </div>
 
@@ -188,7 +286,12 @@
             initRadios(sort_radios, 'sort-detail');
             // 显示默认项
             showDetail('s6', 'sort-detail');
+
+            // 代码高亮显示
+            SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
+            SyntaxHighlighter.all();
           }
+
           function initUniqueFns(){
             xq.unique_fns['r1'] = unique1;
             xq.unique_fns['r2'] = unique2;
@@ -260,7 +363,7 @@
             }
           }
 
-          // 数组去重的5个方法
+          // 最简单数组去重法
           function unique1(array){
             var n = []; //一个新的临时数组
             //遍历当前数组
@@ -300,6 +403,7 @@
             return n;
           }
 
+          // 将相同的值相邻，然后去除
           function unique4(array){
             array.sort(); 
             var re=[array[0]];

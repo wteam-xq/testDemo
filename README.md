@@ -65,3 +65,7 @@
   * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
   * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [演示地址](http://wteamxq.com/testDemo/others/renrenTest.html)
+
+* angular:
+  * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angular_route.html)
+  * [演示地址](http://wteamxq.com/testDemo/angular/angular_route.html)
