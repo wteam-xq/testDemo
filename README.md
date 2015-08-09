@@ -22,7 +22,8 @@
 
 * 7.数组用法：
   * [array.html](https://github.com/wteam-xq/testDemo/blob/master/array.html)
- 
+  * [演示地址](http://wteamxq.com/testDemo/array.html)
+
 * 8.作用域：
   * [scope.html](https://github.com/wteam-xq/testDemo/blob/master/scope.html)
 
@@ -67,5 +68,5 @@
   * [演示地址](http://wteamxq.com/testDemo/others/renrenTest.html)
 
 * angular:
-  * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angular_route.html)
-  * [演示地址](http://wteamxq.com/testDemo/angular/angular_route.html)
+  * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)
+  * [演示地址](http://wteamxq.com/testDemo/angular/angularRoute.html)
