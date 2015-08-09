@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta http-equiv="content-type" content="charset=utf-8">
+      <title>
+        浏览器缓存理解
+      </title>
+      <!--[if lt IE8]>
+      <script type="text/javascript" src="lib/json2.js"></script>
+      <![endif]-->
+    </head>
+    
+    <body>
+      <h3>浏览器缓存理解</h3>
+      
+      <p>
+        1.浏览器缓存：sessionStorage 作用范围；
+        <input type="button" value="点击存入缓存" id="sSetBtn"/>
+        <input type="button" value="点击删除缓存" id="sRemoveBtn" />
+        <input type="button" value="点击查看缓存" id="sShowBtn" />
+      </p>
+      <p>
+        <span id="sBtnTips"></span>
+      </p>
+
+
+      <p>
+        2.浏览器缓存：cookie 用法；
+        <input type="button" value="点击存入缓存" id="cSetBtn"/>
+        <input type="button" value="点击删除缓存" id="cRemoveBtn" />
+        <input type="button" value="点击查看缓存" id="cShowBtn" />
+      </p>
+      <p>
+        <span id="cBtnTips"></span>
+      </p>
+
+
+      <!-- 引入公用自定义文件，其包含cookie封装对象 -->
+      <script type="text/javascript" src="utils.js"></script>
+      <script>
+        
+        var xq = {};
+        init();
+
+        function init() {
+          initSessionDemo();
+          initCookieDemo();
+        }
+
+        function initSessionDemo(){
+          var session_storage, s_set_btn, s_remove_btn, s_show_btn, s_btn_tips;
+
+          s_set_btn = document.getElementById('sSetBtn');
+          s_remove_btn = document.getElementById('sRemoveBtn');
+          s_show_btn = document.getElementById('sShowBtn');
+          s_btn_tips = document.getElementById('sBtnTips');
+          s_set_btn.onclick = sessionSetItem;
+          s_remove_btn.onclick = sessionRemoveItem;
+          s_show_btn.onclick = showSessionStorage;
+
+          function sessionSetItem(event){
+            // console.log('event: ', event);
+            // console.log('this: ', this);
+            // 检测 sessionStorage 能否多窗口(或选项卡)共存
+            if (window.sessionStorage) {
+              session_storage = window.sessionStorage;
+              session_storage.setItem('xq', 'sb');
+              s_btn_tips.innerHTML = '保存成功！';
+            }else {
+              s_btn_tips.innerHTML = '保存失败！';
+            }
+          }
+
+          // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
+          function showSessionStorage(){
+            if (window.sessionStorage) {
+              session_storage = window.sessionStorage;
+              s_btn_tips.innerHTML = 'sessionStorage:' + JSON.stringify(session_storage);
+            } else {
+              s_btn_tips.innerHTML = '浏览器不支持sessionStorage';
+            }
+          }
+
+          function sessionRemoveItem(event){
+            // 检测 sessionStorage 能否多窗口(或选项卡)共存
+            if (window.sessionStorage) {
+              session_storage = window.sessionStorage;
+              session_storage.removeItem('xq');
+              s_btn_tips.innerHTML = '删除成功！';
+            }else {
+              s_btn_tips.innerHTML = '删除失败！';
+            }
+          }
+        }
+
+        function initCookieDemo(){
+          var c_set_btn, c_remove_btn, c_show_btn, c_btn_tips;
+
+          c_set_btn = document.getElementById('cSetBtn');
+          c_remove_btn = document.getElementById('cRemoveBtn');
+          c_show_btn = document.getElementById('cShowBtn');
+          c_btn_tips = document.getElementById('cBtnTips');
+          c_set_btn.onclick = cookieSetItem;
+          c_remove_btn.onclick = cookieRemoveItem;
+          c_show_btn.onclick = showCookie;
+
+          function cookieSetItem(){
+            CookieUtil.set('xq', 'sb');
+            c_btn_tips.innerHTML = '设置cookie成功！';
+          }
+
+          function cookieRemoveItem(){
+            CookieUtil.unset('xq', 'sb');
+            c_btn_tips.innerHTML = '删除cookie成功！';
+          }
+
+          function showCookie() {
+            var _value = CookieUtil.get('xq'),
+            c_obj = {
+              name: 'xq',
+              value: _value
+            };
+
+            c_btn_tips.innerHTML = JSON.stringify(c_obj);
+          }
+
+        }
+        
+
+      </script>
+
+    </body>
+</html>
