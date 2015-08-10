@@ -174,7 +174,7 @@
         
         <div id="sortPanel" class="panel">
           <p>数组排序算法总结：<a href="http://jsdo.it/norahiko/oxIy/fullscreen" alt="jpan">日本人编写的排序动画</a></p>
-          <p>数组排序</p>
+          <p>原始数组： [8,2, 3, 7, 12, 15, 16, 18, 20, 20, 11, 55]</p>
           <div class="radio-list">
             <input type="radio" name="sort" data-id="s1"/>
             <label>插入排序</label>
@@ -198,31 +198,114 @@
 
           <div class="sort-details" id="sortDetail">
             <div class="sort-detail" id="s1">
-              插入排序
+              <strong>结果：</strong>
+              <p id="s1-res"></p>
+              <p>插入排序算法</p>
+              <pre class="brush:javascript">
+                // 插入排序 从下标1开始每增1项排序一次，越往后遍历次数越多
+                function sort1(array) {
+                  var len = array.length,
+                      i, j, tmp, result;
+                  
+                  // 设置数组副本
+                  result = array.slice(0);
+                  for(i=1; i < len; i++){
+                    tmp = result[i];
+                    j = i - 1;
+                    while(j>=0 && tmp < result[j]){
+                      result[j+1] = result[j];
+                      j--;
+                    }
+                    result[j+1] = tmp;
+                  }
+                  return result;
+                }
+              </pre>
             </div>
             <div class="sort-detail" id="s2">
-              二分插入排序
+              <strong>结果：</strong>
+              <p id="s2-res"></p>
+              <p>二分插入排序</p>
+              <pre class="brush:javascript">
+                // 先在有序区通过二分查找的方法找到移动元素的起始位置，然后通过这个起始位置将后面所有的元素后移
+                function sort2(array) {
+                  var len = array.length,
+                      i, j, tmp, low, high, mid, result;
+                  // 赋予数组副本
+                  result = array.slice(0);
+                  for(i = 1; i < len; i++){
+                    tmp = result[i];
+                    low = 0;
+                    high = i - 1;
+                    while(low <= high){
+                      mid = (low + high)/2;
+                      if(tmp < result[mid]) high = mid - 1;
+                      else low = mid + 1;
+                    }
+                    for(j = i - 1; j >= high+1; j--){
+                      result[j+1] = result[j];            
+                    }
+                    result[j+1] = tmp;
+                  }
+                  return result;
+                }
+              </pre>
             </div>
             <div class="sort-detail" id="s3">
-              希尔排序
+              <strong>结果：</strong>
+              <p id="s3-res"></p>
+              <p>希尔排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s4">
-              冒泡排序
+              <strong>结果：</strong>
+              <p id="s4-res"></p>
+              <p>冒泡排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s5">
-              改进冒泡排序
+              <strong>结果：</strong>
+              <p id="s5-res"></p>
+              <p>改进冒泡排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s6">
-              快速排序
+              <strong>结果：</strong>
+              <p id="s6-res"></p>
+              <p>快速排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s7">
-              选择排序
+              <strong>结果：</strong>
+              <p id="s7-res"></p>
+              <p>选择排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s8">
-              堆排序
+              <strong>结果：</strong>
+              <p id="s8-res"></p>
+              <p>堆排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
             <div class="sort-detail" id="s9">
-              归并排序
+              <strong>结果：</strong>
+              <p id="s9-res"></p>
+              <p>归并排序</p>
+              <pre class="brush:javascript">
+                //
+              </pre>
             </div>
           </div>
 
@@ -235,7 +318,9 @@
           // 测试以上函数 方便演示代码， 添加代码高亮插件
           xq.t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           xq.unique_fns = {};
-          xq.sort_fns = [];
+          xq.sort_fns = {};
+          xq.sort_array = [8,2, 3, 7, 12, 15, 16, 18, 20, 20, 11, 55];
+
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
             // 新增indexOf方法
@@ -257,8 +342,7 @@
           init();
 
           function init(){
-            var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios,
-            unique_fns;
+            var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios;
             
             unique_btn = document.getElementById('uniqueBtn');
             sort_btn = document.getElementById('sortBtn');
@@ -269,13 +353,13 @@
             sort_btn.onclick = showSortPanel;
 
             // raido 事件处理
-            unique_panel = document.getElementById('uniquePanel');
-            sort_panel = document.getElementById('sortPanel');
+            // unique_panel = document.getElementById('uniquePanel');
+            // sort_panel = document.getElementById('sortPanel');
             unique_radios = document.getElementsByName('unique');
             sort_radios = document.getElementsByName('sort');
 
-            // 初始化 去重函数
-            initUniqueFns();
+            // 初始化 数组函数
+            initArrayFns();
 
             // 初始化 数组去重radio事件
             initRadios(unique_radios, 'un-detail');
@@ -292,12 +376,17 @@
             SyntaxHighlighter.all();
           }
 
-          function initUniqueFns(){
+          function initArrayFns(){
+            // 初始化去重函数
             xq.unique_fns['r1'] = unique1;
             xq.unique_fns['r2'] = unique2;
             xq.unique_fns['r3'] = unique3;
             xq.unique_fns['r4'] = unique4;
             xq.unique_fns['r5'] = unique5;
+            // 初始化排序函数
+            xq.sort_fns['s1'] = sort1;
+            xq.sort_fns['s2'] = sort2;
+
           }
           function showUniquePanel(){
             showPanel('uniquePanel');
@@ -356,6 +445,13 @@
             if (p_class === 'un-detail' && (typeof xq.unique_fns[u_id]) === 'function') {
               // 执行对应函数
               result = xq.unique_fns[u_id](xq.t_array);
+              // 结果显示在对应面板中
+              result_panel = document.getElementById(u_id + '-res');
+              result_panel.innerHTML = '';
+              result_panel.appendChild(document.createTextNode(result));
+            } else if (p_class === 'sort-detail' && (typeof xq.sort_fns[u_id]) === 'function'){
+              // 执行对应函数
+              result = xq.sort_fns[u_id](xq.sort_array);
               // 结果显示在对应面板中
               result_panel = document.getElementById(u_id + '-res');
               result_panel.innerHTML = '';
@@ -420,10 +516,51 @@
             var r = [];
             for(var i = 0, l = array.length; i < l; i++) {
               for(var j = i + 1; j < l; j++)
-                if (array[i] === array[j]) j = ++i;
+                if (array[i] === array[j]) j = ++i; 
               r.push(array[i]);
             }
             return r;
+          }
+
+          // 插入排序 从下标1开始每增1项排序一次，越往后遍历次数越多
+          function sort1(array) {
+            var len = array.length,
+                i, j, tmp, result;
+
+            // 赋予数组副本
+            result = array.slice(0);
+            for(i=1; i<len; i++){
+              tmp = result[i];
+              j = i - 1;
+              while(j>=0 && tmp < result[j]){
+                result[j+1] = result[j];
+                j--;
+              }
+              result[j+1] = tmp;
+            }
+            return result;
+          }
+          // 先在有序区通过二分查找的方法找到移动元素的起始位置，然后通过这个起始位置将后面所有的元素后移
+          function sort2(array) {
+            var len = array.length,
+                i, j, tmp, low, high, mid, result;
+            // 赋予数组副本
+            result = array.slice(0);
+            for(i = 1; i < len; i++){
+              tmp = result[i];
+              low = 0;
+              high = i - 1;
+              while(low <= high){
+                mid = (low + high)/2;
+                if(tmp < result[mid]) high = mid - 1;
+                else low = mid + 1;
+              }
+              for(j = i - 1; j >= high+1; j--){
+                result[j+1] = result[j];            
+              }
+              result[j+1] = tmp;
+            }
+            return result;
           }
           
         </script>
