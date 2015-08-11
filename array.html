@@ -174,7 +174,7 @@
         
         <div id="sortPanel" class="panel">
           <p>数组排序算法总结：<a href="http://jsdo.it/norahiko/oxIy/fullscreen" alt="jpan">日本人编写的排序动画</a></p>
-          <p>原始数组： [8,2, 3, 7, 12, 15, 16, 18, 20, 20, 11, 55]</p>
+          <p>原始数组： [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7]</p>
           <div class="radio-list">
             <input type="radio" name="sort" data-id="s1"/>
             <label>插入排序</label>
@@ -200,6 +200,8 @@
             <div class="sort-detail" id="s1">
               <strong>结果：</strong>
               <p id="s1-res"></p>
+              <p>原理图：</p>
+              <img title="插入排序原理图" alt="插入排序原理图" src="images/sort1.png"/>
               <p>插入排序算法</p>
               <pre class="brush:javascript">
                 // 插入排序 从下标1开始每增1项排序一次，越往后遍历次数越多
@@ -225,6 +227,8 @@
             <div class="sort-detail" id="s2">
               <strong>结果：</strong>
               <p id="s2-res"></p>
+              <p>原理图：</p>
+              <img alt="二分插入排序原理图" src="images/sort2.jpg" title="二分插入排序原理图"/>
               <p>二分插入排序</p>
               <pre class="brush:javascript">
                 // 先在有序区通过二分查找的方法找到移动元素的起始位置，然后通过这个起始位置将后面所有的元素后移
@@ -238,7 +242,7 @@
                     low = 0;
                     high = i - 1;
                     while(low <= high){
-                      mid = (low + high)/2;
+                      mid = parseInt((low + high)/2, 10);
                       if(tmp < result[mid]) high = mid - 1;
                       else low = mid + 1;
                     }
@@ -254,9 +258,30 @@
             <div class="sort-detail" id="s3">
               <strong>结果：</strong>
               <p id="s3-res"></p>
+              <p>原理图：</p>
+              <img alt="希尔排序原理图" src="images/sort3.jpg" title="希尔排序原理图"/>
               <p>希尔排序</p>
               <pre class="brush:javascript">
-                //
+                // 希尔排序：先将整个待排序记录序列分割成若干个子序列，在在序列内分别进行直接插入排序，待整个序列基本有序时，再对全体记录进行一次直接插入排序
+                function sort3(array){
+                  var len = array.length, gap = parseInt(len/2), 
+                      i, j, tmp, result;
+                  // 复制数组
+                  result = array.slice(0);
+                  while(gap > 0){
+                    for(i = gap; i < len; i++){
+                      tmp = result[i];
+                      j = i - gap;
+                      while(j>=0 && tmp < result[j]){
+                        result[j + gap] = result[j];
+                        j = j - gap;
+                      }
+                      result[j + gap] = tmp;
+                    }
+                    gap = parseInt(gap/2);
+                  }
+                  return result;
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s4">
@@ -319,7 +344,7 @@
           xq.t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           xq.unique_fns = {};
           xq.sort_fns = {};
-          xq.sort_array = [8,2, 3, 7, 12, 15, 16, 18, 20, 20, 11, 55];
+          xq.sort_array = [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7];
 
           // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
@@ -386,6 +411,7 @@
             // 初始化排序函数
             xq.sort_fns['s1'] = sort1;
             xq.sort_fns['s2'] = sort2;
+            xq.sort_fns['s3'] = sort3;
 
           }
           function showUniquePanel(){
@@ -541,6 +567,7 @@
             return result;
           }
           // 先在有序区通过二分查找的方法找到移动元素的起始位置，然后通过这个起始位置将后面所有的元素后移
+          // 关于二分查找排序，该贴子的图比较易懂http://www.cnblogs.com/liuling/p/2013-7-24-01.html
           function sort2(array) {
             var len = array.length,
                 i, j, tmp, low, high, mid, result;
@@ -551,7 +578,7 @@
               low = 0;
               high = i - 1;
               while(low <= high){
-                mid = (low + high)/2;
+                mid = parseInt((low + high)/2, 10);
                 if(tmp < result[mid]) high = mid - 1;
                 else low = mid + 1;
               }
@@ -559,6 +586,27 @@
                 result[j+1] = result[j];            
               }
               result[j+1] = tmp;
+            }
+            return result;
+          }
+
+          // 希尔排序：
+          function sort3(array){
+            var len = array.length, gap = parseInt(len/2), 
+                i, j, tmp, result;
+            // 复制数组
+            result = array.slice(0);
+            while(gap > 0){
+              for(i = gap; i < len; i++){
+                tmp = result[i];
+                j = i - gap;
+                while(j>=0 && tmp < result[j]){
+                  result[j + gap] = result[j];
+                  j = j - gap;
+                }
+                result[j + gap] = tmp;
+              }
+              gap = parseInt(gap/2);
             }
             return result;
           }
