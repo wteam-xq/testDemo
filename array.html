@@ -58,7 +58,7 @@
               <p id='r1-res'></p>
               <p>检测浏览器是否支持ECMA5</p>
               <pre class='brush: javascript'>
-                // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
+                // 判断浏览器是否支持indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8， IE8只支持部分ecma5）)
                 if (!Array.prototype.indexOf){
                   // 新增indexOf方法
                   Array.prototype.indexOf = function(item){
@@ -287,6 +287,8 @@
             <div class="sort-detail" id="s4">
               <strong>结果：</strong>
               <p id="s4-res"></p>
+              <p>原理图：</p>
+              <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
               <p>冒泡排序</p>
               <pre class="brush:javascript">
                 //
@@ -295,6 +297,8 @@
             <div class="sort-detail" id="s5">
               <strong>结果：</strong>
               <p id="s5-res"></p>
+              <p>原理图：</p>
+              <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
               <p>改进冒泡排序</p>
               <pre class="brush:javascript">
                 //
@@ -346,7 +350,7 @@
           xq.sort_fns = {};
           xq.sort_array = [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7];
 
-          // 判断浏览器是否indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
+          // 判断浏览器是否支持indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
           if (!Array.prototype.indexOf){
             // 新增indexOf方法
             Array.prototype.indexOf = function(item){
@@ -368,12 +372,11 @@
 
           function init(){
             var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios;
-            
+            var t_url, panel_type, panel_detail;
+
             unique_btn = document.getElementById('uniqueBtn');
             sort_btn = document.getElementById('sortBtn');
 
-            // 默认显示第一项
-            showUniquePanel();
             unique_btn.onclick = showUniquePanel;
             sort_btn.onclick = showSortPanel;
 
@@ -388,17 +391,39 @@
 
             // 初始化 数组去重radio事件
             initRadios(unique_radios, 'un-detail');
-            // 显示默认项
-            showDetail('r5', 'un-detail');
-
+            
             // 初始化 数组去重radio事件
             initRadios(sort_radios, 'sort-detail');
-            // 显示默认项
-            showDetail('s6', 'sort-detail');
 
             // 代码高亮显示
             SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
             SyntaxHighlighter.all();
+
+            // 根据URL现实对应内容
+            t_url = window.location.hash.replace('#', '');
+            t_url = !!t_url ? t_url.split('&') : '';
+            if (t_url && t_url.length > 0) {
+              panel_type = t_url[0].split('=')[1];
+              panel_detail = t_url[1].split('=')[1];
+              if (panel_type === 'sort') {
+                // 显示数组排序 demo
+                showSortPanel();
+                // 触发对应radio 
+                triggerRadio('sort', panel_detail);
+              }else{
+                // 显示数组去重 demo
+                showUniquePanel();
+                // 触发对应radio 
+                triggerRadio('unique', panel_detail);
+              }
+            }else{
+              // 默认显示数组去重 demo
+              showUniquePanel();
+              // 默认现实优化遍历数组法
+              showDetail('r5', 'un-detail');
+              // 默认显示 快速排序
+              showDetail('s6', 'sort-detail');
+            }
           }
 
           function initArrayFns(){
@@ -419,6 +444,18 @@
           }
           function showSortPanel(){
             showPanel('sortPanel');
+          }
+          function triggerRadio(type, r_id){
+            var radios, i , len, radio;
+            // 获得radios列表
+            radios = document.getElementsByName(type);
+            for (i = 0, len = radios.length; i < len; i++) {
+              radio = radios[i];
+              if (radio.getAttribute('data-id') === r_id) {
+                radio.click();
+                break;
+              }
+            }
           }
           function hideAllPanel(){
             var panel_list, i, len, p_item;
@@ -610,7 +647,17 @@
             }
             return result;
           }
+
+          // 冒泡排序
+          function sort4(array){
+
+          }
           
+          // 改进冒泡排序 
+          function sort5(array) {
+
+          }
+
         </script>
 
     </body>

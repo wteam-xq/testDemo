@@ -1,14 +1,12 @@
 ### 开发计划
 * 20150804-20150810 
-  * 数组排序算法添加(js 代码高亮库使用)
   * angularjs 单页面路由实现代码（源码阅读）
-  * 即时聊天 cookes 长轮询 long poling 实现（对比html5 的 websoket）
+  * 排序算法 PPT重新作图
+  * 随机获得数组里的一个（n个值）
 
 * others
-  * $.cookies底层实现研究（“高程”源码）
   * nodejs 短信系统调试(超时处理)
   * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas
-
 
 ### 开发日志
 
