@@ -291,7 +291,22 @@
               <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
               <p>冒泡排序</p>
               <pre class="brush:javascript">
-                //
+                // 冒泡排序 每次将最小元素推至最前
+                function sort4(array) {
+                  var len = array.length,
+                  i, j, tmp, result;
+                  result = array.slice(0);
+                  for (i = 0; i < len; i++) {
+                    for (j = len - 1; j > i; j--) {
+                      if (result[j] < result[j - 1]) {
+                        tmp = result[j - 1];
+                        result[j - 1] = result[j];
+                        result[j] = tmp;
+                      }
+                    }
+                  }
+                  return result;
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s5">
@@ -301,7 +316,26 @@
               <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
               <p>改进冒泡排序</p>
               <pre class="brush:javascript">
-                //
+                // 改进冒泡排序 
+                function sort5(array) {
+                  var len = array.length,
+                  i, j, tmp, exchange, result;
+
+                  result = array.slice(0);
+                  for (i = 0; i < len; i++) {
+                    exchange = 0;
+                    for (j = len - 1; j > i; j--) {
+                      if (result[j] < result[j - 1]) {
+                        tmp = result[j];
+                        result[j] = result[j - 1];
+                        result[j - 1] = tmp;
+                        exchange = 1;
+                      }
+                    }
+                    if (!exchange) return result;
+                  }
+                  return result;
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s6">
@@ -437,7 +471,8 @@
             xq.sort_fns['s1'] = sort1;
             xq.sort_fns['s2'] = sort2;
             xq.sort_fns['s3'] = sort3;
-
+            xq.sort_fns['s4'] = sort4;
+            xq.sort_fns['s5'] = sort5;
           }
           function showUniquePanel(){
             showPanel('uniquePanel');
@@ -626,7 +661,6 @@
             }
             return result;
           }
-
           // 希尔排序：
           function sort3(array){
             var len = array.length, gap = parseInt(len/2), 
@@ -648,14 +682,42 @@
             return result;
           }
 
-          // 冒泡排序
-          function sort4(array){
-
+          // 冒泡排序 每次将最小元素推至最前
+          function sort4(array) {
+            var len = array.length,
+            i, j, tmp, result;
+            result = array.slice(0);
+            for (i = 0; i < len; i++) {
+              for (j = len - 1; j > i; j--) {
+                if (result[j] < result[j - 1]) {
+                  tmp = result[j - 1];
+                  result[j - 1] = result[j];
+                  result[j] = tmp;
+                }
+              }
+            }
+            return result;
           }
           
           // 改进冒泡排序 
           function sort5(array) {
+            var len = array.length,
+            i, j, tmp, exchange, result;
 
+            result = array.slice(0);
+            for (i = 0; i < len; i++) {
+              exchange = 0;
+              for (j = len - 1; j > i; j--) {
+                if (result[j] < result[j - 1]) {
+                  tmp = result[j];
+                  result[j] = result[j - 1];
+                  result[j - 1] = tmp;
+                  exchange = 1;
+                }
+              }
+              if (!exchange) return result;
+            }
+            return result;
           }
 
         </script>
