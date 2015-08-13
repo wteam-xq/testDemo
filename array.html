@@ -316,7 +316,7 @@
               <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
               <p>改进冒泡排序</p>
               <pre class="brush:javascript">
-                // 改进冒泡排序 
+                // 如果在某次的排序中没有出现交换的情况，那么说明在无序的元素现在已经是有序了，就可以直接返回了。
                 function sort5(array) {
                   var len = array.length,
                   i, j, tmp, exchange, result;
@@ -341,17 +341,40 @@
             <div class="sort-detail" id="s6">
               <strong>结果：</strong>
               <p id="s6-res"></p>
+              <p>原理图：</p>
+              <img alt="希尔排序原理图" src="images/sort6.jpg" title="希尔排序原理图"/>
               <p>快速排序</p>
               <pre class="brush:javascript">
-                //
+                
               </pre>
             </div>
             <div class="sort-detail" id="s7">
               <strong>结果：</strong>
               <p id="s7-res"></p>
+              <p>原理图：</p>
+              <img alt="希尔排序原理图" src="images/sort7.jpg" title="希尔排序原理图"/>
               <p>选择排序</p>
               <pre class="brush:javascript">
-                //
+                // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
+                // 冒泡排序的衍生版本
+                function sort7(array) {
+                  var len = array.length,
+                  i, j, k, tmp, result;
+
+                  result = array.slice(0);
+                  for (i = 0; i < len; i++) {
+                    k = i;
+                    for (j = i + 1; j < len; j++) {
+                      if (result[j] < result[k]) k = j;
+                    }
+                    if (k != i) {
+                      tmp = result[k];
+                      result[k] = result[i];
+                      result[i] = tmp;
+                    }
+                  }
+                  return result;
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s8">
@@ -473,6 +496,8 @@
             xq.sort_fns['s3'] = sort3;
             xq.sort_fns['s4'] = sort4;
             xq.sort_fns['s5'] = sort5;
+            // xq.sort_fns['s6'] = sort6;
+            xq.sort_fns['s7'] = sort7;
           }
           function showUniquePanel(){
             showPanel('uniquePanel');
@@ -699,7 +724,7 @@
             return result;
           }
           
-          // 改进冒泡排序 
+          // 如果在某次的排序中没有出现交换的情况，那么说明在无序的元素现在已经是有序了，就可以直接返回了。
           function sort5(array) {
             var len = array.length,
             i, j, tmp, exchange, result;
@@ -716,6 +741,55 @@
                 }
               }
               if (!exchange) return result;
+            }
+            return result;
+          }
+
+          // 1) 假设第一个元素为基准元素 
+          // 2) 把所有比基准元素小的记录放置在前一部分，把所有比基准元素大的记录放置在后一部分，并把基准元素放在这两部分的中间(i=j的位置)
+          // function sort6(array) {
+          //   var s = 0, t = array.length, result;
+
+          //   result = array.slice(0);
+          //   quickSort(result, s, t);
+          //   return result;
+
+          //   // 快速排序 函数算法, arr参数 会在函数中改变
+          //   function quickSort(arr, s, t) {
+          //     var i = s, j = t, tmp;
+          //     if(s < t){
+          //       tmp = arr[s];
+          //       while(i!=j){
+          //         while(j>i && arr[j]>tmp) j--;//右—>左
+          //         arr[i] = arr[j];
+          //         while(i<j && arr[j]<tmp) i++;//左—>右
+          //         arr[j] = arr[i]; 
+          //       }
+          //       arr[i] = tmp;
+          //       quickSort(arr, s, i-1);
+          //       quickSort(arr, i+1, t);
+          //     }
+          //   }
+
+          // }
+
+          // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
+          // 冒泡排序的衍生版本
+          function sort7(array) {
+            var len = array.length,
+            i, j, k, tmp, result;
+
+            result = array.slice(0);
+            for (i = 0; i < len; i++) {
+              k = i;
+              for (j = i + 1; j < len; j++) {
+                if (result[j] < result[k]) k = j;
+              }
+              if (k != i) {
+                tmp = result[k];
+                result[k] = result[i];
+                result[i] = tmp;
+              }
             }
             return result;
           }
