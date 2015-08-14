@@ -345,7 +345,29 @@
               <img alt="希尔排序原理图" src="images/sort6.jpg" title="希尔排序原理图"/>
               <p>快速排序</p>
               <pre class="brush:javascript">
-                
+                //（1）在数据集之中，选择一个元素作为"基准"（pivot）。
+                //（2）所有小于"基准"的元素，都移到"基准"的左边；所有大于"基准"的元素，都移到"基准"的右边。
+                //（3）对"基准"左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。
+                function sort6(array) {
+                  var tmp_array = array.slice(0), result,
+                  quickSort = function(arr) {
+                　　if (arr.length <= 1) { return arr; }
+                　　var pivotIndex = Math.floor(arr.length / 2);
+                　　var pivot = arr.splice(pivotIndex, 1)[0];
+                　　var left = [];
+                　　var right = [];
+                　　for (var i = 0; i < arr.length; i++){
+                　　　　if (arr[i] < pivot) {
+                　　　　　　left.push(arr[i]);
+                　　　　} else {
+                　　　　　　right.push(arr[i]);
+                　　　　}
+                　　}
+                　　return quickSort(left).concat([pivot], quickSort(right));
+                  };
+                  result = quickSort(tmp_array);
+                  return result;
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s7">
@@ -496,7 +518,7 @@
             xq.sort_fns['s3'] = sort3;
             xq.sort_fns['s4'] = sort4;
             xq.sort_fns['s5'] = sort5;
-            // xq.sort_fns['s6'] = sort6;
+            xq.sort_fns['s6'] = sort6;
             xq.sort_fns['s7'] = sort7;
           }
           function showUniquePanel(){
@@ -745,33 +767,29 @@
             return result;
           }
 
-          // 1) 假设第一个元素为基准元素 
-          // 2) 把所有比基准元素小的记录放置在前一部分，把所有比基准元素大的记录放置在后一部分，并把基准元素放在这两部分的中间(i=j的位置)
-          // function sort6(array) {
-          //   var s = 0, t = array.length, result;
-
-          //   result = array.slice(0);
-          //   quickSort(result, s, t);
-          //   return result;
-
-          //   // 快速排序 函数算法, arr参数 会在函数中改变
-          //   function quickSort(arr, s, t) {
-          //     var i = s, j = t, tmp;
-          //     if(s < t){
-          //       tmp = arr[s];
-          //       while(i!=j){
-          //         while(j>i && arr[j]>tmp) j--;//右—>左
-          //         arr[i] = arr[j];
-          //         while(i<j && arr[j]<tmp) i++;//左—>右
-          //         arr[j] = arr[i]; 
-          //       }
-          //       arr[i] = tmp;
-          //       quickSort(arr, s, i-1);
-          //       quickSort(arr, i+1, t);
-          //     }
-          //   }
-
-          // }
+          //（1）在数据集之中，选择一个元素作为"基准"（pivot）。
+          //（2）所有小于"基准"的元素，都移到"基准"的左边；所有大于"基准"的元素，都移到"基准"的右边。
+          //（3）对"基准"左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。
+          function sort6(array) {
+            var tmp_array = array.slice(0), result,
+            quickSort = function(arr) {
+          　　if (arr.length <= 1) { return arr; }
+          　　var pivotIndex = Math.floor(arr.length / 2);
+          　　var pivot = arr.splice(pivotIndex, 1)[0];
+          　　var left = [];
+          　　var right = [];
+          　　for (var i = 0; i < arr.length; i++){
+          　　　　if (arr[i] < pivot) {
+          　　　　　　left.push(arr[i]);
+          　　　　} else {
+          　　　　　　right.push(arr[i]);
+          　　　　}
+          　　}
+          　　return quickSort(left).concat([pivot], quickSort(right));
+            };
+            result = quickSort(tmp_array);
+            return result;
+          }
 
           // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
           // 冒泡排序的衍生版本
