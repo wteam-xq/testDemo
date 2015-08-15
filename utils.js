@@ -214,6 +214,24 @@ if (!document.querySelector) {
       return (elements.length) ? elements[0] : null;
   };
 }
+// 判断浏览器是否支持indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
+if (!Array.prototype.indexOf){
+  // 新增indexOf方法
+  Array.prototype.indexOf = function(item){
+    var result = -1, a_item = null;
+    if (this.length == 0){
+      return result;
+    }
+    for(var i = 0, len = this.length; i < len; i++){
+      a_item = this[i];
+      if (a_item === item){
+        result = i;
+        break;
+      }  
+    }
+    return result;
+  }
+}
 
 // 用于在IE6和IE7浏览器中，支持Element.querySelectorAll方法
 var qsaWorker = (function () {

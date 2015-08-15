@@ -34,6 +34,7 @@
         <div class='btn-list' id="btnCont">
           <button id="uniqueBtn" class="radius-btn">数组去重</button>
           <button id="sortBtn" class="radius-btn">数组排序</button>
+          <button id="randomBtn" class="radius-btn">随机数组</button>
         </div>
 
         <div id="uniquePanel" class="panel">
@@ -58,7 +59,7 @@
               <p id='r1-res'></p>
               <p>检测浏览器是否支持ECMA5</p>
               <pre class='brush: javascript'>
-                // 判断浏览器是否支持indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8， IE8只支持部分ecma5）)
+                // 判断浏览器是否支持indexOf ，indexOf 为ecmaScript5新方法 IE8以下（包括IE8， IE8只支持部分ecma5）不支持
                 if (!Array.prototype.indexOf){
                   // 新增indexOf方法
                   Array.prototype.indexOf = function(item){
@@ -154,7 +155,9 @@
             <div class="un-detail" id="r5">
               <strong>结果：</strong>
               <p id="r5-res"></p>
-              <p>优化遍历数组法</p>
+              <p>优化遍历数组法，代码思路来自：
+                <a title="数组快速去重" href="http://www.shamasis.net/2009/09/fast-algorithm-to-find-unique-items-in-javascript-array/" target="_blank">数组快速去重</a>
+              </p>
               <pre class="brush:javascript">
                 // 思路：获取没重复的最右一值放入新数组
                 function unique5(array){
@@ -402,6 +405,9 @@
             <div class="sort-detail" id="s8">
               <strong>结果：</strong>
               <p id="s8-res"></p>
+              <p>堆排序原理太复杂，一张图表达不了：详情请看：
+                <a alt="堆排序" title="堆排序" href="http://www.cnblogs.com/zabery/archive/2011/07/26/2117103.html" target="_blank">堆排序原理分析</a>
+              </p>
               <p>堆排序</p>
               <pre class="brush:javascript">
                 //
@@ -419,6 +425,21 @@
 
         </div>
 
+        <div id="randomPanel" class="panel">
+          <p>显示随机数组</p>
+          <p>原始数组： [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7]</p>
+          <div class="radio-list">
+            <input type="radio" name="random" data-id="rd1" checked="checked"/>
+            <label>从数组中随机获取N个值</label>
+            <input type="radio" name="random" data-id="rd2"/>
+            <label>打乱数组顺序，每个值坐标跟原来完全不同</label>
+          </div>
+
+          <div class="random-details" id="randomDetail">
+            
+          </div>
+        </div>
+
         <script type="text/javascript" src="utils.js"></script>
         <script>
           // 全局变量命名空间
@@ -429,55 +450,41 @@
           xq.sort_fns = {};
           xq.sort_array = [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7];
 
-          // 判断浏览器是否支持indexOf (indexOf 为ecmaScript5新方法 IE8以下（包括IE8）只支持到ECMAScript3)
-          if (!Array.prototype.indexOf){
-            // 新增indexOf方法
-            Array.prototype.indexOf = function(item){
-              var result = -1, a_item = null;
-              if (this.length == 0){
-                return result;
-              }
-              for(var i = 0, len = this.length; i < len; i++){
-                a_item = this[i];
-                if (a_item === item){
-                  result = i;
-                  break;
-                }  
-              }
-              return result;
-            }
-          }
           init();
 
           function init(){
             var unique_btn, sort_btn, unique_panel, sort_panel,unique_radios, sort_radios;
-            var t_url, panel_type, panel_detail;
 
             unique_btn = document.getElementById('uniqueBtn');
             sort_btn = document.getElementById('sortBtn');
+            random_btn = document.getElementById('randomBtn');
 
             unique_btn.onclick = showUniquePanel;
             sort_btn.onclick = showSortPanel;
+            random_btn.onclick = showRandomPanel;
 
             // raido 事件处理
-            // unique_panel = document.getElementById('uniquePanel');
-            // sort_panel = document.getElementById('sortPanel');
             unique_radios = document.getElementsByName('unique');
             sort_radios = document.getElementsByName('sort');
 
             // 初始化 数组函数
             initArrayFns();
-
             // 初始化 数组去重radio事件
             initRadios(unique_radios, 'un-detail');
-            
-            // 初始化 数组去重radio事件
+            // 初始化 数组排序radio事件
             initRadios(sort_radios, 'sort-detail');
 
             // 代码高亮显示
             SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
             SyntaxHighlighter.all();
 
+            // 根据URL判断进入哪个Demo
+            gotoDemo();
+          }
+
+          // 根据URL判断进入哪个Demo
+          function gotoDemo(){
+            var t_url, panel_type, panel_detail;
             // 根据URL现实对应内容
             t_url = window.location.hash.replace('#', '');
             t_url = !!t_url ? t_url.split('&') : '';
@@ -504,7 +511,7 @@
               showDetail('s6', 'sort-detail');
             }
           }
-
+          // 初始化 算法函数
           function initArrayFns(){
             // 初始化去重函数
             xq.unique_fns['r1'] = unique1;
@@ -521,12 +528,17 @@
             xq.sort_fns['s6'] = sort6;
             xq.sort_fns['s7'] = sort7;
           }
+
           function showUniquePanel(){
             showPanel('uniquePanel');
           }
           function showSortPanel(){
             showPanel('sortPanel');
           }
+          function showRandomPanel(){
+            showPanel('randomPanel');
+          }
+
           function triggerRadio(type, r_id){
             var radios, i , len, radio;
             // 获得radios列表
@@ -771,22 +783,26 @@
           //（2）所有小于"基准"的元素，都移到"基准"的左边；所有大于"基准"的元素，都移到"基准"的右边。
           //（3）对"基准"左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。
           function sort6(array) {
-            var tmp_array = array.slice(0), result,
-            quickSort = function(arr) {
-          　　if (arr.length <= 1) { return arr; }
-          　　var pivotIndex = Math.floor(arr.length / 2);
-          　　var pivot = arr.splice(pivotIndex, 1)[0];
-          　　var left = [];
-          　　var right = [];
-          　　for (var i = 0; i < arr.length; i++){
-          　　　　if (arr[i] < pivot) {
-          　　　　　　left.push(arr[i]);
-          　　　　} else {
-          　　　　　　right.push(arr[i]);
-          　　　　}
-          　　}
-          　　return quickSort(left).concat([pivot], quickSort(right));
+            var tmp_array = array.slice(0), result, quickSort;
+
+            quickSort = function(arr) {　　
+              if (arr.length <= 1) {
+                return arr;
+              }　　
+              var pivotIndex = Math.floor(arr.length / 2);　　
+              var pivot = arr.splice(pivotIndex, 1)[0];　　
+              var left = [];　　
+              var right = [];　　
+              for (var i = 0; i < arr.length; i++) {　　　　
+                if (arr[i] < pivot) {　　　　　　
+                  left.push(arr[i]);　　　　
+                } else {　　　　　　
+                  right.push(arr[i]);　　　　
+                }　　
+              }　　
+              return quickSort(left).concat([pivot], quickSort(right));
             };
+
             result = quickSort(tmp_array);
             return result;
           }
@@ -810,6 +826,31 @@
               }
             }
             return result;
+          }
+
+          // 随机从数组中获取 N个值, 默认从数组取一个值
+          function arraySample(array, n){
+            var _result = [];
+            var _index = 0;
+            // 防止原数组被改变
+            var _arrayTemp = array.slice(0); 
+            if (array == null || array.length == 0 || array.length < n){
+              return _result;
+            }
+            // 随机获取一个值
+            if (n == null){
+              _index = Math.floor(Math.random() * array.length);
+              _result.push(array[_index]);
+            }else{
+              // 随机获取N个值
+              for (var i = 0; i < n; i++){
+                _index = Math.floor(Math.random() * _arrayTemp.length);
+                _result.push(_arrayTemp[_index]);
+                // 删除该元素
+                _arrayTemp.splice(_index, 1);
+              }
+            }
+            return _result;
           }
 
         </script>
