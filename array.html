@@ -291,7 +291,7 @@
               <strong>结果：</strong>
               <p id="s4-res"></p>
               <p>原理图：</p>
-              <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
+              <img alt="冒泡排序原理图" src="images/sort4.png" title="冒泡排序原理图"/>
               <p>冒泡排序</p>
               <pre class="brush:javascript">
                 // 冒泡排序 每次将最小元素推至最前
@@ -316,7 +316,7 @@
               <strong>结果：</strong>
               <p id="s5-res"></p>
               <p>原理图：</p>
-              <img alt="希尔排序原理图" src="images/sort4.png" title="希尔排序原理图"/>
+              <img alt="改进冒泡排序原理图" src="images/sort4.png" title="冒泡排序原理图"/>
               <p>改进冒泡排序</p>
               <pre class="brush:javascript">
                 // 如果在某次的排序中没有出现交换的情况，那么说明在无序的元素现在已经是有序了，就可以直接返回了。
@@ -345,7 +345,7 @@
               <strong>结果：</strong>
               <p id="s6-res"></p>
               <p>原理图：</p>
-              <img alt="希尔排序原理图" src="images/sort6.jpg" title="希尔排序原理图"/>
+              <img alt="快速排序原理图" src="images/sort6.jpg" title="快速排序原理图"/>
               <p>快速排序</p>
               <pre class="brush:javascript">
                 //（1）在数据集之中，选择一个元素作为"基准"（pivot）。
@@ -377,7 +377,7 @@
               <strong>结果：</strong>
               <p id="s7-res"></p>
               <p>原理图：</p>
-              <img alt="希尔排序原理图" src="images/sort7.jpg" title="希尔排序原理图"/>
+              <img alt="选择排序原理图" src="images/sort7.jpg" title="选择排序原理图"/>
               <p>选择排序</p>
               <pre class="brush:javascript">
                 // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
@@ -430,13 +430,44 @@
           <p>原始数组： [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7]</p>
           <div class="radio-list">
             <input type="radio" name="random" data-id="rd1" checked="checked"/>
-            <label>从数组中随机获取N个值</label>
+            <label>从数组中随机获取N个不重复的值</label>
             <input type="radio" name="random" data-id="rd2"/>
             <label>打乱数组顺序，每个值坐标跟原来完全不同</label>
           </div>
 
           <div class="random-details" id="randomDetail">
-            
+            <div class="random-detail" id="ran1">
+              <strong>结果：</strong>
+              <p id="ran1-res"></p>
+              
+              <p>对应代码：</p>
+              <pre class="brush:javascript">
+                // 随机从数组中获取 N个不重复的值, 默认从数组取一个值
+                function ran1(array, n){
+                  var _result = [], _index = 0, _arrayTemp;
+                  // 防止原数组被改变
+                  _arryTemp = array.slice(0); 
+                  if (array == null || array.length == 0 || array.length < n){
+                    return _result;
+                  }
+                  // 随机获取一个值
+                  if (n == null){
+                    _index = Math.floor(Math.random() * array.length);
+                    _result.push(array[_index]);
+                  }else{
+                    // 随机获取N个值
+                    for (var i = 0; i < n; i++){
+                      _index = Math.floor(Math.random() * _arrayTemp.length);
+                      _result.push(_arrayTemp[_index]);
+                      // 删除该元素
+                      _arrayTemp.splice(_index, 1);
+                    }
+                  }
+                  return _result;
+                }
+              </pre>
+            </div>
+
           </div>
         </div>
 
@@ -448,6 +479,7 @@
           xq.t_array = [4, 2, 5, 5, 8, 12, 43, 7, 2];
           xq.unique_fns = {};
           xq.sort_fns = {};
+          xq.random_fns = {};
           xq.sort_array = [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7];
 
           init();
@@ -482,7 +514,7 @@
             gotoDemo();
           }
 
-          // 根据URL判断进入哪个Demo
+          // 根据URL判断进入哪个Demo: array.html#t=unique&d=r1
           function gotoDemo(){
             var t_url, panel_type, panel_detail;
             // 根据URL现实对应内容
@@ -496,11 +528,14 @@
                 showSortPanel();
                 // 触发对应radio 
                 triggerRadio('sort', panel_detail);
-              }else{
+              }else if(panel_type === 'unique') {
                 // 显示数组去重 demo
                 showUniquePanel();
                 // 触发对应radio 
                 triggerRadio('unique', panel_detail);
+              }else if(panel_type === 'random') {
+                // 显示随机数组 demo
+                showRandomPanel();
               }
             }else{
               // 默认显示数组去重 demo
@@ -509,6 +544,8 @@
               showDetail('r5', 'un-detail');
               // 默认显示 快速排序
               showDetail('s6', 'sort-detail');
+              // 默认显示 获取N个值
+              showDetail('ran1', 'random-detail');
             }
           }
           // 初始化 算法函数
@@ -527,6 +564,8 @@
             xq.sort_fns['s5'] = sort5;
             xq.sort_fns['s6'] = sort6;
             xq.sort_fns['s7'] = sort7;
+            // 初始化随机函数
+            xq.random_fns['ran1'] = ran1;
           }
 
           function showUniquePanel(){
@@ -609,6 +648,13 @@
             } else if (p_class === 'sort-detail' && (typeof xq.sort_fns[u_id]) === 'function'){
               // 执行对应函数
               result = xq.sort_fns[u_id](xq.sort_array);
+              // 结果显示在对应面板中
+              result_panel = document.getElementById(u_id + '-res');
+              result_panel.innerHTML = '';
+              result_panel.appendChild(document.createTextNode(result));
+            } else if (p_class === 'random-detail' && (typeof xq.random_fns[u_id]) === 'function'){
+              // 执行对应函数
+              result = xq.random_fns[u_id](xq.sort_array);
               // 结果显示在对应面板中
               result_panel = document.getElementById(u_id + '-res');
               result_panel.innerHTML = '';
@@ -828,12 +874,11 @@
             return result;
           }
 
-          // 随机从数组中获取 N个值, 默认从数组取一个值
-          function arraySample(array, n){
-            var _result = [];
-            var _index = 0;
+          // 随机从数组中获取 N个不重复的值, 默认从数组取一个值
+          function ran1(array, n){
+            var _result = [], _index = 0, _arrayTemp;
             // 防止原数组被改变
-            var _arrayTemp = array.slice(0); 
+            _arrayTemp = array.slice(0); 
             if (array == null || array.length == 0 || array.length < n){
               return _result;
             }
