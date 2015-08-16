@@ -316,7 +316,7 @@
               <strong>结果：</strong>
               <p id="s5-res"></p>
               <p>原理图：</p>
-              <img alt="改进冒泡排序原理图" src="images/sort4.png" title="冒泡排序原理图"/>
+              <img alt="改进冒泡排序原理图" src="images/sort5.jpg" title="冒泡排序原理图"/>
               <p>改进冒泡排序</p>
               <pre class="brush:javascript">
                 // 如果在某次的排序中没有出现交换的情况，那么说明在无序的元素现在已经是有序了，就可以直接返回了。
@@ -381,7 +381,7 @@
               <p>选择排序</p>
               <pre class="brush:javascript">
                 // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
-                // 冒泡排序的衍生版本
+                // 原理跟冒泡排序一样，算是冒泡的衍生版本
                 function sort7(array) {
                   var len = array.length,
                   i, j, k, tmp, result;
@@ -408,17 +408,128 @@
               <p>堆排序原理太复杂，一张图表达不了：详情请看：
                 <a alt="堆排序" title="堆排序" href="http://www.cnblogs.com/zabery/archive/2011/07/26/2117103.html" target="_blank">堆排序原理分析</a>
               </p>
+              <div>
+                <strong>1.调整二叉树，形成大根堆(子节点都比父节点小)。</strong>
+                <p><img alt="堆排序1" src="images/sort8_1.png" title="堆排序1" /></p>
+              </div>
+              <div>
+                <strong>2.交换堆第一元素跟最后元素位置，最后元素弹出堆。然后继续回到1，调整堆。</strong>
+                <p><img alt="堆排序2" src="images/sort8_2.png" title="堆排序2" /></p>
+              </div>
+              <div>
+                <strong>3.重复2， 当所有节点弹出堆后；弹出的节点值就是有序的了。</strong>
+                <p><img alt="堆排序3" src="images/sort8_3.png" title="堆排序3" /></p>
+              </div>
               <p>堆排序</p>
               <pre class="brush:javascript">
-                //
+                // 1) 初始堆：将原始数组调整成大根堆的方法——筛选算法:子节点都比父节点小
+                // 2) 堆排序： 每次将堆顶元素与数组最后面的且没有被置换的元素互换。
+                // 参考代码： http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/
+                function sort8(array) {
+                  var result = array.slice(0);
+
+                  function swap(array, i, j) {
+                    var temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                  }
+
+                  function maxHeapify(array, index, heapSize) {
+                    var iMax, iLeft, iRight;
+                    while (true) {
+                      iMax = index;
+                      iLeft = 2 * index + 1;
+                      iRight = 2 * (index + 1);
+
+                      if (iLeft < heapSize && array[index] < array[iLeft]) {
+                        iMax = iLeft;
+                      }
+
+                      if (iRight < heapSize && array[iMax] < array[iRight]) {
+                        iMax = iRight;
+                      }
+
+                      if (iMax != index) {
+                        swap(array, iMax, index);
+                        index = iMax;
+                      } else {
+                        break;
+                      }
+                    }
+                  }
+
+                  function buildMaxHeap(array) {
+                    var i, iParent = Math.floor(array.length / 2) - 1;
+
+                    for (i = iParent; i >= 0; i--) {
+                      maxHeapify(array, i, array.length);
+                    }
+                  }
+
+                  function sort(array) {
+                    buildMaxHeap(array);
+
+                    for (var i = array.length - 1; i > 0; i--) {
+                      swap(array, 0, i);
+                      maxHeapify(array, 0, i);
+                    }
+                    return array;
+                  }
+
+                  return sort(result);
+                }
               </pre>
             </div>
             <div class="sort-detail" id="s9">
               <strong>结果：</strong>
               <p id="s9-res"></p>
+              <p>原理图：</p>
+              <img alt="归并排序原理图" src="images/sort9.jpg" title="归并排序原理图"/>
               <p>归并排序</p>
               <pre class="brush:javascript">
-                //
+                // 合并排序：将无序的数组 拆成N部分进行有序处理，然后合并；
+                // 参考代码： https://gist.github.com/paullewis/1982121
+                function sort9(array) {
+                  var result = array.slice(0);
+
+                  // 递归调用合并函数
+                  function sort(array) {
+                    var length = array.length,
+                    mid = Math.floor(length * 0.5),
+                    left = array.slice(0, mid),
+                    right = array.slice(mid, length);
+
+                    if (length === 1) {
+                      return array;
+                    }
+                    return merge(sort(left), sort(right));
+                  }
+
+                  // 合并 两有序的数组
+                  function merge(left, right) {
+                    var result = [];
+
+                    while (left.length || right.length) {
+
+                      if (left.length && right.length) {
+
+                        if (left[0] < right[0]) {
+                          result.push(left.shift());
+                        } else {
+                          result.push(right.shift());
+                        }
+
+                      } else if (left.length) {
+                        result.push(left.shift());
+                      } else {
+                        result.push(right.shift());
+                      }
+                    }
+                    return result;
+                  }
+
+                  return sort(result);
+                }
               </pre>
             </div>
           </div>
@@ -564,6 +675,8 @@
             xq.sort_fns['s5'] = sort5;
             xq.sort_fns['s6'] = sort6;
             xq.sort_fns['s7'] = sort7;
+            xq.sort_fns['s8'] = sort8;
+            xq.sort_fns['s9'] = sort9;
             // 初始化随机函数
             xq.random_fns['ran1'] = ran1;
           }
@@ -872,6 +985,110 @@
               }
             }
             return result;
+          }
+
+          // 1) 初始堆：将原始数组调整成大根堆的方法——筛选算法:子节点都比父节点小
+          // 2) 堆排序： 每次将堆顶元素与数组最后面的且没有被置换的元素互换。
+          // 参考代码： http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/
+          function sort8(array) {
+            var result = array.slice(0);
+
+            function swap(array, i, j) {
+              var temp = array[i];
+              array[i] = array[j];
+              array[j] = temp;
+            }
+
+            function maxHeapify(array, index, heapSize) {
+              var iMax,
+                iLeft,
+                iRight;
+              while (true) {
+                iMax = index;
+                iLeft = 2 * index + 1;
+                iRight = 2 * (index + 1);
+
+                if (iLeft < heapSize && array[index] < array[iLeft]) {
+                  iMax = iLeft;
+                }
+
+                if (iRight < heapSize && array[iMax] < array[iRight]) {
+                  iMax = iRight;
+                }
+
+                if (iMax != index) {
+                  swap(array, iMax, index);
+                  index = iMax;
+                } else {
+                  break;
+                }
+              }
+            }
+
+            function buildMaxHeap(array) {
+              var i,
+                iParent = Math.floor(array.length / 2) - 1;
+
+              for (i = iParent; i >= 0; i--) {
+                maxHeapify(array, i, array.length);
+              }
+            }
+
+            function sort(array) {
+              buildMaxHeap(array);
+
+              for (var i = array.length - 1; i > 0; i--) {
+                swap(array, 0, i);
+                maxHeapify(array, 0, i);
+              }
+              return array;
+            }
+
+            return sort(result);
+          }
+
+          // 合并排序：将无序的数组 拆成N部分进行有序处理，然后合并；
+          // 参考代码： https://gist.github.com/paullewis/1982121
+          function sort9(array) {
+            var result = array.slice(0);
+
+            // 递归调用合并函数
+            function sort(array) {
+              var length = array.length,
+                  mid    = Math.floor(length * 0.5),
+                  left   = array.slice(0, mid),
+                  right  = array.slice(mid, length);
+
+              if(length === 1) {
+                return array;
+              }
+              return merge(sort(left), sort(right));
+            }
+
+            // 合并 两有序的数组
+            function merge(left, right) {
+              var result = [];
+
+              while(left.length || right.length) {
+
+                if(left.length && right.length) {
+
+                  if(left[0] < right[0]) {
+                    result.push(left.shift());
+                  } else {
+                    result.push(right.shift());
+                  }
+
+                } else if (left.length) {
+                  result.push(left.shift());
+                } else {
+                  result.push(right.shift());
+                }
+              }
+              return result;
+            }
+
+            return sort(result);
           }
 
           // 随机从数组中获取 N个不重复的值, 默认从数组取一个值
