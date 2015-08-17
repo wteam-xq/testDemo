@@ -540,10 +540,10 @@
           <p>显示随机数组</p>
           <p>原始数组： [8,2, 3, 55, 12, 20, 16, 18, 15, 20, 11, 7]</p>
           <div class="radio-list">
-            <input type="radio" name="random" data-id="rd1" checked="checked"/>
+            <input type="radio" name="random" data-id="ran1" checked="checked"/>
             <label>从数组中随机获取N个不重复的值</label>
-            <input type="radio" name="random" data-id="rd2"/>
-            <label>打乱数组顺序，每个值坐标跟原来完全不同</label>
+            <input type="radio" name="random" data-id="ran2"/>
+            <label>打乱数组顺序，要求数组中的每个元素都不能停留在原来的位置</label>
           </div>
 
           <div class="random-details" id="randomDetail">
@@ -579,6 +579,15 @@
               </pre>
             </div>
 
+            <div class="random-detail" id="ran2">
+               <strong>结果：</strong>
+               <p id="ran2-res"></p>
+
+                <p>对应代码：</p>
+                <pre class="brush:javascript">
+                  // 彻底打乱数组
+                </pre>
+            </div>
           </div>
         </div>
 
@@ -609,6 +618,7 @@
             // raido 事件处理
             unique_radios = document.getElementsByName('unique');
             sort_radios = document.getElementsByName('sort');
+            random_radios = document.getElementsByName('random');
 
             // 初始化 数组函数
             initArrayFns();
@@ -616,6 +626,8 @@
             initRadios(unique_radios, 'un-detail');
             // 初始化 数组排序radio事件
             initRadios(sort_radios, 'sort-detail');
+            // 初始化 随机数组radio事件
+            initRadios(random_radios, 'random-detail');
 
             // 代码高亮显示
             SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
@@ -639,19 +651,33 @@
                 showSortPanel();
                 // 触发对应radio 
                 triggerRadio('sort', panel_detail);
+                // 默认去重radio触发
+                triggerRadio('unique', 'r5');
+                // 默认显示 获取N个值
+                triggerRadio('random', 'ran1');
               }else if(panel_type === 'unique') {
                 // 显示数组去重 demo
                 showUniquePanel();
                 // 触发对应radio 
                 triggerRadio('unique', panel_detail);
+                // 默认排序radio触发
+                triggerRadio('sort', 's6');
+                // 默认显示 获取N个值
+                triggerRadio('random', 'ran1');
               }else if(panel_type === 'random') {
                 // 显示随机数组 demo
                 showRandomPanel();
+                // 触发对应radio 
+                triggerRadio('random', panel_detail);
+                // 默认去重radio触发
+                triggerRadio('unique', 'r5');
+                // 默认排序radio触发
+                triggerRadio('sort', 's6');
               }
             }else{
               // 默认显示数组去重 demo
               showUniquePanel();
-              // 默认现实优化遍历数组法
+              // 默认显示优化遍历数组法
               showDetail('r5', 'un-detail');
               // 默认显示 快速排序
               showDetail('s6', 'sort-detail');
@@ -679,6 +705,7 @@
             xq.sort_fns['s9'] = sort9;
             // 初始化随机函数
             xq.random_fns['ran1'] = ran1;
+            xq.random_fns['ran2'] = ran2;
           }
 
           function showUniquePanel(){
@@ -1114,7 +1141,42 @@
             }
             return _result;
           }
+          // 随机打乱数组，使数组内元素与原来位置完全不同
+          function ran2(array){
+            var array_tmp = [], i , j, len, new_a = [], a_obj;
+            
+            // 添加数组原位置标志位
+            for (i = 0, len = array.length; i < len; i++) {
+              a_obj = {
+                'key': i,
+                'val': array[i]
+              };
+              array_tmp.push(a_obj);
+            }
 
+            for (i = 0, len = array.length; i < len; i++) {
+              j = ranCount(array_tmp.length);
+              // 如下标位置与原值重复，重新随机
+              while ( i === array_tmp[j].key ) {
+                j = ranCount(array_tmp.length);
+              }
+              new_a.push( array_tmp[j].val );
+              // 删除数组
+              array_tmp.splice(j,1);
+            }
+
+            // 获得给定数字的随机数, 出错返回-1
+            function ranCount(n){
+              var result = parseInt(n, 10);
+              if ( isNaN(result) ) {
+                result = -1;
+              }
+              result = Math.floor(Math.random() * result)
+              return result;
+            }
+
+            return new_a;
+          }
         </script>
 
     </body>
