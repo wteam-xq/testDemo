@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "
+http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
       <meta charset="utf-8">
@@ -19,7 +21,7 @@
         .panel {
           display: none;
         }
-        .un-detail,.sort-detail {
+        .un-detail,.sort-detail, .random-detail {
           display: none;
           margin: 20px 0px;
         }
@@ -377,7 +379,7 @@
               <strong>结果：</strong>
               <p id="s7-res"></p>
               <p>原理图：</p>
-              <img alt="选择排序原理图" src="images/sort7.jpg" title="选择排序原理图"/>
+              <img alt="选择排序原理图" src="images/sort7_1.jpg" title="选择排序原理图"/>
               <p>选择排序</p>
               <pre class="brush:javascript">
                 // 在无序区中选出最小的元素，然后将它和无序区的第一个元素交换位置。
@@ -585,7 +587,42 @@
 
                 <p>对应代码：</p>
                 <pre class="brush:javascript">
-                  // 彻底打乱数组
+                  // 随机打乱数组，使数组内元素与原来位置完全不同
+                  function ran2(array){
+                    var array_tmp = [], i , j, len, new_a = [], a_obj;
+                    
+                    // 添加数组原位置标志位
+                    for (i = 0, len = array.length; i < len; i++) {
+                      a_obj = {
+                        'key': i,
+                        'val': array[i]
+                      };
+                      array_tmp.push(a_obj);
+                    }
+
+                    for (i = 0, len = array.length; i < len; i++) {
+                      j = ranCount(array_tmp.length);
+                      // 如下标位置与原值重复，重新随机
+                      while ( i === array_tmp[j].key ) {
+                        j = ranCount(array_tmp.length);
+                      }
+                      new_a.push( array_tmp[j].val );
+                      // 删除数组
+                      array_tmp.splice(j,1);
+                    }
+
+                    // 获得给定数字的随机数, 出错返回-1
+                    function ranCount(n){
+                      var result = parseInt(n, 10);
+                      if ( isNaN(result) ) {
+                        result = -1;
+                      }
+                      result = Math.floor(Math.random() * result)
+                      return result;
+                    }
+
+                    return new_a;
+                  }
                 </pre>
             </div>
           </div>

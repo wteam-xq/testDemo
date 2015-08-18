@@ -5,6 +5,7 @@
 
 * 2.计时器实现（jq）：
   * [timer(jq).html](https://github.com/wteam-xq/testDemo/blob/master/timer(jq).html)
+  * [演示地址](http://wteamxq.com/testDemo/timer(jq).html)
 
 * 3.闭包运用:
   * [closureUse.html](https://github.com/wteam-xq/testDemo/blob/master/closureUse.html)
