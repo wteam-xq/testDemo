@@ -546,6 +546,8 @@ http://www.w3.org/TR/html4/strict.dtd">
             <label>从数组中随机获取N个不重复的值</label>
             <input type="radio" name="random" data-id="ran2"/>
             <label>打乱数组顺序，要求数组中的每个元素都不能停留在原来的位置</label>
+            <input type="radio" name="random" data-id="ran3"/>
+            <label>从指定范围内，随机获取N个值的数组</label>
           </div>
 
           <div class="random-details" id="randomDetail">
@@ -582,48 +584,75 @@ http://www.w3.org/TR/html4/strict.dtd">
             </div>
 
             <div class="random-detail" id="ran2">
-               <strong>结果：</strong>
-               <p id="ran2-res"></p>
+              <strong>结果：</strong>
+              <p id="ran2-res"></p>
 
-                <p>对应代码：</p>
-                <pre class="brush:javascript">
-                  // 随机打乱数组，使数组内元素与原来位置完全不同
-                  function ran2(array){
-                    var array_tmp = [], i , j, len, new_a = [], a_obj;
-                    
-                    // 添加数组原位置标志位
-                    for (i = 0, len = array.length; i < len; i++) {
-                      a_obj = {
-                        'key': i,
-                        'val': array[i]
-                      };
-                      array_tmp.push(a_obj);
-                    }
-
-                    for (i = 0, len = array.length; i < len; i++) {
-                      j = ranCount(array_tmp.length);
-                      // 如下标位置与原值重复，重新随机
-                      while ( i === array_tmp[j].key ) {
-                        j = ranCount(array_tmp.length);
-                      }
-                      new_a.push( array_tmp[j].val );
-                      // 删除数组
-                      array_tmp.splice(j,1);
-                    }
-
-                    // 获得给定数字的随机数, 出错返回-1
-                    function ranCount(n){
-                      var result = parseInt(n, 10);
-                      if ( isNaN(result) ) {
-                        result = -1;
-                      }
-                      result = Math.floor(Math.random() * result)
-                      return result;
-                    }
-
-                    return new_a;
+              <p>对应代码：</p>
+              <pre class="brush:javascript">
+                // 随机打乱数组，使数组内元素与原来位置完全不同
+                function ran2(array){
+                  var array_tmp = [], i , j, len, new_a = [], a_obj;
+                  
+                  // 添加数组原位置标志位
+                  for (i = 0, len = array.length; i < len; i++) {
+                    a_obj = {
+                      'key': i,
+                      'val': array[i]
+                    };
+                    array_tmp.push(a_obj);
                   }
-                </pre>
+
+                  for (i = 0, len = array.length; i < len; i++) {
+                    j = ranCount(array_tmp.length);
+                    // 如下标位置与原值重复，重新随机
+                    while ( i === array_tmp[j].key ) {
+                      j = ranCount(array_tmp.length);
+                    }
+                    new_a.push( array_tmp[j].val );
+                    // 删除数组
+                    array_tmp.splice(j,1);
+                  }
+
+                  // 获得给定数字的随机数, 出错返回-1
+                  function ranCount(n){
+                    var result = parseInt(n, 10);
+                    if ( isNaN(result) ) {
+                      result = -1;
+                    }
+                    result = Math.floor(Math.random() * result)
+                    return result;
+                  }
+
+                  return new_a;
+                  }
+              </pre>
+            </div>
+
+            <div class="random-detail" id="ran3">
+              <strong>结果：</strong>
+              <p id="ran3-res"></p>
+
+              <p>对应代码：</p>
+              <pre class="brush:javascript">
+                // 从指定范围内(暂定为100以内)，随机获取N（暂定为10）个值的数组
+                function ran3(){
+                  var result = [], SCOPE_NO = 100, COUNT = 10;
+
+                  result = getRandomNo(SCOPE_NO, COUNT);
+                  function getRandomNo(scope_no, count){
+                    var i, s_n, ran_n, _result = [];
+                    
+                    s_n = parseInt(scope_no, 10);
+                    for (i = 0; i < count; i++) {
+                      ran_n = Math.floor(Math.random() * s_n);
+                      _result.push(ran_n);
+                    }
+                    return _result;
+                  }
+
+                  return result;
+                }
+              </pre>
             </div>
           </div>
         </div>
@@ -743,6 +772,7 @@ http://www.w3.org/TR/html4/strict.dtd">
             // 初始化随机函数
             xq.random_fns['ran1'] = ran1;
             xq.random_fns['ran2'] = ran2;
+            xq.random_fns['ran3'] = ran3;
           }
 
           function showUniquePanel(){
@@ -1213,6 +1243,25 @@ http://www.w3.org/TR/html4/strict.dtd">
             }
 
             return new_a;
+          }
+
+          // 从指定范围内，随机获取N个值的数组
+          function ran3(){
+            var result = [], SCOPE_NO = 100, COUNT = 10;
+
+            result = getRandomNo(SCOPE_NO, COUNT);
+            function getRandomNo(scope_no, count){
+              var i, s_n, ran_n, _result = [];
+              
+              s_n = parseInt(scope_no, 10);
+              for (i = 0; i < count; i++) {
+                ran_n = Math.floor(Math.random() * s_n);
+                _result.push(ran_n);
+              }
+              return _result;
+            }
+
+            return result;
           }
         </script>
 
