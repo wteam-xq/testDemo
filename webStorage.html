@@ -108,8 +108,8 @@
           c_show_btn.onclick = showCookie;
 
           function cookieSetItem(){
-            // CookieUtil.set("xq", "sb");
-            setCookie("xq", "sb", 24, "/");
+            CookieUtil.set("xq", "sb");
+            // setCookie("xq", "sb", 24, "/");
             if (document.cookie != '') {
               c_btn_tips.innerHTML = '设置cookie成功！';
             }else{
@@ -118,13 +118,19 @@
           }
 
           function cookieRemoveItem(){
-            CookieUtil.unset("xq", "sb");
-            c_btn_tips.innerHTML = '删除cookie成功！';
+            var _value = '';
+            CookieUtil.unset("xq");
+            _value = CookieUtil.get("xq");
+            if (_value) {
+              c_btn_tips.innerHTML = '删除cookie失败！';
+            } else {
+              c_btn_tips.innerHTML = '删除cookie成功！';
+            }
           }
 
           function showCookie() {
-            // var _value = CookieUtil.get("xq"),
-            var _value = getCookieValue("xq"),
+            var _value = CookieUtil.get("xq"),
+            // var _value = getCookieValue("xq"),
             c_obj = {
               name: "xq",
               value: _value

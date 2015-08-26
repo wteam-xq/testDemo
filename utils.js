@@ -117,7 +117,7 @@ var CookieUtil = {
     document.cookie = cookie_text;
   },
   unset: function (name, path, domain, secure) {
-    this.set(name, "", new Date(0), path, domain, secure);
+    this.set(name, "", new Date(), path, domain, secure);
   }
 };
 
