@@ -13,14 +13,12 @@
       <h3>vue 学习2</h3>
       
       <div id="demo">
-        <button v-disable="disabled">
+        <button v-disable="disabled" v-on="click: myClick">
             {{disabled ? 'Disabled' : 'Submit'}}
         </button>
         <!-- 绑定事件，点击时对disabled的值进行取反 -->
         <button v-on="click: disabled = !disabled">toggle</button>
 
-
-        <button v-on="click: myClick">单击调用函数</button>
       </div>
 
       <script src="vue.js"></script>
@@ -28,6 +26,7 @@
         Vue.directive('disable', function (value) {
           this.el.disabled = !!value
         })
+
         var demo = new Vue({
           el: '#demo',
           data: {
