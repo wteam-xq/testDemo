@@ -6,174 +6,62 @@
             各种CSS
         </title>
         <style>
-          .testframes{
-            width:100px;
-            height:100px;
-            background:red;
-            position:relative;
-            animation:mymove 2s infinite;
-            -moz-animation:mymove 2s infinite; /* Firefox */
-            -webkit-animation:mymove 2s infinite; /* Safari and Chrome */
-            -o-animation:mymove 2s infinite; /* Opera */
+          /*css3 动画demo*/
+          .testframes{ width:100px; height:100px; background:red;position:relative; animation:mymove 2s infinite; -moz-animation:mymove 2s infinite; /* Firefox */ -webkit-animation:mymove 2s infinite; /* Safari and Chrome */ -o-animation:mymove 2s infinite; /* Opera */ }
+          @keyframes mymove{ 
+            0% {left:0px;} 
+            100% {left:100px;} 
           }
-          @keyframes mymove{
-            0% {left:0px;}
-            100% {left:100px;}
+          @-moz-keyframes mymove /* Firefox */ { 
+            0% {left:0px;} 
+            100% {left:100px;} 
           }
-          @-moz-keyframes mymove /* Firefox */
-          {
-            0% {left:0px;}
-            100% {left:100px;}
+          @-webkit-keyframes mymove /* Safari 和 Chrome */ {
+            0% {left:0px;} 
+            100% {left:100px;} 
           }
-          @-webkit-keyframes mymove /* Safari 和 Chrome */
-          {
-            0% {left:0px;}
-            100% {left:100px;}
-          }
-          @-o-keyframes mymove /* Opera */
-          {
-            0% {left:0px;}
-            100% {left:100px;}
+          @-o-keyframes mymove /* Opera */ {
+            0% {left:0px;} 
+            100% {left:100px;} 
           }
           
           /*清除浮动 常用样式*/
-          .clearfix{
-            zoom: 1;
-          }
-          .clearfix:before,.clearfix:after{
-            content:'';
-            display: table;
-          }
-          .clearfix:after{
-            clear:both;
-            visibility: hidden;
-          }
+          .clearfix{ zoom: 1; }
+          .clearfix:before,.clearfix:after{ content:'';display: table; }
+          .clearfix:after{ clear:both;visibility: hidden; }
 
           /*垂直、水平居中*/
-          .c-wrap{
-            border:1px solid #ccc;
-            width: 300px;
-            height: 300px;
-            position: relative;
-            margin: 0 auto;
-          }
+          .c-wrap{ border:1px solid #ccc;width: 300px;height: 300px;position: relative;margin: 0 auto; }
           /*transform IE9+兼容 ，另如果将top、left、right、top都设置成0然后margin设置成auto则能兼容IE8+*/
-          .c-cont{
-            position: absolute;
-            margin:-50px 0 0 -50px; /*父元素 宽度的一半 高度的一半*/
-            /*transform:translate(-50%, -50%);*/
-            top:50%;
-            left:50%;
-            width:100px;  
-            height:100px;
-            background-color:green;
-          }
-          #main {
-            float: left;
-            width: 100%;
-          }
-          #mainContainer {
-            margin: 0 200px;
-            height: 200px;
-            background: green;
-          }
-          #left {
-            float: left;
-            margin-left: -100%;
-            width: 200px
-          }
-          #right {
-            float: left;
-            margin-left: -200px;
-            width: 200px;
-          }
+          .c-cont{ position: absolute; margin:-50px 0 0 -50px; /*父元素 宽度的一半 高度的一半*/top:50%;left:50%;width:100px;  height:100px;background-color:green; }
+          #main { float: left; width: 100%; }
+          #mainContainer { margin: 0 200px; height: 200px; background: green; }
+          #left { float: left; margin-left: -100%; width: 200px }
+          #right { float: left; margin-left: -200px; width: 200px; }
           #left .inner,
-          #right .inner {
-            background: orange;
-            margin: 0 10px;
-            height: 200px;
-          }
+          #right .inner { background: orange; margin: 0 10px; height: 200px; }
 
-          .radius-btn{
-            border-radius: 5px;
-            cursor:pointer;
-            padding:5px;
-            margin: 5px;
-            background-color: #eee;
-          }
-          .radius-btn:hover{
-            background-color:#ddd;
-          }
+          .radius-btn{ border-radius: 5px;cursor:pointer;padding:5px;margin: 5px;background-color: #eee; }
+          .radius-btn:hover{ background-color:#ddd; }
 
           /*文字垂直居中对齐*/
-          .vertical-wrap{
-            display:table-cell; 
-            width:550px; 
-            height:100px; 
-            padding:0 15px; 
-            border:4px solid #beceeb; 
-            color:#069; 
-            font-size:14px; 
-            vertical-align:middle;
-          }
-          .ver-txt{
-            display:inline-block; 
-            font-size:14px; 
-            vertical-align:middle;
-          }
-          .demo {
-            display: none;
-          }
+          .vertical-wrap{ display:table-cell; width:550px; height:100px; padding:0 15px; border:4px solid #beceeb; color:#069; font-size:14px; vertical-align:middle; }
+          .ver-txt{ display:inline-block;  font-size:14px;  vertical-align:middle; }
+          .demo { display: none; }
           /*多栏高度相等(等高实现)*/
-          .d-col-cont{
-            overflow:hidden;
-          }
-          .d-col-l{
-            width:200px; 
-            margin-bottom:-3000px; 
-            padding-bottom:3000px; 
-            background:#cad5eb; 
-            float:left;
-          }
-          .d-col-r{
-            width:400px; 
-            margin-bottom:-3000px; 
-            padding-bottom:3000px; 
-            background:#f0f3f9; 
-            float:right;
-          }
-          .d-col-c{
-            margin:0 410px 0 210px; 
-            background:#ffe6b8; 
-            height:400px;
-          }
+          .d-col-cont{ overflow:hidden; }
+          .d-col-l{ width:200px; margin-bottom:-3000px; padding-bottom:3000px; background:#cad5eb;  float:left; }
+          .d-col-r{ width:400px; margin-bottom:-3000px; padding-bottom:3000px;  background:#f0f3f9;  float:right; }
+          .d-col-c{ margin:0 410px 0 210px;  background:#ffe6b8; height:400px; }
           /*媒体查询样式*/
-          #test5 h1 {
-            margin: 0;
-            padding: 0;
-          }
-          .header {
-            background-color: red;
-            height: 50px;
-          }
-          .sidebar {
-            background-color: green;
-            height: 50px;
-          }
-          .content {
-            background-color: blue;
-            height: 50px;
-          }
+          #test5 h1 { margin: 0; padding: 0; }
+          .header { background-color: red; height: 50px; }
+          .sidebar { background-color: green; height: 50px; }
+          .content { background-color: blue;  height: 50px; }
 
           @media screen and (min-width: 600px) {
-            .sidebar {
-              width: 200px;
-              float: left;
-            }
-            .content {
-              margin-left: 200px;
-            }
-
+            .sidebar { width: 200px; float: left; }
+            .content { margin-left: 200px; }
           }
 
         </style>
@@ -183,11 +71,11 @@
     <body>
 
       <div class='btn-cont'>
-        <button id="tBtn1" class="radius-btn">css3动画</button>
-        <button id="tBtn2" class="radius-btn">css水平垂直居中</button>
-        <button id="tBtn3" class="radius-btn">css三栏布局</button>
-        <button id="tBtn4" class="radius-btn">多栏布局</button>
-        <button id="tBtn5" class="radius-btn">媒体查询</button>
+        <button id="tBtn1" data-id="test1" class="radius-btn">css3动画</button>
+        <button id="tBtn2" data-id="test2" class="radius-btn">css水平垂直居中</button>
+        <button id="tBtn3" data-id="test3" class="radius-btn">css三栏布局</button>
+        <button id="tBtn4" data-id="test4" class="radius-btn">多栏布局</button>
+        <button id="tBtn5" data-id="test5" class="radius-btn">媒体查询</button>
       </div>
 
       <div id='test1' class="demo demo2">
@@ -236,6 +124,7 @@
 
       <div id='test5' class="demo">
         <h2>媒体查询</h2>
+        <h4>屏幕宽度小于600px时样式改变</h4>
         <div>
           <div class='header'>
             <h1>header</h1>
@@ -263,10 +152,9 @@
 
         // 根据点击对象 获得对应节点
         function demoClickHandler(event){
-          var targetDemo = null, num = 0, str = '';
-          num = /\d/.exec(this.id)[0];
-          str = 'test' + num;
-          targetDemo = document.getElementById(str);
+          var targetDemo = null, demo_id = '';
+          demo_id = this.getAttribute('data-id');
+          targetDemo = document.getElementById(demo_id);
           hideAllDemo();
           showDemo(targetDemo);
         }

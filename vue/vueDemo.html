@@ -12,11 +12,15 @@
         #demo li { cursor: pointer;color: #34495e;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none; }
         li.done { color: #7f8c8d;text-decoration: line-through; }
         .demo-panel { display: none; margin:10px 0; }
+        .directive-demo { margin:20px 0; }
       </style>
     </head>
     
     <body>
       <h3>VUE DEMO</h3>
+      <p>
+        本项目<a title="代码来源" target="_blank" href="http://cn.vuejs.org/guide/installation.html">代码来源</a>
+      </p>
       <div class='btn-list'>
         <button id="compute" data-id="compute-panel" class="radius-btn">计算属性</button>
         <button id="directive" data-id="directive-panel" class="radius-btn">自定义指令</button>
@@ -28,17 +32,22 @@
 
       <!-- 例子显示面板列表 -->
       <div id="demo">
+        <!-- 计算属性， 处理复杂表达式时使用，例如：金融Web端，年化收益率计算 -->
         <div id="compute-panel" class="demo-panel">
           <h3>{{fullName}}</h3>
           <input type="text" v-model="fullName" />
         </div>
         
+        <!-- 自定义指令， 组件化开发神器 -->
         <div id="directive-panel" class="demo-panel">
           <button v-disable="disabled" v-on="click: myClick">
             {{disabled ? 'Disabled' : 'Submit'}}
           </button>
           <!-- 绑定事件，点击时对disabled的值进行取反 -->
           <button v-on="click: disabled = !disabled">toggle</button>
+          
+          <div id="demo" v-demo="LightSlateGray : msg" class="directive-demo"></div>
+          <input type="text" v-model="msg" /> 
         </div>
 
         <div id="filter-panel" class="demo-panel">
@@ -133,29 +142,55 @@
       <script src="vue.js"></script>
       <script src="../utils.js"></script>
       <script type="text/javascript">
+        // 全局变量
+        var xq = {};
+
         // 初始化 函数
         init();
 
         function init() {
-          var compute_btn = document.getElementById('compute'),
-              directive_btn = document.getElementById('directive'),
-              filter_btn = document.getElementById('filter'),
-              form_btn = document.getElementById('form'),
-              on_btn = document.getElementById('on'),
-              repeat_btn = document.getElementById('repeat');
+          var btn_list = document.getElementsByClassName('radius-btn'),
+              i , len, btn_item, vm;
 
-          compute.onclick = btnEvent;
-          directive_btn.onclick = btnEvent;
-          filter_btn.onclick = btnEvent;
-          form_btn.onclick = btnEvent;
-          on_btn.onclick = btnEvent;
-          repeat_btn.onclick = btnEvent;
+          for (i = 0, len = btn_list.length; i < len; i++) {
+            btn_item = btn_list[i];
+            btn_item.onclick = btnEvent;
+          }
 
           // 默认显示计算属性demo
           showDemo('compute-panel');
 
+          // vue自定义函数只有3种：bind, update, unbind; 默认的回调函数为 update
           Vue.directive('disable', function (value) {
             this.el.disabled = !!value
+          });
+          Vue.directive('my-directive', {
+            bind: function () {
+              // 做绑定的准备工作
+              // 比如添加事件监听器，或是其他只需要执行一次的复杂操作
+            },
+            update: function (newValue, oldValue) {
+              // 根据获得的新值执行对应的更新
+              // 对于初始值也会被调用一次
+            },
+            unbind: function () {
+              // 做清理工作
+              // 比如移除在 bind() 中添加的事件监听器
+            }
+          })
+          Vue.directive('demo', {
+            bind: function () {
+              this.el.style.color = '#fff'
+              this.el.style.backgroundColor = this.arg
+            },
+            update: function (value) {
+              this.el.innerHTML =
+                'name - '       + this.name + '<br>' +
+                'raw - '        + this.raw + '<br>' +
+                'expression - ' + this.expression + '<br>' +
+                'argument - '   + this.arg + '<br>' +
+                'value - '      + value
+            }
           });
 
           // 过滤器得写在 new 之前
@@ -166,7 +201,7 @@
             return begin + ' ' + value + ' ' + end
           });
 
-          var vm = new Vue({
+          vm = new Vue({
             el: '#demo',
             data: {
               firstName: 'Foo',
@@ -248,7 +283,11 @@
               } 
             }
           });
+          
+          // 方便调试
+          xq.vm = vm;
         }
+
         // 按钮点击事件
         function btnEvent(e) {
           var target_id = this.getAttribute('data-id');
@@ -269,7 +308,6 @@
         function hideAllDemo(class_name) {
           var demo_panel = document.getElementsByClassName(class_name),
               i, len, paenl_item;
-
           for (i = 0, len = demo_panel.length; i < len; i++) {
             paenl_item = demo_panel[i];
             paenl_item.style.display = 'none';
