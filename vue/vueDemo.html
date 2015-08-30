@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+        vue 学习 Demo(合并)
+      </title>
+      <link rel="stylesheet" type="text/css" href="../common.css" />
+      <style>
+        #demo li { cursor: pointer;color: #34495e;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none; }
+        li.done { color: #7f8c8d;text-decoration: line-through; }
+        .demo-panel { display: none; margin:10px 0; }
+      </style>
+    </head>
+    
+    <body>
+      <h3>VUE DEMO</h3>
+      <div class='btn-list'>
+        <button id="compute" data-id="compute-panel" class="radius-btn">计算属性</button>
+        <button id="directive" data-id="directive-panel" class="radius-btn">自定义指令</button>
+        <button id="filter" data-id="filter-panel" class="radius-btn">过滤器</button>
+        <button id="form" data-id="form-panel" class="radius-btn">表单</button>
+        <button id="on" data-id="on-panel" class="radius-btn">事件监听</button>
+        <button id="repeat" data-id="repeat-panel" class="radius-btn">列表渲染</button>
+      </div>
+
+      <!-- 例子显示面板列表 -->
+      <div id="demo">
+        <div id="compute-panel" class="demo-panel">
+          <h3>{{fullName}}</h3>
+          <input type="text" v-model="fullName" />
+        </div>
+        
+        <div id="directive-panel" class="demo-panel">
+          <button v-disable="disabled" v-on="click: myClick">
+            {{disabled ? 'Disabled' : 'Submit'}}
+          </button>
+          <!-- 绑定事件，点击时对disabled的值进行取反 -->
+          <button v-on="click: disabled = !disabled">toggle</button>
+        </div>
+
+        <div id="filter-panel" class="demo-panel">
+          <p><strong>原字符串：</strong>{{test_str}}</p>
+          <p><strong>reverse过滤后：</strong><span v-text="test_str | reverse"></span></p>
+          <p><strong>uppercase过滤后（vue自带）：</strong><span v-text="test_str | uppercase"></span></p>
+          <p><strong>带参数的过滤器 wrap 'this' 213：</strong><span v-text="test_str | wrap 'this' 213"></span></p>
+          <br/>
+
+          <p><strong>组合过滤器(reverse 与 uppercase共同作用)：</strong><span v-text="test_str | reverse | uppercase"></span></p>
+          
+          <br/>
+          <br/>
+          <h4>双向过滤器， 用途不明！</h4>
+          <!-- 双向过滤示例  -->
+          <input type="text" v-model="test_str2 | check-email"/>
+          <div>{{test_str2}}</div>
+        </div>
+
+        <div id="form-panel" class="demo-panel">
+          <form id="form-demo">
+            <!-- text -->
+            <p>
+              <input type="text" v-model="msg">
+              <!-- <input type="text" v-model="msg" number> -->
+              <!-- 惰性更新 -->
+              <!-- <input type="text" v-model="msg" lazy> -->
+              {{msg}}
+            </p>
+            <!-- checkbox -->
+            <p>
+              <input type="checkbox" v-model="checked">
+              {{checked ? "yes" : "no"}}
+            </p>
+            <!-- radio buttons -->
+            <p>
+              <input type="radio" name="picked" value="one" v-model="picked">
+              <input type="radio" name="picked" value="two" v-model="picked">
+              {{picked}}
+            </p>
+            <!-- select -->
+            <p>
+              <select v-model="selected">
+                <option>one</option>
+                <option>two</option>
+              </select>
+              {{selected}}
+            </p>
+            <p>
+              <select v-model="selected" options="myOptions"></select>
+              {{myOptions | json 2}}
+            </p>
+            <!-- multiple select -->
+            <p>
+              <select v-model="multiSelect" multiple>
+                <option>one</option>
+                <option>two</option>
+                <option>three</option>
+              </select>
+              {{multiSelect}}
+            </p>
+            <p><pre>data: {{$data | json 2}}</pre></p>
+          </form>
+        </div>
+
+        <div id="on-panel" class="demo-panel">
+          <h2>{{test_num}}</h2>
+          <button v-on="click: onClick">click: onClick</button>
+
+          <h2>{{ test_num2 }}<h2>
+          <button v-on="click: test_num2++">click: test_num2++</button>
+
+          <p><strong>键盘处理监听：</strong></p>
+          <h2>{{ test_num3 }}<h2>
+          <input v-on="keyup: keyFun" v-model="test_on_str">
+        </div>
+
+        <div id="repeat-panel" class="demo-panel">
+          <h1>{{title | uppercase}}</h1>
+          <ul>
+            <li
+              v-repeat="todos"
+              v-on="click: done = !done"
+              class="{{done ? 'done' : ''}}">
+              {{content}}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <script src="vue.js"></script>
+      <script src="../utils.js"></script>
+      <script type="text/javascript">
+        // 初始化 函数
+        init();
+
+        function init() {
+          var compute_btn = document.getElementById('compute'),
+              directive_btn = document.getElementById('directive'),
+              filter_btn = document.getElementById('filter'),
+              form_btn = document.getElementById('form'),
+              on_btn = document.getElementById('on'),
+              repeat_btn = document.getElementById('repeat');
+
+          compute.onclick = btnEvent;
+          directive_btn.onclick = btnEvent;
+          filter_btn.onclick = btnEvent;
+          form_btn.onclick = btnEvent;
+          on_btn.onclick = btnEvent;
+          repeat_btn.onclick = btnEvent;
+
+          // 默认显示计算属性demo
+          showDemo('compute-panel');
+
+          Vue.directive('disable', function (value) {
+            this.el.disabled = !!value
+          });
+
+          // 过滤器得写在 new 之前
+          Vue.filter('reverse', function (value) {
+            return value.split('').reverse().join('')
+          });
+          Vue.filter('wrap', function (value, begin, end) {
+            return begin + ' ' + value + ' ' + end
+          });
+
+          var vm = new Vue({
+            el: '#demo',
+            data: {
+              firstName: 'Foo',
+              lastName: 'Bar',
+              // 自定义指令变量
+              disabled: false,
+              // 过滤器变量
+              test_str: 'wteam-xq',
+              test_str2: 'wtf',
+              // 表单变量
+              msg      : 'hi!',
+              checked  : true,
+              picked   : 'one',
+              selected : 'two',
+              myOptions : [
+                { text: 'A', value: 'one' },
+                { text: 'B', value: 'two' }
+              ],
+              multiSelect: ['one', 'three'],
+              // 事件监听变量
+              test_on_str: '',
+              test_num: 3,
+              test_num2: 4,
+              test_num3: 0,
+              // 列表渲染变量
+              title: 'todos',
+              todos: [
+                {
+                  done: true,
+                  content: 'Learn JavaScript'
+                },
+                {
+                  done: false,
+                  content: 'Learn Vue.js'
+                }
+              ]
+            },
+            computed: {
+              fullName: {
+                // getter
+                get: function () {
+                  return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                  var names = newValue.split(' ')
+                  this.firstName = names[0]
+                  this.lastName = names[names.length - 1]
+                }
+              }
+            },
+            methods: {
+              // 自定义指令方法
+              myClick: function(e){
+                alert('单击事件');
+              },
+              // 监听方法
+              onClick: function(e){
+                // e是原生的DOM事件对象
+                // this 指向该ViewModel实例
+                this.test_num++
+              },
+              keyFun: function(){
+                this.test_num3 = this.test_on_str.length;
+              }
+            },
+            filters:{
+              'check-email': {
+                // read is optional in this case, it's here
+                // just for demo purposes.
+                read: function (val) {
+                  return val + '1'
+                },
+                // this will be invoked before writing to
+                // the model.
+                write: function (val, oldVal) {
+                  return val + 'aaaa'
+                }
+              } 
+            }
+          });
+        }
+        // 按钮点击事件
+        function btnEvent(e) {
+          var target_id = this.getAttribute('data-id');
+          showDemo(target_id);
+        }
+
+        // 显示计算属性demo
+        function showDemo(panel_id) {
+          var demo_panel = null;
+          demo_panel = document.getElementById(panel_id);
+          if (demo_panel) {
+            hideAllDemo('demo-panel');
+            demo_panel.style.display = 'block';
+          }
+        }
+
+        // 隐藏所有demo panel
+        function hideAllDemo(class_name) {
+          var demo_panel = document.getElementsByClassName(class_name),
+              i, len, paenl_item;
+
+          for (i = 0, len = demo_panel.length; i < len; i++) {
+            paenl_item = demo_panel[i];
+            paenl_item.style.display = 'none';
+          }
+        }
+
+      </script>
+
+    </body>
+</html>
