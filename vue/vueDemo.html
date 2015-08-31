@@ -28,6 +28,7 @@
         <button id="form" data-id="form-panel" class="radius-btn">表单</button>
         <button id="on" data-id="on-panel" class="radius-btn">事件监听</button>
         <button id="repeat" data-id="repeat-panel" class="radius-btn">列表渲染</button>
+        <button id="componnents" data-id="componnents-panel" class="radius-btn">组件系统</button>
       </div>
 
       <!-- 例子显示面板列表 -->
@@ -51,7 +52,7 @@
           <!-- 字面指令 -->
           <p v-literal-dir="test_foo">字面指令： 留意浏览器控制台输出内容</p>
 
-          <p>双向指令： 待加...</p>
+          <p>双向指令： 指令函数能修改原绑定的值</p>
 
         </div>
         
@@ -67,9 +68,9 @@
           
           <br/>
           <br/>
-          <h4>双向过滤器， 用途不明！</h4>
+          <h4>双向过滤器， 惰性更新lazy！</h4>
           <!-- 双向过滤示例  -->
-          <input type="text" v-model="test_str2 | check-email"/>
+          <input type="text" v-model="test_str2 | currencyDisplay" lazy />
           <div>{{test_str2}}</div>
         </div>
         
@@ -146,6 +147,11 @@
           </ul>
         </div>
 
+        <!-- 组件系统 面板 -->
+        <div id="componnents-panel" class="demo-panel">
+          <my-component></my-component>
+        </div>
+
       </div>
 
       <script src="vue.js"></script>
@@ -159,7 +165,7 @@
 
         function init() {
           var btn_list = document.getElementsByClassName('radius-btn'),
-              i , len, btn_item, vm;
+              i , len, btn_item, vm, MyComponent;
 
           for (i = 0, len = btn_list.length; i < len; i++) {
             btn_item = btn_list[i];
@@ -217,6 +223,14 @@
             return begin + ' ' + value + ' ' + end
           });
 
+          // 扩展 Vue 得到一个可复用的构造函数, new 构造函数前使用
+          MyComponent = Vue.extend({
+            template: '<p><strong>a simple Test!</strong><span>A custom component!</span></p><p>so easy!</p>'
+          });
+          // 把构造函数注册到 my-component 这个 id
+          Vue.component('my-component', MyComponent);
+
+
           vm = new Vue({
             el: '#demo',
             data: {
@@ -226,7 +240,7 @@
               disabled: false,
               // 过滤器变量
               test_str: 'wteam-xq',
-              test_str2: 'wtf',
+              test_str2: 12.56,
               // 表单变量
               msg      : 'hi!',
               checked  : true,
@@ -285,16 +299,17 @@
               }
             },
             filters:{
-              'check-email': {
-                // read is optional in this case, it's here
-                // just for demo purposes.
-                read: function (val) {
-                  return val + '1'
+              'currencyDisplay': {
+                // model -> view
+                // formats the value when updating the input element.
+                read: function(val) {
+                  return '$'+val.toFixed(2)
                 },
-                // this will be invoked before writing to
-                // the model.
-                write: function (val, oldVal) {
-                  return val + 'aaaa'
+                // view -> model
+                // formats the value when updating the data.
+                write: function(val, oldVal) {
+                  var number = +val.replace(/[^\d.]/g, '')
+                  return isNaN(number) ? 0 : number
                 }
               } 
             }
