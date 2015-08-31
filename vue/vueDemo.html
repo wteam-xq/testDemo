@@ -48,8 +48,14 @@
           
           <div id="demo" v-demo="LightSlateGray : msg" class="directive-demo"></div>
           <input type="text" v-model="msg" /> 
-        </div>
+          <!-- 字面指令 -->
+          <p v-literal-dir="test_foo">字面指令： 留意浏览器控制台输出内容</p>
 
+          <p>双向指令： 待加...</p>
+
+        </div>
+        
+        <!-- 过滤面板 -->
         <div id="filter-panel" class="demo-panel">
           <p><strong>原字符串：</strong>{{test_str}}</p>
           <p><strong>reverse过滤后：</strong><span v-text="test_str | reverse"></span></p>
@@ -66,7 +72,8 @@
           <input type="text" v-model="test_str2 | check-email"/>
           <div>{{test_str2}}</div>
         </div>
-
+        
+        <!-- 表单demo 面板 -->
         <div id="form-panel" class="demo-panel">
           <form id="form-demo">
             <!-- text -->
@@ -112,7 +119,8 @@
             <p><pre>data: {{$data | json 2}}</pre></p>
           </form>
         </div>
-
+        
+        <!-- 事件监听demo 面板 -->
         <div id="on-panel" class="demo-panel">
           <h2>{{test_num}}</h2>
           <button v-on="click: onClick">click: onClick</button>
@@ -124,7 +132,8 @@
           <h2>{{ test_num3 }}<h2>
           <input v-on="keyup: keyFun" v-model="test_on_str">
         </div>
-
+        
+        <!-- 列表渲染demo　面板 -->
         <div id="repeat-panel" class="demo-panel">
           <h1>{{title | uppercase}}</h1>
           <ul>
@@ -190,6 +199,13 @@
                 'expression - ' + this.expression + '<br>' +
                 'argument - '   + this.arg + '<br>' +
                 'value - '      + value
+            }
+          });
+          // 字面指令
+          Vue.directive('literal-dir', {
+            isLiteral: true,
+            bind: function () {
+              console.log(this.expression) // 'foo'
             }
           });
 

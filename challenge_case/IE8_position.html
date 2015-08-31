@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IE8 position位置异常</title>
+    <style type="text/css">
+        .nav_wrap { width:80px; height:100%; position:fixed; left:0; top:0; z-index:100; background: rgba(13,34,51,.8); }
+        .nav_wrap .logo{ height: 52px; padding-top: 8px;}
+        .nav_wrap .u_face{ padding-top: 30px; width: 60px; margin: 0 auto; cursor:pointer; }
+        .nav_wrap .u_face img{ width: 60px; height: 60px; display: block; border-radius: 50%;}
+
+        /*弹出框内容*/
+        .nav_wrap .u_info_pop{ display: none; position:absolute; left:110%; top:60px; width:310px; color:#000; text-align:left; padding:0px 10px; border: 1px solid #ccc;}
+        /*兼容IE8*/
+        .nav_wrap .u_info_pop{ position:static\9; margin-left:-110%\9; margin-top:-170px\9; background-color:#fff\9;}
+        .nav_wrap .u_info_pop .u_pop_nickname{ width: 180px; margin:5px 5px 5px 0px;}
+        .nav_wrap .u_info_pop .u_face { padding: 10px 0; width: 60px; margin: 0 auto; cursor:pointer; }
+        .nav_wrap .u_info_pop .u_face img{ width: 60px; height: 60px; display: block; border-radius: 50%;}
+        .nav_wrap .u_info_pop .bd_ml { margin-left:10px; }
+        .nav_wrap .u_info_pop .u_pop_bd li { margin:5px 0px; }
+        .nav_wrap .u_info_pop .u_pop_ft { margin:20px 0px; height:1em; }
+        .nav_wrap .u_info_pop .fl { float:left; }
+        .nav_wrap .u_info_pop .ft_c { margin:0px 40px 0px 20px; }
+        .nav_wrap .u_info_pop .fr { float:right; }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <div class="nav_wrap">
+        <div class="logo">
+            <a href="https://github.com/wteam-xq" class="" title="小强logo">小强logo</a>
+        </div>
+        <div class="u_face">
+            <img id="uFace" src="../images/wteam_xq.jpg">
+        </div>
+        <div class="u_info_pop" id="uInfoPop">
+            <div class="u_face">
+                <img src="../images/wteam_xq.jpg" alt="用户头像">
+            </div>
+            <ul class="u_pop_bd">
+                <li>
+                    <label>我的昵称：</label><input type="text" class="u_pop_nickname" value="wteam-xq11"><a href="#" id="editNickname" data-oldval="wteam-xq11">编辑</a>
+                </li>
+                <li>
+                    <span>我的 ID:</span><span class="bd_ml">qq-nojdyiqgex</span>
+                </li>
+                <li>
+                    <span>账户帆币:</span><span class="bd_ml">0帆币</span><button>充值</button>
+                </li>
+                <li>
+                    <span>账户帆豆:</span><span class="bd_ml">0帆豆</span><button>兑换</button>
+                </li>
+                <li>
+                    <span>财富等级:</span><span class="bd_ml">1</span> <span class="bd_ml">还差1000帆币</span> 
+                </li>
+                <li>
+                    <span>主播等级:</span><span class="bd_ml">1</span> <span class="bd_ml">还差1000帆豆</span> 
+                </li>
+            </ul>
+            <div class="u_pop_ft">
+                <a href="#" class="fl">个人中心</a><a href="#" class="fl ft_c">修改头像</a><a href="#" class="fr" id="closeUPop">退出</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var uFace = document.getElementById('uFace'),
+                uInfoPop = document.getElementById('uInfoPop'),
+                closeUPop = document.getElementById('closeUPop');
+            uFace.onclick = function () {
+                uInfoPop.style.display = 'block';
+            }
+            closeUPop.onclick = function() {
+                uInfoPop.style.display = 'none';
+            }
+
+        }
+    </script>>
+</body>
