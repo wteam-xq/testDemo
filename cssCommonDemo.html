@@ -66,6 +66,12 @@
 
           /*css三角形, css三角形产生器：http://apps.eky.hk/css-triangle-generator/zh-hant*/
           .css-triangle { width: 0; height: 0; border-style: solid; border-width: 200px 105px 0 105px; border-color: #007bff transparent transparent transparent; }
+          
+          .u_face{ position:relative; padding-top: 30px; width: 60px; margin: 0 auto; cursor:pointer; }
+          .u_face img{ width: 60px; height: 60px; display: block; border-radius: 50%;}
+          .u-face-pop { display:none; margin-top: -235px; margin-left:-70px; width:180px; height:130px; background: #ccc; border:2px solid #007bff; position:relative; padding:10px; }
+          .u-face-pop p{ color:#fff; }
+          .u-face-pop .triangle-ico { position:absolute; bottom:-16px; left:88px; width: 0; height: 0; border-style: solid; border-width: 15px 10px 0 10px; border-color: #007bff transparent transparent transparent; }
         </style>
 
     </head>
@@ -148,18 +154,83 @@
           <a href="http://apps.eky.hk/css-triangle-generator/zh-hant" >三角形产生器链接:</a>
         </p>
         <div class="css-triangle"></div>
+
+        <h2>运用场景：(点击弹出层)</h2>
+
+        <div class="u_face">
+            <img id="uFace" src="images/dlam.jpg">
+            <div class="u-face-pop" id="uFacePop">
+              <p>hi, 你这懦夫！</p>
+              <p>这点勇气都没有！</p>
+              <div class="triangle-ico"></div>
+            </div>
+        </div>
+
       </div>
       
       <script src="./utils.js" type="text/javascript"></script>
-
       <script>
-        var i, len, btn;
-        // 按钮列表 
-        var btn_list = document.getElementsByClassName('radius-btn');
+        
+        init();
 
-        for (i = 0, len = btn_list.length; i < len; i++) {
-          btn = btn_list[i];
-          btn.onclick = demoClickHandler;
+        // 启动函数
+        function init() {
+          var i, len, btn;
+          // 按钮列表 
+          var btn_list = document.getElementsByClassName('radius-btn');
+
+          for (i = 0, len = btn_list.length; i < len; i++) {
+            btn = btn_list[i];
+            btn.onclick = demoClickHandler;
+          }
+
+          // 头像点击事件
+          popUserInfo();
+        }
+        // 头像事件
+        function popUserInfo() {
+          var uFace = document.getElementById('uFace'),
+              uFacePop = document.getElementById('uFacePop'),
+              timeoutId = 0;
+
+          // addHandler()  utils.js工具类方法
+          EventUtil.addHandler(uFace, 'mouseenter', showUserInfo);
+          EventUtil.addHandler(uFace, 'mouseleave', hideUserInfo);
+          EventUtil.addHandler(uFacePop, 'mouseover', overUserPop);
+          EventUtil.addHandler(uFacePop, 'mouseout', outUserPop);
+
+          // 显示弹出框
+          function showUserInfo(e) {
+            if ( timeoutId != 0 ) {
+              clearTimeout(timeoutId);
+              timeoutId = 0;
+            }
+            if ( uFacePop.style.display == 'none' || uFacePop.style.display == '') {
+              uFacePop.style.display = 'block';
+            }
+            
+          }
+          // 隐藏弹出框
+          function hideUserInfo(e) {
+            timeoutId = setTimeout(function () {
+              uFacePop.style.display = 'none';
+            }, 1000);
+          }
+
+          // 进入弹出框区域
+          function overUserPop(e) {
+            if ( timeoutId != 0 ) {
+              clearTimeout(timeoutId);
+              timeoutId = 0;
+            }
+          }
+          // 退出弹出框区域
+          function outUserPop(e) {
+            timeoutId = setTimeout(function () {
+              uFacePop.style.display = 'none';
+            }, 1000);
+          }
+
         }
 
         // 根据点击对象 获得对应节点

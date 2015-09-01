@@ -150,6 +150,13 @@
         <!-- 组件系统 面板 -->
         <div id="componnents-panel" class="demo-panel">
           <my-component msg="wteam-xq is 213!"></my-component>
+          
+          <h3>动态传参 组件：</h3>
+          <div>
+            <input v-model="parentMsg">
+            <br>
+            <my-component msg="{{parentMsg}}"></my-component>
+          </div>
         </div>
 
       </div>
@@ -232,6 +239,8 @@
             props: ['msg'],
             template: MyComponent
           });
+          // 组件开发之继承父级作用域
+          inheritParent();
 
 
           vm = new Vue({
@@ -270,7 +279,9 @@
                   done: false,
                   content: 'Learn Vue.js'
                 }
-              ]
+              ],
+              // 组件系统
+              parentMsg: '只是一小测试'
             },
             computed: {
               fullName: {
@@ -318,8 +329,30 @@
             }
           });
           
+          
           // 方便调试
           xq.vm = vm;
+          
+        }
+        //继承父级作用域
+        function inheritParent() {
+          var parent = new Vue({
+            data: {
+              a: 1
+            }
+          });
+          // $addChild() 是一个实例方法，
+          // 它允许你用代码创建子实例。
+          var child = parent.$addChild({
+            inherit: true,
+            data: {
+              b: 2
+            }
+          });
+          console.log(child.a) // -> 1
+          console.log(child.b) // -> 2
+          parent.a = 3
+          console.log(child.a) // -> 3
         }
 
         // 按钮点击事件
