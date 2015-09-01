@@ -149,7 +149,7 @@
 
         <!-- 组件系统 面板 -->
         <div id="componnents-panel" class="demo-panel">
-          <my-component></my-component>
+          <my-component msg="wteam-xq is 213!"></my-component>
         </div>
 
       </div>
@@ -224,11 +224,14 @@
           });
 
           // 扩展 Vue 得到一个可复用的构造函数, new 构造函数前使用
-          MyComponent = Vue.extend({
-            template: '<p><strong>a simple Test!</strong><span>A custom component!</span></p><p>so easy!</p>'
-          });
+          MyComponent = '<p><strong>a simple Test!</strong><span>A custom component!</span></p><p>so easy!{{msg}}</p>';
+
           // 把构造函数注册到 my-component 这个 id
-          Vue.component('my-component', MyComponent);
+          Vue.component('my-component',  {
+            // 声明props 传递的数据
+            props: ['msg'],
+            template: MyComponent
+          });
 
 
           vm = new Vue({

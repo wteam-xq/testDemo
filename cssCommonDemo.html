@@ -64,6 +64,8 @@
             .content { margin-left: 200px; }
           }
 
+          /*css三角形, css三角形产生器：http://apps.eky.hk/css-triangle-generator/zh-hant*/
+          .css-triangle { width: 0; height: 0; border-style: solid; border-width: 200px 105px 0 105px; border-color: #007bff transparent transparent transparent; }
         </style>
 
     </head>
@@ -76,6 +78,7 @@
         <button id="tBtn3" data-id="test3" class="radius-btn">css三栏布局</button>
         <button id="tBtn4" data-id="test4" class="radius-btn">多栏布局</button>
         <button id="tBtn5" data-id="test5" class="radius-btn">媒体查询</button>
+        <button id="tBtn6" data-id="test6" class="radius-btn">css三角形</button>
       </div>
 
       <div id='test1' class="demo demo2">
@@ -136,6 +139,15 @@
             <h1>content</h1>
           </div>
         </div>
+      </div>
+      
+      <!-- 源自知乎：http://www.zhihu.com/question/35180018/answer/61554144 -->
+      <div id="test6" class="demo">
+        <p>
+          <h2>来源：</h2>
+          <a href="http://apps.eky.hk/css-triangle-generator/zh-hant" >三角形产生器链接:</a>
+        </p>
+        <div class="css-triangle"></div>
       </div>
       
       <script src="./utils.js" type="text/javascript"></script>
