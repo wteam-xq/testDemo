@@ -157,6 +157,8 @@
             <br>
             <my-component msg="{{parentMsg}}"></my-component>
           </div>
+          <h3>等待事件</h3>
+          <wait-component wait-for="data-loaded" syndata="{{parentMsg}}"></wait-component>
         </div>
 
       </div>
@@ -241,6 +243,19 @@
           });
           // 组件开发之继承父级作用域
           inheritParent();
+          // 组件等待事件
+          Vue.component('wait-component', {
+            props: ['syndata'],
+            compiled: function () {
+              var self = this;
+              setTimeout(function() {
+                // 相当于异步请求...
+                self.syndata = '异步请求完成！'
+                  self.$emit('data-loaded')
+              }, 1000);
+            },
+            template: '<h4>新的值将会是：{{syndata}}</h4>'
+          });
 
 
           vm = new Vue({
@@ -281,7 +296,8 @@
                 }
               ],
               // 组件系统
-              parentMsg: '只是一小测试'
+              parentMsg: '只是一小测试',
+              syn_data: 'xxx'
             },
             computed: {
               fullName: {
