@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+        vue 扩展demo
+      </title>
+    </head>
+
+    <body> 
+      <h1 class="">测试扩展</h1>
+      <script type="text/javascript" src="./vue.js"></script>
+
+      <script type="text/javascript">
+        // require 需要依赖相应的 commonjs 库， 例如require.js(后期引入 require.js实现)
+        // test.js
+        var myMixin = require('./mixin')
+        var Component = Vue.extend({
+          mixins: [myMixin]
+        })
+        var component = new Component() // -> "hello from mixin!"
+
+      </script>
+    </body>
+</html>

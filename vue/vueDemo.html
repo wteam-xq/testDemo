@@ -13,6 +13,37 @@
         li.done { color: #7f8c8d;text-decoration: line-through; }
         .demo-panel { display: none; margin:10px 0; }
         .directive-demo { margin:20px 0; }
+        .expand-transition { transition: all .3s ease; height: 30px; padding: 10px; background-color: #eee; overflow: hidden; }
+        .expand-enter, .expand-leave { height: 0; padding: 0 10px; opacity: 0; }
+        /*动画效果*/
+        .bounce-enter {
+          animation: bounce-in .5s;
+        }
+        .bounce-leave {
+          animation: bounce-out .5s;
+        }
+        @keyframes bounce-in {
+          0% {
+            transform: scale(0);
+          }
+          50% {
+            transform: scale(1.5);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        @keyframes bounce-out {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.5);
+          }
+          100% {
+            transform: scale(0);
+          }
+        }
       </style>
     </head>
     
@@ -29,6 +60,8 @@
         <button id="on" data-id="on-panel" class="radius-btn">事件监听</button>
         <button id="repeat" data-id="repeat-panel" class="radius-btn">列表渲染</button>
         <button id="componnents" data-id="componnents-panel" class="radius-btn">组件系统</button>
+        <button id="transition" data-id="transition-panel" class="radius-btn">过渡效果</button>
+        <!-- <a href="#" target="_blank">创建大型应用（新页面）</a> -->
       </div>
 
       <!-- 例子显示面板列表 -->
@@ -161,6 +194,19 @@
           <wait-component wait-for="data-loaded" syndata="{{parentMsg}}"></wait-component>
         </div>
 
+        <!-- 过渡效果 -->
+        <div id="transition-panel" class="demo-panel">
+          <h1>过渡效果</h1>
+          <div v-if="show" v-transition="expand">hello</div>
+          <br/>
+          <button v-on="click: show = !show">toggle</button>
+
+          <h1>动画效果</h1>
+          <p><span v-show="show2" v-transition="bounce">Look at me!</span></p>
+          <br/>
+          <button v-on="click: show2 = !show2">toggle</button>
+        </div>
+
       </div>
 
       <script src="vue.js"></script>
@@ -257,6 +303,33 @@
             template: '<h4>新的值将会是：{{syndata}}</h4>'
           });
 
+          Vue.transition('expand', {
+            beforeEnter: function (el) {
+              el.textContent = 'beforeEnter'
+            },
+            enter: function (el) {
+              el.textContent = 'enter'
+            },
+            afterEnter: function (el) {
+              el.textContent = 'afterEnter'
+            },
+            enterCancelled: function (el) {
+              // handle cancellation
+            },
+
+            beforeLeave: function (el) {
+              el.textContent = 'beforeLeave'
+            },
+            leave: function (el) {
+              el.textContent = 'leave'
+            },
+            afterLeave: function (el) {
+              el.textContent = 'afterLeave'
+            },
+            leaveCancelled: function (el) {
+              // handle cancellation
+            }
+          });
 
           vm = new Vue({
             el: '#demo',
@@ -297,7 +370,10 @@
               ],
               // 组件系统
               parentMsg: '只是一小测试',
-              syn_data: 'xxx'
+              syn_data: 'xxx',
+              // 过渡效果
+              show: true,
+              show2: true
             },
             computed: {
               fullName: {
