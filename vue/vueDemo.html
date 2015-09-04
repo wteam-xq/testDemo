@@ -11,7 +11,7 @@
       <style>
         #demo li { cursor: pointer;color: #34495e;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none; }
         li.done { color: #7f8c8d;text-decoration: line-through; }
-        .demo-panel { display: none; margin:10px 0; }
+        .demo-panel { margin:10px 0; }
         .directive-demo { margin:20px 0; }
         .expand-transition { transition: all .3s ease; height: 30px; padding: 10px; background-color: #eee; overflow: hidden; }
         .expand-enter, .expand-leave { height: 0; padding: 0 10px; opacity: 0; }
@@ -53,27 +53,27 @@
         本项目<a title="代码来源" target="_blank" href="http://cn.vuejs.org/guide/installation.html">代码来源</a>
       </p>
       <div class='btn-list'>
-        <button id="compute" data-id="compute-panel" class="radius-btn">计算属性</button>
-        <button id="directive" data-id="directive-panel" class="radius-btn">自定义指令</button>
-        <button id="filter" data-id="filter-panel" class="radius-btn">过滤器</button>
-        <button id="form" data-id="form-panel" class="radius-btn">表单</button>
-        <button id="on" data-id="on-panel" class="radius-btn">事件监听</button>
-        <button id="repeat" data-id="repeat-panel" class="radius-btn">列表渲染</button>
-        <button id="componnents" data-id="componnents-panel" class="radius-btn">组件系统</button>
-        <button id="transition" data-id="transition-panel" class="radius-btn">过渡效果</button>
+        <button id="compute" data-id="compute-panel" class="radius-btn" v-on="click: show_panel_no = 1">计算属性</button>
+        <button id="directive" data-id="directive-panel" class="radius-btn" v-on="click: show_panel_no = 2">自定义指令</button>
+        <button id="filter" data-id="filter-panel" class="radius-btn" v-on="click: show_panel_no = 3">过滤器</button>
+        <button id="form" data-id="form-panel" class="radius-btn" v-on="click: show_panel_no = 4">表单</button>
+        <button id="on" data-id="on-panel" class="radius-btn" v-on="click: show_panel_no = 5">事件监听</button>
+        <button id="repeat" data-id="repeat-panel" class="radius-btn" v-on="click: show_panel_no = 6">列表渲染</button>
+        <button id="componnents" data-id="componnents-panel" class="radius-btn" v-on="click: show_panel_no = 7">组件系统</button>
+        <button id="transition" data-id="transition-panel" class="radius-btn" v-on="click: show_panel_no = 8">过渡效果</button>
         <!-- <a href="#" target="_blank">创建大型应用（新页面）</a> -->
       </div>
 
       <!-- 例子显示面板列表 -->
       <div id="demo">
         <!-- 计算属性， 处理复杂表达式时使用，例如：金融Web端，年化收益率计算 -->
-        <div id="compute-panel" class="demo-panel">
+        <div id="compute-panel" class="demo-panel" v-show="show_panel_no == 1">
           <h3>{{fullName}}</h3>
           <input type="text" v-model="fullName" />
         </div>
         
         <!-- 自定义指令， 组件化开发神器 -->
-        <div id="directive-panel" class="demo-panel">
+        <div id="directive-panel" class="demo-panel" v-show="show_panel_no == 2">
           <button v-disable="disabled" v-on="click: myClick">
             {{disabled ? 'Disabled' : 'Submit'}}
           </button>
@@ -90,7 +90,7 @@
         </div>
         
         <!-- 过滤面板 -->
-        <div id="filter-panel" class="demo-panel">
+        <div id="filter-panel" class="demo-panel" v-show="show_panel_no == 3">
           <p><strong>原字符串：</strong>{{test_str}}</p>
           <p><strong>reverse过滤后：</strong><span v-text="test_str | reverse"></span></p>
           <p><strong>uppercase过滤后（vue自带）：</strong><span v-text="test_str | uppercase"></span></p>
@@ -108,7 +108,7 @@
         </div>
         
         <!-- 表单demo 面板 -->
-        <div id="form-panel" class="demo-panel">
+        <div id="form-panel" class="demo-panel" v-show="show_panel_no == 4">
           <form id="form-demo">
             <!-- text -->
             <p>
@@ -125,8 +125,8 @@
             </p>
             <!-- radio buttons -->
             <p>
-              <input type="radio" name="picked" value="one" v-model="picked">
-              <input type="radio" name="picked" value="two" v-model="picked">
+              <input type="radio" name="picked" value="男" v-model="picked"><label>男</label>
+              <input type="radio" name="picked" value="女" v-model="picked"><label>女</label>
               {{picked}}
             </p>
             <!-- select -->
@@ -155,7 +155,7 @@
         </div>
         
         <!-- 事件监听demo 面板 -->
-        <div id="on-panel" class="demo-panel">
+        <div id="on-panel" class="demo-panel" v-show="show_panel_no == 5">
           <h2>{{test_num}}</h2>
           <button v-on="click: onClick">click: onClick</button>
 
@@ -168,7 +168,7 @@
         </div>
         
         <!-- 列表渲染demo　面板 -->
-        <div id="repeat-panel" class="demo-panel">
+        <div id="repeat-panel" class="demo-panel" v-show="show_panel_no == 6">
           <h1>{{title | uppercase}}</h1>
           <ul>
             <li
@@ -181,7 +181,7 @@
         </div>
 
         <!-- 组件系统 面板 -->
-        <div id="componnents-panel" class="demo-panel">
+        <div id="componnents-panel" class="demo-panel" v-show="show_panel_no == 7">
           <my-component msg="wteam-xq is 213!"></my-component>
           
           <h3>动态传参 组件：</h3>
@@ -195,7 +195,7 @@
         </div>
 
         <!-- 过渡效果 -->
-        <div id="transition-panel" class="demo-panel">
+        <div id="transition-panel" class="demo-panel" v-show="show_panel_no == 8">
           <h1>过渡效果</h1>
           <div v-if="show" v-transition="expand">hello</div>
           <br/>
@@ -222,13 +222,13 @@
           var btn_list = document.getElementsByClassName('radius-btn'),
               i , len, btn_item, vm, MyComponent;
 
-          for (i = 0, len = btn_list.length; i < len; i++) {
-            btn_item = btn_list[i];
-            btn_item.onclick = btnEvent;
-          }
+          // for (i = 0, len = btn_list.length; i < len; i++) {
+          //   btn_item = btn_list[i];
+          //   btn_item.onclick = btnEvent;
+          // }
 
           // 默认显示计算属性demo
-          showDemo('compute-panel');
+          // showDemo('compute-panel');
 
           // vue自定义函数只有3种：bind, update, unbind; 默认的回调函数为 update
           Vue.directive('disable', function (value) {
@@ -332,8 +332,11 @@
           });
 
           vm = new Vue({
-            el: '#demo',
+            el: 'body',
             data: {
+              // 显示面板名
+              show_panel_no: 1,
+              // 计算属性
               firstName: 'Foo',
               lastName: 'Bar',
               // 自定义指令变量
@@ -420,7 +423,6 @@
               } 
             }
           });
-          
           
           // 方便调试
           xq.vm = vm;
