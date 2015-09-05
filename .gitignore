@@ -1,0 +1,5 @@
+.DS_Store
+dest/*
+gulp/node_modules/*
+gulp/dist/*
+npm-debug.log
