@@ -34,11 +34,31 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
 
         // alert(Foo.age);//10 
 
+        
+
+
         // 实现继承的简单方法
         function object(o){
           function F () {};
           F.prototype = o;
           return new F();
+        }
+        // 寄生继承
+        function inheritPrototype(subType, superType){
+          var prototype = object(superType.prototype);
+          prototype.constructor = subType;
+          subType.prototype = prototype;
+        }
+        function testObject() {
+          var A = function(){}, B = function(){}, a, b;
+          A.prototype.test_array = [1,2];
+          A.test_array2 = [3, 4];
+          
+          inheritPrototype(B, A);
+          a = new A();
+          b = new B();
+          b.test_array.push(45);
+          console.log(a.test_array);
         }
 
         // canvas 合成测试代码
@@ -50,6 +70,9 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         ctx.fillRect(10, 10, 100, 100);
         ctx.fillStyle = "red";
         ctx.fillRect(50, 50, 100, 100);
+
+        // 测试知乎问题：
+        testObject();
       </script>
 
     </body>
