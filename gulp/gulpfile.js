@@ -1,10 +1,14 @@
 // 获取 gulp
-var gulp = require('gulp');
-// 获取 uglify 模块（用于压缩 JS）
-var uglify = require('gulp-uglify');
-var minifyCSS = require('gulp-minify-css');
-// 获取 gulp-imagemin 模块
-var imagemin = require('gulp-imagemin');
+var gulp = require('gulp'),
+    // js 压缩插件 （用于压缩 JS）
+    uglify = require('gulp-uglify'),
+    // 压缩css插件
+    minifyCSS = require('gulp-minify-css'),
+    // 获取 gulp-imagemin 模块
+    imagemin = require('gulp-imagemin'),
+    // 重命名 插件
+    rename = require('gulp-rename');
+
 
 // 压缩 js 文件
 // 在命令行使用 gulp script 启动此任务
@@ -13,6 +17,10 @@ gulp.task('script', function() {
     gulp.src('js/*.js')
     // 2. 压缩文件
         .pipe(uglify())
+    // new: 压缩前修改压缩后新文件名字
+        .pipe(rename( function(path){
+          path.basename += "_v.1.2"; 
+        } ) )
     // 3. 另存压缩后的文件
         .pipe(gulp.dest('dist/js'))
 });
