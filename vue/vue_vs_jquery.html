@@ -7,18 +7,66 @@
       <title>
         vue vs jquery
       </title>
+      <link rel="stylesheet" type="text/css" href="../common.css"/>
+      <style>
+
+      </style>
     </head>
 
     <body> 
-      <h1 class="">1.注册流程</h1>
-      <h1 class="">2.购物列表</h1>
-      <h1 class="">3.提交表单</h1>
+      <div class="btn-list">
+        <button class="radius-btn" v-on="click: showType = 1">注册流程</button>
+        <button class="radius-btn" v-on="click: showType = 2">购物列表</button>
+        <button class="radius-btn" v-on="click: showType = 3">提交表单</button>
+      </div>
+
+      <div class="demo-panel" v-show="showType == 1">
+        <h1 class="register-demo">1.注册流程</h1>
+        <!-- 小米官网注册流程 -->
+      </div>
+
+      <div class="demo-panel" v-show="showType == 2">
+        <h1 class="buy-list-demo">2.购物列表</h1>
+        
+      </div>
+
+      <div class="demo-panel" v-show="showType == 3">
+        <h1 class="form-demo">3.提交表单</h1>
+        
+      </div>
 
       <script type="text/javascript" src="./vue.js"></script>
       <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
 
       <script type="text/javascript">
-        
+        // 全局变量
+        var xq = {};
+
+        init();
+
+        function init() {
+          var vm = null;
+          vm = new Vue({
+            el: 'body',
+            data: {
+              showType: 1,
+              demo1: {
+
+              },
+              demo2: {
+
+              },
+              demo3: {
+
+              }
+            },
+            methods: {
+
+            }
+          });
+
+          xq.vm = vm;
+        }
       </script>
     </body>
 </html>
