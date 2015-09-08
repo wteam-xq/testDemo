@@ -37,6 +37,32 @@
              return this.replace(/(^\s*)|(\s*$)/g, "");
           }
 
+          // 判断字符串是否符合IP地址
+          function testIP(s){  
+            var arr=s.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+
+            if(arr==null) return false;  
+            for(i=1;i<arr.length;i++)if(String(Number(arr[i]))!=arr[i]||Number(arr[i])>255) return   false;  
+            return   true;  
+          }
+          // 非正则版本
+          function testIP(s){  
+            var arr=getStrNum(s);
+            if(arr==null) return false;  
+            for(i=1;i<arr.length;i++)if(String(Number(arr[i]))!=arr[i]||Number(arr[i])>255) return false;  
+            return   true;  
+          }
+          function getStrNum(str) {
+            var i, len, i_str, r = [];
+            if (!str || str.length == 0) { return r; }
+            for (i = 0, len = str.length; i < len; i++) {
+              i_str = str.charAt(i);
+              if ( isNaN(i_str) && i_str != '.') { break; }
+              if (i_str != '.') { r.push(i_str); }
+            } 
+            return r;
+          }
+
           // 用js实现一个电话号码提取的方法。
           // 例如：" 1852145998 020-888-999845 测试 021  -  85421987, 19865754"
           // 得到的结果应该是[1852145998, 020-888-999845 , 021 - 85421987, 19865754]
