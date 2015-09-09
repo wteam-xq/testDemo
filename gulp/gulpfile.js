@@ -1,3 +1,11 @@
+/*
+参考代码网址：
+http://www.ido321.com/1622.html
+http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename
+https://github.com/nimojs/gulp-book
+ */
+
+
 // 获取 gulp
 var gulp = require('gulp'),
     // js 压缩插件 （用于压缩 JS）

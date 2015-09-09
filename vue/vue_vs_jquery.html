@@ -10,8 +10,10 @@
       <link rel="stylesheet" type="text/css" href="../common.css"/>
       <link rel="stylesheet" type="text/css" href="../reset.css"/>
       <style>
+        body{ background: #f9f9f9; color: #666; }
         .tc{ text-align: center; }
         .c_b{ zoom:1; }
+        .pb15, .inputbg{ padding-bottom: 15px; }
         .c_b:before, .c_b:after{ content: ""; display: block; }
         .cb:after{ clear:both; }
         .layout{ width:960px; margin:0 auto; }
@@ -31,6 +33,18 @@
         .labelbox input{ height: 20px; line-height: 20px; padding: 10px; display: inline-block; }
         .inputbg input{ width: 310px; height: 20px; line-height: 20px; }
         .labelbox, .tits_list, .borderbox{   border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
+        .inputcode .code{ width:170px; }
+        .chkcode_img{ margin-left: 7px; vertical-align: middle; cursor: pointer; }
+        .btn332{ width: 330px; height: 42px; margin: 0 auto; line-height: 42px; text-align: center; font-size: 14px; display: block; cursor: pointer; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
+        .btn_reg_1{ background-color: #ff6f3d; margin-top: 15px; border: 1px solid rgba(186,186,186,0.3); color: #fff; }
+        .step2{ padding-top:20px; }
+        .step2 .step2_txt{ padding-bottom: 10px; }
+        .step2 .step2_txt p{ padding-bottom: 10px; }
+        .inputcode .resendcode{ width: 190px; width: 185px\9; max-width: 260px; }
+        .remain{ margin-left: 8px; vertical-align: middle; display: inline-block; height: 40px; line-height: 40px; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
+        .remain a{ color: #000; cursor: pointer; padding: 0px 10px; display: block; }
+
+
       </style>
     </head>
 
@@ -66,11 +80,30 @@
                       <input type="tel" name="phone" data-type="PH" placeholder="请输入手机号码">
                     </label>
                   </div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
+                  <div class="inputbg inputcode dis_box">
+                    <label class="labelbox">
+                      <input class="code" type="text" name="icode" autocomplete="off" placeholder="图片验证码">
+                    </label>
+                    <img alt="图片验证码" title="看不清换一张" class="chkcode_img" src="../images/miCode.jpg">
+                  </div>
+                  <div>
+                    <input class="btn332 btn_reg_1" id="submit-step" data-to="phone-step2" type="submit" value="立即注册">
+                  </div>
+                </div>
+              </div>
+
+              <div class="regbox">
+                <div class="step2 phone_step2">
+                  <div class="step2_txt">
+                    <p>我们已经发送一条验证短信至 <span class="address-place">+852 135XXXXXXXX</span></p>
+                    <p>请输入短信中的验证码</p>
+                  </div>
+                  <div class="inputbg inputcode dis_box">
+                    <label class="labelbox wap_resend_label">
+                      <input class="resendcode" type="text" placeholder="请输入验证码" name="ticket">
+                    </label>   
+                    <span class="remain"><a class="color333 send-status" href="javascript:void(0)">重新发送</a></span>
+                  </div>
                 </div>
               </div>
             </div>
