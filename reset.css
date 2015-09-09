@@ -1,0 +1,96 @@
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6, blockquote, p, pre, dl, dd, ol, ul, li, a, span, caption, th, td, form, fieldset, legend, input, button, textarea, address { margin: 0; padding: 0; }
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+
+ol, ul { list-style: none; }
+
+li { list-style: none; }
+
+fieldset, img { border: 0; }
+
+address, cite, dfn, em, var { font-style: normal; }
+
+code, kbd, pre, samp { font-family: courier new,courier,monospace; }
+
+input, button, textarea, select { font-size: 100%; }
+
+input, button, select, textarea { outline: none; }
+
+textarea { resize: none; }
+
+table { border-collapse: collapse; border-spacing: 0; empty-cells: show; font-size: inherit; }
+
+abbr[title] { border-bottom: 1px dotted; cursor: help; }
+
+a, a:hover { text-decoration: none; }
+
+a, label, :focus { outline: 0 none; }
+
+a, img, input { border: 0 none; }
+
+s { font-style: normal; text-decoration: none; }
+
+body { font-size: 12px; font-family: arial,"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei","微軟正黑體","儷黑 Pro", sans-serif; }
+
+button, input, select, textarea { font-family: arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; }
+
+input::-moz-placeholder, textarea::-moz-placeholder { color: #3b3b3b; font-weight: normal; }
+
+::-webkit-input-placeholder { color: #3b3b3b; font-weight: normal; }
+
+input:-ms-input-placeholder { color: #3b3b3b; font-weight: normal; }
+
+::-ms-clear { display: none; }
+
+::-ms-reveal { display: none; }
+
+.clearfix:after { display: block; content: "\20"; height: 0; clear: both; overflow: hidden; visibility: hidden; }
+
+/*ie8以上*/
+.clearfix { *zoom: 1; }
+
+/*ie6、7*/
+input::-ms-clear { display: none; }
+
+input::-ms-reveal { display: none; }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { a { background-color: transparent; } }
+input { background: none; border: 0 none; }
+
+input[type="button"], input[type="submit"], input[type="reset"], a { -webkit-appearance: none; appearance: none; }
+
+.fl { float: left; }
+
+.fr { float: right; }
+
+.nbg { background: none !important; }
+
+.t_l { text-align: left; }
+
+.t_c { text-align: center; }
+
+.t_r { text-align: right; }
+
+.c_b:before, .c_b:after { content: ""; display: block; }
+
+.c_b:after { clear: both; }
+
+.c_b { zoom: 1; }
+
+.hidden, .hide { display: none; }
+
+/*用于页面JS处理隐藏*/
+.hideimportant { display: none !important; }
+
+.underline { text-decoration: underline; }
+
+input[type=text]::-ms-clear, input[type=password]::-ms-reveal { display: none; }
+
+input { color: #333; }
+
+/*FF required错误红色边框*/
+input:required, input:valid, input:invalid { box-shadow: none; }
+
+/*FF border虚线框*/
+input::-moz-focus-inner { border: 0; }

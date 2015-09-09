@@ -8,8 +8,29 @@
         vue vs jquery
       </title>
       <link rel="stylesheet" type="text/css" href="../common.css"/>
+      <link rel="stylesheet" type="text/css" href="../reset.css"/>
       <style>
-
+        .tc{ text-align: center; }
+        .c_b{ zoom:1; }
+        .c_b:before, .c_b:after{ content: ""; display: block; }
+        .cb:after{ clear:both; }
+        .layout{ width:960px; margin:0 auto; }
+        .n-frame{ border: 1px solid #e6e6e6; background: #fff; padding: 34px 34px 0; border-radius: 10px; min-height: 400px; _height: 400px; }
+        .title-item{ padding-bottom: 10px; border-bottom: 1px solid #e6e6e6; margin-bottom: 20px; clear: both; }
+        .dis_bot35{ padding-bottom: 35px; }
+        .title-big, .title-biger{ font-size: 16px; color: #333; line-height: 1.5; font-weight: bold; }
+        .title-big{ font-size:18px; }
+        .device-frame .title-item{ margin-bottom: 0; }
+        .mauto, .regbox{ margin:0 auto; }
+        .regbox{ width: 332px; padding: 30px 0; line-height: 20px; }
+        .listwrap{ margin-bottom: 15px; position: relative; }
+        div#reg-phone-select-cty{ height: 40px; padding-left: 14px; line-height: 40px; display: inline-block; vertical-align: middle; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; color: #555; cursor: pointer; }
+        .tits tt{ float: left; width: 275px; border-right: 1px solid #e8e8e8; cursor: pointer; }
+        .icon_cirarr{ float: right; background: url(../images/icon_user.png); width: 16px; height: 16px; margin: 11px 12px 0 12px; }
+        .labelbox{ height: 40px; line-height: 40px; display: inline-block; }
+        .labelbox input{ height: 20px; line-height: 20px; padding: 10px; display: inline-block; }
+        .inputbg input{ width: 310px; height: 20px; line-height: 20px; }
+        .labelbox, .tits_list, .borderbox{   border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
       </style>
     </head>
 
@@ -23,6 +44,38 @@
       <div class="demo-panel" v-show="showType == 1">
         <h1 class="register-demo">1.注册流程</h1>
         <!-- 小米官网注册流程 -->
+        <div class="layout">
+          <div class="n-frame">
+            <div class="title-item dis_bot35 t_c">
+              <h4 class="title-big">注册账号</h4>
+            </div>
+            <div>
+              <div class="regbox">
+                <div class="phone_step1">
+                  <div class="listwrap" id="select-cycode">
+                    <div class="listtit" id="reg-phone-select-cty">
+                      <span class="tits dis_box c_b">
+                        <tt id="select-cycode-result">中国+86</tt>
+                        <i class="icon_cirarr"></i>
+                      </span>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="inputbg pb15">
+                    <label class="labelbox" for>
+                      <input type="tel" name="phone" data-type="PH" placeholder="请输入手机号码">
+                    </label>
+                  </div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="demo-panel" v-show="showType == 2">
