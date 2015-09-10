@@ -14,6 +14,7 @@
         .tc{ text-align: center; }
         .c_b{ zoom:1; }
         .pb15, .inputbg{ padding-bottom: 15px; }
+        .pb40{ padding-bottom:40px; }
         .c_b:before, .c_b:after{ content: ""; display: block; }
         .cb:after{ clear:both; }
         .layout{ width:960px; margin:0 auto; }
@@ -37,12 +38,20 @@
         .chkcode_img{ margin-left: 7px; vertical-align: middle; cursor: pointer; }
         .btn332{ width: 330px; height: 42px; margin: 0 auto; line-height: 42px; text-align: center; font-size: 14px; display: block; cursor: pointer; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
         .btn_reg_1{ background-color: #ff6f3d; margin-top: 15px; border: 1px solid rgba(186,186,186,0.3); color: #fff; }
+        .btn_reg_1:hover{ background: #ff936a; }
+        .btn_reg_2{ background: #fff; margin-top: 10px; border: 1px solid #ddd;color: #7c7c7c; }
+        .btn_reg_2:hover{ color: #333; }
         .step2{ padding-top:20px; }
         .step2 .step2_txt{ padding-bottom: 10px; }
         .step2 .step2_txt p{ padding-bottom: 10px; }
         .inputcode .resendcode{ width: 190px; width: 185px\9; max-width: 260px; }
         .remain{ margin-left: 8px; vertical-align: middle; display: inline-block; height: 40px; line-height: 40px; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; }
         .remain a{ color: #000; cursor: pointer; padding: 0px 10px; display: block; }
+        .remain a:hover{ background: #ececec !important; color: #888; }
+        .regagabox{ padding-bottom:30px; }
+        .confirm_box{ padding-bottom: 10px; font-size: 14px;color: #333; }
+        .single_imgarea{ text-align: center; }
+        
 
 
       </style>
@@ -57,13 +66,14 @@
 
       <div class="demo-panel" v-show="showType == 1">
         <h1 class="register-demo">1.注册流程</h1>
-        <!-- 小米官网注册流程 -->
+        <!-- 注册流程 -->
         <div class="layout">
           <div class="n-frame">
             <div class="title-item dis_bot35 t_c">
               <h4 class="title-big">注册账号</h4>
             </div>
             <div>
+              <!-- 步骤1 -->
               <div class="regbox">
                 <div class="phone_step1">
                   <div class="listwrap" id="select-cycode">
@@ -91,7 +101,7 @@
                   </div>
                 </div>
               </div>
-
+              <!-- 步骤2 -->
               <div class="regbox">
                 <div class="step2 phone_step2">
                   <div class="step2_txt">
@@ -104,6 +114,22 @@
                     </label>   
                     <span class="remain"><a class="color333 send-status" href="javascript:void(0)">重新发送</a></span>
                   </div>
+                  <div class="fixed_bot mar_phone_dis2">
+                    <input class="btn332 btn_reg_1  submit-step" type="submit" value="下一步">
+                    <input class="btn332 btn_reg_2  change-view" data-to="phone-step1" type="button" value="返回">
+                  </div>
+                </div>
+              </div>
+              <!-- 步骤3 -->
+              <div class="regbox">
+                <div class="regagabox phone-confirm">
+                  <div class="confirm_box">
+                    <div class="single_imgarea">
+                      
+                    </div>
+                    <div class="pt10 pb40 t_c"></div>
+                  </div>
+                  <div class="fixed_bot"></div>
                 </div>
               </div>
             </div>
