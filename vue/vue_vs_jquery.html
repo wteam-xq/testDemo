@@ -51,8 +51,24 @@
         .regagabox{ padding-bottom:30px; }
         .confirm_box{ padding-bottom: 10px; font-size: 14px;color: #333; }
         .single_imgarea{ text-align: center; }
-        
+        .marauto{ margin:0 auto;}
+        .cursor_d{ cursor: default; }
+        .na-img-area{ width: 80px; height: 80px; border: 2px solid #e3e3e3; border-radius: 50%; padding: 4px; background: #fff; position: relative; z-index: 4; cursor: pointer; }
+        .na-img-bg-area{ background: url(../images/n-avator-bg.png) 0 0 no-repeat; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; }
+        .single_imgarea .us_name{ padding-top:10px; }
+        .step3 dt{ margin:15px 0px; }
+        .n_succ img{ margin:58px 0 14px; }
+        .n_succ .fixed_bot{ margin: 45px auto 30px; }
 
+        /*注册流程1： 1.1版本*/
+        .process-regs{ margin:10px 10px auto; width:80%; padding:10px; color:#fff; text-align:center; line-height: 100px; }
+        .process-reg{ float:left; width:150px; height:100px; margin:10px 10px; background-color:#ccc; }
+        .process-reg.active{ background-color:#FF6F3D; }
+        .btn-radius{ border-radius: 5px; cursor:pointer; padding:5px; margin: 5px; background-color: #eee; display: none; }
+        .btn-radius:hover{ background-color:#ddd; }
+        .btn-radius.active{ display: block; }
+        .fix{*zoom:1;}
+        .fix:after,.fix:before{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}
 
       </style>
     </head>
@@ -60,6 +76,7 @@
     <body> 
       <div class="btn-list">
         <button class="radius-btn" v-on="click: showType = 1">注册流程</button>
+        <button class="radius-btn" v-on="click: showType = 1.1">注册流程1.1</button>
         <button class="radius-btn" v-on="click: showType = 2">购物列表</button>
         <button class="radius-btn" v-on="click: showType = 3">提交表单</button>
       </div>
@@ -74,7 +91,7 @@
             </div>
             <div>
               <!-- 步骤1 -->
-              <div class="regbox">
+              <div class="regbox" v-show="demo1.step == 1">
                 <div class="phone_step1">
                   <div class="listwrap" id="select-cycode">
                     <div class="listtit" id="reg-phone-select-cty">
@@ -87,22 +104,22 @@
                   </div>
                   <div class="inputbg pb15">
                     <label class="labelbox" for>
-                      <input type="tel" name="phone" data-type="PH" placeholder="请输入手机号码">
+                      <input type="tel" name="phone" value="135XXXXXXXX" data-type="PH" placeholder="请输入手机号码">
                     </label>
                   </div>
                   <div class="inputbg inputcode dis_box">
                     <label class="labelbox">
-                      <input class="code" type="text" name="icode" autocomplete="off" placeholder="图片验证码">
+                      <input class="code" type="text" name="icode" value="vc6qu3" autocomplete="off" placeholder="图片验证码">
                     </label>
                     <img alt="图片验证码" title="看不清换一张" class="chkcode_img" src="../images/miCode.jpg">
                   </div>
                   <div>
-                    <input class="btn332 btn_reg_1" id="submit-step" data-to="phone-step2" type="submit" value="立即注册">
+                    <input class="btn332 btn_reg_1" id="submit-step" data-to="phone-step2" type="submit" value="立即注册" v-on="click: demo1.step = 2">
                   </div>
                 </div>
               </div>
               <!-- 步骤2 -->
-              <div class="regbox">
+              <div class="regbox" v-show="demo1.step == 2">
                 <div class="step2 phone_step2">
                   <div class="step2_txt">
                     <p>我们已经发送一条验证短信至 <span class="address-place">+852 135XXXXXXXX</span></p>
@@ -110,31 +127,115 @@
                   </div>
                   <div class="inputbg inputcode dis_box">
                     <label class="labelbox wap_resend_label">
-                      <input class="resendcode" type="text" placeholder="请输入验证码" name="ticket">
+                      <input class="resendcode" type="text" placeholder="请输入验证码" value="3344" name="ticket">
                     </label>   
                     <span class="remain"><a class="color333 send-status" href="javascript:void(0)">重新发送</a></span>
                   </div>
                   <div class="fixed_bot mar_phone_dis2">
-                    <input class="btn332 btn_reg_1  submit-step" type="submit" value="下一步">
-                    <input class="btn332 btn_reg_2  change-view" data-to="phone-step1" type="button" value="返回">
+                    <input class="btn332 btn_reg_1  submit-step" type="submit" value="下一步" v-on="click: demo1.step = 3" />
+                    <input class="btn332 btn_reg_2  change-view" data-to="phone-step1" type="button" value="返回" v-on="click:demo1.step = 1" />
                   </div>
                 </div>
               </div>
               <!-- 步骤3 -->
-              <div class="regbox">
+              <div class="regbox" v-show="demo1.step == 3">
                 <div class="regagabox phone-confirm">
                   <div class="confirm_box">
                     <div class="single_imgarea">
-                      
+                      <div class="na-img-area marauto cursor_d">
+                        <div class="na-img-bg-area us-portraitUrl"></div>
+                      </div>
+                      <p class="us_name us-userName">xxdxxdx</p>
+                      <p class="us_id us-userId">277XX55</p>
                     </div>
-                    <div class="pt10 pb40 t_c"></div>
+                    <div class="pt10 pb40 t_c">这个小米帐号是你的吗？</div>
                   </div>
-                  <div class="fixed_bot"></div>
+                  <div class="fixed_bot">
+                    <a class="btn332 btn_reg_2 submit-token-login" href="javascrip:void(0);" v-on="click: demo1.step = 6">是我的，直接登录</a>
+                    <input class="btn332 btn_reg_2  change-view" data-to="phone-step3" data-source="tokenRegister" type="button" value="不是我的，注册新帐号" v-on="click:demo1.step = 4" />
+                  </div>
                 </div>
               </div>
+              <!-- 步骤4 -->
+              <div class="regbox" v-show="demo1.step == 4">
+                <div class="step3 phone_step3">
+                  <dl>
+                    <dt>
+                      <h4>
+                        您注册的手机号为<span class="register-ph-num">13535XXXXXXX</span>
+                      </h4>
+                      <h4>请设置您的密码：</h4>
+                    </dt>
+                    <dd>
+                      <div class="inputbg">
+                        <label class="labelbox" for="">
+                          <input class="set-password" type="password" data-error=".error-password" name="password" placeholder="请输入密码" value="123" />
+                        </label>
+                      </div>
+                    </dd>
+                    <dd>
+                      <div class="inputbg">
+                        <label class="labelbox" for="">
+                          <input name="repassword" type="password" data-repeat=".set-password" data-error=".error-password" placeholder="请输入确认密码" value="123"/>
+                        </label>
+                      </div>
+                    </dd>
+                  </dl>
+                  <div class="fixed_bot mar_phone_dis3">
+                    <input class="btn332 btn_reg_1 submit-step" type="submit" value="提交" v-on="click: demo1.step = 5" />
+                  </div>
+                </div>
+              </div>
+              <!-- 步骤5 -->
+              <div class="regbox" v-show="demo1.step == 5">
+                <div class="phone_step4">
+                  <div class="t_c n_succ">
+                    <img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt="">
+                    <h4>注册成功! </h4>
+                    <div class="fixed_bot mar_phone_dis4">
+                      <a class="btn332 btn_reg_1 login-redirect" v-on="click:demo1.step=6" href="javascript:void(0);">
+                        登录
+                      </a>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+              <!-- 步骤6 -->
+              <div class="regbox" v-show="demo1.step == 6">
+                <div class="phone_step4">
+                  <div class="t_c n_succ">
+                    <img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt="">
+                    <h4>登陆成功! </h4>
+                    <div class="fixed_bot mar_phone_dis4">
+                      <a class="btn332 btn_reg_1 login-redirect" v-on="click:demo1.step=1" href="javascript:void(0);">
+                        返回注册
+                      </a>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="demo-panel" v-show="showType == 1.1">
+        <h1>购物流程：一点一版本, 灰常粗糙！</h1>
+        <div class="process-regs fix">
+          <div class="process-reg active" id="proReg1">填写手机号</div>
+          <div class="process-reg" id="proReg2">输入验证码</div>
+          <div class="process-reg" id="proReg3">设置密码</div>
+          <div class="process-reg" id="proReg4">立即注册</div>
+        </div>
+
+        <div class="btn-list">
+          <button class="btn-radius active" id="stepBtn1">提交手机号</button>
+          <button class="btn-radius" id="stepBtn2">提交验证码</button>
+          <button class="btn-radius" id="stepBtn3">提交密码</button>
+          <button class="btn-radius" id="stepBtn4">确认注册成功</button>
+        </div>
+
       </div>
 
       <div class="demo-panel" v-show="showType == 2">
@@ -161,9 +262,9 @@
           vm = new Vue({
             el: 'body',
             data: {
-              showType: 1,
+              showType: 1.1,
               demo1: {
-
+                'step': 1
               },
               demo2: {
 
