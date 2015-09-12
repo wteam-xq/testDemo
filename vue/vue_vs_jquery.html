@@ -220,8 +220,8 @@
         </div>
       </div>
 
-      <div class="demo-panel" v-show="showType == 1.1">
-        <h1>购物流程：一点一版本, 灰常粗糙！</h1>
+      <div class="demo-panel" v-show="showType == 1.1" id="regDemo" >
+        <h1>购物流程：博文简单版本, 灰常粗糙！</h1>
         <div class="process-regs fix">
           <div class="process-reg active" id="proReg1">填写手机号</div>
           <div class="process-reg" id="proReg2">输入验证码</div>
@@ -280,6 +280,79 @@
 
           xq.vm = vm;
         }
+
+        // jquery 代码
+        $(function(){
+
+          // 注册相关 代码
+          registInit();
+
+          function registInit(){
+            var $regDemo = $('#regDemo'),
+                $stepBtn1 = $regDemo.find('#stepBtn1'),
+                $stepBtn2 = $regDemo.find('#stepBtn2'),
+                $stepBtn3 = $regDemo.find('#stepBtn3'),
+                $stepBtn4 = $regDemo.find('#stepBtn4');
+
+            $stepBtn1.on('click', submitMobile);
+            $stepBtn2.on('click', submitAuthCode);
+            $stepBtn3.on('click', submitPas);
+            $stepBtn4.on('click', submitReg);
+
+            // $stepBtn1.on('click', commonSubmit);
+            // $stepBtn2.on('click', commonSubmit);
+            // $stepBtn3.on('click', commonSubmit);
+            // $stepBtn4.on('click', commonSubmit);
+
+            function submitMobile() {
+              $regDemo.find('.process-reg').removeClass('active');
+              $regDemo.find('#proReg2').addClass('active');
+              $stepBtn1.hide();
+              $stepBtn2.show();
+            }
+            function submitAuthCode() {
+              $regDemo.find('.process-reg').removeClass('active');
+              $regDemo.find('#proReg3').addClass('active');
+              $stepBtn2.hide();
+              $stepBtn3.show();
+            }
+            function submitPas() {
+              $regDemo.find('.process-reg').removeClass('active');
+              $regDemo.find('#proReg4').addClass('active');
+              $stepBtn3.hide();
+              $stepBtn4.show();
+            }
+            function submitReg() {
+              $regDemo.find('.process-reg').removeClass('active');
+              $regDemo.find('#proReg1').addClass('active');
+              $stepBtn4.hide();
+              $stepBtn1.show();
+            }
+
+            // 如果只是当前功能一个函数能搞定
+            function commonSubmit(){
+              var $this = $(this), btn_index;
+
+              $regDemo.find('.process-reg').removeClass('active');
+              btn_index = $this.index() + 2;
+              if ( btn_index > 4 ) {
+                btn_index = 1;
+              }
+              $regDemo.find('#proReg' + btn_index).addClass('active');
+
+              $this.hide();
+              if ( $this.next('.btn-radius').length > 0 ) {
+                $this.next('.btn-radius').show();
+              } else {
+                $regDemo.find('.btn-radius:first').show();
+              }
+            }
+
+          }
+
+
+
+        });
       </script>
     </body>
 </html>
