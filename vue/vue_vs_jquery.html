@@ -60,15 +60,15 @@
         .n_succ img{ margin:58px 0 14px; }
         .n_succ .fixed_bot{ margin: 45px auto 30px; }
 
-        /*注册流程1： 1.1版本*/
+        /*注册流程1： 1.1版本 */
         .process-regs{ margin:10px 10px auto; width:80%; padding:10px; color:#fff; text-align:center; line-height: 100px; }
         .process-reg{ float:left; width:150px; height:100px; margin:10px 10px; background-color:#ccc; }
         .process-reg.active{ background-color:#FF6F3D; }
-        .btn-radius{ border-radius: 5px; cursor:pointer; padding:5px; margin: 5px; background-color: #eee; display: none; }
+        .btn-radius{ border-radius: 5px; cursor:pointer; padding:5px; margin: 5px; background-color: #eee; }
         .btn-radius:hover{ background-color:#ddd; }
         .btn-radius.active{ display: block; }
-        .fix{*zoom:1;}
-        .fix:after,.fix:before{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+        .fix{ *zoom:1; }
+        .fix:after,.fix:before{ display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden; }
 
       </style>
     </head>
@@ -223,17 +223,17 @@
       <div class="demo-panel" v-show="showType == 1.1" id="regDemo" >
         <h1>购物流程：博文简单版本, 灰常粗糙！</h1>
         <div class="process-regs fix">
-          <div class="process-reg active" id="proReg1">填写手机号</div>
-          <div class="process-reg" id="proReg2">输入验证码</div>
-          <div class="process-reg" id="proReg3">设置密码</div>
-          <div class="process-reg" id="proReg4">立即注册</div>
+          <div class="process-reg" id="proReg1" v-class="active: demo1.regStep == 1">填写手机号</div>
+          <div class="process-reg" id="proReg2" v-class="active: demo1.regStep == 2">输入验证码</div>
+          <div class="process-reg" id="proReg3" v-class="active: demo1.regStep == 3">设置密码</div>
+          <div class="process-reg" id="proReg4" v-class="active: demo1.regStep == 4">立即注册</div>
         </div>
 
         <div class="btn-list">
-          <button class="btn-radius active" id="stepBtn1">提交手机号</button>
-          <button class="btn-radius" id="stepBtn2">提交验证码</button>
-          <button class="btn-radius" id="stepBtn3">提交密码</button>
-          <button class="btn-radius" id="stepBtn4">确认注册成功</button>
+          <button class="btn-radius" id="stepBtn1" v-on="click: demo1.regStep = 2" v-show="demo1.regStep == 1">提交手机号</button>
+          <button class="btn-radius" id="stepBtn2" v-on="click: demo1.regStep = 3" v-show="demo1.regStep == 2">提交验证码</button>
+          <button class="btn-radius" id="stepBtn3" v-on="click: demo1.regStep = 4" v-show="demo1.regStep == 3">提交密码</button>
+          <button class="btn-radius" id="stepBtn4" v-on="click: demo1.regStep = 1" v-show="demo1.regStep == 4">确认注册成功</button>
         </div>
 
       </div>
@@ -264,7 +264,8 @@
             data: {
               showType: 1.1,
               demo1: {
-                'step': 1
+                'step': 1,
+                'regStep': 1
               },
               demo2: {
 
@@ -285,7 +286,7 @@
         $(function(){
 
           // 注册相关 代码
-          registInit();
+          // registInit();
 
           function registInit(){
             var $regDemo = $('#regDemo'),
@@ -329,7 +330,7 @@
               $stepBtn1.show();
             }
 
-            // 如果只是当前功能一个函数能搞定
+            // 如果只是当前功能一个函数也能搞定
             function commonSubmit(){
               var $this = $(this), btn_index;
 
@@ -349,9 +350,6 @@
             }
 
           }
-
-
-
         });
       </script>
     </body>

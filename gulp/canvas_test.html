@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            canvas简单用法
+        </title>
+        <link rel="stylesheet" type="text/css" href="common.css" />
+        <style>
+          
+          .clear-btn{ background-color:#93B5EC; }
+          .clear-btn:hover{ background-color:#8080FF; }
+          .canvas{ height:500px; width: 800px; }
+          #noSupport{ display: none; }
+          #clearRectBtn{ position: absolute; top: 350px; left: 300px; }
+          .fb{ font-weight: bold; }
+          /*绘制图像按钮，灰阶过滤*/
+          .gray-btn{ position: absolute; top:450px; left:300px; }
+          /*合成样式*/
+          .comp-list{ position: absolute; top: 360px; left: 20px; }
+
+        </style>
+
+    </head>
+    
+    <body>
+
+     <div class='btn-cont' id="btnCont">
+        <button id="fillStyleBtn" class="radius-btn">填充和描边</button>
+        <button id="rectBtn" class="radius-btn">绘制矩形</button>
+        <button id="pathBtn" class="radius-btn">绘制路径</button>
+        <button id="textBtn" class="radius-btn">绘制文本</button>
+        <button id="transformBtn" class="radius-btn">绘制变换</button>
+        <button id="imgBtn" class="radius-btn">绘制图像</button>
+        <button id="shadowBtn" class="radius-btn">绘制阴影</button>
+        <button id="gradientBtn" class="radius-btn">绘制渐变</button>
+        <button id="compBtn" class="radius-btn">绘制合成</button>
+      </div>
+
+      <div id='fillStyle'>
+        <h3>填充和描边: strokeStyle fillStyle </h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='rect'>
+        <h3>绘制矩形: strokeRect fillRect clearRect</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+        <button class="radius-btn clear-btn" id="clearRectBtn">点击清除 fillRect矩形</button>
+      </div>
+
+      <div id='path'>
+        <h3>绘制路径: arc arcTo bezierCurveTo lineTo moveTo quadraticCurveTo rect</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='transform'>
+        <h3>绘制变换: rotate scale translate transform setTransform</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='imageDiv'>
+        <h3>绘制图像（图1）: drawImage</h3>
+        <p>可以绘制图像对象，也可以将另一canvas对象绘制</p>
+        <p>多种参数情况：
+          <br/> 
+          <span>3个参数：</span><span class="fb">要绘制的图像、图像起点x坐标、图像起点y坐标</span>
+          <br/>
+          <span>5个参数：</span><span class="fb">要绘制的图像、图像起点x坐标、图像起点y坐标、图像宽度、图像高度</span>
+          <br/>
+          <span>9个参数：</span><span class="fb">要绘制的图像、源图像的x坐标、源图像的y坐标、源图像的宽度、源图像的高度、目标图像的x坐标、目标图像的y坐标、目标图像的宽度、目标图像的高度</span>
+        </p>
+        <p>
+          <strong>ps:</strong>
+          <span>“灰阶过滤”需要在类似tomcat的服务器环境下运行</span> 
+        </p>
+
+        <br/>
+        <h3>绘制模式（图2）： pattern</h3>
+        <p>像css 的repeate, 重复渲染canvas image videos</p>
+        <button class="radius-btn gray-btn" id="grayBtn" data-type="gray">灰阶过滤</button>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='shadow'>
+        <h3>绘制阴影: shadowColor shadowOffsetX shadowOffsetY shadowBlur</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='gradient'>
+        <h3>绘制渐变: createLinearGradient createRadialGradient gradient.addColorStop</h3>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+      </div>
+
+      <div id='comp'>
+        <h3>绘制合成: globalAlpha globalCompositionOperation</h3>
+        <p><em>ps:</em>更新信息查看<a href="https://developer.mozilla.org/samples/canvas-tutorial/6_1_canvas_composite.html" target="_blank">火狐实验室</a></p>
+        <canvas height="800" width="800">浏览器不支持Canavas</canvas>
+        <div id="cmpList"></div>
+      </div>
+
+      <div id='noSupport'>
+        <h3>您当前浏览器不支持 canvas标签， 请换一个浏览器试试！</h3>
+      </div>
+        
+      <script>
+        var div_list = document.getElementsByTagName('div');
+        var btn_cont = document.getElementById('btnCont');
+        var support_tip = document.getElementById('noSupport');
+        hideAllCanvas();
+        // 按钮事件初始化
+        btnEventInit();
+        init();
+
+        function init(){
+          // 测试浏览器兼容
+          var fill_style = document.getElementById('fillStyle');
+          var _canvas = getDivNode(fill_style, 'canvas'), _context;
+          try{
+            _context = _canvas.getContext('2d');
+          }catch(e){
+            support_tip.style.display = 'block';
+            return false
+          }
+          // 默认显示“填充描边”
+          fillStroke();
+        }
+        // 赋予按钮事件
+        function btnEventInit(){
+          // 填充、描边按钮
+          var fillStyleBtn = document.getElementById('fillStyleBtn');
+          fillStyleBtn.onclick = fillStroke;
+          // 矩形按钮
+          var rectBtn = document.getElementById('rectBtn');
+          rectBtn.onclick = drawRect;
+          // 清除fillRect按钮
+          var clearRectBtn = document.getElementById('clearRectBtn');
+          clearRectBtn.onclick = clearRect;
+          // 路径按钮
+          var pathBtn = document.getElementById('pathBtn');
+          pathBtn.onclick = drawPath;
+          // 文本按钮
+          var textBtn = document.getElementById('textBtn');
+          textBtn.onclick = drawText;
+          // 变换按钮
+          var transformBtn = document.getElementById('transformBtn');
+          transformBtn.onclick = drawTransform;
+          // 图像按钮
+          var imgBtn = document.getElementById('imgBtn');
+          imgBtn.onclick = drawImage;
+          // 灰阶过滤按钮
+          var grayBtn = document.getElementById('grayBtn');
+          grayBtn.onclick = imgGray;
+          // 阴影按钮
+          var shadowBtn = document.getElementById('shadowBtn');
+          shadowBtn.onclick = drawShadow;
+          // 渐变按钮
+          var gradientBtn = document.getElementById('gradientBtn');
+          gradientBtn.onclick = drawGradient;
+          // 合成按钮
+          var compBtn = document.getElementById('compBtn');
+          compBtn.onclick = drawComp;
+
+        }
+        // 切换demo画板canvas
+        function toggleDemo(d_id){
+          hideAllCanvas();
+          btn_cont.style.display = 'block';
+          var newDiv = document.getElementById(d_id);
+          var _canvas = getDivNode(newDiv, 'canvas');
+          var ctx = _canvas.getContext('2d');
+          newDiv.style.display = 'block';
+          return ctx;
+        }
+        // 绘制填充跟描边
+        function fillStroke(){
+          var ctx = toggleDemo('fillStyle');
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 500, 500);
+          // 绘制无填充矩形
+          ctx.beginPath();
+          ctx.strokeStyle = 'red';
+          ctx.rect(0, 0, 200, 200);
+          ctx.stroke();
+          // 添加说明
+          ctx.font = '12px Verdana';
+          ctx.fillText('ctx.beginPath();', 12, 20);
+          ctx.fillText('ctx.strokeStyle = "red";', 12, 40);
+          ctx.fillText('ctx.rect(0, 0, 200, 200);', 12, 60);
+          ctx.fillText('ctx.stroke();', 12, 80);
+
+          // 绘制填充矩形
+          ctx.beginPath();
+          ctx.fillStyle = '#decced';
+          ctx.rect(300, 0, 200, 200);
+          ctx.fill();
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.fillStyle = "#decced";', 312, 40);
+          ctx.fillText('ctx.rect(300, 0, 200, 200);', 312, 60);
+          ctx.fillText('ctx.fill();', 312, 80);
+        }
+        // 绘制矩形
+        function drawRect(){
+          var ctx = toggleDemo('rect');
+          rect.style.display = 'block';
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 500, 500);
+          // 绘制无填充矩形
+          ctx.strokeStyle = '#ff0000';
+          ctx.strokeRect(0, 0, 200, 200);
+         
+          // 添加说明
+          ctx.font = '12px Verdana';
+          ctx.fillText('ctx.strokeStyle = "#ff0000";', 12, 20);
+          ctx.fillText('ctx.strokeRect(0, 0, 200, 200);', 12, 40);
+
+          // 绘制填充矩形
+          ctx.fillStyle = 'rgba(0, 0,255, 0.5)';
+          ctx.fillRect(300, 0, 200, 200);
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.fillStyle = "rgba(0, 0,255, 0.5)";', 312, 20);
+          ctx.fillText('ctx.fillRect(300, 0, 200, 200);', 312, 40);
+        }
+        // 清除fillRect
+        function clearRect(){
+          var rect = document.getElementById('rect');
+          var _canvas = getDivNode(rect, 'canvas');
+          var ctx = _canvas.getContext('2d');
+          // 清空画板重新绘制
+          ctx.clearRect(300, 0, 200, 200);
+          // 添加说明
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.clearRect(300, 0, 200, 200);', 312, 20);
+        }
+        // 绘制圆形
+        function drawCircular(){
+          var ctx = toggleDemo('path');
+
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 800, 800);
+          // 绘制钟表
+          ctx.beginPath();
+          // 绘制外圆
+          ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);
+          // 绘制内圆
+          ctx.moveTo(194, 100);
+          ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+          // 绘制分钟
+          ctx.moveTo(100, 100);
+          ctx.lineTo(100, 15);
+          // 绘制时钟
+          ctx.moveTo(100, 100);
+          ctx.lineTo(35, 100);
+          // 描边路径
+          ctx.stroke();
+          // 添加说明
+          ctx.textAlign = 'start';
+
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);', 312, 40);
+          ctx.fillText('ctx.moveTo(194, 100);', 312, 60);
+          ctx.fillText('ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);', 312, 80);
+          ctx.fillText('ctx.moveTo(100, 100);', 312, 100);
+          ctx.fillText('ctx.lineTo(100, 15);', 312, 120);
+          ctx.fillText('ctx.moveTo(100, 100);', 312, 140);
+          ctx.fillText('ctx.lineTo(35, 100);', 312, 160);
+          ctx.fillText('ctx.stroke();', 312, 180);
+
+          return ctx;
+        }
+        // 绘制路径
+        function drawPath(){
+          var path = document.getElementById('path');
+          drawCircular();
+          // 修改h3文字
+          changeNodeText(path, '绘制路径: arc arcTo bezierCurveTo lineTo moveTo quadraticCurveTo rect');
+        }
+
+        // 绘制文本
+        function drawText(){
+          var path = document.getElementById('path');
+          // 绘制完圆形
+          var ctx = drawCircular();
+
+          // 修改h3文字
+          changeNodeText(path, '绘制文本：font textAlign textBaseline fillText');
+
+          ctx.fillText("ctx.font = 'bold 12px arial';", 312, 200);
+          ctx.fillText("ctx.textAlign = 'center';", 312, 220);
+          ctx.fillText("ctx.textBaseline = 'middle';", 312, 240);
+          ctx.fillText("ctx.fillText('12', 100, 20);", 312, 260);
+          ctx.fillText("ctx.textAlign = 'start';", 312, 280);
+          ctx.fillText("ctx.fillText('12', 100, 40);", 312, 300);
+          ctx.fillText("ctx.textAlign = 'end';", 312, 320);
+          ctx.fillText("ctx.fillText('12', 100, 60);", 312, 340);
+
+          // 修改canvas文字
+          ctx.font = 'bold 12px arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('12', 100, 20);
+          // 起点对齐
+          ctx.textAlign = 'start';
+          ctx.fillText('12', 100, 40);
+          // 终点对齐
+          ctx.textAlign = 'end';
+          ctx.fillText('12', 100, 60);
+        }
+
+        // 绘制变换
+        function drawTransform(){
+
+          var ctx = toggleDemo('transform');
+          // 清空画板重新绘制
+          ctx.clearRect(0, 0, 800, 800);
+          // 绘制钟表
+          ctx.beginPath();
+          // 绘制外圆
+          ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);
+          // 绘制内圆
+          ctx.moveTo(194, 100);
+          ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+          // 变换原点
+          ctx.translate(100, 100);
+          // 旋转表钟
+          ctx.rotate(1);
+
+          // 绘制分钟
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -85);
+          // 绘制时钟
+          ctx.moveTo(0, 0);
+          ctx.lineTo(-65, 0);
+          // 描边路径
+          ctx.stroke();
+
+          // 添加说明
+          ctx.rotate(-1);
+          ctx.translate(-100, -100);
+          ctx.textAlign = 'start';
+
+          ctx.fillStyle = '#000';
+          ctx.font = '12px arial';
+          ctx.fillText('ctx.beginPath();', 312, 20);
+          ctx.fillText('ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);', 312, 40);
+          ctx.fillText('ctx.moveTo(194, 100);', 312, 60);
+          ctx.fillText('ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);', 312, 80);
+          ctx.fillText('ctx.translate(100, 100);', 312, 100);
+          ctx.fillText('ctx.rotate(1);', 312, 120);
+          ctx.fillText('ctx.moveTo(0, 0);', 312, 140);
+          ctx.fillText('ctx.lineTo(0, -85);', 312, 160);
+          ctx.fillText('ctx.moveTo(0, 0);', 312, 180);
+          ctx.fillText('ctx.lineTo(-65, 0);', 312, 200);
+          ctx.fillText('ctx.stroke();', 312, 220);
+
+          return ctx;
+        }
+        // 绘制图像
+        function drawImage(){
+          var ctx = toggleDemo('imageDiv');
+          // 开始绘制图像
+          var imageObj = new Image();
+          imageObj.src = 'images/dlam.jpg';
+          imageObj.onload = function(){
+            // ctx.drawImage(imageObj, 0, 0);
+            ctx.drawImage(imageObj, 0, 0, 208, 150);
+            // ctx.drawImage(imageObj, 20, 50, 208, 150, 0, 0, 208, 150);
+
+            ctx.fillText("var imageObj = new Image();", 312, 20);
+            ctx.fillText("imageObj.src = 'images/dlam.jpg';", 312, 40);
+            ctx.fillText("imageObj.onload = function(){", 312, 60);
+            ctx.fillText("    ctx.drawImage(imageObj, 0, 0, 208, 150);", 312, 80);
+            ctx.fillText("};", 312, 100);
+
+            // 绘制模式图像
+            var pattern = ctx.createPattern(imageObj, "repeat");
+            // 绘制矩形
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 170, 208, 300);
+            ctx.fillStyle = '#000';
+            ctx.fillText('var pattern = ctx.createPattern(image, "repeat");', 312, 210);
+            ctx.fillText('ctx.fillStyle = pattern;', 312, 230);
+            ctx.fillText('ctx.fillRect(210, 170, 300, 300);', 312, 250);
+          };
+          return ctx;
+        }
+        // 图像灰阶过滤
+        function imgGray(){
+          var ctx, data_type, grayBtn;
+
+          grayBtn = document.getElementById('grayBtn');
+          data_type = grayBtn.getAttribute('data-type');
+          ctx = toggleDemo('imageDiv');
+
+          if (data_type === 'gray') {
+            // 将按钮状态变为“恢复”
+            grayBtn.setAttribute('data-type', 'restore');
+            grayBtn.innerHTML = '灰阶恢复';
+            // ctx.clearRect(0, 0, 800, 150);
+            setImgGray(ctx);
+          }else if (data_type === 'restore') {
+            // 将按钮状态变为“制灰”
+            grayBtn.setAttribute('data-type', 'gray');
+            grayBtn.innerHTML = '灰阶过滤';
+            ctx.clearRect(0, 0, 800, 150);
+            drawImage();
+          }
+          // 获得图像信息， 得将该文件放置在tomcat中
+          function setImgGray(ctx){
+            var i , len;
+            // 取得图像数据
+            imageData = ctx.getImageData(0, 0, 208, 150);
+            data = imageData.data;
+            for (var i = 0, len = data.length; i < len; i+=4) {
+              red = data[i];
+              green = data[i + 1];
+              blue = data[i + 2];
+              alpha = data[i + 3];
+              // 求得rgb平均值
+              average = Math.floor( (red + green + blue)/3 );
+              // 设置颜色值， 透明度不变
+              data[i] = average;
+              data[i + 1] = average;
+              data[i + 2] = average;
+            }
+            // 回写图像数据并显示结果
+            imageData.data = data;
+            ctx.putImageData(imageData, 0, 0);
+          }
+          
+        }
+
+        // 绘制阴影
+        function drawShadow(){
+          var ctx = toggleDemo('shadow');
+          // 设置阴影
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+          ctx.shadowOffsetX = 3;
+          ctx.shadowOffsetY = 3;
+          ctx.shawBlur = 4;
+          // 绘制红色矩形
+          ctx.fillStyle = '#ff0000';
+          ctx.fillRect(10, 10, 50, 50);
+          // 绘制蓝色矩形
+          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          ctx.fillRect(30, 30, 50, 50);
+
+          // 绘制提示
+          ctx.shadowBlur = 0;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 0;
+          ctx.font = 'bold arial 12px';
+          ctx.fillStyle = '#000';
+          ctx.fillText("ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';", 312, 20);
+          ctx.fillText("ctx.shadowOffsetX = 3;", 312, 40);
+          ctx.fillText("ctx.shadowOffsetY = 3;", 312, 60);
+          ctx.fillText("ctx.shawBlur = 4;", 312, 80);
+          ctx.fillText("ctx.fillStyle = '#ff0000';", 312, 100);
+          ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 312, 120);
+          ctx.fillText("ctx.fillStyle = 'rgba(0, 0, 255, 1)';", 312, 140);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 312, 160);
+          ctx.fillText("", 312, 180);
+        }
+        // 绘制渐变
+        function drawGradient(){
+          var ctx = toggleDemo('gradient');
+          // 创建渐变对象
+          var gradient = ctx.createRadialGradient(55, 55, 10, 55, 55, 30);
+          gradient.addColorStop(0, 'white');
+          gradient.addColorStop(1, 'black');
+          // 绘制红色矩形
+          ctx.fillStyle = 'ff0000';
+          ctx.fillRect(10, 10, 50, 50);
+          // 绘制渐变矩形
+          ctx.fillStyle = gradient;
+          ctx.fillRect(30, 30, 50, 50);
+
+          // 说明文字
+          ctx.font = 'bold arial 12px';
+          ctx.fillStyle = '#000';
+          ctx.fillText("var gradient = ctx.createRadialGradient(55, 55, 10, 55, 55, 30);", 200, 20);
+          ctx.fillText("gradient.addColorStop(0, 'white');", 200, 40);
+          ctx.fillText("gradient.addColorStop(1, 'black');", 200, 60);
+          ctx.fillText("ctx.fillStyle = 'ff0000';", 200, 80);
+          ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 200, 100);
+          ctx.fillText("ctx.fillStyle = gradient;", 200, 120);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 140);
+        }
+        // 绘制合成
+        function drawComp() {
+          var ctx = toggleDemo('comp'),
+          compDom = document.getElementById('comp');
+
+          // 先清除屏幕
+          ctx.clearRect(0, 0, 800, 800);
+          // 绘制红色矩形框
+          ctx.fillStyle = '#ff0000';
+          ctx.fillRect(10, 10, 50, 50);
+          // 修改全局透明度
+          ctx.globalAlpha = 0.5;
+          // 绘制蓝色矩形
+          ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          ctx.fillRect(30, 30, 50, 50);
+          // 重置全局透明度
+          ctx.globalAlpha = 1;
+
+          // 绘制说明
+          ctx.font = 'bold arial 12px';
+          ctx.fillStyle = '#000';
+          ctx.fillText("ctx.fillStyle = '#ff0000';", 200, 40);
+          ctx.fillText("ctx.fillRect(10, 10, 50, 50);", 200, 60);
+          ctx.fillText("ctx.globalAlpha = 0.5;", 200, 80);
+          ctx.fillText("ctx.fillStyle = 'rgba(0, 0, 255, 1)';", 200, 100);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 120);
+          ctx.fillText("ctx.fillRect(30, 30, 50, 50);", 200, 140);
+          ctx.fillText("ctx.globalAlpha = 1;", 200, 160);
+
+          // 绘制 合成效果图
+          var comp_list = [
+            {x:10, y:200, opra:'source-over'},
+            {x:100, y:200, opra:'source-in'},
+            {x:200, y:200, opra:'source-out'},
+            {x:300, y:200, opra:'source-atop'},
+            {x:400, y:200, opra:'destination-over'},
+            {x:500, y:200, opra:'destination-in'},
+            {x:600, y:200, opra:'destination-out'},
+            {x:700, y:200, opra:'destination-atop'}
+            // {x:300, y:200, opra:'xor'}
+          ];
+          var i , len, _comp, new_ele, comp_doms;
+          comp_doms = document.getElementById('cmpList');
+          comp_doms.innerHTML = '';
+          for (i = 0, len = comp_list.length; i < len; i++) {
+            _comp = comp_list[i];
+            new_ele = drawCompOpera(ctx, _comp);
+            comp_doms.appendChild(new_ele);
+          }
+          // 设置canvas列表样式
+          comp_doms.setAttribute('class', 'comp-list');
+          comp_doms.style.display = 'block';
+        }
+        // 绘制合并图像
+        function drawCompOpera(ctx, params){
+          var x, y, opra, x2, y2;
+          x = params.x;
+          y = params.y;
+          opra = params.opra;
+
+          // 生成一个新的canvas dom节点
+          var canvas_dom = document.createElement('canvas'),
+          can_ctx = canvas_dom.getContext('2d'), ctx_pattern;
+          // 设置新ctx的宽度、高度
+          canvas_dom.setAttribute('width', '90');
+          canvas_dom.setAttribute('height', '90');
+          canvas_dom.setAttribute('opra', opra);
+
+          // 设置合成操作
+          can_ctx.globalCompositeOperation = opra;
+          // 绘制红色矩形
+          can_ctx.fillStyle = '#ff0000';
+          can_ctx.fillRect(10, 10, 50, 50);
+          // 绘制蓝色矩形
+          can_ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+          can_ctx.fillRect(30, 30, 50, 50);
+          // 刻上类型
+          can_ctx.font = 'bolder arial 24px';
+          can_ctx.textAlign = 'center';
+          can_ctx.fillStyle = '#000';
+          can_ctx.fillText(opra, 35, 5);
+
+          // 使用模式导入总canvas面板
+          // ctx_pattern = ctx.createPattern(canvas_dom, 'repeat');
+          // ctx.fillStyle = ctx_pattern;
+          // ctx.fillRect(x, y, 90, 90);
+          return canvas_dom;
+        }
+
+        // 修改h3文字
+        function changeNodeText(p_node, new_txt){
+          var h3 = getDivNode(p_node, 'h3');
+          h3.innerHTML = new_txt;
+        }
+
+        // 获得div内的节点(有多个的话， 只获得第一个)
+        function getDivNode(p_node, n_type){
+          var _node_list = p_node.childNodes, i , _node, len, result = null;
+          for (i = 0, len = _node_list.length; i < len; i++) {
+            _node = _node_list[i];
+            if (_node.nodeType === 1 && _node.nodeName.toLocaleLowerCase() == n_type) {
+              result = _node;
+              break;
+            }
+          }
+          return result;
+        }
+
+        function showAllCanvas(){
+          var _len, i, div_item;
+          for (i = 0, _len = div_list.length; i < _len; i++ ) {
+            div_item = div_list[i];
+            div_item.style.display = 'block';
+          }
+        }
+        function hideAllCanvas(){
+          var _len, i, div_item;
+          for (i = 0, _len = div_list.length; i < _len; i++ ) {
+            div_item = div_list[i];
+            div_item.style.display = 'none';
+          }
+        }
+
+      </script>
+
+    </body>
+</html>

@@ -15,7 +15,11 @@ var gulp = require('gulp'),
     // 获取 gulp-imagemin 模块
     imagemin = require('gulp-imagemin'),
     // 重命名 插件
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    // 压缩html插件
+    htmlmin = require('gulp-htmlmin'),
+    // 合并文件
+    concat = require("gulp-concat");
 
 
 // 压缩 js 文件
@@ -56,3 +60,32 @@ gulp.task('images', function () {
     // 3. 另存图片
         .pipe(gulp.dest('dist/images'))
 });
+
+// 压缩html 任务
+gulp.task('htmlmin', function () {
+    var options = {
+        collapseWhitespace: true,//压缩HTML
+        //省略布尔属性的值 <input checked="true"/> ==> <input />
+        collapseBooleanAttributes: false,
+        //删除所有空格作属性值 <input id="" /> ==> <input />
+        removeEmptyAttributes: true,
+        //删除<script>的type="text/javascript"
+        removeScriptTypeAttributes: true,
+        //删除<style>和<link>的type="text/css"
+        removeStyleLinkTypeAttributes: true,
+        minifyJS: true,//压缩页面JS
+        minifyCSS: true//压缩页面CSS
+    };
+    gulp.src('*.html')
+        .pipe(htmlmin(options))
+        .pipe(gulp.dest('dist'));
+});
+
+// 合并js 任务(合并压缩成功后的 js文件)
+gulp.task('concat', function () {
+    gulp.src('dist/js/*.js')  //要合并的文件
+    .pipe(concat('all.js'))  // 合并匹配到的js文件并命名为 "all.js"
+    .pipe(gulp.dest('dist/js'));
+});
+
+
