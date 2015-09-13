@@ -19,7 +19,9 @@ var gulp = require('gulp'),
     // 压缩html插件
     htmlmin = require('gulp-htmlmin'),
     // 合并文件
-    concat = require("gulp-concat");
+    concat = require("gulp-concat"),
+    // html 文件对合并文件后的替换处理插件
+    htmlReplace = require("gulp-html-replace");
 
 
 // 压缩 js 文件
@@ -87,5 +89,8 @@ gulp.task('concat', function () {
     .pipe(concat('all.js'))  // 合并匹配到的js文件并命名为 "all.js"
     .pipe(gulp.dest('dist/js'));
 });
+
+// 解决 gulp 合并文件后， 调用处bug
+
 
 
