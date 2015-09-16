@@ -1,8 +1,8 @@
 /*
 参考代码网址：
-http://www.ido321.com/1622.html
-http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename
-https://github.com/nimojs/gulp-book
+http://www.ido321.com/1622.html                                                 很不错的入门教程
+http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename             gulp 常见插件介绍
+https://github.com/nimojs/gulp-book                                             另一简单易懂的入门教程
  */
 // 获取 gulp
 var gulp = require('gulp'),
@@ -25,6 +25,9 @@ var gulp = require('gulp'),
     // 清除文件
     del = require('del');
 
+// 版本号
+var APP_VERSION = 'v.1.0';
+
 // 压缩 js 文件
 // 在命令行使用 gulp script 启动此任务
 gulp.task('script', function() {
@@ -34,7 +37,7 @@ gulp.task('script', function() {
         .pipe(uglify())
     // new: 压缩前修改压缩后新文件名字
         .pipe(rename( function(path){
-          path.basename += "_v.1.2"; 
+          path.basename += "_" + APP_VERSION; 
         } ) )
     // 3. 另存压缩后的文件
         .pipe(gulp.dest('dist/js'))
@@ -96,6 +99,39 @@ gulp.task('htmlmin', function () {
         .pipe(htmlmin(options))
         .pipe(gulp.dest('dist'));
 });
+
+// 清除文件任务
+gulp.task('clean', function(cb){
+   del(['dist/*']);
+   cb();
+});
+
+// 复制任务
+gulp.task('copy', function(){
+    copy('copy_file2.txt', 'dist/');
+});
+
+
+/*************************************************************
+ *                         组合任务      
+ ************************************************************/
+
+// js 压缩合并任务
+gulp.task('ugconjs', function(){
+    // 1. 找到文件
+    gulp.src(['js/concat_base.js', 'js/uglify_utils.js'])
+    // 2. 压缩文件
+        .pipe(uglify())
+    // 3. 合并成一个文件
+        .pipe( concat('all.js') )
+    // 4. 改名
+        .pipe(rename( function(path){
+          path.basename += "_" + APP_VERSION; 
+        } ) )
+    // 5. 另存压缩后的文件
+        .pipe(gulp.dest('dist/js'))
+});
+
 // 组合任务： 先替换html再压缩
 gulp.task('htmlcomp', function(){
   var options = {
@@ -112,17 +148,12 @@ gulp.task('htmlcomp', function(){
     minifyCSS: true//压缩页面CSS
   };
   gulp.src('canvas_test.html')
-      .pipe( htmlReplace({'js': 'js/all.js'}) )
+      .pipe( htmlReplace({'js': 'js/all_' + APP_VERSION + '.js'}) )
       .pipe( htmlmin(options) )
       .pipe( gulp.dest('dist/') );
 });
 
-// 清除文件任务
-gulp.task('clean', function(cb){
-   del(['dist/*'], cb)
-});
-
 // 默认任务
 gulp.task('default', ['clean'], function(){
- 
+    gulp.start('ugconjs', 'htmlcomp', 'copy', 'css', 'images');
 });
