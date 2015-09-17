@@ -108,7 +108,7 @@ gulp.task('clean', function(cb){
 
 // 复制任务
 gulp.task('copy', function(){
-    copy('copy_file2.txt', 'dist/');
+    copy(['copy_file2.txt', 'copy_file.txt'], 'dist/');
 });
 
 
