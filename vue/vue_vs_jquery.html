@@ -60,6 +60,8 @@
         .n_succ img{ margin:58px 0 14px; }
         .n_succ .fixed_bot{ margin: 45px auto 30px; }
 
+        .demo-panel h1{ font-size:18px; margin:10px; }
+
         /*注册流程1： 1.1版本 */
         .process-regs{ margin:10px 10px auto; width:80%; padding:10px; color:#fff; text-align:center; line-height: 100px; }
         .process-reg{ float:left; width:150px; height:100px; margin:10px 10px; background-color:#ccc; }
@@ -69,6 +71,29 @@
         .btn-radius.active{ display: block; }
         .fix{ *zoom:1; }
         .fix:after,.fix:before{ display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden; }
+        
+        /*购物列表2*/
+        .buy-list{ font-size:14px; margin:10px 20px; width:450px; height:400px; border:1px solid #ccc; }
+        .buy-list fieldset{ font-size:16px; border-bottom:1px solid #ccc; }
+        .buy-list legend{ padding:10px; }
+        .buy-list ul{ margin-bottom:40px; padding:20px; }
+        .buy-list li{ margin:15px 0px; height:30px; }
+        .buy-list .buy-list-f{ float:right; margin:0px 20px; width:150px; }
+        .buy-list-f .good-total{ float:left; margin:20px; color:red; }
+        .buy-list .good-label{ margin:0px 20px; }
+        .buy-list .good-set{ float:right; }
+        .good-set .set-min,
+        .good-set .set-count,
+        .good-set .set-add{ padding:5px; float:left; }
+        .good-set .set-min{ border:1px solid #ccc; border-right:0px; }
+        .good-set .set-count{ border:1px solid #ccc; width:5em; text-align:center; }
+        .good-set .set-add{ border:1px solid #ccc; border-left:0px; }
+        
+        .buy-list .confirm-list-f{ margin:0px 20px; }
+        .confirm-list-f .btn-l{ float:left; }
+        .confirm-list-f .btn-r{ float:right; }
+        .buy-list .con-l-label{ margin-right: 40px; }
+        .buy-list .con-l-count{ font-size:16px; font-weight: bold; }
 
       </style>
     </head>
@@ -240,7 +265,69 @@
 
       <div class="demo-panel" v-show="showType == 2">
         <h1 class="buy-list-demo">2.购物列表</h1>
-        
+
+        <form class="buy-list">
+          <fieldset>
+            <legend>购物车列表</legend>
+          </fieldset>
+
+          <ul>
+            <li>
+              <input type="checkbox" name="good1" />
+              <label class="good-label">商品1</label>
+              <div class="good-set">
+                <a href="javascript:void(0);" class="set-min">-</a>
+                <input type="text" class="set-count" value="1" />
+                <a href="javascript:void(0);" class="set-add">+</a>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" name="good2" />
+              <label class="good-label">商品2</label>
+              <div class="good-set">
+                <a href="javascript:void(0);" class="set-min">-</a>
+                <input type="text" class="set-count" value="1" />
+                <a href="javascript:void(0);" class="set-add">+</a>
+              </div>
+            </li>
+            <li>
+              <input type="checkbox" name="good3" />
+              <label class="good-label">商品3</label>
+              <div class="good-set">
+                <a href="javascript:void(0);" class="set-min">-</a>
+                <input type="text" class="set-count" value="1" />
+                <a href="javascript:void(0);" class="set-add">+</a>
+              </div>
+            </li>
+          </ul>
+
+           <div class="buy-list-f">
+              <div class="good-total">234.00</div>
+              <button class="radius-btn">去支付</button>
+          </div>  
+        </form>
+
+        <form class="buy-list">
+          <fieldset>
+            <legend>确认订单</legend>
+          </fieldset>
+
+          <ul>
+            <li>
+              <span class="con-l-label">商品2</span> X <span class="con-l-count">3</span>
+            </li>
+            <li>
+              <span class="con-l-label">商品3</span> X <span class="con-l-count">2</span>
+            </li>
+
+          </ul>
+
+           <div class="confirm-list-f">
+              <button class="radius-btn btn-l">返回</button>
+              <button class="radius-btn btn-r">提交订单</button>
+          </div>  
+        </form>
+
       </div>
 
       <div class="demo-panel" v-show="showType == 3">
@@ -262,7 +349,7 @@
           vm = new Vue({
             el: 'body',
             data: {
-              showType: 1.1,
+              showType: 2,
               demo1: {
                 'step': 1,
                 'regStep': 1
