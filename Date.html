@@ -16,7 +16,7 @@
       <div class='btn-list'>
         <button id="tomorrow" class="radius-btn">获取明天日期</button>
         <button id="format" class="radius-btn">获得格式为yyyymmdd的字符串</button>
-        <button id="isleap" class="radius-btn">判断是否为闰年</button>
+        <button id="isleap" class="radius-btn">判断今年是否为闰年</button>
       </div>
 
       <div>
@@ -25,6 +25,85 @@
 
       <script>
         
+        init();
+
+        function init() {
+          var tomorrowBtn = document.getElementById('tomorrow'),
+              formatBtn = document.getElementById('format'),
+              isleapBtn = document.getElementById('isleap');
+
+          tomorrowBtn.onclick = tomorrowEvent;
+          formatBtn.onclick = formatEvent;
+          isleap.onclick = isleapEvent;
+        }
+        // 获得明天的日期 格式：yyyy-mm-dd
+        function tomorrowEvent(){
+          var toDay = new Date(),
+              tomorrowDate,
+              tdTime = toDay.getTime(),
+              tomorrowTime;
+
+          var ONEDAY = 3600 * 24 * 1000;
+
+          tomorrowTime = tdTime + ONEDAY;
+          tomorrowDate = new Date(tomorrowTime);
+
+          alert( formateDate(tomorrowDate) );
+        }
+
+        // 格式化今天日期： yyyy-mm-dd
+        function formatEvent(){
+          var toDay = new Date();
+
+          alert( formateDate(toDay) );
+        }
+        function isleapEvent(){
+          var toDay = new Date(),
+              resStr = '';
+
+          resStr = isLeapYear( toDay.getFullYear() )?'是闰年':'不是闰年';
+          alert(resStr);
+        }
+
+        // 公用， 格式化日期
+        function formateDate(date){
+          function getDoubleNum(num){
+            if (num >= 10){
+              return num;
+            } else {
+              return '0' + num;
+            } 
+          }
+
+          var result = '',
+              date_y,
+              date_m,
+              date_d;
+          if (!!date){
+            try {
+              date_y = date.getFullYear();
+              date_m = getDoubleNum( date.getMonth() + 1 );
+              date_d = getDoubleNum( date.getDate() );
+              result = date_y + '-' + date_m + '-' + date_d;
+            }catch(e){
+              console.log(e);
+            }
+          }
+          return result;
+        }
+        // 公用， 判断是否为闰年
+        function isLeapYear(year){
+          var result = true,
+              yearCount = parseInt(year, 10);
+
+          if ( !isNaN(yearCount) && ( (yearCount % 4 === 0 && yearCount % 100 !== 0) || ( yearCount % 100 === 0 && yearCount % 400 === 0) ) ){
+            result = true;
+          } else{
+            result = false;
+          }
+          return result;
+        }
+
       </script>
 
     </body>

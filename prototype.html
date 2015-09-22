@@ -8,6 +8,21 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
 <html>
     <head>
       <meta name="renderer" content="webkit">
+      <!--x-ua-compatible(浏览器兼容模式)
+      仅对IE8+以效
+      告诉浏览器以什么版本的IE的兼容模式来显示网页
+      <meta http-equiv="X-UA-Compatible" content="IE=5" >
+      <meta http-equiv="X-UA-Compatible" content="IE=7" >
+      <meta http-equiv="X-UA-Compatible" content="IE=8" >
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+      其中最后一行是永远以最新的IE版本模式来显示网页的。
+      另外加上Emulate模式
+      <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" >
+      <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" >
+      Emulate模式后则更重视<!DOCTYPE>
+      （细心的人会注意到，用IE9去访问带有x-ua-compatible的页面时是不会出现兼容视图按钮的）
+      <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+      -->
       <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
       <meta charset="utf-8">
       <title>
@@ -33,9 +48,6 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         Foo.__proto__.age = 10;
 
         // alert(Foo.age);//10 
-
-        
-
 
         // 实现继承的简单方法
         function object(o){

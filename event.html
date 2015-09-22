@@ -70,10 +70,16 @@
           }
           // demo2();
           
-          // 事件浏览器兼容 研究, utils.js代码 深究
-          function demo3() {
-
-          }
+          // 浏览器关闭前事件
+          // window.onbeforeunload = function (e) {
+          //   e = e || window.event; 
+          //   // For IE and Firefox prior to version 4 
+          //   if (e) { 
+          //     e.returnValue = '确定退出吗？'; 
+          //   } 
+          //   // For Safari 
+          //   return '确定退出吗？'; 
+          // };
 
         </script>
 
