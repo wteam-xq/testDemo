@@ -106,9 +106,10 @@ gulp.task('clean', function(cb){
    cb();
 });
 
-// 复制任务
-gulp.task('copy', function(){
+// 复制任务(连续复制多个文件时，最好加上回调函数)
+gulp.task('copy', function(cb){
     copy(['copy_file2.txt', 'copy_file.txt'], 'dist/');
+    cb();
 });
 
 

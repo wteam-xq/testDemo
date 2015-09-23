@@ -266,35 +266,38 @@
       <div class="demo-panel" v-show="showType == 2">
         <h1 class="buy-list-demo">2.购物列表</h1>
 
-        <form class="buy-list">
+        <form class="buy-list" id="buyStep1">
           <fieldset>
             <legend>购物车列表</legend>
           </fieldset>
 
           <ul>
-            <li>
+            <li data-price="45">
               <input type="checkbox" name="good1" />
               <label class="good-label">商品1</label>
+              <label>45元</label>
               <div class="good-set">
-                <a href="javascript:void(0);" class="set-min">-</a>
+                <a href="javascript:void(0);" class="set-min">&nbsp;</a>
                 <input type="text" class="set-count" value="1" />
                 <a href="javascript:void(0);" class="set-add">+</a>
               </div>
             </li>
-            <li>
+            <li data-price="56">
               <input type="checkbox" name="good2" />
               <label class="good-label">商品2</label>
+              <label>56元</label>
               <div class="good-set">
-                <a href="javascript:void(0);" class="set-min">-</a>
+                <a href="javascript:void(0);" class="set-min">&nbsp;</a>
                 <input type="text" class="set-count" value="1" />
                 <a href="javascript:void(0);" class="set-add">+</a>
               </div>
             </li>
-            <li>
+            <li data-price="30">
               <input type="checkbox" name="good3" />
               <label class="good-label">商品3</label>
+              <label>30元</label>
               <div class="good-set">
-                <a href="javascript:void(0);" class="set-min">-</a>
+                <a href="javascript:void(0);" class="set-min">&nbsp;</a>
                 <input type="text" class="set-count" value="1" />
                 <a href="javascript:void(0);" class="set-add">+</a>
               </div>
@@ -302,12 +305,12 @@
           </ul>
 
            <div class="buy-list-f">
-              <div class="good-total">234.00</div>
+              <div class="good-total">131.00</div>
               <button class="radius-btn">去支付</button>
           </div>  
         </form>
 
-        <form class="buy-list">
+        <form class="buy-list" id="buyStep2">
           <fieldset>
             <legend>确认订单</legend>
           </fieldset>
@@ -374,6 +377,9 @@
 
           // 注册相关 代码
           // registInit();
+          
+          // 购买列表相关代码
+          buyListInit(); 
 
           function registInit(){
             var $regDemo = $('#regDemo'),
@@ -435,8 +441,69 @@
                 $regDemo.find('.btn-radius:first').show();
               }
             }
+          }
+
+          function buyListInit(){
+            var $buyList = $('.buy-list'),
+                $buyStep1 = $('#buyStep1');
+
+            $buyList.last().hide();
+            $buyStep1.find('.set-add').on('click', addGoodCount);
+            $buyStep1.find('.set-min').on('click', minGoodCount);
+
+            function addGoodCount(e){
+              var $this = $(this),
+                  $input = $this.prev('input'),
+                  $li = $this.parents('li'),
+                  $minBtn = $this.siblings('.set-min');
+
+              var inputVal = parseInt($input.val(), 10);
+              inputVal++;
+
+              if ( inputVal > 1 ){
+                $minBtn.html('-');
+              }
+              $input.val(inputVal);
+              // 更新总价格
+              refreshPrice();
+            }
+
+            function minGoodCount(e){
+              var $this = $(this),
+                  $input = $this.next('input'),
+                  $li = $this.parents('li'),
+                  $addBtn = $this.siblings('.set-add');
+
+              var inputVal = parseInt($input.val(), 10);
+              if (inputVal <= 1) {
+                return false;
+              }
+              inputVal--;
+              if (inputVal <= 1) {
+                $this.html('&nbsp;');
+              }
+              $input.val(inputVal);
+              // 更新总价格
+              refreshPrice();
+            }
+
+            function refreshPrice(){
+              var totalPrice = 0.00,
+                  $ul = $buyStep1.find('ul');
+
+              $ul.find('li').each(function(i, n){
+                var $li = $(n),
+                    price = parseFloat( $li.attr('data-price') ),
+                    count = parseInt( $li.find('.set-count').val(), 10 );
+
+                totalPrice += price * count;
+                $buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
+              });
+
+            }
 
           }
+
         });
       </script>
     </body>
