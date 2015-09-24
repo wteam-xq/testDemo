@@ -66,7 +66,7 @@
         .process-regs{ margin:10px 10px auto; width:80%; padding:10px; color:#fff; text-align:center; line-height: 100px; }
         .process-reg{ float:left; width:150px; height:100px; margin:10px 10px; background-color:#ccc; }
         .process-reg.active{ background-color:#FF6F3D; }
-        .btn-radius{ border-radius: 5px; cursor:pointer; padding:5px; margin: 5px; background-color: #eee; }
+        .btn-radius{ display:none; border-radius: 5px; cursor:pointer; padding:5px; margin: 5px; background-color: #eee; }
         .btn-radius:hover{ background-color:#ddd; }
         .btn-radius.active{ display: block; }
         .fix{ *zoom:1; }
@@ -100,14 +100,16 @@
 
     <body> 
       <div class="btn-list">
-        <button class="radius-btn" v-on="click: showType = 1">注册流程</button>
-        <button class="radius-btn" v-on="click: showType = 1.1">注册流程1.1</button>
-        <button class="radius-btn" v-on="click: showType = 2">购物列表</button>
-        <button class="radius-btn" v-on="click: showType = 3">提交表单</button>
+        <button class="radius-btn" v-on="click: showType = 1">注册流程(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 1.1">注册流程(jq)</button>
+        <button class="radius-btn" v-on="click: showType = 2">购物列表(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 2.1">购物列表(jq)</button>
+        <button class="radius-btn" v-on="click: showType = 3">提交表单(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 3.1">提交表单(jq)</button>
       </div>
 
       <div class="demo-panel" v-show="showType == 1">
-        <h1 class="register-demo">1.注册流程</h1>
+        <h1 class="register-demo">1.注册流程(vue)</h1>
         <!-- 注册流程 -->
         <div class="layout">
           <div class="n-frame">
@@ -246,26 +248,30 @@
       </div>
 
       <div class="demo-panel" v-show="showType == 1.1" id="regDemo" >
-        <h1>购物流程：博文简单版本, 灰常粗糙！</h1>
+        <h1>1.1注册流程（jq） </h1>
         <div class="process-regs fix">
-          <div class="process-reg" id="proReg1" v-class="active: demo1.regStep == 1">填写手机号</div>
-          <div class="process-reg" id="proReg2" v-class="active: demo1.regStep == 2">输入验证码</div>
-          <div class="process-reg" id="proReg3" v-class="active: demo1.regStep == 3">设置密码</div>
-          <div class="process-reg" id="proReg4" v-class="active: demo1.regStep == 4">立即注册</div>
+          <div class="process-reg" id="proReg1" class="active" >填写手机号</div>
+          <div class="process-reg" id="proReg2" >输入验证码</div>
+          <div class="process-reg" id="proReg3" >设置密码</div>
+          <div class="process-reg" id="proReg4" >立即注册</div>
         </div>
 
         <div class="btn-list">
-          <button class="btn-radius" id="stepBtn1" v-on="click: demo1.regStep = 2" v-show="demo1.regStep == 1">提交手机号</button>
-          <button class="btn-radius" id="stepBtn2" v-on="click: demo1.regStep = 3" v-show="demo1.regStep == 2">提交验证码</button>
-          <button class="btn-radius" id="stepBtn3" v-on="click: demo1.regStep = 4" v-show="demo1.regStep == 3">提交密码</button>
-          <button class="btn-radius" id="stepBtn4" v-on="click: demo1.regStep = 1" v-show="demo1.regStep == 4">确认注册成功</button>
+          <button class="active btn-radius" id="stepBtn1" >提交手机号</button>
+          <button class="btn-radius" id="stepBtn2" >提交验证码</button>
+          <button class="btn-radius" id="stepBtn3" >提交密码</button>
+          <button class="btn-radius" id="stepBtn4" >确认注册成功</button>
         </div>
 
       </div>
-
+      
       <div class="demo-panel" v-show="showType == 2">
-        <h1 class="buy-list-demo">2.购物列表</h1>
+        <h1 class="buy-list-demo">2.购物列表(vue)</h1>
 
+      </div>
+
+      <div class="demo-panel" v-show="showType == 2.1">
+        <h1 class="buy-list-demo">2.1购物列表(jq)</h1>
         <form class="buy-list" id="buyStep1">
           <fieldset>
             <legend>购物车列表</legend>
@@ -273,7 +279,7 @@
 
           <ul>
             <li data-price="45">
-              <input type="checkbox" name="good1" />
+              <input type="checkbox" name="good1" class="sel_box" />
               <label class="good-label">商品1</label>
               <label>45元</label>
               <div class="good-set">
@@ -283,7 +289,7 @@
               </div>
             </li>
             <li data-price="56">
-              <input type="checkbox" name="good2" />
+              <input type="checkbox" name="good2" class="sel_box"/>
               <label class="good-label">商品2</label>
               <label>56元</label>
               <div class="good-set">
@@ -293,7 +299,7 @@
               </div>
             </li>
             <li data-price="30">
-              <input type="checkbox" name="good3" />
+              <input type="checkbox" name="good3" class="sel_box" />
               <label class="good-label">商品3</label>
               <label>30元</label>
               <div class="good-set">
@@ -305,11 +311,10 @@
           </ul>
 
            <div class="buy-list-f">
-              <div class="good-total">131.00</div>
-              <button class="radius-btn">去支付</button>
+              <div class="good-total">0.00</div>
+              <button class="radius-btn" id="goBuy">去支付</button>
           </div>  
         </form>
-
         <form class="buy-list" id="buyStep2">
           <fieldset>
             <legend>确认订单</legend>
@@ -326,16 +331,18 @@
           </ul>
 
            <div class="confirm-list-f">
-              <button class="radius-btn btn-l">返回</button>
-              <button class="radius-btn btn-r">提交订单</button>
+              <button class="radius-btn btn-l" id="goBack">返回</button>
+              <button class="radius-btn btn-r" id="submitOrder">提交订单</button>
           </div>  
         </form>
-
       </div>
 
       <div class="demo-panel" v-show="showType == 3">
-        <h1 class="form-demo">3.提交表单</h1>
-        
+        <h1 class="form-demo">3.提交表单(vue)</h1>
+      </div>
+
+      <div class="demo-panel" v-show="showType == 3.1">
+        <h1 class="form-demo">3.1提交表单(jq)</h1>
       </div>
 
       <script type="text/javascript" src="./vue.js"></script>
@@ -352,7 +359,7 @@
           vm = new Vue({
             el: 'body',
             data: {
-              showType: 2,
+              showType: 2.1,
               demo1: {
                 'step': 1,
                 'regStep': 1
@@ -376,11 +383,12 @@
         $(function(){
 
           // 注册相关 代码
-          // registInit();
+          registInit();
           
           // 购买列表相关代码
           buyListInit(); 
 
+          // 1.1注册流程jq实现
           function registInit(){
             var $regDemo = $('#regDemo'),
                 $stepBtn1 = $regDemo.find('#stepBtn1'),
@@ -443,19 +451,30 @@
             }
           }
 
+          // 2.1 jq 实现购物车功能
           function buyListInit(){
             var $buyList = $('.buy-list'),
-                $buyStep1 = $('#buyStep1');
+                $buyStep1 = $('#buyStep1'),
+                $buyStep2 = $('#buyStep2');
 
             $buyList.last().hide();
             $buyStep1.find('.set-add').on('click', addGoodCount);
             $buyStep1.find('.set-min').on('click', minGoodCount);
+            $buyStep1.find('.set-count').on('blur', inputBlur);
+            $buyStep1.find('#goBuy').on('click', confirmOrder);
+            $buyStep1.find('.sel_box').on('click', selGood);
 
+            $buyStep2.find('#goBack').on('click', goBack);
+
+            function selGood(e) {
+              refreshPrice();
+            }
             function addGoodCount(e){
               var $this = $(this),
                   $input = $this.prev('input'),
                   $li = $this.parents('li'),
-                  $minBtn = $this.siblings('.set-min');
+                  $minBtn = $this.siblings('.set-min'),
+                  $selBox = $li.find('.sel_box');
 
               var inputVal = parseInt($input.val(), 10);
               inputVal++;
@@ -464,15 +483,19 @@
                 $minBtn.html('-');
               }
               $input.val(inputVal);
-              // 更新总价格
-              refreshPrice();
+              if ( !$selBox.is(':checked') ){
+                $selBox.trigger('click');
+              } else {
+                refreshPrice();
+              }
             }
 
             function minGoodCount(e){
               var $this = $(this),
                   $input = $this.next('input'),
                   $li = $this.parents('li'),
-                  $addBtn = $this.siblings('.set-add');
+                  $addBtn = $this.siblings('.set-add'),
+                  $selBox = $li.find('.sel_box');
 
               var inputVal = parseInt($input.val(), 10);
               if (inputVal <= 1) {
@@ -483,8 +506,11 @@
                 $this.html('&nbsp;');
               }
               $input.val(inputVal);
-              // 更新总价格
-              refreshPrice();
+              if ( !$selBox.is(':checked') ){
+                $selBox.trigger('click');
+              } else {
+                refreshPrice();
+              }
             }
 
             function refreshPrice(){
@@ -496,10 +522,53 @@
                     price = parseFloat( $li.attr('data-price') ),
                     count = parseInt( $li.find('.set-count').val(), 10 );
 
-                totalPrice += price * count;
-                $buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
-              });
+                if ( $li.find('.sel_box').is(':checked') ) {
+                  totalPrice += price * count;
+                }
 
+              });
+              $buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
+            }
+            // 保证输入框输入为数字
+            function inputBlur(e){
+              var $this = $(this),
+                  inputVal = $this.val(),
+                  $selBox = $this.parents('li').find('.sel_box');
+                  $minBtn = $this.siblings('.set-min');
+
+              // Number() parseInt() 区别，N 判断整个整数，而p只判断前半部分数字
+              // 如：Number('78n') -> NaN, parseInt('78n') -> 78
+              if ( isNaN( Number(inputVal) ) ) {
+                $this.val(1);
+                $minBtn.html('-');
+                alert('价格必须为数字!');
+                return false;
+              }
+              if ( inputVal > 1 ){
+                $minBtn.html('-');
+              } else {
+                $minBtn.html('&nbsp;');
+              }
+              if ( !$selBox.is(':checked') ){
+                $selBox.trigger('click');
+              } else {
+                refreshPrice();
+              }
+            }
+            // 确认订单步骤
+            function confirmOrder(){
+              $buyStep1.hide();
+
+              
+              $buyStep2.show();
+
+              return false;
+            }
+            function goBack(){
+              $buyStep2.hide();
+              $buyStep1.show();
+
+              return false;
             }
 
           }

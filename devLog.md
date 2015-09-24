@@ -41,6 +41,10 @@
 
 * 实现弹出框然后 用css三角形绘制，项目弹出框bug修复。
 
+### 遗留bug:
+1.cookies 在chrome下能设置成功，但无法删除Bug;(webStorage)
+2.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
+
 ### 设计本项目代码的笔试题：
 
 * 2014面试题大全（141101 更新）：
