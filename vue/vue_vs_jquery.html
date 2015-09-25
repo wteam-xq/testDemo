@@ -250,7 +250,7 @@
       <div class="demo-panel" v-show="showType == 1.1" id="regDemo" >
         <h1>1.1注册流程（jq） </h1>
         <div class="process-regs fix">
-          <div class="process-reg" id="proReg1" class="active" >填写手机号</div>
+          <div class="process-reg active" id="proReg1">填写手机号</div>
           <div class="process-reg" id="proReg2" >输入验证码</div>
           <div class="process-reg" id="proReg3" >设置密码</div>
           <div class="process-reg" id="proReg4" >立即注册</div>
@@ -377,16 +377,155 @@
           });
 
           xq.vm = vm;
+
         }
 
         // jquery 代码
         $(function(){
 
+          // 模块化js写法(2.1 )
+          var BuyList = {
+            // 头部定义模块变量
+            $buyList: null,
+            $buyStep1: null,
+            $buyStep2: null,
+            init: function(){
+              var This = this;
+
+              this.$buyList = $('.buy-list');
+              this.$buyStep1 = $('#buyStep1');
+              this.$buyStep2 = $('#buyStep2');
+
+              this.$buyList.last().hide();
+              this.initEvt();
+            },
+            refreshPrice: function(){
+              var totalPrice = 0.00,
+                  $ul = this.$buyStep1.find('ul');
+
+              $ul.find('li').each(function(i, n){
+                var $li = $(n),
+                    price = parseFloat( $li.attr('data-price') ),
+                    count = parseInt( $li.find('.set-count').val(), 10 );
+
+                if ( $li.find('.sel_box').is(':checked') ) {
+                  totalPrice += price * count;
+                }
+
+              });
+              this.$buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
+            },
+            testFn: function(){
+              var a = 0;
+              console.log(This.a);
+            },
+            initEvt: function(){
+              var This = this;
+
+              this.$buyStep1.find('.sel_box').on('click', selGood);
+              this.$buyStep1.find('.set-add').on('click', addGoodCount);
+              this.$buyStep1.find('.set-min').on('click', minGoodCount);
+              this.$buyStep1.find('.set-count').on('blur', inputBlur);
+              this.$buyStep1.find('#goBuy').on('click', confirmOrder);
+              
+              this.$buyStep2.find('#goBack').on('click', goBack);
+
+              function selGood(){
+                This.refreshPrice();
+                This.testFn();
+              }
+              function addGoodCount(e){
+                var $this = $(this),
+                    $input = $this.prev('input'),
+                    $li = $this.parents('li'),
+                    $minBtn = $this.siblings('.set-min'),
+                    $selBox = $li.find('.sel_box');
+
+                var inputVal = parseInt($input.val(), 10);
+                inputVal++;
+
+                if ( inputVal > 1 ){
+                  $minBtn.html('-');
+                }
+                $input.val(inputVal);
+                if ( !$selBox.is(':checked') ){
+                  $selBox.trigger('click');
+                } else {
+                  This.refreshPrice();
+                }
+              }
+
+              function minGoodCount(e){
+                var $this = $(this),
+                    $input = $this.next('input'),
+                    $li = $this.parents('li'),
+                    $addBtn = $this.siblings('.set-add'),
+                    $selBox = $li.find('.sel_box');
+
+                var inputVal = parseInt($input.val(), 10);
+                if (inputVal <= 1) {
+                  return false;
+                }
+                inputVal--;
+                if (inputVal <= 1) {
+                  $this.html('&nbsp;');
+                }
+                $input.val(inputVal);
+                if ( !$selBox.is(':checked') ){
+                  $selBox.trigger('click');
+                } else {
+                  This.refreshPrice();
+                }
+              }
+
+              // 保证输入框输入为数字
+              function inputBlur(e){
+                var $this = $(this),
+                    inputVal = $this.val(),
+                    $selBox = $this.parents('li').find('.sel_box');
+                    $minBtn = $this.siblings('.set-min');
+
+                // Number() parseInt() 区别，N 判断整个整数，而p只判断前半部分数字
+                // 如：Number('78n') -> NaN, parseInt('78n') -> 78
+                if ( isNaN( Number(inputVal) ) ) {
+                  $this.val(1);
+                  $minBtn.html('-');
+                  alert('价格必须为数字!');
+                  return false;
+                }
+                if ( inputVal > 1 ){
+                  $minBtn.html('-');
+                } else {
+                  $minBtn.html('&nbsp;');
+                }
+                if ( !$selBox.is(':checked') ){
+                  $selBox.trigger('click');
+                } else {
+                  This.refreshPrice();
+                }
+              }
+              // 确认订单步骤
+              function confirmOrder(){
+                This.$buyStep1.hide();
+
+                This.$buyStep2.show();
+
+                return false;
+              }
+              function goBack(){
+                This.$buyStep2.hide();
+                This.$buyStep1.show();
+
+                return false;
+              }
+            }
+          };
+
           // 注册相关 代码
           registInit();
           
           // 购买列表相关代码
-          buyListInit(); 
+          BuyList.init(); 
 
           // 1.1注册流程jq实现
           function registInit(){
