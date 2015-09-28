@@ -82,45 +82,6 @@ var EventUtil = {
   }
 };
 
-// cookies管理类
-var CookieUtil = {
-  get: function (name){
-    var cookie_name = encodeURIComponent(name) + "=",
-    cookie_start = document.cookie.indexOf(cookie_name),
-    cookie_value = null;
-
-    if (cookie_start > -1) {
-      var cookie_end = document.cookie.indexOf(";", cookie_start);
-      if (cookie_end == -1) {
-        cookie_end = document.cookie.length;
-      }
-      cookie_value = decodeURIComponent(document.cookie.substring(cookie_start + cookie_name.length, cookie_end));
-    }
-    return cookie_value;
-  },
-  set: function(name, value, expires, path, domain, secure) {
-    var cookie_text = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-    if (expires instanceof Date) {
-      cookie_text += "; expires=" + expires.toGMTString(); 
-    } else{
-      cookie_text += "; expires=" + new Date().toGMTString(); 
-    }
-    if (path) {
-      cookie_text += "; path=" + path;
-    }
-    if (domain) {
-      cookie_text += "; domain=" + domain;
-    }
-    if (secure) {
-      cookie_text += "; secure";
-    }
-    document.cookie = cookie_text;
-  },
-  unset: function (name, path, domain, secure) {
-    this.set(name, "", new Date(), path, domain, secure);
-  }
-};
-
 // 根据节点类型、样式名 获得节点列表
 function getElementsByClassName(node_type, class_name){
   var i, j, j_len, len, n_item, node_list, item_classes, r = [];

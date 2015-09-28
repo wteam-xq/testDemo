@@ -8,8 +8,9 @@
         </title>
 
         <style>
-            .bg{background-color:#ff4a00; height:100px; color:#FFF; font-size:14px;}
+            .bg{ background-color:#ff4a00; height:100px; color:#FFF; font-size:14px; margin:10px 0px 0px 0px;}
             .time-val{color:'#fff';font-size:30px;}
+            .count_down{ font-size:20px; line-height: 100px; width:100px; margin:0 auto; text-align: center; }
         </style>
     </head>
     
@@ -21,9 +22,9 @@
             <input type="button" class='on' id='timeBtn' value='启动'>
             <input type="button" id='resetTimeBtn' value='复位时间'>
         </div>
-        <p>
-            我比较无聊， 尝试写一个简单的倒计时器
-        </p>
+        
+        <div id="con_apa2" , class='bg'>
+        </div>
 
         <script src="lib/jquery-1.10.2.min.js", type="text/javascript">
         </script>
@@ -31,12 +32,17 @@
         <script>
             $(function() {
 
-                var val_time = 60;
-                var timer = null;
-                var flag = true;
+                // 计时器写法1
+                function countDown1_init() {
+                  var val_time = 60;
+                  var timer = null;
+                  var flag = true;
 
-                $('#time_val').text(val_time);
-                $('#timeBtn').on('click', function(){
+                  $('#time_val').text(val_time);
+                  $('#timeBtn').on('click', startOrStopTime)
+                  $('#resetTimeBtn').on('click', resetTime)
+                  // 启动、关闭时间
+                  function startOrStopTime(){
                     $this = $(this);
                     if ( $this.hasClass('on') ){
                       $this.val('关闭');
@@ -49,23 +55,188 @@
                       $this.removeClass('off').addClass('on');
                       flag = false;
                     }
-                })
-                $('#resetTimeBtn').on('click', function(){
-                  
-                  val_time = 60;
-                  $('#time_val').text(val_time);
-                  
-                })
-
-                function updateTime(){
-                  if (val_time == 0 || !flag) {
-                    clearTimeout(timer);
-                    return;
                   }
-                  val_time--;
-                  $('#time_val').text(val_time);
-                  timer = setTimeout(updateTime, 1000);
+                  // 复位时间
+                  function resetTime(){
+                    val_time = 60;
+                    $('#time_val').text(val_time);
+                  }
+                  function updateTime(){
+                    if (val_time == 0 || !flag) {
+                      clearTimeout(timer);
+                      return;
+                    }
+                    val_time--;
+                    $('#time_val').text(val_time);
+                    timer = setTimeout(updateTime, 1000);
+                  }
                 }
+
+                var $countDownWrap = $('#con_apa2');
+                /**
+                 * 同事代码，后续优化之
+                 * 3分钟的倒计时(计时器写法2)： 实际项目中， 计时器与业务逻辑解耦优雅实现
+                 */
+                var CountDown2 = {
+                    //倒计时的总时间
+                    totalTime : 3 * 60,
+                    count : 0,
+                    //启动倒计时的初始时间
+                    startTime : 0,
+                    // 计时器的速度
+                    time : 1000,
+                    countDownObj : null,
+                    //标识倒计时是否已经开始
+                    starting : false,
+                    /**
+                     * 初始化
+                     * 初始化节点，需要传父节点对象作为参数
+                     * @param {object} parent 计时器容器节点，jq对象
+                     */
+                    init : function(parent) {
+                        if (parent && parent.length > 0) {
+                            this.initDom(parent);
+                        }
+                        //标识倒计时已经开始了
+                        this.starting = true;
+                    },
+                    min1Obj : null,
+                    min2Obj : null,
+                    secObj : null,
+                    initDom : function(parent) {
+                        var dom_str = '',
+                            $countDownDom = null;
+
+                        dom_str = '<div class="count_down">' +
+                                      '<span class="min1">0</span>' +
+                                      '<span class="min2">3</span>' +
+                                      '<span class="separate">:</span>' +
+                                      '<span class="sec">00</span>' +
+                                  '</div>';
+                        $countDownDom = $(dom_str);
+
+                        parent.append($countDownDom);
+
+                        this.countDownObj = parent.find('.count_down');
+
+                        this.min1Obj = this.countDownObj.find('.min1');
+                        this.min2Obj = this.countDownObj.find('.min2');
+                        this.secObj = this.countDownObj.find('.sec');
+                    },
+                    callback : null,
+                    start : function(callback) {
+                        var This = this, date = new Date();
+
+                        this.callback = callback;
+
+                        this.startTime = date.getTime();
+
+                        window.setTimeout(function() {
+                            This.startTimer();
+                        }, this.time);
+                    },
+                    /**
+                     * 开始 倒计时
+                     */
+                    startTimer : function() {
+                        var This = this;
+
+                        if (this.count >= this.totalTime) {//到时间了
+                            if ( typeof this.callback === 'function') {
+                                this.callback();
+                            }
+
+                            this.reset();
+
+                            this.startTimer();
+
+                            return false;
+                        }
+
+                        this.updateDom();
+
+                        this.count += 1;
+
+                        this.timeout = window.setTimeout(function() {
+                            This.startTimer();
+                        }, this.time);
+                    },
+                    stopTimer : function() {
+                        window.clearTimeout(this.timeout);
+                    },
+                    /**
+                     * 重新设置 初始的时间
+                     */
+                    reset : function() {
+                        this.count = 0;
+
+                        this.startTime = new Date().getTime();
+
+                        this.min1Obj.html('0');
+                        this.min2Obj.html('3');
+                        this.secObj.html('00');
+                    },
+                    /**
+                     * 更新 节点
+                     */
+                    updateDom : function() {
+                        var secValue;
+
+                        if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 3) {
+                            this.min2Obj.html('2');
+                            this.secObj.html('59');
+                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 2) {
+                            secValue = Number(this.secObj.html()) - 1;
+
+                            if (secValue <= 0) {//01:59
+                                secValue = '59';
+                                this.min2Obj.html(1);
+                            }
+
+                            if (secValue.toString().length === 1) {//将 1 改为 01
+                                secValue = '0' + secValue;
+                            }
+
+                            this.secObj.html(secValue);
+                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 1) {
+                            secValue = Number(this.secObj.html()) - 1;
+
+                            if (secValue <= 0) {//00:59
+                                secValue = '59';
+                                this.min2Obj.html(0);
+                            }
+
+                            if (secValue.toString().length === 1) {//将 1 改为 01
+                                secValue = '0' + secValue;
+                            }
+
+                            this.secObj.html(secValue);
+                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 0) {
+                            secValue = Number(this.secObj.html()) - 1;
+
+                            if (secValue <= 0) {//00:00
+                                secValue = '00';
+                                this.min2Obj.html(0);
+                            }
+
+                            if (secValue.toString().length === 1) {//将 1 改为 01
+                                secValue = '0' + secValue;
+                            }
+
+                            this.secObj.html(secValue);
+                        }
+                    }
+                }; 
+                // 时间到了后的业务函数
+                function timeOutFn(){
+                  alert('倒计时间到，处理业务吧！');
+                }
+
+                // 计时器1启动(updateDom 方法待优化)
+                countDown1_init();
+                // 计时器2启动
+                CountDown2.init($countDownWrap);
+                CountDown2.start(timeOutFn);;
             })
         </script>
     </body>

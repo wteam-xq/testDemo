@@ -38,7 +38,7 @@
 
 
       <!-- 引入公用自定义文件，其包含cookie封装对象 -->
-      <script type="text/javascript" src="utils.js"></script>
+      <script type="text/javascript" src="utils/cookieUtil.js"></script>
       <script>
         
         var xq = {};
@@ -110,6 +110,7 @@
           function cookieSetItem(){
             CookieUtil.set("xq", "sb");
             // setCookie("xq", "sb", 24, "/");
+            // CookieUtil2.set("xq", "sb");
             if (document.cookie != '') {
               c_btn_tips.innerHTML = '设置cookie成功！';
             }else{
@@ -131,6 +132,7 @@
           function showCookie() {
             var _value = CookieUtil.get("xq"),
             // var _value = getCookieValue("xq"),
+            // var _value = CookieUtil2.get("xq"),
             c_obj = {
               name: "xq",
               value: _value
