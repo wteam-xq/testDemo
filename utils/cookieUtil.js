@@ -68,6 +68,28 @@ function toTimeSpan(val) {
   return parseFloat(val) || 0;
 }
 
+// 后续放入 公共工具类
+var Base = {
+  /**
+ * 把源对象的属性扩展到目标对象
+ * @method extend
+ * @param {Any} target 目标对象
+ * @param {Any*} [source] 源对象。若有同名属性，则后者覆盖前者
+ * @return {Any} 目标对象
+ */
+  extend: function(target){
+    if (target == null) { throw new Error('target cannot be null'); }
+    var i = 0, len = arguments.length, p, src;
+    while (++i < len) {
+      src = arguments[i];
+      if (src != null) {
+        for (p in src) { target[p] = src[p]; }
+      }
+    }
+
+    return target;
+  }
+}; 
 
 var CookieUtil2 = {
   /**
@@ -84,7 +106,7 @@ var CookieUtil2 = {
    *   @param {Function(value)} [o.encode=encodeURIComponent] 编码函数
    */
   set: function (name, value, o) {
-    o = base.extend({
+    o = Base.extend({
       encode: encodeURIComponent
     }, o);
 
@@ -115,7 +137,7 @@ var CookieUtil2 = {
    * @return {String} cookie值
    */
   get: function(name, o) {
-    o = base.extend({
+    o = Base.extend({
       encode: encodeURIComponent,
       decode: decodeURIComponent
     }, o);

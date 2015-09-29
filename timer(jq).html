@@ -100,16 +100,14 @@
                         //标识倒计时已经开始了
                         this.starting = true;
                     },
-                    min1Obj : null,
-                    min2Obj : null,
+                    minObj : null,
                     secObj : null,
                     initDom : function(parent) {
                         var dom_str = '',
                             $countDownDom = null;
 
                         dom_str = '<div class="count_down">' +
-                                      '<span class="min1">0</span>' +
-                                      '<span class="min2">3</span>' +
+                                      '<span class="min">03</span>' +
                                       '<span class="separate">:</span>' +
                                       '<span class="sec">00</span>' +
                                   '</div>';
@@ -119,8 +117,7 @@
 
                         this.countDownObj = parent.find('.count_down');
 
-                        this.min1Obj = this.countDownObj.find('.min1');
-                        this.min2Obj = this.countDownObj.find('.min2');
+                        this.minObj = this.countDownObj.find('.min');
                         this.secObj = this.countDownObj.find('.sec');
                     },
                     callback : null,
@@ -139,7 +136,7 @@
                      * 开始 倒计时
                      */
                     startTimer : function() {
-                        var This = this;
+                        var This = this, timeObj = null;
 
                         if (this.count >= this.totalTime) {//到时间了
                             if ( typeof this.callback === 'function') {
@@ -153,9 +150,10 @@
                             return false;
                         }
 
-                        this.updateDom();
-
                         this.count += 1;
+                        timeObj = this.calculateTime(this.totalTime - this.count);
+                        // 根据数字更新 节点信息, 分钟 跟 秒数各一个变量即可
+                        this.updateDom(timeObj);
 
                         this.timeout = window.setTimeout(function() {
                             This.startTimer();
@@ -163,6 +161,34 @@
                     },
                     stopTimer : function() {
                         window.clearTimeout(this.timeout);
+                    },
+                    calculateTime: function(sec){
+                      // 根据传入的秒数计算出 分钟及秒数
+                      var min, sec, result;
+                      if (sec == 0){
+                        result = {
+                          'min': '00',
+                          'sec': '00'
+                        };
+                      }
+                      min = Math.floor( sec/60 );
+                      sec = sec % 60;
+                      result = {
+                        'min': doubleNum(min),
+                        'sec': doubleNum(sec)
+                      };
+
+                      return result;
+
+                      function doubleNum(num){
+                        var rel = 0;
+                        if (num >= 10) {
+                          rel = num;
+                        }else {
+                          rel = '0' + num;
+                        }
+                        return rel;
+                      }
                     },
                     /**
                      * 重新设置 初始的时间
@@ -172,59 +198,15 @@
 
                         this.startTime = new Date().getTime();
 
-                        this.min1Obj.html('0');
-                        this.min2Obj.html('3');
+                        this.minObj.html('00');
                         this.secObj.html('00');
                     },
                     /**
                      * 更新 节点
                      */
-                    updateDom : function() {
-                        var secValue;
-
-                        if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 3) {
-                            this.min2Obj.html('2');
-                            this.secObj.html('59');
-                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 2) {
-                            secValue = Number(this.secObj.html()) - 1;
-
-                            if (secValue <= 0) {//01:59
-                                secValue = '59';
-                                this.min2Obj.html(1);
-                            }
-
-                            if (secValue.toString().length === 1) {//将 1 改为 01
-                                secValue = '0' + secValue;
-                            }
-
-                            this.secObj.html(secValue);
-                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 1) {
-                            secValue = Number(this.secObj.html()) - 1;
-
-                            if (secValue <= 0) {//00:59
-                                secValue = '59';
-                                this.min2Obj.html(0);
-                            }
-
-                            if (secValue.toString().length === 1) {//将 1 改为 01
-                                secValue = '0' + secValue;
-                            }
-
-                            this.secObj.html(secValue);
-                        } else if (Number(this.min1Obj.html()) === 0 && Number(this.min2Obj.html()) === 0) {
-                            secValue = Number(this.secObj.html()) - 1;
-
-                            if (secValue <= 0) {//00:00
-                                secValue = '00';
-                                this.min2Obj.html(0);
-                            }
-
-                            if (secValue.toString().length === 1) {//将 1 改为 01
-                                secValue = '0' + secValue;
-                            }
-
-                            this.secObj.html(secValue);
-                        }
+                    updateDom : function(timeObj) {
+                        this.minObj.html(timeObj.min);
+                        this.secObj.html(timeObj.sec);
                     }
                 }; 
                 // 时间到了后的业务函数
