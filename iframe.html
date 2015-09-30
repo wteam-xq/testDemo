@@ -9,10 +9,15 @@
     </head>
     
     <body>
+
         <h3>iframe自适应高度（跨域通信）:演示需放置tomcat中</h3>
         <iframe src="http://wteamxq.com/photoDemo/" frameborder="0" scrolling="no" width="100%" height="460" id="testIframe"></iframe>
         
         <script>
+          // 待更新， iframe其他实战用法：
+          // http://div.io/topic/855
+
+
           // 跨域通信原理：1.通过在iframe.src后添加“#” + 本页面url,让iframe框架页能访问本页面url；
           // 2.子页面（iframe页）内修改window.top.location（“#”+“height=xxx”），使父页面（本页）url改变而不刷新；
           // 3.本页面通过window.location.hash获取"#"后iframe传递的参数；

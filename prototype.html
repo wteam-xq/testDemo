@@ -73,18 +73,11 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
           console.log(a.test_array);
         }
 
-        // canvas 合成测试代码
-        var canvas = document.getElementById('canvas'),
-        ctx = canvas.getContext('2d');
-        ctx.globalCompositeOperation = "destination-out";
-
-        ctx.fillStyle = "blue";
-        ctx.fillRect(10, 10, 100, 100);
-        ctx.fillStyle = "red";
-        ctx.fillRect(50, 50, 100, 100);
-
         // 测试知乎问题：
         testObject();
+
+        // 实际开发 继承写法：
+        
       </script>
 
     </body>
