@@ -440,9 +440,18 @@
               });
               this.$buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
             },
-            testFn: function(){
-              var a = 0;
-              console.log(This.a);
+            renderOrderList: function(){
+              var $ul = this.$buyStep2.find('ul'),
+                  totalPrice = 0;
+
+              $ul.empty();
+
+              this.$buyStep1.hide();
+              this.$buyStep2.show();
+            },
+            goStep1: function(){
+              this.$buyStep2.hide();
+              this.$buyStep1.show();
             },
             initEvt: function(){
               var This = this;
@@ -457,7 +466,6 @@
 
               function selGood(){
                 This.refreshPrice();
-                This.testFn();
               }
               function addGoodCount(e){
                 var $this = $(this),
@@ -479,7 +487,6 @@
                   This.refreshPrice();
                 }
               }
-
               function minGoodCount(e){
                 var $this = $(this),
                     $input = $this.next('input'),
@@ -502,7 +509,6 @@
                   This.refreshPrice();
                 }
               }
-
               // 保证输入框输入为数字
               function inputBlur(e){
                 var $this = $(this),
@@ -531,16 +537,11 @@
               }
               // 确认订单步骤
               function confirmOrder(){
-                This.$buyStep1.hide();
-
-                This.$buyStep2.show();
-
+                This.renderOrderList();
                 return false;
               }
               function goBack(){
-                This.$buyStep2.hide();
-                This.$buyStep1.show();
-
+                This.goStep1();
                 return false;
               }
             }

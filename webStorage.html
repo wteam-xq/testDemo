@@ -27,7 +27,7 @@
 
 
       <p>
-        2.浏览器缓存：cookie 用法；
+        2.浏览器缓存：cookie 用法(需在虚拟服务器运行， 放在tomcat根目录下)；
         <input type="button" value="点击存入缓存" id="cSetBtn"/>
         <input type="button" value="点击删除缓存" id="cRemoveBtn" />
         <input type="button" value="点击查看缓存" id="cShowBtn" />
@@ -108,9 +108,9 @@
           c_show_btn.onclick = showCookie;
 
           function cookieSetItem(){
-            CookieUtil.set("xq", "sb");
+            // CookieUtil.set("xq", "sb");
             // setCookie("xq", "sb", 24, "/");
-            // CookieUtil2.set("xq", "sb");
+            CookieUtil2.set("xq", "sb");
             if (document.cookie != '') {
               c_btn_tips.innerHTML = '设置cookie成功！';
             }else{
@@ -120,8 +120,9 @@
 
           function cookieRemoveItem(){
             var _value = '';
-            CookieUtil.unset("xq");
-            _value = CookieUtil.get("xq");
+            // CookieUtil.unset("xq");
+            CookieUtil2.remove("xq");
+            _value = CookieUtil2.get("xq");
             if (_value) {
               c_btn_tips.innerHTML = '删除cookie失败！';
             } else {
@@ -130,9 +131,9 @@
           }
 
           function showCookie() {
-            var _value = CookieUtil.get("xq"),
+            // var _value = CookieUtil.get("xq"),
             // var _value = getCookieValue("xq"),
-            // var _value = CookieUtil2.get("xq"),
+            var _value = CookieUtil2.get("xq"),
             c_obj = {
               name: "xq",
               value: _value

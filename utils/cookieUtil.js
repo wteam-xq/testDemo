@@ -33,7 +33,7 @@ var CookieUtil = {
     document.cookie = cookie_text;
   },
   unset: function (name, path, domain, secure) {
-    this.set(name, "", new Date(), path, domain, secure);
+    this.set(name, "", new Date(0), path, domain, secure);
   }
 };
 
@@ -88,6 +88,19 @@ var Base = {
     }
 
     return target;
+  },
+  /**
+   * 判断是否为日期对象
+   * underscore.js摘录：
+   * // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp, isError.
+    _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error'], function(name) {
+      _['is' + name] = function(obj) {
+        return toString.call(obj) === '[object ' + name + ']';
+      };
+    });
+   */
+  isDate: function(obj){
+    return toString.call(obj) === '[object Date]';
   }
 }; 
 
@@ -118,7 +131,7 @@ var CookieUtil2 = {
       d.setTime(d.getTime() + expires);
       expires = d;
     }
-    if ( base.isDate(expires) ) { text += '; expires=' + expires.toUTCString(); }
+    if ( Base.isDate(expires) ) { text += '; expires=' + expires.toUTCString(); }
 
     if (o.path) { text += '; path=' + o.path; }
     if (o.domain) { text += '; domain=' + o.domain; }

@@ -43,8 +43,7 @@
 * 2015年9月25日 今天开始维护一请假同事代码，虽原代码功能完成有点仓促问题较多，但其代码风格挺有意思值得模仿。
 
 ### 遗留bug:
-1.cookies 在chrome下能设置成功，但无法删除Bug;(webStorage)
-2.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
+1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 
 ### 设计本项目代码的笔试题：
 
