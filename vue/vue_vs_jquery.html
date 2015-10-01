@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../common.css"/>
       <link rel="stylesheet" type="text/css" href="../reset.css"/>
       <style>
+        /*注册流程vue*/
         body{ background: #f9f9f9; color: #666; }
         .tc{ text-align: center; }
         .c_b{ zoom:1; }
@@ -59,8 +60,9 @@
         .step3 dt{ margin:15px 0px; }
         .n_succ img{ margin:58px 0 14px; }
         .n_succ .fixed_bot{ margin: 45px auto 30px; }
-
         .demo-panel h1{ font-size:18px; margin:10px; }
+        
+        .radius-btn.active{ background-color:#ddd; }
 
         /*注册流程1： 1.1版本 */
         .process-regs{ margin:10px 10px auto; width:80%; padding:10px; color:#fff; text-align:center; line-height: 100px; }
@@ -94,18 +96,20 @@
         .confirm-list-f .btn-r{ float:right; }
         .buy-list .con-l-label{ margin-right: 40px; }
         .buy-list .con-l-count{ font-size:16px; font-weight: bold; }
-
+        .buy-list .con-l-total{ text-align:right; padding:10px 20px; }
+        .buy-list-tip{ text-align:center; }
+        .buy-list-tip .tip-img{ margin:20px 0px; }
       </style>
     </head>
 
     <body> 
       <div class="btn-list">
-        <button class="radius-btn" v-on="click: showType = 1">注册流程(vue)</button>
-        <button class="radius-btn" v-on="click: showType = 1.1">注册流程(jq)</button>
-        <button class="radius-btn" v-on="click: showType = 2">购物列表(vue)</button>
-        <button class="radius-btn" v-on="click: showType = 2.1">购物列表(jq)</button>
-        <button class="radius-btn" v-on="click: showType = 3">提交表单(vue)</button>
-        <button class="radius-btn" v-on="click: showType = 3.1">提交表单(jq)</button>
+        <button class="radius-btn" v-on="click: showType = 1" v-class="active:showType == 1">注册流程(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 1.1" v-class="active:showType == 1.1">注册流程(jq)</button>
+        <button class="radius-btn" v-on="click: showType = 2" v-class="active:showType == 2">购物列表(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 2.1" v-class="active:showType == 2.1">购物列表(jq)</button>
+        <button class="radius-btn" v-on="click: showType = 3" v-class="active:showType == 3">提交表单(vue)</button>
+        <button class="radius-btn" v-on="click: showType = 3.1" v-class="active:showType == 3.1">提交表单(jq)</button>
       </div>
 
       <div class="demo-panel" v-show="showType == 1">
@@ -175,7 +179,7 @@
                       <p class="us_name us-userName">xxdxxdx</p>
                       <p class="us_id us-userId">277XX55</p>
                     </div>
-                    <div class="pt10 pb40 t_c">这个小米帐号是你的吗？</div>
+                    <div class="pt10 pb40 t_c">这个帐号是你的吗？</div>
                   </div>
                   <div class="fixed_bot">
                     <a class="btn332 btn_reg_2 submit-token-login" href="javascrip:void(0);" v-on="click: demo1.step = 6">是我的，直接登录</a>
@@ -300,8 +304,8 @@
           </fieldset>
 
           <ul>
-            <li data-price="45">
-              <input type="checkbox" name="good1" class="sel_box" />
+            <li data-price="45" data-gId="good1">
+              <input type="checkbox" class="sel_box" />
               <label class="good-label">商品1</label>
               <label>45元</label>
               <div class="good-set">
@@ -310,8 +314,8 @@
                 <a href="javascript:void(0);" class="set-add">+</a>
               </div>
             </li>
-            <li data-price="56">
-              <input type="checkbox" name="good2" class="sel_box"/>
+            <li data-price="56" data-gId="good2">
+              <input type="checkbox" class="sel_box"/>
               <label class="good-label">商品2</label>
               <label>56元</label>
               <div class="good-set">
@@ -320,8 +324,8 @@
                 <a href="javascript:void(0);" class="set-add">+</a>
               </div>
             </li>
-            <li data-price="30">
-              <input type="checkbox" name="good3" class="sel_box" />
+            <li data-price="30" data-gId="good3">
+              <input type="checkbox" class="sel_box" />
               <label class="good-label">商品3</label>
               <label>30元</label>
               <div class="good-set">
@@ -344,19 +348,24 @@
 
           <ul>
             <li>
-              <span class="con-l-label">商品2</span> X <span class="con-l-count">3</span>
+              <span class="con-l-label">商品2</span> <span class="con-l-label">$45</span> 
+              X<span class="con-l-count">3</span>
             </li>
             <li>
-              <span class="con-l-label">商品3</span> X <span class="con-l-count">2</span>
+              <span class="con-l-label">商品3</span> <span class="con-l-label">$75</span> 
+              X<span class="con-l-count">2</span>
             </li>
-
           </ul>
-
-           <div class="confirm-list-f">
-              <button class="radius-btn btn-l" id="goBack">返回</button>
+          <div class="confirm-list-f">
+              <button class="radius-btn btn-l goBack">返回</button>
               <button class="radius-btn btn-r" id="submitOrder">提交订单</button>
           </div>  
         </form>
+        <div class="buy-list buy-list-tip" id="buyStep3">
+          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt=""></div>
+          <span>提交订单成功！</span>
+          <button class="radius-btn btn-l goBack">返回</button>
+        </div>
       </div>
 
       <div class="demo-panel" v-show="showType == 3">
@@ -414,14 +423,17 @@
             $buyList: null,
             $buyStep1: null,
             $buyStep2: null,
+            $buyStep3: null,
             init: function(){
               var This = this;
 
               this.$buyList = $('.buy-list');
               this.$buyStep1 = $('#buyStep1');
               this.$buyStep2 = $('#buyStep2');
+              this.$buyStep3 = $('#buyStep3');
 
-              this.$buyList.last().hide();
+              this.$buyStep2.hide();
+              this.$buyStep3.hide();
               this.initEvt();
             },
             refreshPrice: function(){
@@ -440,17 +452,54 @@
               });
               this.$buyStep1.find('.good-total').text( totalPrice.toFixed(2) );
             },
+            // 渲染生成确认订单页面
             renderOrderList: function(){
               var $ul = this.$buyStep2.find('ul'),
+                  $buyUl = this.$buyStep1.find('ul'),
+                  goodList = [],
+                  i, len, htmlStr = '',
                   totalPrice = 0;
 
-              $ul.empty();
+              totalPrice = this.$buyStep1.find('.good-total').text();
+              // 获得用户选中的商品
+              $buyUl.find('li').each(function(i, n){
+                var $li = $(n),
+                    goodId = $li.attr('data-gId'),
+                    price = parseFloat( $li.attr('data-price') ),
+                    name = $li.find('.good-label').text(),
+                    goodObj = {},
+                    count = parseInt( $li.find('.set-count').val(), 10 );
 
+                goodObj = {
+                  id: goodId,
+                  price: price,
+                  goodName: name,
+                  count: count
+                };
+                if ( $li.find('.sel_box').is(':checked') ) {
+                  goodList.push(goodObj);
+                }
+              });
+              $ul.empty();
+              $ul.next('.con-l-total').remove();
               this.$buyStep1.hide();
               this.$buyStep2.show();
+              // 根据用户选中的商品， 渲染ul列表
+              for(i = 0, len = goodList.length; i < len; i++) {
+                goodObj = goodList[i];
+                htmlStr += '<li data-gId="' + goodObj.id + '">' + 
+                              '<span class="con-l-label">' + goodObj.goodName + '</span>' +
+                              '<span class="con-l-label">$' + goodObj.price + '</span>' +
+                              'X <span class="con-l-count">' + goodObj.count + '</span>' +
+                          '</li>';
+              }
+              $ul.append(htmlStr);
+              // 加入总价格UI
+              $ul.append('<p class="con-l-total">总价格 ￥' + totalPrice + '</p>');
             },
             goStep1: function(){
               this.$buyStep2.hide();
+              this.$buyStep3.hide();
               this.$buyStep1.show();
             },
             initEvt: function(){
@@ -462,7 +511,8 @@
               this.$buyStep1.find('.set-count').on('blur', inputBlur);
               this.$buyStep1.find('#goBuy').on('click', confirmOrder);
               
-              this.$buyStep2.find('#goBack').on('click', goBack);
+              $('.buy-list').find('.goBack').on('click', goBack);
+              this.$buyStep2.find('#submitOrder').on('click', submitOrder);
 
               function selGood(){
                 This.refreshPrice();
@@ -537,6 +587,11 @@
               }
               // 确认订单步骤
               function confirmOrder(){
+                // 下一步前的校验
+                if ( parseInt(This.$buyStep1.find('.good-total').text(), 10) == 0 ) {
+                  alert('请选择购买的商品。');
+                  return false;
+                } 
                 This.renderOrderList();
                 return false;
               }
@@ -544,6 +599,13 @@
                 This.goStep1();
                 return false;
               }
+              // 提交订单
+              function submitOrder(e){
+                This.$buyStep2.hide();
+                This.$buyStep3.show();
+                return false;
+              }
+
             }
           };
 

@@ -17,41 +17,55 @@
           // 待更新， iframe其他实战用法：
           // http://div.io/topic/855
 
+          var iframeObj = {
+            init: function() {
 
-          // 跨域通信原理：1.通过在iframe.src后添加“#” + 本页面url,让iframe框架页能访问本页面url；
-          // 2.子页面（iframe页）内修改window.top.location（“#”+“height=xxx”），使父页面（本页）url改变而不刷新；
-          // 3.本页面通过window.location.hash获取"#"后iframe传递的参数；
-          var iframe = document.getElementById('testIframe');
-          var href = window.location.href, index = href.indexOf("#"), time_id = 0;
-          if (index !== -1) {
-              href = href.slice(0, index);
-          }
-          iframe.src = iframe.src + "#" + href;
+            },
+            initEvt: function(){
 
-          // 轮询改变高度
-          var iframeHeight = function() {    
-            var hash = window.location.hash.slice(1);
-            if (hash && /height=/.test(hash)) {
-              iframe.height = hash.replace("height=", "");
-              // 高度加载完，结束轮询
-              clearTimeout(time_id);
+            },
+            // 跨域通信
+            crossDomain: function(){
+              // 跨域通信原理：1.通过在iframe.src后添加“#” + 本页面url,让iframe框架页能访问本页面url；
+              // 2.子页面（iframe页）内修改window.top.location（“#”+“height=xxx”），使父页面（本页）url改变而不刷新；
+              // 3.本页面通过window.location.hash获取"#"后iframe传递的参数；
+              var iframe = document.getElementById('testIframe');
+              var href = window.location.href, index = href.indexOf("#"), time_id = 0;
+              if (index !== -1) {
+                  href = href.slice(0, index);
+              }
+              iframe.src = iframe.src + "#" + href;
+
+              // 轮询改变高度
+              var iframeHeight = function() {    
+                var hash = window.location.hash.slice(1);
+                if (hash && /height=/.test(hash)) {
+                  iframe.height = hash.replace("height=", "");
+                  // 高度加载完，结束轮询
+                  clearTimeout(time_id);
+                }
+                time_id = setTimeout(iframeHeight, 200);
+              };
+              iframeHeight();
+
+              // "http://wteamxq.com/photoDemo/"  中配合脚本：
+              // window.onload = function(){
+              //   // 设置父类url
+              //   var hostUrl = window.location.hash.slice(1);
+              //   // 设置url失败时， 不改变父location
+              //   if (hostUrl == ""){
+              //     return false;
+              //   }
+              //   var self_h = window.innerHeight || document.body.clientHeight;
+              //   hostUrl += "#height=" + self_h;
+              //   window.top.location = hostUrl;
+              // }
+            },
+            // 实现长连接和服务端“推”技术 http://www.ibm.com/developerworks/cn/web/wa-lo-comet/#N10101
+            commetEvt: function(){
+              
             }
-            time_id = setTimeout(iframeHeight, 200);
           };
-          iframeHeight();
-
-          // "http://wteamxq.com/photoDemo/"  中配合脚本：
-          // window.onload = function(){
-          //   // 设置父类url
-          //   var hostUrl = window.location.hash.slice(1);
-          //   // 设置url失败时， 不改变父location
-          //   if (hostUrl == ""){
-          //     return false;
-          //   }
-          //   var self_h = window.innerHeight || document.body.clientHeight;
-          //   hostUrl += "#height=" + self_h;
-          //   window.top.location = hostUrl;
-          // }
 
         </script>
 

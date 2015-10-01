@@ -9,7 +9,7 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
     <head>
       <meta name="renderer" content="webkit">
       <!--x-ua-compatible(浏览器兼容模式)
-      仅对IE8+以效
+      仅对IE8+有效
       告诉浏览器以什么版本的IE的兼容模式来显示网页
       <meta http-equiv="X-UA-Compatible" content="IE=5" >
       <meta http-equiv="X-UA-Compatible" content="IE=7" >
@@ -21,7 +21,13 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
       <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" >
       Emulate模式后则更重视<!DOCTYPE>
       （细心的人会注意到，用IE9去访问带有x-ua-compatible的页面时是不会出现兼容视图按钮的）
+      
+      IE=8
+      <meta http-equiv="X-UA-Compatible" content="IE=8" />
+      This forces IE 8 to display the page in Internet Explorer Standards mode.
+      IE=EmulateIE8
       <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+      This forces IE 8 to use the !DOCTYPE declaration in the page to determine the rendering mode.
       -->
       <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
       <meta charset="utf-8">
@@ -76,7 +82,7 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         // 测试知乎问题：
         testObject();
 
-        // 实际开发 继承写法：
+        // 实际开发 继承写法：new MyObj()
         
       </script>
 
