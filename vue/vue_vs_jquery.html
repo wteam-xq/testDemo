@@ -80,7 +80,7 @@
         .buy-list legend{ padding:10px; }
         .buy-list ul{ margin-bottom:40px; padding:20px; }
         .buy-list li{ margin:15px 0px; height:30px; }
-        .buy-list .buy-list-f{ float:right; margin:0px 20px; width:150px; }
+        .buy-list .buy-list-f{ float:right; margin:0px 20px; }
         .buy-list-f .good-total{ float:left; margin:20px; color:red; }
         .buy-list .good-label{ margin:0px 20px; }
         .buy-list .good-set{ float:right; }
@@ -271,29 +271,52 @@
       
       <div class="demo-panel" v-show="showType == 2">
         <h1 class="buy-list-demo">2.购物列表(vue)</h1>
-        <form class="buy-list">
+        <form class="buy-list" v-show="demo2.step == 1">
           <fieldset>
             <legend>购物车列表</legend>
           </fieldset>
 
           <ul>
-            <li v-repeat="demo2.goodList" data-price="{{price}}">
-              <input type="checkbox" name="{{id}}" class="sel_box" />
-              <label class="good-label">{{name}}</label>
-              <label>{{price}}元</label>
+            <li v-repeat="good in demo2.goodList" data-price="{{good.price}}">
+              <input type="checkbox" v-model="good.selected" name="{{good.id}}" class="sel_box" />
+              <label class="good-label">{{good.name}}</label>
+              <label>{{good.price}}元</label>
               <div class="good-set">
-                <a href="javascript:void(0);" class="set-min">&nbsp;</a>
-                <input type="text" class="set-count" value="1" />
-                <a href="javascript:void(0);" class="set-add">+</a>
+                <a href="javascript:void(0);" class="set-min" v-show="good.count <= 1">&nbsp;</a>
+                <a href="javascript:void(0);" class="set-min" v-show="good.count > 1" v-on="click: minGoodCount($index)">-</a>
+                <input type="text" v-model="good.count" v-on="blur: editCount(good)" class="set-count" />
+                <a href="javascript:void(0);" class="set-add" v-on="click: addGoodCount($index)">+</a>
               </div>
             </li>
           </ul>
 
            <div class="buy-list-f">
-              <div class="good-total">0.00</div>
-              <button class="radius-btn">去支付</button>
+              <div class="good-total" v-text="demo2.totalPrice | formatPrice">0.00</div>
+              <button class="radius-btn" v-on="click: confirmOrder(event)">去支付</button>
           </div>  
         </form>
+        <form class="buy-list" v-show="demo2.step == 2">
+          <fieldset>
+            <legend>确认订单</legend>
+          </fieldset>
+
+          <ul>
+            <li v-repeat="good in demo2.selectedList">
+              <span class="con-l-label" v-text="good.name"></span> <span class="con-l-label">${{good.price}}</span> 
+              X<span class="con-l-count" v-text="good.count"></span>
+            </li>
+            <p class="con-l-total">总价格 ￥<span v-text="demo2.totalPrice"></span></p>
+          </ul>
+          <div class="confirm-list-f">
+              <button class="radius-btn btn-l" v-on="click: goBack()">返回</button>
+              <button class="radius-btn btn-r" v-on="click: submitOrder()">提交订单</button>
+          </div>  
+        </form>
+        <div class="buy-list buy-list-tip" v-show="demo2.step == 3">
+          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt=""></div>
+          <span>提交订单成功！</span>
+          <button class="radius-btn btn-l" v-on="click: goBack()">返回</button>
+        </div>
       </div>
 
       <div class="demo-panel" v-show="showType == 2.1">
@@ -387,31 +410,110 @@
 
         function init() {
           var vm = null;
+
+          // 阻止默认事件(原生js)
+          function preventDefault() {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+          }
+
+          // 过滤器得写在 new 之前
+          Vue.filter('formatPrice', function (val) {
+            if ( (typeof val) != "number" ) {
+              return val;
+            } else {
+              return '$' + val.toFixed(2);
+            }
+          });
           vm = new Vue({
             el: 'body',
             data: {
-              showType: 2.1,
+              showType: 2,
               demo1: {
                 'step': 1,
                 'regStep': 1
               },
               demo2: {
-                goodList: [{'name':'商品1', 'price':'45', 'id':'good1'},
-                           {'name':'商品2', 'price':'56', 'id':'good2'},
-                           {'name':'商品3', 'price':'30', 'id':'good3'}
-                           ]
+                'step': 1,
+                goodList: [
+                  {'name':'商品1', 'price':'45', 'id':'good1', 'count': 1, 'selected': false},
+                  {'name':'商品2', 'price':'56', 'id':'good2', 'count': 1, 'selected': false},
+                  {'name':'商品3', 'price':'30', 'id':'good3', 'count': 1, 'selected': false}
+                ],
+                selectedList: [],
+                'totalPrice': 0
               },
               demo3: {
 
               }
             },
             methods: {
+              addGoodCount: function(index){
+                var count = parseInt(this.demo2.goodList[index].count, 10);
+                this.demo2.goodList[index].count = count + 1;
+                if ( !this.demo2.goodList[index].selected ) {
+                  this.demo2.goodList[index].selected = true;
+                }
+              },
+              minGoodCount: function(index){
+                var count = parseInt(this.demo2.goodList[index].count, 10);
+                if (count <= 1) {
+                  return false;
+                }
+                count--;
+                this.demo2.goodList[index].count = count;
+                if ( !this.demo2.goodList[index].selected ) {
+                  this.demo2.goodList[index].selected = true;
+                }
+              },
+              editCount: function(good) {
+                if ( good.count == 0 || isNaN(Number(good.count)) ) {
+                  good.count = 1;
+                  // alert('价格必须为大于零的数字！');
+                }if (good.count > 1) {
+                  good.selected = true;
+                }
+              },
+              confirmOrder: function(event) {
+                if (this.demo2.totalPrice == 0) {
+                  alert('请选择购买的商品。');
+                } else {
+                  this.demo2.step = 2;
+                }
+                preventDefault(event);
+              },
+              goBack: function(event){
+                this.demo2.step = 1;
+                preventDefault(event);
+              },
+              submitOrder: function(event) {
+                this.demo2.step = 3;
+                preventDefault(event);
+              }
+            },
+            // 监听 某属性变换
+            watch: {
+              'demo2.goodList': {
+                handler: function(val , oldVal){
+                  var i, len, good, totalPrice = 0, seledArray = [];
 
+                  // 更新 订单价格  
+                  for (i = 0, len = this.demo2.goodList.length; i < len; i++) {
+                    good = this.demo2.goodList[i];
+                    if (good.selected) { 
+                      seledArray.push(good);
+                      totalPrice += good.count * parseInt(good.price, 10); 
+                    }
+                  }
+                  this.demo2.selectedList = seledArray;
+                  this.demo2.totalPrice = totalPrice;
+                },
+                deep: true
+              }
             }
           });
-
           xq.vm = vm;
-
         }
 
         // jquery 代码
@@ -568,9 +670,9 @@
 
                 // Number() parseInt() 区别，N 判断整个整数，而p只判断前半部分数字
                 // 如：Number('78n') -> NaN, parseInt('78n') -> 78
-                if ( isNaN( Number(inputVal) ) ) {
+                if ( !inputVal || isNaN( Number(inputVal) ) ) {
                   $this.val(1);
-                  $minBtn.html('-');
+                  // $minBtn.html('-');
                   alert('价格必须为数字!');
                   return false;
                 }
