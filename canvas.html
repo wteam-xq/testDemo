@@ -12,10 +12,10 @@
           .clear-btn:hover{ background-color:#8080FF; }
           .canvas{ height:500px; width: 800px; }
           #noSupport{ display: none; }
-          #clearRectBtn{ position: absolute; top: 350px; left: 300px; }
+          #clearRectBtn{ position: absolute; top: 390px; left: 300px; }
           .fb{ font-weight: bold; }
           /*绘制图像按钮，灰阶过滤*/
-          .gray-btn{ position: absolute; top:450px; left:300px; }
+          .gray-btn{ position: absolute; top:560px; left:300px; }
           /*合成样式*/
           .comp-list{ position: absolute; top: 360px; left: 20px; }
 
@@ -24,7 +24,8 @@
     </head>
     
     <body>
-
+     <p> var _canvas = document.getElementById('canvas'); </p>
+     <p> var ctx = _canvas.getContext('2d'); </p>
      <div class='btn-cont' id="btnCont">
         <button id="fillStyleBtn" class="radius-btn">填充和描边</button>
         <button id="rectBtn" class="radius-btn">绘制矩形</button>

@@ -62,6 +62,9 @@
 * 18.浏览器检测:
   * [client.js](https://github.com/wteam-xq/testDemo/blob/master/client.js)
 
+* 19.ECMAScript学习:
+  * [client.js](https://github.com/wteam-xq/testDemo/blob/master/EcmaScript5.html)
+
 * other:
   * [人人网鄙视题](https://github.com/wteam-xq/testDemo/blob/master/others/renrenTest.html)
   * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
