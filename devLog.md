@@ -1,6 +1,7 @@
 ### 开发计划
-* 20151001-20151004
-* 完成 vue.js 博文：
+* 20151004-20151010
+* 学习 ECMAScript 5 6；
+* 学习 leanCloud
   
 #### VUE（现代库） 与 jquery 用法 区别 
 * 1.注册账号：
@@ -9,7 +10,7 @@
   
 
 * others
-  * nodejs 短信系统调试(超时处理)
+  * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas
   * http 状态Demo 可以优化， 将其分类， 然后用选项卡显示；
 
