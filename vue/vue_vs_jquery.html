@@ -99,6 +99,20 @@
         .buy-list .con-l-total{ text-align:right; padding:10px 20px; }
         .buy-list-tip{ text-align:center; }
         .buy-list-tip .tip-img{ margin:20px 0px; }
+        /*表单 demo*/
+        .speeddial{ width: 177px; height: 160px; cursor: pointer; margin:10px; overflow: hidden; background-color: rgba(255,255,255,.2); -webkit-transition: left .3s,top .3s; box-shadow: 0 6px 5px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.1); opacity: 1; border-radius: 4px; background-position: 50%; background-size: cover; background-repeat: no-repeat; background-origin: border-box;}
+        .add-btn{ background: rgba(228,233,233,.45); color: #d1d5d5; text-align: center; font-size: 75px; line-height: 148px; }
+        .speeddial .speeddial-inner{ width: 100%; height: 100%; background-size: cover; border-radius: 4px;}
+        .speeddial:hover{ color: #ff8000;-webkit-transform: scale(1.02) translateZ(0);}
+        .bs-example{width:580px; position: relative;padding: 45px 15px 15px;margin: 15px;border-color: #e5e5e5 #eee #eee;border-style: solid;border-width: 1px; border-radius: 4px 4px 0 0; }
+        .form-demo{ box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+        .form-group{ margin-bottom: 15px; }
+        .form-demo label{ display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: 700; }
+        .form-control{ box-sizing: border-box; display: block; width: 100%; height: 34px; padding: 6px 12px; font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px solid #ccc; border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);box-shadow: inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
+        .form-control:focus{border-color: #66afe9;outline: 0;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);}
+        .btn{display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;}
+        .btn-default{color: #333;background-color: #fff;border-color: #ccc;}
+        .btn-default:hover{color: #333;background-color: #e6e6e6;border-color: #adadad;}
       </style>
     </head>
 
@@ -391,16 +405,42 @@
         </div>
       </div>
 
-      <div class="demo-panel" v-show="showType == 3">
+      <div class="demo-panel form-demo" v-show="showType == 3">
         <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
         <h1 class="form-demo">3.提交表单(vue)</h1>
+        
+        <div class="speeddial  add-btn" draggable="true" data-handler="speeddial">
+          <div class="speeddial-inner">
+            <div class="addBtn-icon">+</div>
+          </div>
+        </div>
 
       </div>
 
-      <div class="demo-panel" v-show="showType == 3.1">
+      <div class="demo-panel form-demo" v-show="showType == 3.1">
         <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
         <h1 class="form-demo">3.1提交表单(jq)</h1>
-        (bootstrap 3.x ui表单风格) 待添加
+        
+        <div class="bs-example">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        
+        <div class="speeddial  add-btn" title="新增表单">
+          <div class="speeddial-inner">
+            <div class="addBtn-icon">+</div>
+          </div>
+        </div>
+
       </div>
 
       <script type="text/javascript" src="./vue.js"></script>
