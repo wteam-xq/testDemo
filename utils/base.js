@@ -221,3 +221,37 @@ var qsaWorker = (function () {
   // Return the one this browser wants to use
   return document.createElement('div').querySelectorAll ? qsaWorkerWrap : qsaWorkerShim;
 })();
+
+
+/**
+ * 创建类
+ * @method createClass
+ * @param {Function} constructor 构造函数
+ * @param {Object} [methods] 方法
+ * @param {Function} [Parent] 父类
+ * @param {Function(args)|Array} [parentArgs] 传递给父类的参数，默认与子类构造函数参数一致
+ * @return {Function} 类
+ */
+var createClass = function(constructor, methods, Parent, parentArgs) {
+  var $Class = Parent ? function() {
+    Parent.apply(
+      this,
+      parentArgs ? 
+        (typeof parentArgs === 'function' ?
+          parentArgs.apply(this, arguments) : parentArgs)
+      : arguments
+    );
+    constructor.apply(this, arguments);
+  } : function() { constructor.apply(this, arguments); };
+
+  if (Parent) {
+    var $Parent = function() { };
+    $Parent.prototype = Parent.prototype;
+    $Class.prototype = new $Parent();
+    $Class.prototype.constructor = $Class;
+  }
+  if (methods) {
+    for (var m in methods) { $Class.prototype[m] = methods[m]; }
+  }
+  return $Class;
+};

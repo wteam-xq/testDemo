@@ -40,6 +40,8 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
     <body>
       <h3>原型理解</h3>
       <canvas id="canvas"></canvas>
+
+      <script type="text/javascript" src="utils/base.js"></script>
       <script>
         // 来源： http://www.zhihu.com/question/31824560/answer/53528151
         // 因为实例__proto__属性指向它构造函数的原型对象，
@@ -82,8 +84,19 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         // 测试知乎问题：
         testObject();
 
-        // 实际开发 继承写法：new MyObj()
-        
+        // 实际开发 继承写法:
+        var CreateClassDemo = createClass(function(){
+          this.init();
+        },{
+          init: function() {
+            this.otherMethods();
+          },
+          otherMethods: function() {
+            console.log('这种写法略繁琐， 前端没那么多东东继承！');
+          }
+        });
+        var createClassDemo = new CreateClassDemo();
+
       </script>
 
     </body>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery 动画操作</title>
+    <link type="text/css" href="../common.css" rel="stylesheet"/>
+    <style type="text/css">
+        .move_obj{ width:200px; height:200px; background-color:#CCC; font-size:16px; color:#fff; position:relative; }
+        .radius-btn{ width:150px; text-align:center;}
+    </style>
+</head>
+<body>
+    <div class="radius-btn" id="startBtn">点击执行动画</div>
+
+    <div class="mt20 move_obj" id="moveObj">移动对象</div>
+
+    <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var $startBtn = $('#startBtn'),
+                count = 0,
+                distance = 300, 
+                $moveObj = $('#moveObj');
+
+            $startBtn.on('click', startAnimate);
+
+            function startAnimate(e){
+                distance += 300;
+                // 3秒后执行动画
+                setTimeout(function(){
+                    $moveObj.animate({
+                        left: distance + 'px'
+                    }, 2*1000, function(){
+                        // 这个函数会无限执行？(没有， jq果然比其他dom稳定)
+                        console.log('动画执行完毕， ' + (count++) );
+                    });
+                }, 1*1000);
+                removeAnimateObj();
+            }
+
+            function removeAnimateObj(obj) {
+                // 3.5秒后删除动画dom
+                setTimeout(function(){
+                    $moveObj.remove();
+                }, 1*1000 + 500 );
+            }
+        });
+    </script>
+</body>
