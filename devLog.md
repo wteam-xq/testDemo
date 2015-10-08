@@ -2,13 +2,13 @@
 * 20151004-20151010
 * 学习 ECMAScript 5 6；
 * 学习 leanCloud
+* 继续vue Demo 代码编写
   
 #### VUE（现代库） 与 jquery 用法 区别 
 * 1.注册账号：
 * 2.购物列表：
 * 3.表单提交：登高参赛报名申请， 提交表单：1~3， 提交成功显示参赛组员列表；
   
-
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas

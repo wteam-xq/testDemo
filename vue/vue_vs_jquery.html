@@ -101,10 +101,10 @@
         .buy-list-tip .tip-img{ margin:20px 0px; }
         /*表单 demo*/
         .speeddial{ width: 177px; height: 160px; cursor: pointer; margin:10px; overflow: hidden; background-color: rgba(255,255,255,.2); -webkit-transition: left .3s,top .3s; box-shadow: 0 6px 5px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.1); opacity: 1; border-radius: 4px; background-position: 50%; background-size: cover; background-repeat: no-repeat; background-origin: border-box;}
-        .add-btn{ background: rgba(228,233,233,.45); color: #d1d5d5; text-align: center; font-size: 75px; line-height: 148px; }
+        .add-btn{ display: inline-block; background: rgba(228,233,233,.45); color: #d1d5d5; text-align: center; font-size: 75px; line-height: 148px; }
         .speeddial .speeddial-inner{ width: 100%; height: 100%; background-size: cover; border-radius: 4px;}
         .speeddial:hover{ color: #ff8000;-webkit-transform: scale(1.02) translateZ(0);}
-        .bs-example{width:580px; position: relative;padding: 45px 15px 15px;margin: 15px;border-color: #e5e5e5 #eee #eee;border-style: solid;border-width: 1px; border-radius: 4px 4px 0 0; }
+        .bs-example{ display:inline-block; width:480px; position: relative;padding: 25px 15px 15px;margin: 15px;border-color: #e5e5e5 #eee #eee;border-style: solid;border-width: 1px; border-radius: 4px 4px 0 0; }
         .form-demo{ box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
         .form-group{ margin-bottom: 15px; }
         .form-demo label{ display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: 700; }
@@ -113,6 +113,9 @@
         .btn{display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;}
         .btn-default{color: #333;background-color: #fff;border-color: #ccc;}
         .btn-default:hover{color: #333;background-color: #e6e6e6;border-color: #adadad;}
+        
+        .bs-example-wrap{ display: inline-block; }
+        .bs-example-block{display: block; }
       </style>
     </head>
 
@@ -414,31 +417,87 @@
             <div class="addBtn-icon">+</div>
           </div>
         </div>
-
       </div>
 
       <div class="demo-panel form-demo" v-show="showType == 3.1">
         <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
         <h1 class="form-demo">3.1提交表单(jq)</h1>
         
-        <div class="bs-example">
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+        <div class="bs-example-wrap ">
+          <div class="bs-example">
+            <form>
+              <div class="form-group">
+                <label for="name">姓名:</label>
+                <input class="form-control" id="userName" placeholder="填写姓名">
+              </div>
+              <div class="form-group">
+                <label>工号:</label>
+                <input class="form-control" id="jobId" placeholder="填写工号">
+              </div>
+              <div class="form-group">
+                <label>身份证号:</label>
+                <input class="form-control" id="id" placeholder="填写身份证">
+              </div>
+              <div class="form-group">
+                <label>手机号:</label>
+                <input class="form-control" id="mobile" placeholder="填写手机号">
+              </div>
+            </form>
+          </div>
+          
+          <!-- <div class="bs-example">
+            <form>
+              <div class="form-group">
+                <label for="name">姓名:</label>
+                <input class="form-control" id="userName" placeholder="填写姓名">
+              </div>
+              <div class="form-group">
+                <label>工号:</label>
+                <input class="form-control" id="jobId" placeholder="填写工号">
+              </div>
+              <div class="form-group">
+                <label>身份证号:</label>
+                <input class="form-control" id="id" placeholder="填写身份证">
+              </div>
+              <div class="form-group">
+                <label>手机号:</label>
+                <input class="form-control" id="mobile" placeholder="填写手机号">
+              </div>
+            </form>
+          </div> -->
         </div>
-        
+
+        <!-- <div class="bs-example-wrap">
+          <div class="bs-example">
+            <form>
+              <div class="form-group">
+                <label for="name">姓名:</label>
+                <input class="form-control" id="userName" placeholder="填写姓名">
+              </div>
+              <div class="form-group">
+                <label>工号:</label>
+                <input class="form-control" id="jobId" placeholder="填写工号">
+              </div>
+              <div class="form-group">
+                <label>身份证号:</label>
+                <input class="form-control" id="id" placeholder="填写身份证">
+              </div>
+              <div class="form-group">
+                <label>手机号:</label>
+                <input class="form-control" id="mobile" placeholder="填写手机号">
+              </div>
+            </form>
+          </div>
+        </div> -->
+
         <div class="speeddial  add-btn" title="新增表单">
           <div class="speeddial-inner">
             <div class="addBtn-icon">+</div>
           </div>
+        </div>
+
+        <div>
+          <input class="btn332 btn_reg_1" id="subForm" value="提交">
         </div>
 
       </div>
@@ -757,9 +816,21 @@
 
           // 注册相关 代码
           registInit();
-          
           // 购买列表相关代码
           BuyList.init(); 
+
+          // 提交表单（3.1）
+          var submitForm = {
+            init: function() {
+              var This = this;
+
+              this.initEvt();
+            },
+            initEvt: function() {
+              console.log('提交表单');
+            }
+          };
+          submitForm.init();
 
           // 1.1注册流程jq实现
           function registInit(){
