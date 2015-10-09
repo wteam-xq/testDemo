@@ -17,8 +17,13 @@
           .demo-cont tr:hover{ background-color: #f5f5f5; }
           .demo-cont td{ padding-left:10px; }
           td:first-child{ border-right: 1px solid #ccc; }
-          .nav-btns{ text-align:center; margin:0px; height:50px; line-height: 50px; padding:0px; }
-          .nav-btn{ list-style-type:none; padding:0 5px; margin:5px; float:left; cursor:pointer; }
+          .nav-btns{ text-align:center; margin:0px 0px 35px 0px; height:50px; line-height: 50px; padding:0px; }
+          .nav-btn{ list-style-type:none;float:left; width:20%; }
+          
+          .nav-btn a{ border-bottom:1px solid #ddd; border-radius:4px 4px 0 0; text-align:center; display:block; padding:10px 15px; color:#337ab7; text-decoration: none; }
+          .nav-btn.active a{ border:1px solid #ddd; border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
+          .nav-btn a:hover{ background-color:#eee; }
+          .nav-btn.active a:hover{ border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
         </style>
 
     </head>
@@ -28,11 +33,11 @@
         
         <div class="demo-cont">
           <ul class="nav-btns">
-            <li class="nav-btn">1XX</li>
-            <li class="nav-btn">2XX</li>
-            <li class="nav-btn">3XX</li>
-            <li class="nav-btn">4XX</li>
-            <li class="nav-btn">5XX</li>
+            <li class="nav-btn active"><a href="#">1XX</a></li>
+            <li class="nav-btn"><a href="#">2XX</a></li>
+            <li class="nav-btn"><a href="#">3XX</a></li>
+            <li class="nav-btn"><a href="#">4XX</a></li>
+            <li class="nav-btn"><a href="#">5XX</a></li>
           </ul>
           <table>
             <tr class="table-h">

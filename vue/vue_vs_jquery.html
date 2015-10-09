@@ -60,6 +60,7 @@
         .step3 dt{ margin:15px 0px; }
         .n_succ img{ margin:58px 0 14px; }
         .n_succ .fixed_bot{ margin: 45px auto 30px; }
+        .demo-panel{ margin-bottom: 20px; }
         .demo-panel h1{ font-size:18px; margin:10px; }
         
         .radius-btn.active{ background-color:#ddd; }
@@ -100,7 +101,7 @@
         .buy-list-tip{ text-align:center; }
         .buy-list-tip .tip-img{ margin:20px 0px; }
         /*表单 demo*/
-        .speeddial{ width: 177px; height: 160px; cursor: pointer; margin:10px; overflow: hidden; background-color: rgba(255,255,255,.2); -webkit-transition: left .3s,top .3s; box-shadow: 0 6px 5px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.1); opacity: 1; border-radius: 4px; background-position: 50%; background-size: cover; background-repeat: no-repeat; background-origin: border-box;}
+        .speeddial{ width: 177px; height: 160px; cursor: pointer; margin:15px; overflow: hidden; background-color: rgba(255,255,255,.2); -webkit-transition: left .3s,top .3s; box-shadow: 0 6px 5px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.1); opacity: 1; border-radius: 4px; background-position: 50%; background-size: cover; background-repeat: no-repeat; background-origin: border-box;}
         .add-btn{ display: inline-block; background: rgba(228,233,233,.45); color: #d1d5d5; text-align: center; font-size: 75px; line-height: 148px; }
         .speeddial .speeddial-inner{ width: 100%; height: 100%; background-size: cover; border-radius: 4px;}
         .speeddial:hover{ color: #ff8000;-webkit-transform: scale(1.02) translateZ(0);}
@@ -115,7 +116,7 @@
         .btn-default:hover{color: #333;background-color: #e6e6e6;border-color: #adadad;}
         
         .bs-example-wrap{ display: inline-block; }
-        .bs-example-block{display: block; }
+        .bs-example-block{ display: block; }
       </style>
     </head>
 
@@ -283,7 +284,6 @@
           <button class="btn-radius" id="stepBtn3" >提交密码</button>
           <button class="btn-radius" id="stepBtn4" >确认注册成功</button>
         </div>
-
       </div>
       
       <div class="demo-panel" v-show="showType == 2">
@@ -419,76 +419,32 @@
         </div>
       </div>
 
-      <div class="demo-panel form-demo" v-show="showType == 3.1">
+      <div class="demo-panel form-demo" id="formDemo" v-show="showType == 3.1">
         <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
         <h1 class="form-demo">3.1提交表单(jq)</h1>
         
-        <div class="bs-example-wrap ">
-          <div class="bs-example">
-            <form>
+        <div class="bs-example-wrap">
+          <div class="bs-example" data-no="1">
+            <form id="bsForm1">
               <div class="form-group">
                 <label for="name">姓名:</label>
-                <input class="form-control" id="userName" placeholder="填写姓名">
+                <input class="form-control" name="userName" placeholder="填写姓名">
               </div>
               <div class="form-group">
                 <label>工号:</label>
-                <input class="form-control" id="jobId" placeholder="填写工号">
+                <input class="form-control" name="jobId" placeholder="填写工号">
               </div>
               <div class="form-group">
                 <label>身份证号:</label>
-                <input class="form-control" id="id" placeholder="填写身份证">
+                <input class="form-control" name="userId" placeholder="填写身份证">
               </div>
               <div class="form-group">
                 <label>手机号:</label>
-                <input class="form-control" id="mobile" placeholder="填写手机号">
+                <input class="form-control" name="mobile" placeholder="填写手机号">
               </div>
             </form>
           </div>
-          
-          <!-- <div class="bs-example">
-            <form>
-              <div class="form-group">
-                <label for="name">姓名:</label>
-                <input class="form-control" id="userName" placeholder="填写姓名">
-              </div>
-              <div class="form-group">
-                <label>工号:</label>
-                <input class="form-control" id="jobId" placeholder="填写工号">
-              </div>
-              <div class="form-group">
-                <label>身份证号:</label>
-                <input class="form-control" id="id" placeholder="填写身份证">
-              </div>
-              <div class="form-group">
-                <label>手机号:</label>
-                <input class="form-control" id="mobile" placeholder="填写手机号">
-              </div>
-            </form>
-          </div> -->
         </div>
-
-        <!-- <div class="bs-example-wrap">
-          <div class="bs-example">
-            <form>
-              <div class="form-group">
-                <label for="name">姓名:</label>
-                <input class="form-control" id="userName" placeholder="填写姓名">
-              </div>
-              <div class="form-group">
-                <label>工号:</label>
-                <input class="form-control" id="jobId" placeholder="填写工号">
-              </div>
-              <div class="form-group">
-                <label>身份证号:</label>
-                <input class="form-control" id="id" placeholder="填写身份证">
-              </div>
-              <div class="form-group">
-                <label>手机号:</label>
-                <input class="form-control" id="mobile" placeholder="填写手机号">
-              </div>
-            </form>
-          </div>
-        </div> -->
 
         <div class="speeddial  add-btn" title="新增表单">
           <div class="speeddial-inner">
@@ -821,12 +777,50 @@
 
           // 提交表单（3.1）
           var submitForm = {
+            $formPanel: null,
+            $addBtn: null,
+            $subForm: null,
             init: function() {
               var This = this;
-
+              this.$formPanel = $('#formDemo');
+              this.$addBtn = $('#formDemo').find('.add-btn');
+              this.$subForm = $('#formDemo').find('#subForm');
               this.initEvt();
             },
             initEvt: function() {
+              var This = this;
+              this.$addBtn.on('click', function(){
+                This.addForm();                
+              });
+              this.$subForm.on('click', function(){
+                This.subForm();
+              });
+
+            },
+            addForm: function(){
+              var formStr = '',
+                  This = this,
+                  formNo = 0,
+                  $formWrap = this.$formPanel.find('.bs-example-wrap:last');
+
+              formNo = parseInt( $formWrap.find('.bs-example:last').attr('data-no'), 10);
+              formNo = formNo + 1;
+
+              // 当前表单容器填满，新增容器，否则填满之（容器最多放两表单）
+              if ( $formWrap.find('.bs-example').length > 1 ) {
+                $formWrap.after('<div class="bs-example-wrap"></div>');
+                $formWrap = this.$formPanel.find('.bs-example-wrap:last');
+              } else {
+                $formWrap.addClass('bs-example-block');
+              }
+              formStr = '<div class="bs-example" data-no="' + formNo + '"><form id="bsForm' + formNo + '"><div class="form-group"><label for="name">姓名:</label><input class="form-control" name="userName" placeholder="填写姓名"></div><div class="form-group"><label>工号:</label><input class="form-control" name="jobId" placeholder="填写工号"></div><div class="form-group"><label>身份证号:</label><input class="form-control" name="userId" placeholder="填写身份证"></div><div class="form-group"><label>手机号:</label><input class="form-control" name="mobile" placeholder="填写手机号"></div></form></div>';
+              $formWrap.append(formStr);
+              // 最多三个表单
+              if ( formNo >= 3) {
+                this.$addBtn.hide();
+              }
+            },
+            subForm: function(){
               console.log('提交表单');
             }
           };
