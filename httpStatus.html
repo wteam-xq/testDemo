@@ -17,7 +17,7 @@
           .demo-cont tr:hover{ background-color: #f5f5f5; }
           .demo-cont td{ padding-left:10px; }
           td:first-child{ border-right: 1px solid #ccc; }
-          .nav-btns{ text-align:center; margin:0px 0px 35px 0px; height:50px; line-height: 50px; padding:0px; }
+          .nav-btns{ text-align:center; margin:0 0 35px 0; height:50px; line-height: 50px; padding:0px; }
           .nav-btn{ list-style-type:none;float:left; width:20%; }
           
           .nav-btn a{ border-bottom:1px solid #ddd; border-radius:4px 4px 0 0; text-align:center; display:block; padding:10px 15px; color:#337ab7; text-decoration: none; }
@@ -32,14 +32,14 @@
         <h3 class="demo-title">常见的HTTP返回状态值</h3>
         
         <div class="demo-cont">
-          <ul class="nav-btns">
-            <li class="nav-btn active"><a href="#">1XX</a></li>
-            <li class="nav-btn"><a href="#">2XX</a></li>
-            <li class="nav-btn"><a href="#">3XX</a></li>
-            <li class="nav-btn"><a href="#">4XX</a></li>
-            <li class="nav-btn"><a href="#">5XX</a></li>
+          <ul class="nav-btns" id="navBtns">
+            <li class="nav-btn active" data-id="1"><a href="#">1XX</a></li>
+            <li class="nav-btn" data-id="2"><a href="#">2XX</a></li>
+            <li class="nav-btn" data-id="3"><a href="#">3XX</a></li>
+            <li class="nav-btn" data-id="4"><a href="#">4XX</a></li>
+            <li class="nav-btn" data-id="5"><a href="#">5XX</a></li>
           </ul>
-          <table>
+          <table class="table-panel" id="table_1">
             <tr class="table-h">
               <td class="table-l">状态码</td>
               <td class="table-r">含义</td>
@@ -55,6 +55,13 @@
             <tr>
               <td>102</td>
               <td>处理将会被继续执行</td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_2">
+            <tr class="table-h">
+              <td class="table-l">状态码</td>
+              <td class="table-r">含义</td>
             </tr>
             <tr>
               <td>200</td>
@@ -83,6 +90,13 @@
             <tr>
               <td>206</td>
               <td>客户端带了带range的请求 ，服务器完成了它</td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_3">
+            <tr class="table-h">
+              <td class="table-l">状态码</td>
+              <td class="table-r">含义</td>
             </tr>
             <tr>
               <td>300</td>
@@ -115,6 +129,13 @@
             <tr>
               <td>307</td>
               <td>请求的资源现在临时从不同的URI 响应请求。</td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_4">
+            <tr class="table-h">
+              <td class="table-l">状态码</td>
+              <td class="table-r">含义</td>
             </tr>
             <tr>
               <td>400</td>
@@ -212,6 +233,13 @@
               <td>449</td>
               <td>由微软扩展，代表请求应当在执行完适当的操作后进行重试。</td>
             </tr>
+          </table>
+
+          <table class="table-panel" id="table_5">
+            <tr class="table-h">
+              <td class="table-l">状态码</td>
+              <td class="table-r">含义</td>
+            </tr>
             <tr>
               <td>500</td>
               <td>服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。</td>
@@ -252,17 +280,62 @@
               <td>510</td>
               <td>获取资源所需要的策略并没有没满足。</td>
             </tr>
-
           </table>
+
           <p>1XX 客户端在接收前做的处理</p>
           <p>2XX 服务器处理请求结果</p>
           <p>3XX 重定向</p>
           <p>4XX 客户端错误</p>
           <p>5XX 服务端错误</p>
-
         </div>
         
+        <script type="text/javascript" src="utils/base.js"></script>
         <script>
+        init();
+        function init() {
+          var navBtns = document.getElementById('navBtns'),
+              navLis = navBtns.getElementsByTagName('li'),
+              i, navLi, len;
+
+          for(i = 0, len = navLis.length; i < len; i++) {
+            navLi = navLis[i];
+            navLi.onclick = navEvent;
+          }
+          // 显示第一张表
+          showTable(1);
+
+          function navEvent() {
+            var navNo = this.getAttribute('data-id'),
+                len, i, navLi;
+            navNo = parseInt(navNo, 10);
+            for(i = 0, len = navLis.length; i < len; i++) {
+              navLi = navLis[i];
+              if ( i != navNo - 1) {
+                removeClass(navLi, 'active');
+              } else {
+                addClass(navLi, 'active');
+              }
+            }
+            showTable(navNo);
+          }
+        }
+        function showTable(tableNo) {
+          var tId = 'table_' + tableNo,
+              table = document.getElementById(tId);
+          hideTables();
+          if (table) {
+            table.style.display = 'table';
+          }
+        }
+        function hideTables(){
+          var tables = document.getElementsByClassName('table-panel'),
+              i, len, table;
+          for (i = 0, len = tables.length; i < len; i++) {
+            table = tables[i];
+            table.style.display = 'none';
+          }
+        }
+
         </script>
 
     </body>

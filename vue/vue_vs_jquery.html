@@ -117,6 +117,7 @@
         
         .bs-example-wrap{ display: inline-block; }
         .bs-example-block{ display: block; }
+        .result-form-panel{ display: none; border: 1px solid #ddd; text-align:center; padding:10px; margin:10px auto; width:90%; }
       </style>
     </head>
 
@@ -420,42 +421,49 @@
       </div>
 
       <div class="demo-panel form-demo" id="formDemo" v-show="showType == 3.1">
-        <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
-        <h1 class="form-demo">3.1提交表单(jq)</h1>
-        
-        <div class="bs-example-wrap">
-          <div class="bs-example" data-no="1">
-            <form id="bsForm1">
-              <div class="form-group">
-                <label for="name">姓名:</label>
-                <input class="form-control" name="userName" placeholder="填写姓名">
-              </div>
-              <div class="form-group">
-                <label>工号:</label>
-                <input class="form-control" name="jobId" placeholder="填写工号">
-              </div>
-              <div class="form-group">
-                <label>身份证号:</label>
-                <input class="form-control" name="userId" placeholder="填写身份证">
-              </div>
-              <div class="form-group">
-                <label>手机号:</label>
-                <input class="form-control" name="mobile" placeholder="填写手机号">
-              </div>
-            </form>
+        <div class="add-form-panel" id="addFormPanel">
+          <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
+          <h1 class="form-demo">3.1提交表单(jq)</h1>
+          
+          <div class="bs-example-wrap">
+            <div class="bs-example" data-no="1">
+              <form id="bsForm1">
+                <div class="form-group">
+                  <label for="name">姓名:</label>
+                  <input class="form-control" name="userName" placeholder="填写姓名">
+                </div>
+                <div class="form-group">
+                  <label>工号:</label>
+                  <input class="form-control" name="jobId" placeholder="填写工号">
+                </div>
+                <div class="form-group">
+                  <label>身份证号:</label>
+                  <input class="form-control" name="userId" placeholder="填写身份证">
+                </div>
+                <div class="form-group">
+                  <label>手机号:</label>
+                  <input class="form-control" name="mobile" placeholder="填写手机号">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="speeddial  add-btn" title="新增表单">
+            <div class="speeddial-inner">
+              <div class="addBtn-icon">+</div>
+            </div>
+          </div>
+
+          <div>
+            <input class="btn332 btn_reg_1" id="subForm" readonly="true" value="提交">
           </div>
         </div>
-
-        <div class="speeddial  add-btn" title="新增表单">
-          <div class="speeddial-inner">
-            <div class="addBtn-icon">+</div>
+        <div class="result-form-panel" id="resultForm">
+          <h1>提交成功</h1>
+          <div>
+            <input class="btn332 btn_reg_1" readonly="true" id="backForm" value="返回">
           </div>
         </div>
-
-        <div>
-          <input class="btn332 btn_reg_1" id="subForm" value="提交">
-        </div>
-
       </div>
 
       <script type="text/javascript" src="./vue.js"></script>
@@ -780,11 +788,14 @@
             $formPanel: null,
             $addBtn: null,
             $subForm: null,
+            $resultForm: null,
             init: function() {
               var This = this;
               this.$formPanel = $('#formDemo');
               this.$addBtn = $('#formDemo').find('.add-btn');
               this.$subForm = $('#formDemo').find('#subForm');
+              this.$addFormPanel = $('#formDemo').find('#addFormPanel');
+              this.$resultForm = $('#formDemo').find('#resultForm');
               this.initEvt();
             },
             initEvt: function() {
@@ -821,7 +832,8 @@
               }
             },
             subForm: function(){
-              console.log('提交表单');
+              this.$resultForm.show();
+              this.$addFormPanel.hide();
             }
           };
           submitForm.init();

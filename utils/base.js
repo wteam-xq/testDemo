@@ -255,3 +255,52 @@ var createClass = function(constructor, methods, Parent, parentArgs) {
   }
   return $Class;
 };
+
+/**
+ * 常用方法: dom 类名操作
+ */
+function addClass(dom, className) {
+  if (!dom) {
+    return false;
+  }
+  var classList = dom.getAttribute('class'),
+      i, len, _name, hasClass = false;
+
+  if ( classList ) {
+    classList = classList.split(" ");
+    for (i = 0, len = classList.length; i < len; i++) {
+      _name = classList[i];
+      if (_name == className) {
+        hasClass = true;
+        break;
+      }
+    }
+    if (!hasClass) {
+      classList.push(className);
+      classList = classList.join(" ");
+      dom.setAttribute('class', classList);
+    }
+  }
+
+}
+
+function removeClass(dom, className) {
+  if (!dom) {
+    return false;
+  }
+  var classList = dom.getAttribute('class'),
+      i, len, _name, newClassList = [];
+  if ( classList ) {
+    classList = classList.split(" ");
+    for (i = 0, len = classList.length; i < len; i++) {
+      _name = classList[i];
+      if (_name != className) {
+        newClassList.push(_name);
+      }
+    }
+    
+    classList = newClassList.join(" ");
+    dom.setAttribute('class', classList);
+  }
+
+}
