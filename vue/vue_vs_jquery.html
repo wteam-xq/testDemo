@@ -118,6 +118,14 @@
         .bs-example-wrap{ display: inline-block; }
         .bs-example-block{ display: block; }
         .result-form-panel{ display: none; border: 1px solid #ddd; text-align:center; padding:10px; margin:10px auto; width:90%; }
+        .table-h{ color: blue; font-weight: bold; }
+        .table-h td{ width:20%; }
+        .result-form-panel table{ width:100%; border:1px solid #ccc; border-collapse: collapse; }
+        .result-form-panel tr{ line-height: 2em; border: 1px solid #ccc; }
+        .result-form-panel tr:hover{ background-color: #f5f5f5; }
+        .result-form-panel td{ padding-left:10px; border-left: 1px solid #ccc; }
+        td:first-child{ border-left: 0px; }
+        .sex-radios label{ margin: 0px 15px 0px 0px; }
       </style>
     </head>
 
@@ -433,6 +441,19 @@
                   <input class="form-control" name="userName" placeholder="填写姓名">
                 </div>
                 <div class="form-group">
+                  <label for="sex">性别:</label>
+                  <div class="sex-radios">
+                    <label>
+                      <input type="radio" name="sex" checked>
+                      男
+                    </label>
+                    <label>
+                      <input type="radio" name="sex">
+                      女
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label>工号:</label>
                   <input class="form-control" name="jobId" placeholder="填写工号">
                 </div>
@@ -460,6 +481,30 @@
         </div>
         <div class="result-form-panel" id="resultForm">
           <h1>提交成功</h1>
+          <table class="table-panel" id="table_2">
+            <tr class="table-h">
+              <td>姓名</td>
+              <td>性别</td>
+              <td>工号</td>
+              <td>身份证</td>
+              <td>手机号</td>
+            </tr>
+            <tr>
+              <td>wteam-xq </td>
+              <td>男</td>
+              <td>123455</td>
+              <td>441623198906193557</td>
+              <td>13535204150</td>
+            </tr>
+            <tr>
+              <td>wteam-xq </td>
+              <td>男</td>
+              <td>123455</td>
+              <td>441623198906193557</td>
+              <td>13535204150</td>
+            </tr>
+          </table>
+
           <div>
             <input class="btn332 btn_reg_1" readonly="true" id="backForm" value="返回">
           </div>
@@ -796,6 +841,7 @@
               this.$subForm = $('#formDemo').find('#subForm');
               this.$addFormPanel = $('#formDemo').find('#addFormPanel');
               this.$resultForm = $('#formDemo').find('#resultForm');
+              this.$backBtn = $('#formDemo').find('#backForm');
               this.initEvt();
             },
             initEvt: function() {
@@ -805,6 +851,9 @@
               });
               this.$subForm.on('click', function(){
                 This.subForm();
+              });
+              this.$backBtn.on('click', function(){
+                This.backForm();
               });
 
             },
@@ -824,7 +873,7 @@
               } else {
                 $formWrap.addClass('bs-example-block');
               }
-              formStr = '<div class="bs-example" data-no="' + formNo + '"><form id="bsForm' + formNo + '"><div class="form-group"><label for="name">姓名:</label><input class="form-control" name="userName" placeholder="填写姓名"></div><div class="form-group"><label>工号:</label><input class="form-control" name="jobId" placeholder="填写工号"></div><div class="form-group"><label>身份证号:</label><input class="form-control" name="userId" placeholder="填写身份证"></div><div class="form-group"><label>手机号:</label><input class="form-control" name="mobile" placeholder="填写手机号"></div></form></div>';
+              formStr = '<div class="bs-example" data-no="' + formNo + '"><form id="bsForm' + formNo + '"><div class="form-group"><label for="name">姓名:</label><input class="form-control" name="userName" placeholder="填写姓名" /></div><div class="form-group"><label for="sex">性别:</label><div class="sex-radios"><label><input type="radio" name="sex" checked>                      男</label><label><input type="radio" name="sex">                      女</label></div></div><div class="form-group"><label>工号:</label><input class="form-control" name="jobId" placeholder="填写工号" /></div><div class="form-group"><label>身份证号:</label><input class="form-control" name="userId" placeholder="填写身份证" /></div><div class="form-group"><label>手机号:</label><input class="form-control" name="mobile" placeholder="填写手机号" /></div></form></div>';
               $formWrap.append(formStr);
               // 最多三个表单
               if ( formNo >= 3) {
@@ -832,8 +881,14 @@
               }
             },
             subForm: function(){
+              // 获取表单数据
+              
               this.$resultForm.show();
               this.$addFormPanel.hide();
+            },
+            backForm: function(){
+              this.$resultForm.hide();
+              this.$addFormPanel.show();
             }
           };
           submitForm.init();
