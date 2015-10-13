@@ -72,6 +72,9 @@
           .u-face-pop { display:none; margin-top: -235px; margin-left:-70px; width:180px; height:130px; background: #ccc; border:2px solid #007bff; position:relative; padding:10px; }
           .u-face-pop p{ color:#fff; }
           .u-face-pop .triangle-ico { position:absolute; bottom:-16px; left:88px; width: 0; height: 0; border-style: solid; border-width: 15px 10px 0 10px; border-color: #007bff transparent transparent transparent; }
+        
+          /*文字双击选中默认事件去除*/
+          .cant-selected{ -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; -ms-user-select:none; }
         </style>
 
     </head>
@@ -155,7 +158,7 @@
         </p>
         <div class="css-triangle"></div>
 
-        <h2>运用场景：(点击弹出层)</h2>
+        <h2 class="cant-selected" onselectstart="return false;">运用场景：(点击弹出层)</h2>
 
         <div class="u_face">
             <img id="uFace" src="images/dlam.jpg">

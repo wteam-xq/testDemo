@@ -51,7 +51,7 @@
           }
 
           // superFn() 得到的是subFn，superFn()()等于subFn()
-          superFn()();
+          // superFn()();
 
           //多一个父函数试试
           function superTopFn(arg_num){
@@ -72,6 +72,42 @@
           // 获得subFn
           // var subFoo = superFoo();
           // subFoo();
+
+          loopClosure();
+
+          // 常见闭包问题： 循环中的闭包: http://bonsaiden.github.io/JavaScript-Garden/zh/#function.closures
+          function loopClosure(){
+            var showError = true;
+
+            showError = confirm('执行错误用法示例？"确定"执行错误处理，“取消”执行正确处理（完成后请看控制台）');
+
+            if (showError){
+              errorUse();
+            } else {
+              avoidError();
+            }
+            function errorUse(){
+              var i , len;
+              alert('遍历连续的10数字。。。');
+              for ( i = 0, len = 10; i < len; i++) {
+                setTimeout(function(){
+                  console.log('输出值为：' + i);
+                }, 1000);
+              }
+            }
+
+            function avoidError(){
+              var i , len;
+              alert('遍历连续的10数字。。。');
+              for (i = 0, len = 10; i < len; i++) {
+                (function(i){
+                  setTimeout(function(){
+                    console.log('输出的值为： ' + i);
+                  }, 1000);
+                })(i);
+              }
+            }
+          }
 
         </script>
 
