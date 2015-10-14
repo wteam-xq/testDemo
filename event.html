@@ -5,6 +5,7 @@
         <title>
           事件理解
         </title>
+        <link rel="stylesheet" type="text/css" href="common.css"/>
         <style>
           .demo1{
             display: none;
@@ -18,7 +19,10 @@
         <input id="a" type="radio" name="a" value="a" class="demo1">aaaaaaa
         <input id="b" type="radio" name="a" value="b" class="demo1">bbbbbbb
         
+        <button id="aBtn" class="radius-btn">按钮A</button>
+        <button id="bBtn" class="radius-btn">按钮B</button>
         <script type="text/javascript" src="utils/base.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>
         <script>
           // 来源 http://www.zhihu.com/question/31964586
           // 根据当前规范，顺序应该是 click -> input -> change...（详见知乎回答）
@@ -42,7 +46,7 @@
               alert('click---click');
             });
           }
-          demo1();
+          // demo1();
 
           // dom 0级别相同类型事件（例如点击相关）只能一个有效，不同类型事件可以共存
           function demo2(){
@@ -80,6 +84,26 @@
           //   // For Safari 
           //   return '确定退出吗？'; 
           // };
+
+          // jq click、on调用的分别是 addEventListener 、onclick事件？ 其实它们是一样的：http://www.cnblogs.com/aaronjs/p/3444874.html
+          function demo3(){
+            var $a = $('#aBtn'),
+                $b = $('#bBtn');
+
+            $a.on('click', testAClick);
+            $a.on('click', testAClick);
+
+            $b.click(testBClick);
+            $b.click(testBClick);
+
+            function testAClick(){
+              alert('A 点击啦！');
+            }
+            function testBClick(){
+              alert('B 点击啦！');
+            }
+          } 
+          demo3();
 
         </script>
 
