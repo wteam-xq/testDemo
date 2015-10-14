@@ -1,5 +1,4 @@
 ### 开发计划
-* 20151004-20151010
 * 学习 ECMAScript 5 6；
 * 学习 leanCloud
 * 继续vue Demo 代码编写
@@ -11,8 +10,7 @@
   
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
-  * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas
-  * http 状态Demo 可以优化， 将其分类， 然后用选项卡显示；
+  * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas (模拟器往往跟真实环境有却别)
 
 ### 开发日志
 
@@ -78,5 +76,3 @@
   [最全前端面试问题及答案总结](http://segmentfault.com/a/1190000002562454)  
   [如何面试一名前端开发工程师？](http://www.html-js.com/article/Large-search-front-team-column%202961)  
   [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)  
-
-  

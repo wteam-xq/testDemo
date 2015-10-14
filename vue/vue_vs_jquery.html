@@ -444,11 +444,11 @@
                   <label for="sex">性别:</label>
                   <div class="sex-radios">
                     <label>
-                      <input type="radio" name="sex" checked>
+                      <input type="radio" name="sex" value="男" checked>
                       男
                     </label>
                     <label>
-                      <input type="radio" name="sex">
+                      <input type="radio" name="sex" value="女">
                       女
                     </label>
                   </div>
@@ -488,20 +488,6 @@
               <td>工号</td>
               <td>身份证</td>
               <td>手机号</td>
-            </tr>
-            <tr>
-              <td>wteam-xq </td>
-              <td>男</td>
-              <td>123455</td>
-              <td>441623198906193557</td>
-              <td>13535204150</td>
-            </tr>
-            <tr>
-              <td>wteam-xq </td>
-              <td>男</td>
-              <td>123455</td>
-              <td>441623198906193557</td>
-              <td>13535204150</td>
             </tr>
           </table>
 
@@ -873,7 +859,7 @@
               } else {
                 $formWrap.addClass('bs-example-block');
               }
-              formStr = '<div class="bs-example" data-no="' + formNo + '"><form id="bsForm' + formNo + '"><div class="form-group"><label for="name">姓名:</label><input class="form-control" name="userName" placeholder="填写姓名" /></div><div class="form-group"><label for="sex">性别:</label><div class="sex-radios"><label><input type="radio" name="sex" checked>                      男</label><label><input type="radio" name="sex">                      女</label></div></div><div class="form-group"><label>工号:</label><input class="form-control" name="jobId" placeholder="填写工号" /></div><div class="form-group"><label>身份证号:</label><input class="form-control" name="userId" placeholder="填写身份证" /></div><div class="form-group"><label>手机号:</label><input class="form-control" name="mobile" placeholder="填写手机号" /></div></form></div>';
+              formStr = '<div class="bs-example" data-no="' + formNo + '"><form id="bsForm' + formNo + '"><div class="form-group"><label for="name">姓名:</label><input class="form-control" name="userName" placeholder="填写姓名" /></div><div class="form-group"><label for="sex">性别:</label><div class="sex-radios"><label><input type="radio" name="sex" value="男" checked>                      男</label><label><input type="radio" name="sex" value="女">                      女</label></div></div><div class="form-group"><label>工号:</label><input class="form-control" name="jobId" placeholder="填写工号" /></div><div class="form-group"><label>身份证号:</label><input class="form-control" name="userId" placeholder="填写身份证" /></div><div class="form-group"><label>手机号:</label><input class="form-control" name="mobile" placeholder="填写手机号" /></div></form></div>';
               $formWrap.append(formStr);
               // 最多三个表单
               if ( formNo >= 3) {
@@ -881,8 +867,41 @@
               }
             },
             subForm: function(){
+              var formDatas = [], i, len, formObj, trStr = '', trList = '';
               // 获取表单数据
-              
+              this.$formPanel.find('form').each(function(index, domEle){
+                var formDom = domEle,
+                    i, len, sexVal,
+                    formObj = {};
+                for(i = 0, len = formDom.sex.length; i <len; i++) {
+                  if (formDom.sex[i].checked) {
+                    sexVal = formDom.sex[i].value;
+                    break;
+                  }
+                }
+                formObj = {
+                  'userName': formDom.userName.value,
+                  'sex': sexVal,
+                  'jobId': formDom.jobId.value,
+                  'userId': formDom.userId.value,
+                  'mobile': formDom.mobile.value
+                };
+                formDatas.push(formObj);
+              });
+              // 将用户填写的数据 填入新表格
+              for (i = 0, len = formDatas.length; i < len; i++) {
+                formObj = formDatas[i];
+                trStr = '<tr class="user-tr">' +
+                  '<td>' + formObj.userName + '</td>' +
+                  '<td>' + formObj.sex + '</td>' +
+                  '<td>' + formObj.jobId + '</td>' +
+                  '<td>' + formObj.userId + '</td>' +
+                  '<td>' + formObj.mobile + '</td>' +
+                '</tr>';
+                trList += trStr;
+              }
+              this.$resultForm.find('#table_2').find('tr.user-tr').remove();
+              this.$resultForm.find('#table_2').find('tbody').append(trList);
               this.$resultForm.show();
               this.$addFormPanel.hide();
             },
