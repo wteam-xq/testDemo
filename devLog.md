@@ -11,6 +11,7 @@
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas (模拟器往往跟真实环境有却别)
+  * 原生 实现动态脚本加入，cmd 原理 研究； require.js  seajs...
 
 ### 开发日志
 
