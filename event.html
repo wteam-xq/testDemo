@@ -103,7 +103,23 @@
               alert('B 点击啦！');
             }
           } 
-          demo3();
+          // demo3();
+
+          // 测试屏幕变化事件
+          function testWindowResize(){
+            window.onresize = function(){
+              innerResize();
+            }
+
+            function innerResize() {
+              console.log('屏幕尺寸改变！');
+              // window.onresize 是一个方法， 可以随时被改变
+              window.onresize = function () {
+                console.log('新的屏幕尺寸改变2！');
+              }
+            }
+          }
+          testWindowResize();
 
         </script>
 
