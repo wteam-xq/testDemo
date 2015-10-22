@@ -75,6 +75,10 @@
         
           /*文字双击选中默认事件去除*/
           .cant-selected{ -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; -ms-user-select:none; }
+          /*文字两端对齐 解决实际开发中文字没左右端两端没对齐bug*/
+          .box-wrap{width:50%; padding:20px; margin:20px auto; background-color:#f0f3f9; text-align:justify;}
+          .list{width:250px; height:120px; display:inline-block; margin-bottom:20px; text-align:center; vertical-align:top; background-color: #000; }
+          .justify-fix{display:inline-block; width:100%; height:0; overflow:hidden;}
         </style>
 
     </head>
@@ -88,6 +92,7 @@
         <button id="tBtn4" data-id="test4" class="radius-btn">多栏布局</button>
         <button id="tBtn5" data-id="test5" class="radius-btn">媒体查询</button>
         <button id="tBtn6" data-id="test6" class="radius-btn">css三角形</button>
+        <button id="tBtn7" data-id="test7" class="radius-btn">文字两端对齐</button>
       </div>
 
       <div id='test1' class="demo demo2">
@@ -168,7 +173,14 @@
               <div class="triangle-ico"></div>
             </div>
         </div>
+      </div>
 
+      <!-- 实现两端对齐, 2个一组对齐 -->
+      <div id="test7" class="demo box-wrap">
+        <span class="list"></span>
+        <span class="list"></span>
+        <span class="list"></span>
+        <span class="justify-fix"></span>
       </div>
       
       <script src="utils/base.js" type="text/javascript"></script>
