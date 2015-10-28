@@ -35,7 +35,31 @@
           tomorrowBtn.onclick = tomorrowEvent;
           formatBtn.onclick = formatEvent;
           isleap.onclick = isleapEvent;
+
+          // initDate();
+          browserDate();
         }
+
+        // new Date() 参数初始化
+        // http://jishu.admin5.com/biancheng/131230/499.html
+        function initDate() {
+          // 初始化日期， 常用写法：new date(yyyy,mth,dd);   new date(ms); 
+          // var data1 = new Date("2015", "10", "27");
+          var data1 = new Date(2015, 10, 26);
+          var data2 = new Date(1445922341227);
+          console.log("data1: " + data1);
+          console.log("data2: " + data2);
+        }
+        // new Date 浏览器兼容
+        // http://blog.csdn.net/blueheart20/article/details/44902747
+        function browserDate(){
+          // 浏览器兼容初始化日期写法
+          var data1 = new Date('2015-10-26'); // IE9+ , chrome support
+          var data2 = new Date('2015/10/26'); // all support
+          console.log("data1: " + data1);
+          console.log("data2: " + data2);
+        }
+
         // 获得明天的日期 格式：yyyy-mm-dd
         function tomorrowEvent(){
           var toDay = new Date(),

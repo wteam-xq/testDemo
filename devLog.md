@@ -10,7 +10,7 @@
   
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
-  * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas (模拟器往往跟真实环境有却别)
+  * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas (模拟器往往跟真实环境有区别)
   * webpack 模块化学习， tkd_v3 开发；
 
 ### 开发日志
