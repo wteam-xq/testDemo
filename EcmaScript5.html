@@ -23,6 +23,33 @@
       <script>
           // 教程网址： http://yanhaijing.com/es5/#5
           
+          // http://www.zhihu.com/question/37117614(知识点在于上述ES5 教程)
+          var ecma5Demo = {
+            init: function(){
+              var This = this;
+              this.demo1();
+            },
+            demo1: function(){
+              // 临时包装对象 成功
+              var box ='Mr.Xiao'; 
+              alert(box.substring(2));
+
+              // 临时包装对象 失败
+              box.name='xiao';
+              box.age=function(){
+                return 10;
+              }
+              alert(box.name);  //undefined
+              alert(box.age());  //报错
+
+              // 没临时包装对象
+              var falseObject=new Boolean(false);
+              var falseValue=false;
+              alert(falseObject instanceof Boolean); //true
+              alert(falseValue instanceof Boolean); //false
+            }
+          };
+          ecma5Demo.init();
       </script>
     </body>
 </html>
