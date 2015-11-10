@@ -49,17 +49,57 @@
     <script type="text/javascript">
         $(function(){
             // 优化思路： http://developer.51cto.com/art/201504/473422.htm
-            var slideObj = {
-                $headLine: null,
-                init: function(){
-                    this.$headLine = $('#head_line_id');
+            // 自动滚动（每隔5秒向上滚动）效果，只有滚动条数大于2时滚动；
+            // 鼠标放置上面停止滚动，移开继续滚动；
 
+            var slideObj = {
+                $headLineWrap:null,
+                init: function(){
+                   this.$headLineWrap = $('#head_line_id');
+                   this.initEvt();
                 },
                 initEvt:function(){
+                    var $ulWrap = this.$headLineWrap.find('.normalHeadLine_div'),
+                        slideUp_count = 1,
+                        dataLen = $ulWrap.find('li').length,
+                        top = 0,
+                        slideTimeOut = 0;
+
+                    if ( dataLen > 2 ){
+                        clearTimeout(slideTimeOut);
+                        slideUp();
+                    }
+
+                    function slideUp(){
+                        var $hadShowDom = '';
+                        // 当已滚动条数超过一半时自动切换
+                        if ( slideUp_count > parseInt(dataLen/2, 10) ){
+                            // 将已向上移动的节点移动至最下面
+                            $hadShowDom = $ulWrap.find('li.had_show');
+                            // 如果append的是自己子类，则移动其位置
+                            $ulWrap.find('ul').append($hadShowDom);
+                            $hadShowDom.removeClass('had_show');
+                            slideUp_count = 1;
+                            $ulWrap.css('top', 0);
+                        }
+                        top = parseInt($ulWrap.css('top'), 10);
+                        top -= 25*2;
+                        slideTimeOut = setTimeout(function(){
+                            $ulWrap.animate({
+                                'top': top
+                            }, 1000, function(){
+                                $ulWrap.find('li').eq(slideUp_count - 1).addClass('had_show');
+                                $ulWrap.find('li').eq(slideUp_count).addClass('had_show');
+                                slideUp_count += 2;
+                                slideUp();
+                            });
+                        }, 5 * 1000);
+                    }
 
                 }
             };
             
+            slideObj.init();
         });
     </script>
 </body>
