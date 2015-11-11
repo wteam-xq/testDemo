@@ -43,7 +43,11 @@
 * 解决方案：从样式上解决，正常文档流布局display:inline-block; text-align:justify; 两端对齐
 
 * 2015-11-9 滚动条代码优化,前端实现自动滚动（每隔5秒向上滚动）效果，只有滚动条数大于2时滚动；鼠标放置上面停止滚动，移开继续滚动；
-* 貌似无解
+* 优化方案：
+* 1.在 操作dom时 隐藏， 操作完后出现；
+* 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
+* 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;
+
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
