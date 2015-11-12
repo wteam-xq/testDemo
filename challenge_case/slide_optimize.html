@@ -13,6 +13,7 @@
         .normalHeadLine_div { position: absolute; top: 0; }
         .normalHeadLine_div ul{ margin:8px 0px; }
         .normalHeadLine_div .list { padding: 0 0 0 8px; height: 25px; cursor: pointer; }
+        .normalHeadLine_div .list:hover{ color:#e43637; }
     </style>
 </head>
 <body>
@@ -22,23 +23,23 @@
         <div id="head_line_id" class="head_line_mod">
             <div class="normalHeadLine_div">
                 <ul>
-                    <li class="list">1.测试的一段小蚊子...</li>
-                    <li class="list">2.测试的一段小蚊子...</li>
-                    <li class="list">3.测试的一段小蚊子...</li>
-                    <li class="list">4.测试的一段小蚊子...</li>
-                    <li class="list">5.测试的一段小蚊子...</li>
-                    <li class="list">6.测试的一段小蚊子...</li>
-                    <li class="list">7.测试的一段小蚊子...</li>
-                    <li class="list">8.测试的一段小蚊子...</li>
-                    <li class="list">9.测试的一段小蚊子...</li>
-                    <li class="list">10.测试的一段小蚊子...</li>
-                    <li class="list">11.测试的一段小蚊子...</li>
-                    <li class="list">12.测试的一段小蚊子...</li>
-                    <li class="list">13.测试的一段小蚊子...</li>
-                    <li class="list">14.测试的一段小蚊子...</li>
-                    <li class="list">15.测试的一段小蚊子...</li>
-                    <li class="list">16.测试的一段小蚊子...</li>
-                    <li class="list">17.测试的一段小蚊子...</li>
+                    <li class="list" title="1.测试的一段小蚊子">1.测试的一段小蚊子...</li>
+                    <li class="list" title="2.测试的一段小蚊子">2.测试的一段小蚊子...</li>
+                    <li class="list" title="3.测试的一段小蚊子">3.测试的一段小蚊子...</li>
+                    <li class="list" title="4.测试的一段小蚊子">4.测试的一段小蚊子...</li>
+                    <li class="list" title="5.测试的一段小蚊子">5.测试的一段小蚊子...</li>
+                    <li class="list" title="6.测试的一段小蚊子">6.测试的一段小蚊子...</li>
+                    <li class="list" title="7.测试的一段小蚊子">7.测试的一段小蚊子...</li>
+                    <li class="list" title="8.测试的一段小蚊子">8.测试的一段小蚊子...</li>
+                    <li class="list" title="9.测试的一段小蚊子">9.测试的一段小蚊子...</li>
+                    <li class="list" title="10.测试的一段小蚊子">10.测试的一段小蚊子...</li>
+                    <li class="list" title="11.测试的一段小蚊子">11.测试的一段小蚊子...</li>
+                    <li class="list" title="12.测试的一段小蚊子">12.测试的一段小蚊子...</li>
+                    <li class="list" title="13.测试的一段小蚊子">13.测试的一段小蚊子...</li>
+                    <li class="list" title="14.测试的一段小蚊子">14.测试的一段小蚊子...</li>
+                    <li class="list" title="15.测试的一段小蚊子">15.测试的一段小蚊子...</li>
+                    <li class="list" title="16.测试的一段小蚊子">16.测试的一段小蚊子...</li>
+                    <li class="list" title="17.测试的一段小蚊子">17.测试的一段小蚊子...</li>
                 </ul>
             </div>
         </div>
@@ -48,9 +49,9 @@
     <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function(){
-            // 优化思路： http://developer.51cto.com/art/201504/473422.htm
-            // 自动滚动（每隔5秒向上滚动）效果，只有滚动条数大于2时滚动；
-            // 鼠标放置上面停止滚动，移开继续滚动；(尽量不遍历 节点)
+            // 优化思路： http://developer.51cto.com/art/201504/473422.htm (尽量不操作、遍历 节点)
+            // 自动滚动（每隔5秒向上滚动）效果，只有滚动条数大于3时滚动； 如片段太少， 节点拼接处理
+            // 鼠标放置上面停止滚动，移开继续滚动；
             var slideObj = {
                 $headLineWrap:null,
                 init: function(){
@@ -61,20 +62,31 @@
                     var $ulWrap = this.$headLineWrap.find('.normalHeadLine_div'),
                         dataLen = $ulWrap.find('li').length,
                         top = 0,
-                        slideUp_count = 1,
-                        slideTimeOut;
+                        slideUp_count = 2,
+                        slideTimeOut,
+                        slideUp_mouseover,
+                        outTimeOut;
 
-                    if ( dataLen > 2 ){
-                        clearTimeout(slideTimeOut);
-                        slideUp();
+                    // 节点不够自动拼凑
+                    if(dataLen == 4 || dataLen == 5) {
+                        $ulWrap.find('li:lt(2)').clone().appendTo($ulWrap.find('ul'));
                     }
+                    if ( dataLen > 3 ){
+                        clearTimeout(slideTimeOut);
+                        slideUp2();
+                    }
+                    // 关于 mouseover 与 mouseenter区别：http://www.cnblogs.com/kingwell/archive/2012/09/09/2677258.html
+                    // mouseover mouseout 与 hover, 很多时候能用css解决 脚本实现的功能，性能更好且更好维护 http://www.cnblogs.com/aimyfly/archive/2012/05/04/2483123.html
+                    $ulWrap.on('mouseover',  stopSlideUp);
+                    $ulWrap.on('mouseleave', startSlideUp);
                     // chrome 1 ~ 4
                     function slideUp(){
                         var $hadShowDom = '';
                         top -= 25*2;
-                        if (slideTimeOut) {
-                            clearTimeout(slideTimeOut);
-                        }
+                        if (slideUp_mouseover === true) {
+                            return false;
+                        } 
+                        clearTimeout(slideTimeOut);
                         slideTimeOut = setTimeout(function(){
                             $ulWrap.animate({
                                 'top': top
@@ -90,6 +102,7 @@
                     // chrome cpu 1 ~ 3
                     function slideUp2(){
                         var $hadShowDom = '', hadShowIndex;
+                        clearTimeout(slideTimeOut);
                         // 当已滚动条数超过一半时自动切换
                         if ( slideUp_count > parseInt(dataLen/2, 10) ){
                             hadShowIndex = Math.floor(dataLen/2);
@@ -98,7 +111,7 @@
                             // 如果append的是自己子类，则移动其位置
                             $ulWrap.find('ul').append($hadShowDom);
                             $hadShowDom.removeClass('had_show');
-                            slideUp_count = 1;
+                            slideUp_count = 2;
                             $ulWrap.css('top', 0);
                             top = 0;
                         }
@@ -112,7 +125,22 @@
                             });
                         }, 5 * 1000);
                     }
-
+                    // 停止滑动
+                    function stopSlideUp(){
+                        slideUp_mouseover = true;
+                        if (slideTimeOut) {
+                            clearTimeout(slideTimeOut);
+                        }
+                    }
+                    // 开始滑动
+                    function startSlideUp(){
+                        slideUp_mouseover = false;
+                        clearTimeout(outTimeOut);
+                        top = parseInt( $ulWrap.css('top'), 10);
+                        outTimeOut = setTimeout(function(){
+                            slideUp2();
+                        }, 500);
+                    }
                 }
             };
             
