@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>
+          低版本浏览器兼容相关
+      </title>
+      <link rel="icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    
+    <body>
+      <h3>低版本浏览器兼容相关</h3>
+
+      <script>
+        // 模拟低版本浏览器 安装虚拟机： virtualbox
+        // http://www.i7086.com/xunijivirtualboxanzhuangwindowscaozuoxitong
+        var IEObj = {
+          init: function(){
+            var This = this;
+            this.topFunction();
+          },
+          topFunction:function(){
+            var testTopVal = 2;
+            testTop();
+            // IE6 IE7函数声明 必须置顶
+            function testTop(){
+              // console.log 参见 EcmaScript5.html
+              console.log('IE7 IE6不声明不能置顶，不支持console');
+            }
+          }
+        };
+        IEObj.init();
+      </script>
+
+    </body>
+</html>

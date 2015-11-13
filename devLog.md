@@ -1,7 +1,7 @@
 ### 开发计划
 * 学习 ECMAScript 5 6；
-* 学习 leanCloud
-* 继续vue Demo 代码编写
+* webpack 学习
+* IE 低版本浏览器兼容代码记录
   
 #### VUE（现代库） 与 jquery 用法 区别 
 * 1.注册账号：

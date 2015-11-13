@@ -28,6 +28,7 @@
             init: function(){
               var This = this;
               // this.demo1();
+              this.demo2();
             },
             demo1: function(){
               // 临时包装对象 成功
@@ -50,11 +51,27 @@
             },
             consoleDemo: function(){
               // 不建议在开发时使用console.log 的原因在于， 在低版本浏览器包括IE8(ie6 ie7)使用会出问题；
-              // IE6 IE7 浏览器没改方法 执行该语句会报错
+              // IE6 IE7 浏览器没该方法 执行该语句会报错
               // IE8 开始支持该方法， 但console.log({a:'adf'}); 这类型 对象类型不能正常输出，而且会引起其他莫名问题
 
               // console.log 属于BOM 对象方法， 以前的浏览器实现其没有统一规范所致；
               console.log('旧版本 IE 浏览器对console.log支持很不好！');
+            },
+            demo2: function(){
+              var s_type;
+              s_type = '0';
+              // switch 区分 0 与 ‘0’
+              switch(s_type){
+                case 0:
+                  console.log(0);
+                  break;
+                case 1:
+                  console.log(1);
+                  break;
+                default:
+                  console.log('默认事件处理');
+                  break;
+              }
             }
           };
           ecma5Demo.init();
