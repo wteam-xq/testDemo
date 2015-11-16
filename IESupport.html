@@ -14,7 +14,7 @@
       <h3>低版本浏览器兼容相关</h3>
 
       <script>
-        // 模拟低版本浏览器 安装虚拟机： virtualbox
+        // 模拟低版本浏览器 安装虚拟机： virtualbox，然后 将文件放置在模拟服务器中让虚拟机访问（同个网段可以相互访问）
         // http://www.i7086.com/xunijivirtualboxanzhuangwindowscaozuoxitong
         var IEObj = {
           init: function(){
@@ -32,6 +32,12 @@
           }
         };
         IEObj.init();
+
+        // IE兼容日志(IE6 IE7)：
+        // 1.低版本浏览器，js数组、对象注意不能有多余的“逗号”；
+        // 例如：var aArray = [{'arg1': '1'}, {'arg2': '2'},];  var aObj = {'arg1': '1',}; 别遗漏最后逗号；
+        // 
+
       </script>
 
     </body>

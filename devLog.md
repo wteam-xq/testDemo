@@ -3,11 +3,6 @@
 * webpack 学习
 * IE 低版本浏览器兼容代码记录
   
-#### VUE（现代库） 与 jquery 用法 区别 
-* 1.注册账号：
-* 2.购物列表：
-* 3.表单提交：登高参赛报名申请， 提交表单：1~3， 提交成功显示参赛组员列表；
-  
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * 研究windows下，nodejs 第三方插件要求linux环境处理，如：node-canvas (模拟器往往跟真实环境有区别)
@@ -48,6 +43,7 @@
 * 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
 * 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;
 
+* 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
