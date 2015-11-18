@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <heade>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>
@@ -8,14 +8,17 @@
       </title>
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    </head>
+      <script type="text/javascript" src="http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js"></script>
+      <!-- 1.3// <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script> -->
+    </heade>
     
     <body>
       <h3>低版本浏览器兼容相关</h3>
-
+      
       <script>
-        // 模拟低版本浏览器 安装虚拟机： virtualbox，然后 将文件放置在模拟服务器中让虚拟机访问（同个网段可以相互访问）
-        // http://www.i7086.com/xunijivirtualboxanzhuangwindowscaozuoxitong
+        // 模拟低版本浏览器 安装虚拟机： virtualbox，然后 将文件放置在模拟服务器中让虚拟机配置host访问（同个网段可以相互访问）
+        // ie developer toobar 只能查看样式，增删类名而已， firebug lite 则可以查看脚本报错情况,但查看某个节点样式不够方便；
+        // 虚拟机相关教程：http://www.i7086.com/xunijivirtualboxanzhuangwindowscaozuoxitong
         var IEObj = {
           init: function(){
             var This = this;
@@ -28,6 +31,7 @@
             function testTop(){
               // console.log 参见 EcmaScript5.html
               console.log('IE7 IE6不声明不能置顶，不支持console');
+              console.log('ie6 下不报错？');
             }
           }
         };
@@ -36,8 +40,11 @@
         // IE兼容日志(IE6 IE7)：
         // 1.低版本浏览器，js数组、对象注意不能有多余的“逗号”；
         // 例如：var aArray = [{'arg1': '1'}, {'arg2': '2'},];  var aObj = {'arg1': '1',}; 别遗漏最后逗号；
-        // 
-
+        // 2.IE7以下浏览器(主要IE6) 一般标签样式不支持 伪类hover ， 要使在IE5及IE6中也有效，则必须在外面包裹一个a标签且改a标签必须有href属性；
+        // 3.IE6 IE7下不太支持 inline-block, 反而对浮动支持较好； http://www.cnblogs.com/leejersey/archive/2012/07/11/2586506.html
+        // 4.IE6 下事件处理（参考 utils/base.js   EventUtil ）
+        // 5.getAttribute("class") 在IE下可能无法获取正确类名， IE对应的应该为 getAttribute("className")
+        // 6.CSS 三角形在IE6 下无效；
       </script>
 
     </body>
