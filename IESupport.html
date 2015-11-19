@@ -9,12 +9,30 @@
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       <script type="text/javascript" src="http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js"></script>
+      <!--[if lt IE 7]>
+            <script type="text/javascript" src="lib/pngfix/unitpngfix.js"></script>
+      <![endif]--> 
+
       <!-- 1.3// <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script> -->
+      <style>
+        .png-pos{ background: url('images/icon_user.png') no-repeat; width:63px; height:16px; }
+      </style>
     </heade>
     
     <body>
       <h3>低版本浏览器兼容相关</h3>
       
+      <div class=""></div>
+
+      <div class="png_warp">
+        <img src="images/icon_user.png" alt="test-png" />
+  
+        <!-- 只要出现了 unitPng ，其他没该类名的节点将不处理png图片 -->
+        <div class="png-pos unitPng"></div>
+
+        <div class="png-pos"></div>
+      </div>
+
       <script>
         // 模拟低版本浏览器 安装虚拟机： virtualbox，然后 将文件放置在模拟服务器中让虚拟机配置host访问（同个网段可以相互访问）
         // ie developer toobar 只能查看样式，增删类名而已， firebug lite 则可以查看脚本报错情况,但查看某个节点样式不够方便；
@@ -30,7 +48,6 @@
             // IE6 IE7函数声明 必须置顶
             function testTop(){
               // console.log 参见 EcmaScript5.html
-              console.log('IE7 IE6不声明不能置顶，不支持console');
               console.log('ie6 下不报错？');
             }
           }
@@ -44,7 +61,9 @@
         // 3.IE6 IE7下不太支持 inline-block, 反而对浮动支持较好； http://www.cnblogs.com/leejersey/archive/2012/07/11/2586506.html
         // 4.IE6 下事件处理（参考 utils/base.js   EventUtil ）
         // 5.getAttribute("class") 在IE下可能无法获取正确类名， IE对应的应该为 getAttribute("className")
-        // 6.CSS 三角形在IE6 下无效；
+        // 6.position absolute; 在IE6下无效；
+        // 7.IE6下 line-height 对应节点， 如果不是全文字的话（包含图片/input textarea/select等）会无效；
+        // 8.IE6下 position:absolute; 如果父节点已经透明显示， 子类超出父节点部分会被隐藏（即使显示优先级 高于任何子节点）；
       </script>
 
     </body>
