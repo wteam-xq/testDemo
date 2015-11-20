@@ -2,10 +2,11 @@
 * 学习 ECMAScript 5 6；
 * webpack 学习
 * IE 低版本浏览器兼容代码记录
+* utils库 更新（动态插入脚本-浏览器兼容， localStorage IE 主流浏览器兼容代码）
   
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
-  * webpack 模块化学习， tkd_v3 开发；
+  * webpack 模块化学习， tkd_v3 开发;
 
 ### 开发日志
 

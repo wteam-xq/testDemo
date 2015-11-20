@@ -304,3 +304,11 @@ function removeClass(dom, className) {
   }
 
 }
+
+// 动态插入脚本(待更新，加入加载完成的回调函数)
+function loadScript(url){
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = url;
+  document.body.appendChild(script);
+}
