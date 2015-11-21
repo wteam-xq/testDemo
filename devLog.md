@@ -3,7 +3,8 @@
 * webpack 学习
 * IE 低版本浏览器兼容代码记录
 * utils库 更新（动态插入脚本-浏览器兼容， localStorage IE 主流浏览器兼容代码）
-  
+* 住处配置浏览器兼容开发环境；
+
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * webpack 模块化学习， tkd_v3 开发;
@@ -41,9 +42,11 @@
 * 优化方案：
 * 1.在 操作dom时 隐藏， 操作完后出现；
 * 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
-* 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;
+* 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;  
 
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
+* 动态插入unitpngfix.js代码会报错
+
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）

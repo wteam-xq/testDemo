@@ -64,15 +64,6 @@
           }
         };
         IEObj.init();
-        // 动态插入unitpngfix.js代码会报错
-        // loadScript("lib/pngfix/unitpngfix.js");
-        // 动态引入脚本
-        function loadScript(url){
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          script.src = url;
-          document.body.appendChild(script);
-        }
 
         // 调用fixedpng.js
         function invokeFixedPng(){
