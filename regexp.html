@@ -80,6 +80,10 @@
           // match是返回所有匹配的字符串合成的数组，但是正则表达式必须指定全局g属性才能返回所有匹配，不指定g属性则会返回一个只有一个元素的数组。
           // exec永远返回与第一个匹配相关的信息，其返回数组包括第一个匹配的字串，所有分组的反向引用。
 
+          // RegExp['$1'] 每当产生一个带括号的成功匹配时，$1...$9 属性的值就被修改。可以在一个正则表达式模式中指定任意多个带括号的子匹配，但只能存储最新的九个。
+          // https://msdn.microsoft.com/zh-cn/library/24th3sah(v=VS.94).aspx
+          var regArray = /(\w+)@(\w+)\.(\w+)/g.exec("Please send mail to george@contoso.com and someone@example.com. Thanks!"); // ["george@contoso.com", "george", "contoso", "com"]
+          console.log(RegExp['$1']);
         </script>
 
     </body>

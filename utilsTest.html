@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+        测试工具类页面
+      </title>
+      <link rel="icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    
+    <body>
+      <h3>测试工具类页面</h3>
+
+      <script type="text/javascript" src="utils/base.js"></script>
+      <script>
+        var TestUtils = {
+          init: function(){
+            var This = this;
+            this.insertScript();
+          },
+          insertScript: function(){
+            var COOKIE_URL = 'utils/cookieUtil.js';
+            // 动态插入 cookie库脚本，并存储cookie
+            insertScript(COOKIE_URL, function(js){
+              CookieUtil2.set('utilsTestCookie', 'xq, xq, sb');
+            });
+          }
+        }; 
+
+        TestUtils.init();
+      </script>
+
+    </body>
+</html>

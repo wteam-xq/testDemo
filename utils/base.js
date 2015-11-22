@@ -306,30 +306,25 @@ function removeClass(dom, className) {
 }
 
 // 动态插入脚本(待更新，加入加载完成的回调函数) 待研究：http://www.cnblogs.com/w-y-f/p/3469211.html
-function Script(callback){
-    var js = document.createElement("script");
-    this.js = js;
-    js.setAttribute("type",'text/javascript');
-    var head = document.getElementsByTagName('head')[0];
-    head.appendChild(js);
-    if(navigator.appName.toLowerCase().indexOf('netscape') == -1){
-        js.onreadystatechange = function(){
-            if(js.readyState == 'complete'){
-                callback(js);
-            }
+function insertScript(url, callback){
+  var js = document.createElement("script");
+  this.js = js;
+  js.setAttribute("type",'text/javascript');
+  js.src = url;
+  var head = document.getElementsByTagName('head')[0];
+  head.appendChild(js);
+  if(navigator.appName.toLowerCase().indexOf('netscape') == -1){
+      js.onreadystatechange = function(){
+        if(js.readyState == 'complete'){
+          callback(js);
         }
-    }else{
-        js.onload = function(){
-            callback(js);
-        }
+      }
+  }else{
+    js.onload = function(){
+      callback(js);
     }
+  }
 }
-Script.prototype.get = function(url){
-    this.js.src = url;
-}
-function script_onload(script){
-    alert(script.src);
-}
-
-// var load_js = new Script(script_onload);
-// load_js.get('http://static.gongju.com/js/jquery-1.4.4.min.js');
+// insertScript demo 
+// insertScript('http://static.gongju.com/js/jquery-1.4.4.min.js', function(js){
+// });
