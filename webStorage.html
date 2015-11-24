@@ -21,7 +21,18 @@
       <h3>浏览器缓存理解</h3>
       
       <p>
-        1.浏览器缓存：sessionStorage 作用范围；
+        1.浏览器缓存：localStorage 作用范围；
+        <input type="button" value="点击存入缓存" id="lSetBtn"/>
+        <input type="button" value="点击删除缓存" id="lRemoveBtn" />
+        <input type="button" value="点击查看缓存" id="lShowBtn" />
+      </p>
+      <p>
+        <span id="lBtnTips"></span>
+      </p>
+      <br/>
+
+      <p>
+        2.浏览器缓存：sessionStorage 作用范围；
         <input type="button" value="点击存入缓存" id="sSetBtn"/>
         <input type="button" value="点击删除缓存" id="sRemoveBtn" />
         <input type="button" value="点击查看缓存" id="sShowBtn" />
@@ -29,6 +40,7 @@
       <p>
         <span id="sBtnTips"></span>
       </p>
+      <br/>
 
 
       <p>
@@ -46,17 +58,20 @@
       <script type="text/javascript" src="utils/cookieUtil.js"></script>
       <script>
         // 不是很准确的总结： 
-        // 1.localStorage 是html5 规范，IE8就支持了，不同浏览器总大小不同，大概为5MB； 
+        // 1.localStorage、sessionStorage 是html5 规范，IE8就支持了，不同浏览器总大小不同，大概为5MB； 
         // 2.cookie 比较老的缓存实现方式，不同浏览器支持的cookie 个数跟容量不同，容量大概4K;（http://www.cnblogs.com/henryhappier/archive/2011/03/03/1969564.html）
 
         var xq = {};
         init();
 
         function init() {
+          // webSql IndexDb待加
+          initlocalStorageDemo();
           initSessionDemo();
           initCookieDemo();
         }
 
+        // sessionStorage 模块
         function initSessionDemo(){
           var session_storage, s_set_btn, s_remove_btn, s_show_btn, s_btn_tips;
 
@@ -103,6 +118,49 @@
           }
         }
 
+        // localStorage 模块， 2015年11月24日 编码风格较之前有所改变
+        function initlocalStorageDemo(){
+          var localStorage, lSetBtn, lRemoveBtn, lShowBtn, lBtnTips;
+
+          lSetBtn = document.getElementById('lSetBtn');
+          lRemoveBtn = document.getElementById('lRemoveBtn');
+          lShowBtn = document.getElementById('lShowBtn');
+          lBtnTips = document.getElementById('lBtnTips');
+          lSetBtn.onclick = localSetItem;
+          lRemoveBtn.onclick = localRemoveItem;
+          lShowBtn.onclick = showLocalStorage;
+
+          function localSetItem(event){
+            if (window.localStorage) {
+              localStorage = window.localStorage;
+              localStorage.setItem('xq', 'sb');
+              lBtnTips.innerHTML = '保存成功！';
+            }else {
+              lBtnTips.innerHTML = '保存失败！';
+            }
+          }
+
+          // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
+          function showLocalStorage(){
+            if (window.localStorage) {
+              localStorage = window.localStorage;
+              lBtnTips.innerHTML = 'localStorage:' + JSON.stringify(localStorage);
+            } else {
+              lBtnTips.innerHTML = '浏览器不支持localStorage';
+            }
+          }
+
+          function localRemoveItem(event){
+            if (window.localStorage) {
+              localStorage = window.localStorage;
+              localStorage.removeItem('xq');
+              lBtnTips.innerHTML = '删除成功！';
+            }else {
+              lBtnTips.innerHTML = '删除失败！';
+            }
+          }
+        }
+
         // 启动cookie 事件
         function initCookieDemo(){
           var c_set_btn, c_remove_btn, c_show_btn, c_btn_tips;
@@ -144,7 +202,6 @@
 
             c_btn_tips.innerHTML = JSON.stringify(c_obj);
           }
-
         }
 
       </script>
