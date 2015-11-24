@@ -65,12 +65,16 @@
 * 19.浏览器兼容
   * [IESupport.html](https://github.com/wteam-xq/testDemo/blob/master/IESupport.html)
 
+* 20.浏览器缓存
+  * [webStorage.html](https://github.com/wteam-xq/testDemo/blob/master/webStorage.html)
+
 * other:
   * [人人网鄙视题](https://github.com/wteam-xq/testDemo/blob/master/others/renrenTest.html)
   * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
   * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [演示地址](http://wteamxq.com/testDemo/others/renrenTest.html)
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
+
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)
   * [演示地址](http://wteamxq.com/testDemo/angular/angularRoute.html)
