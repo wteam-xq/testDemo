@@ -3,6 +3,7 @@
 * webpack 学习
 * IE 低版本浏览器兼容代码记录
 * utils库 更新（localStorage IE 主流浏览器兼容代码）
+* nginx 学习（配置线上 Debug代码映射）
 
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
