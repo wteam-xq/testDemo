@@ -50,6 +50,9 @@
         <div id="head_line_id2" class="head_line_mod">
             <div class="normalHeadLine_div">
                 <ul>
+                    <li class="list" title="1.测试的一段小蚊子">1.测试的一段小蚊子...</li>
+                    <li class="list" title="2.测试的一段小蚊子">2.测试的一段小蚊子...</li>
+                    <li class="list" title="3.测试的一段小蚊子">3.测试的一段小蚊子...</li>
                     <li class="list" title="4.测试的一段小蚊子">4.测试的一段小蚊子...</li>
                     <li class="list" title="5.测试的一段小蚊子">5.测试的一段小蚊子...</li>
                     <li class="list" title="6.测试的一段小蚊子">6.测试的一段小蚊子...</li>
@@ -64,7 +67,6 @@
                     <li class="list" title="15.测试的一段小蚊子">15.测试的一段小蚊子...</li>
                     <li class="list" title="16.测试的一段小蚊子">16.测试的一段小蚊子...</li>
                     <li class="list" title="17.测试的一段小蚊子">17.测试的一段小蚊子...</li>
-                    <li class="list" title="18.测试的一段小蚊子">18.测试的一段小蚊子...</li>
                 </ul>
             </div>
         </div>
@@ -190,21 +192,22 @@
                         $ulWrap.find('li:lt(2)').clone().appendTo($ulWrap.find('ul'));
                     }
                     if ( dataLen > 3 ){
+                        top -= 25 * 3;
+                        slideUp_count += 3;
+                        // 自动先提升3
+                        $ulWrap.css({'top': top});
                         clearTimeout(slideTimeOut);
                         slideUp();
                     }
-                    // 关于 mouseover 与 mouseenter区别：http://www.cnblogs.com/kingwell/archive/2012/09/09/2677258.html
-                    // mouseover mouseout 与 hover, 很多时候能用css解决 脚本实现的功能，性能更好且更好维护 http://www.cnblogs.com/aimyfly/archive/2012/05/04/2483123.html
                     $ulWrap.on('mouseover',  stopSlideUp);
                     $ulWrap.on('mouseleave', startSlideUp);
-
                     // 滚动代码优化
                     function slideUp(){
                         var $hadShowDom = '', hadShowIndex;
                         clearTimeout(slideTimeOut);
                         // 当滚动到最后一组时切换 dom节点
                         if ( slideUp_count >= dataLen - 2 ){
-                            hadShowIndex = dataLen - 5;
+                            hadShowIndex = slideUp_count - 3;
                             // 将已向上移动的节点移动至最下面
                             $hadShowDom = $ulWrap.find('li:lt(' + hadShowIndex + ')');
                             // 如果append的是自己子类，则移动其位置
