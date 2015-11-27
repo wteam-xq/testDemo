@@ -5,10 +5,12 @@
     <title>jquery 公告滚动优化</title>
     <link type="text/css" href="../common.css" rel="stylesheet"/>
     <style type="text/css">
-       .box_wrap{ color:#fff; position: relative; width: 480px; height: 85px; border-radius: 6px; margin-top: 10px; overflow: hidden; }
-       .box_wrap .n_b_bg{background: url('../images/slide_optimize_bg.jpg') no-repeat;}
-       .n_b_bg{ position: absolute; top: 0; left: 0;  width: 480px; height: 85px; }
-       .head_line_mod { overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; }
+        .box_wrap{ color:#fff; position: relative; width: 480px; height: 85px; border-radius: 6px; margin-top: 10px; overflow: hidden; }
+        .box_wrap .n_b_bg{background: url('../images/slide_optimize_bg.jpg') no-repeat;}
+        .n_b_bg{ position: absolute; top: 0; left: 0;  width: 480px; height: 85px; }
+        .head_line_mod { overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; }
+        
+        .slideTxt{ white-space: nowrap; padding:10px 10px; margin-left:0px; z-index:2; position: absolute; }
         
         .normalHeadLine_div { position: absolute; top: 0; }
         .normalHeadLine_div ul{ margin:8px 0px; }
@@ -70,6 +72,11 @@
                 </ul>
             </div>
         </div>
+        <div class="n_b_bg"></div>
+    </div>
+
+    <div class="box_wrap">
+        <div class="slideTxt">这是一很长很长很长很长的文字，主要用来显示文字左右移动的效果，这一段文字貌似不够长， 再加长点</div>
         <div class="n_b_bg"></div>
     </div>
 
@@ -244,9 +251,52 @@
                     }
                 },
             };
+
+            //  文字左右滚动
+            var wordSlideObj = {
+                parentWidth: 0,
+                animateTime: 0,
+                stopScroll: false,
+                init: function(){
+                    // 文字滚动实现原理： 文字一行显示：white-space: nowrap; 
+                    // 超出父类的长度就是滚动的范围,可以向左也可以向右；
+                    var This = this,
+                        $targetDom = $('.slideTxt');
+                    this.parentWidth = 480;
+                    this.startScroll($targetDom);
+                },
+                startScroll: function($targetDom){
+                    var targetW = $targetDom.width(),
+                        offset = targetW - this.parentWidth + 20,
+                        This = this;
+
+                    This.animateTime = 1000 * (offset/30);
+                    if (offset > 0) {
+                        scrollstart();
+                    }
+                    function scrollstart(){
+                        if (!This.stopScroll) {
+                            $targetDom.animate({
+                                "margin-left": '-' + offset
+                            }, This.animateTime, scrollEnd);
+                        }
+                    }
+                    function scrollEnd(){
+                        if (!This.stopScroll) {
+                            $targetDom.animate({
+                                "margin-left": 0
+                            }, This.animateTime, scrollstart);
+                        }
+                    }
+                },
+                toStop: function(){
+                    this.stopScroll = true;
+                }
+            };
             
-            slideObj.init();
-            slideObj2.init();
+            wordSlideObj.init();
+            // slideObj.init();
+            // slideObj2.init();
         });
     </script>
 </body>

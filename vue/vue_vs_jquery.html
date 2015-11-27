@@ -420,11 +420,9 @@
       </div>
 
       <div class="demo-panel form-demo" v-show="showType == 3">
-
         <div class="add-form-panel" v-show="demo3.step == 1">
           <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
           <h1 class="form-demo">3提交表单(vue)</h1>
-
           <div class="bs-example-wrap-v">
             <div class="bs-example" v-repeat="formData in demo3.formList">
               <form id="bsForm1">
@@ -467,14 +465,11 @@
                 </div>
               </div>
             </div>
-            
           </div>
-
           <div>
             <input class="btn332 btn_reg_1" readonly="true" value="提交" v-on="click: demo3.step = 2">
           </div>
         </div>
-        
         <div class="result-form-panel" v-show="demo3.step == 2">
           <h1>提交成功</h1>
           <table class="table-panel" id="table_2">
@@ -504,7 +499,6 @@
         <div class="add-form-panel" id="addFormPanel">
           <p>登高参赛报名申请， 提交表单：1~3；超过一张表单提交的成员会成为一队，不足3人则与其他队伍随机匹配</p>
           <h1 class="form-demo">3.1提交表单(jq)</h1>
-          
           <div class="bs-example-wrap">
             <div class="bs-example" data-no="1">
               <form id="bsForm1">
@@ -540,13 +534,11 @@
               </form>
             </div>
           </div>
-
           <div class="speeddial  add-btn" title="新增表单">
             <div class="speeddial-inner">
               <div class="addBtn-icon">+</div>
             </div>
           </div>
-
           <div>
             <input class="btn332 btn_reg_1" id="subForm" readonly="true" value="提交">
           </div>
@@ -562,7 +554,6 @@
               <td>手机号</td>
             </tr>
           </table>
-
           <div>
             <input class="btn332 btn_reg_1" readonly="true" id="backForm" value="返回">
           </div>
@@ -813,7 +804,6 @@
 
                 var inputVal = parseInt($input.val(), 10);
                 inputVal++;
-
                 if ( inputVal > 1 ){
                   $minBtn.html('-');
                 }
@@ -915,7 +905,6 @@
               this.$addFormPanel = $('#formDemo').find('#addFormPanel');
               this.$resultForm = $('#formDemo').find('#resultForm');
               this.$backBtn = $('#formDemo').find('#backForm');
-
               this.$resultForm.hide();
               this.initEvt();
             },
@@ -930,7 +919,6 @@
               this.$backBtn.on('click', function(){
                 This.backForm();
               });
-
             },
             addForm: function(){
               var formStr = '',
@@ -940,7 +928,6 @@
 
               formNo = parseInt( $formWrap.find('.bs-example:last').attr('data-no'), 10);
               formNo = formNo + 1;
-
               // 当前表单容器填满，新增容器，否则填满之（容器最多放两表单）
               if ( $formWrap.find('.bs-example').length > 1 ) {
                 $formWrap.after('<div class="bs-example-wrap"></div>');
@@ -1013,12 +1000,10 @@
             $stepBtn2.on('click', submitAuthCode);
             $stepBtn3.on('click', submitPas);
             $stepBtn4.on('click', submitReg);
-
             // $stepBtn1.on('click', commonSubmit);
             // $stepBtn2.on('click', commonSubmit);
             // $stepBtn3.on('click', commonSubmit);
             // $stepBtn4.on('click', commonSubmit);
-
             function submitMobile() {
               $regDemo.find('.process-reg').removeClass('active');
               $regDemo.find('#proReg2').addClass('active');
@@ -1043,18 +1028,15 @@
               $stepBtn4.hide();
               $stepBtn1.show();
             }
-
             // 如果只是当前功能一个函数也能搞定
             function commonSubmit(){
               var $this = $(this), btn_index;
-
               $regDemo.find('.process-reg').removeClass('active');
               btn_index = $this.index() + 2;
               if ( btn_index > 4 ) {
                 btn_index = 1;
               }
               $regDemo.find('#proReg' + btn_index).addClass('active');
-
               $this.hide();
               if ( $this.next('.btn-radius').length > 0 ) {
                 $this.next('.btn-radius').show();
