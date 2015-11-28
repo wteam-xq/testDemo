@@ -12,8 +12,8 @@
       <title>
         浏览器缓存理解
       </title>
-      <!--[if lt IE8]>
-      <script type="text/javascript" src="lib/json2.js"></script>
+      <!--[if lt IE 8]>
+          <script type="text/javascript" src="lib/json2.js"></script>
       <![endif]-->
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -45,7 +45,7 @@
       <br/>
 
       <p>
-        3.cookie：需在虚拟服务器运行，放在（或配置虚拟服务器映射）虚拟服务器（如：tomcat）根目录下；
+        3.cookie：需在虚拟服务器运行，放在虚拟服务器（如：tomcat）根目录下（或配置虚拟服务器映射）；
         <input type="button" value="点击存入缓存" id="cSetBtn"/>
         <input type="button" value="点击删除缓存" id="cRemoveBtn" />
         <input type="button" value="点击查看缓存" id="cShowBtn" />
@@ -96,37 +96,43 @@
           s_remove_btn = document.getElementById('sRemoveBtn');
           s_show_btn = document.getElementById('sShowBtn');
           s_btn_tips = document.getElementById('sBtnTips');
-          s_set_btn.onclick = sessionSetItem;
-          s_remove_btn.onclick = sessionRemoveItem;
-          s_show_btn.onclick = showSessionStorage;
-
+          try {
+            session_storage = window.sessionStorage;
+            session_storage.getItem('xq');
+            s_set_btn.onclick = sessionSetItem;
+            s_show_btn.onclick = showSessionStorage;
+            s_remove_btn.onclick = sessionRemoveItem;
+          }catch(e) {
+            s_set_btn.style.display = 'none';
+            s_remove_btn.style.display = 'none';
+            s_show_btn.style.display = 'none';
+            s_btn_tips.innerHTML = '浏览器不支持sessionStorage';
+          }
+          
+          // 插入缓存
           function sessionSetItem(event){
             // console.log('event: ', event);
             // console.log('this: ', this);
             // 检测 sessionStorage 能否多窗口(或选项卡)共存
             if (window.sessionStorage) {
-              session_storage = window.sessionStorage;
               session_storage.setItem('xq', 'sb');
               s_btn_tips.innerHTML = '保存成功！';
             }else {
               s_btn_tips.innerHTML = '保存失败！';
             }
           }
-
           // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
           function showSessionStorage(){
             if (window.sessionStorage) {
-              session_storage = window.sessionStorage;
               s_btn_tips.innerHTML = 'sessionStorage:' + JSON.stringify(session_storage);
             } else {
               s_btn_tips.innerHTML = '浏览器不支持sessionStorage';
             }
           }
-
+          // 清除缓存
           function sessionRemoveItem(event){
             // 检测 sessionStorage 能否多窗口(或选项卡)共存
             if (window.sessionStorage) {
-              session_storage = window.sessionStorage;
               session_storage.removeItem('xq');
               s_btn_tips.innerHTML = '删除成功！';
             }else {
@@ -143,33 +149,39 @@
           lRemoveBtn = document.getElementById('lRemoveBtn');
           lShowBtn = document.getElementById('lShowBtn');
           lBtnTips = document.getElementById('lBtnTips');
-          lSetBtn.onclick = localSetItem;
-          lRemoveBtn.onclick = localRemoveItem;
-          lShowBtn.onclick = showLocalStorage;
-
+          try {
+            localStorage = window.localStorage;
+            localStorage.getItem('xq');
+            lSetBtn.onclick = localSetItem;
+            lRemoveBtn.onclick = localRemoveItem;
+            lShowBtn.onclick = showLocalStorage;
+          }catch(e) {
+            lSetBtn.style.display = 'none';
+            lRemoveBtn.style.display = 'none';
+            lShowBtn.style.display = 'none';
+            lBtnTips.innerHTML = '浏览器不支持localStorage！';
+          }
+          
+          // 插入缓存
           function localSetItem(event){
             if (window.localStorage) {
-              localStorage = window.localStorage;
               localStorage.setItem('xq', 'sb');
               lBtnTips.innerHTML = '保存成功！';
             }else {
               lBtnTips.innerHTML = '保存失败！';
             }
           }
-
           // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
           function showLocalStorage(){
             if (window.localStorage) {
-              localStorage = window.localStorage;
               lBtnTips.innerHTML = 'localStorage:' + JSON.stringify(localStorage);
             } else {
               lBtnTips.innerHTML = '浏览器不支持localStorage';
             }
           }
-
+          // 清除缓存
           function localRemoveItem(event){
             if (window.localStorage) {
-              localStorage = window.localStorage;
               localStorage.removeItem('xq');
               lBtnTips.innerHTML = '删除成功！';
             }else {
