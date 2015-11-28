@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
     <heade>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>
           低版本浏览器兼容相关
       </title>
-      <link rel="icon" href="favicon.ico" type="image/x-icon" />
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta http-equiv="content-type" content="charset=utf-8">
       <!-- <script type="text/javascript" src="http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js"></script> -->
       <!--[if lt IE 7]>
             <script type="text/javascript" src="lib/unitpngfix/unitpngfix.js"></script>
@@ -19,7 +18,10 @@
         .png-pos{ background: url('images/icon_user.png') no-repeat; width:63px; height:16px; }
         .t8_wrap{ margin:20px 0px; width:200px; height:100px; background:#8DD9E7; position: relative; opacity:0.6; filter:alpha(opacity=60); }
         .t8_ab{ width:20px; height:20px; background:#000; position: absolute; top:-10px; left:20px; }
+        .tb_tip{padding:20px 5px;}
       </style>
+      <link rel="icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </heade>
     
     <body>
@@ -36,6 +38,7 @@
 
       <div class="t8_wrap">
         <!-- IE6下 该子节点会被截断 -->
+        <div class="tb_tip">IE6下灰色小方块会被截断</div>
         <div class="t8_ab"></div>
       </div>
 
