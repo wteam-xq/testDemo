@@ -4,6 +4,7 @@
 * IE 低版本浏览器兼容代码记录
 * utils库 更新（localStorage IE 主流浏览器兼容代码）
 * nginx 学习（windows 配置线上 Debug代码映射）
+* 学习完nginx webpack开始准备tkd_v3（模块化、个人工程部署、全栈实现）开发
 
 * 下月博文： 浅谈浏览器本地缓存，webStorage中 cookies暂不调用utils/cookieUtil.js库；utils新增 localStorage库（兼容IE版）；
 * 博文简介： 目前浏览器支持的缓存有5种，实际开发中能使用的 有3种；
@@ -50,11 +51,10 @@
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
 * 动态插入unitpngfix.js代码会报错
 
-* 2015-11-28 IESupport.html 中无法再网页选项卡中显示自定义小图标；
-
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
-2.canvas 绘制合成无法正常显示；
+2.canvas 部分绘制合成无法正常显示；(浏览器未完全实现 canvas)
+3.IESupport.html 中无法在网页选项卡中显示自定义小图标；
 
 ### 设计本项目代码的笔试题：
 
