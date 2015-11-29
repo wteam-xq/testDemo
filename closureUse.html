@@ -3,14 +3,14 @@
     <head>
         <meta charset="utf-8">
         <title>
-            闭包使用场景
+          闭包使用场景
         </title>
-
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
     
     <body>
         <h3>闭包使用场景</h3>
-
         <script>
           // 1.1.使用闭包可以再JavaScript中模拟块级作用域（ECMAscript 6之前的JavaScript本身没有块级作用域的概念）
           function outputNumbers(count){
@@ -49,7 +49,6 @@
 
             return subFn;
           }
-
           // superFn() 得到的是subFn，superFn()()等于subFn()
           // superFn()();
 
@@ -108,7 +107,6 @@
               }
             }
           }
-
           // 闭包理解, 局部变量i, 匿名函数何时被销毁？
           var a = function () {
             var i = 0;
@@ -119,8 +117,6 @@
           var b = a();
           // alert( b() );
           // alert(i); // i not defined
-          
         </script>
-
     </body>
 </html>

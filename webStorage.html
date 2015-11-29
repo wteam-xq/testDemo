@@ -66,6 +66,16 @@
       </p>
       <br/>
 
+      <p>
+        5.indexDb浏览器缓存：chrome firefox opera浏览器支持、IE(EDGE)、safari部分支持；
+        <input type="button" value="点击存入缓存" id="iSetBtn"/>
+        <input type="button" value="点击删除缓存" id="iRemoveBtn" />
+        <input type="button" value="点击查看缓存" id="iShowBtn" />
+      </p>
+      <p>
+        <span id="iBtnTips"></span>
+      </p>
+
       <!-- 引入公用自定义文件，其包含cookie封装对象 后续去除 -->
       <script type="text/javascript" src="utils/cookieUtil.js"></script>
       <script>
@@ -288,7 +298,30 @@
 
         // indexDb 模块
         function initIndexDbDemo(){
-          
+          var iSetBtn, iRemoveBtn, iShowBtn, iBtnTips;
+          iSetBtn = document.getElementById('iSetBtn');
+          iRemoveBtn = document.getElementById('iRemoveBtn');
+          iShowBtn = document.getElementById('iShowBtn');
+          iBtnTips = document.getElementById('iBtnTips');
+          try {
+            iSetBtn.onclick = indexDbSetItem;
+            iShowBtn.onclick = showIndexDb;
+            iRemoveBtn.onclick = indexDbRemoveItem;
+          }catch(e) {
+            iBtnTips.innerHTML = '浏览器不支持indexDb';
+            iSetBtn.style.display = 'none';
+            iRemoveBtn.style.display = 'none';
+            iShowBtn.style.display = 'none';
+          }
+          // 插入缓存
+          function indexDbSetItem(){
+          }
+          // 删除缓存
+          function indexDbRemoveItem(){
+          }
+          // 查询缓存(回调函数 方便扩展)
+          function showIndexDb(searchCb) {
+          }
         }
 
       </script>

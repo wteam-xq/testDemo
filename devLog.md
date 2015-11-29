@@ -54,7 +54,6 @@
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 2.canvas 部分绘制合成无法正常显示；(浏览器未完全实现 canvas)
-3.IESupport.html 中无法在网页选项卡中显示自定义小图标；
 
 ### 设计本项目代码的笔试题：
 
