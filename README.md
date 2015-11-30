@@ -64,6 +64,7 @@
 
 * 19.浏览器兼容
   * [IESupport.html](https://github.com/wteam-xq/testDemo/blob/master/IESupport.html)
+  * [演示地址](http://wteamxq.com/testDemo/IESupport.html)
 
 * 20.浏览器缓存
   * [webStorage.html](https://github.com/wteam-xq/testDemo/blob/master/webStorage.html)

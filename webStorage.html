@@ -96,6 +96,7 @@
           initSessionDemo();
           initCookieDemo();
           initWebSqlDemo();
+          initIndexDbDemo();
         }
 
         // sessionStorage 模块
@@ -243,7 +244,7 @@
           }
         }
 
-        // web sql 模块
+        // web sql 模块(w3c 已表示不再维护，indexDb代替之)
         function initWebSqlDemo(){
           var wSetBtn, wRemoveBtn, wShowBtn, wBtnTips;
           var db;
@@ -303,15 +304,56 @@
           iRemoveBtn = document.getElementById('iRemoveBtn');
           iShowBtn = document.getElementById('iShowBtn');
           iBtnTips = document.getElementById('iBtnTips');
+          //数据库名称
+          var dbName = "H5AppDB",
+              //数据库版本 
+              dbVersion = 2.0,
+              //表名 
+              tablename = "todo", 
+              //indexDb数据库对象
+              indexDbObj = {},
+              //实例化IndexDB数据上下文，这边根据浏览器类型来做选择
+              indexedDB = null;
+
           try {
-            iSetBtn.onclick = indexDbSetItem;
-            iShowBtn.onclick = showIndexDb;
-            iRemoveBtn.onclick = indexDbRemoveItem;
+            indexedDB = window.indexedDB || window.webkitIndexedDB ||window.mozIndexedDB;
+            if ('webkitIndexedDB' in window) {
+              window.IDBTransaction = window.webkitIDBTransaction;
+              window.IDBKeyRange = window.webkitIDBKeyRange;
+            }
+            indexedDB.open = function (){
+              var request = indexedDB.open(dbName, dbVersion);
+              request.onsuccess = function(e){
+                var _request;
+                indexDbObj = e.target.result;
+                if (indexDbObj.version != dbVersion) {
+                  _request = indexDbObj.setVersion(dbVersion);
+                  _request.onsuccess = function(){
+                    var _trans = _request.result;
+                    if ( indexDbObj.objectStoreNames.contains(tablename) ) {
+                      indexDbObj.deleteObjectStore(tablename);
+                    }
+                    indexDbObj.createObjectStore(tablename, { keyPath: "timeStamp" });
+                    _trans.oncomplete = function (e) {
+                      // 初始化数据库成功！
+                      iSetBtn.onclick = indexDbSetItem;
+                      iShowBtn.onclick = showIndexDb;
+                      iRemoveBtn.onclick = indexDbRemoveItem;
+                    }
+                  }
+                }
+              }
+            } // end of open
+            
           }catch(e) {
             iBtnTips.innerHTML = '浏览器不支持indexDb';
             iSetBtn.style.display = 'none';
             iRemoveBtn.style.display = 'none';
             iShowBtn.style.display = 'none';
+          }
+          // 错误处理
+          function indexError(){
+            iBtnTips.innerHTML = "indexDb数据库处理时出现异常！";
           }
           // 插入缓存
           function indexDbSetItem(){

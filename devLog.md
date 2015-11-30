@@ -53,7 +53,6 @@
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
-2.canvas 部分绘制合成无法正常显示；(浏览器未完全实现 canvas)
 
 ### 设计本项目代码的笔试题：
 
@@ -88,4 +87,5 @@
   [5个经典的前端面试问题](http://ourjs.com/detail/5%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98)  
   [最全前端面试问题及答案总结](http://segmentfault.com/a/1190000002562454)  
   [如何面试一名前端开发工程师？](http://www.html-js.com/article/Large-search-front-team-column%202961)  
-  [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)  
+  [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)
+  
