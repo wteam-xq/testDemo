@@ -1,7 +1,6 @@
 ### 开发计划
 * 学习 ECMAScript 5 6；
 * webpack 学习
-* IE 低版本浏览器兼容代码记录
 * utils库 更新（localStorage IE 主流浏览器兼容代码）
 * nginx 学习（windows 配置线上 Debug代码映射）
 * 学习完nginx webpack开始准备tkd_v3（模块化、个人工程部署、全栈实现）开发
