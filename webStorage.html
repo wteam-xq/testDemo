@@ -214,7 +214,15 @@
           c_show_btn.onclick = showCookie;
 
           function cookieSetItem(){
-            CookieUtil.set("xq", "sb");
+            var name = 'xq',
+                value = 'sb',
+                hours = 24,
+                expires = new Date(),
+                _expires;
+
+            expires.setTime(expires.getTime() + hours * 3600000);
+            _expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
+            document.cookie = name + "=" + value + _expires;
             if (document.cookie != '') {
               c_btn_tips.innerHTML = '设置cookie成功！';
             }else{
@@ -223,9 +231,12 @@
           }
 
           function cookieRemoveItem(){
-            var _value = '';
-            CookieUtil.remove("xq");
-            _value = CookieUtil.get("xq");
+            var _value = '',
+                name = 'xq',
+                expires = new Date(0),
+
+            document.cookie = name + "=" + ";expires=" + expires.toUTCString();
+            _value = getCookie("xq");
             if (_value) {
               c_btn_tips.innerHTML = '删除cookie失败！';
             } else {
@@ -234,14 +245,32 @@
           }
 
           function showCookie() {
-            var _value = CookieUtil.get("xq"),
+            var _value = '';
+            _value = getCookie('xq');
             c_obj = {
               name: "xq",
               value: _value
             };
-
             c_btn_tips.innerHTML = JSON.stringify(c_obj);
           }
+
+          function getCookie(name){
+            var allcookies = document.cookie,
+              name = 'xq',
+              pos = allcookies.indexOf(name),
+              _value = '';
+
+            var start = 0,
+                end = 0;
+
+            if (pos != -1) {
+              start = pos + name.length;
+              end = allcookies.indexOf(";", start);
+              _value = allcookies.substring(start, end)
+            }
+            return _value;
+          }
+
         }
 
         // web sql 模块(w3c 已表示不再维护，indexDb代替之)
@@ -326,7 +355,6 @@
             request.onupgradeneeded = function() {
               var store = event.currentTarget.result.createObjectStore(tablename, {keyPath: "indexId"});
             }
-
             request.onsuccess = function(e){
               var _request;
               indexDbObj = request.result;
@@ -335,7 +363,6 @@
               iShowBtn.onclick = showIndexDb;
               iRemoveBtn.onclick = indexDbRemoveItem;
             }
-
             request.onfailure = indexError;
           }catch(e) {
             iBtnTips.innerHTML = '浏览器不支持indexDb';
@@ -386,15 +413,19 @@
                 // Get everything in the store;
                 keyRange = IDBKeyRange.lowerBound(0),
                 //开启索引为0的表
-                cursorRequest = store.openCursor(keyRange);
+                cursorRequest = null;
+
+            iBtnTips.innerHTML = 'indexDb 数据内容为空！';
+            //开启索引为0的表
+            cursorRequest = store.openCursor(keyRange);
             cursorRequest.onsuccess = function (e) {
               var result = e.target.result;
               if (!!result == false) {
                 return false;
               }
-              iBtnTips.innerHTML = result.value;
+              iBtnTips.innerHTML = JSON.stringify(result.value);
               //轮询读取
-              result.continue();
+              // result.continue();
             };
             cursorRequest.onerror = indexError;
           }// end of showIndexDb
