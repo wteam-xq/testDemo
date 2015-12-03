@@ -221,8 +221,8 @@
                 _expires;
 
             expires.setTime(expires.getTime() + hours * 3600000);
-            _expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
-            document.cookie = name + "=" + value + _expires;
+            _expires = (typeof hours) == "string" ? "" : "; expires=" + expires.toUTCString();
+            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + _expires;
             if (document.cookie != '') {
               c_btn_tips.innerHTML = '设置cookie成功！';
             }else{
@@ -233,7 +233,7 @@
           function cookieRemoveItem(){
             var _value = '',
                 name = 'xq',
-                expires = new Date(0),
+                expires = new Date(0);
 
             document.cookie = name + "=" + ";expires=" + expires.toUTCString();
             _value = getCookie("xq");
@@ -256,7 +256,7 @@
 
           function getCookie(name){
             var allcookies = document.cookie,
-              name = 'xq',
+              name = 'xq=',
               pos = allcookies.indexOf(name),
               _value = '';
 
@@ -266,6 +266,9 @@
             if (pos != -1) {
               start = pos + name.length;
               end = allcookies.indexOf(";", start);
+              if ( end == -1) {
+                end = allcookies.length;
+              }
               _value = allcookies.substring(start, end)
             }
             return _value;
