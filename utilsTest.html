@@ -13,13 +13,29 @@
     
     <body>
       <h3>测试工具类页面</h3>
+      <!-- 本部分代码来自： webStorage.html -->
+      <p>
+        1.localStorage 不清除缓存一直存在；
+        <input type="button" value="点击存入缓存" id="lSetBtn"/>
+        <input type="button" value="点击删除缓存" id="lRemoveBtn" />
+        <input type="button" value="点击查看缓存" id="lShowBtn" />
+      </p>
+      <p>
+        <span id="lBtnTips"></span>
+      </p>
+      <br/>
 
+      <!--[if lt IE 8]>
+        <script type="text/javascript" src="lib/json2.js"></script>
+      <![endif]-->
       <script type="text/javascript" src="utils/base.js"></script>
+      <script type="text/javascript" src="utils/localStorageUtil.js"></script>
       <script>
         var TestUtils = {
           init: function(){
             var This = this;
-            this.insertScript();
+            // this.insertScript();
+            initlocalStorageDemo();
           },
           insertScript: function(){
             var COOKIE_URL = 'utils/cookieUtil.js';
@@ -31,7 +47,48 @@
         }; 
 
         TestUtils.init();
-      </script>
 
+        function initlocalStorageDemo(){
+          var localStorage, lSetBtn, lRemoveBtn, lShowBtn, lBtnTips;
+
+          lSetBtn = document.getElementById('lSetBtn');
+          lRemoveBtn = document.getElementById('lRemoveBtn');
+          lShowBtn = document.getElementById('lShowBtn');
+          lBtnTips = document.getElementById('lBtnTips');
+
+          localStorage = window.localStorage;
+          lSetBtn.onclick = localSetItem;
+          lRemoveBtn.onclick = localRemoveItem;
+          lShowBtn.onclick = showLocalStorage;
+          
+          // 插入缓存
+          function localSetItem(event){
+            if (window.localStorage) {
+              localStorage.setItem('utilsTest', 'localStorageUtil');
+              lBtnTips.innerHTML = '保存成功！';
+            }else {
+              lBtnTips.innerHTML = '保存失败！';
+            }
+          }
+          // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
+          function showLocalStorage(){
+            if (window.localStorage) {
+              lBtnTips.innerHTML = 'utilsTest: ' + localStorage.getItem("utilsTest");
+              // lBtnTips.innerHTML = 'localStorage: utilsTest:' + JSON.stringify(localStorage);
+            } else {
+              lBtnTips.innerHTML = '浏览器不支持localStorage';
+            }
+          }
+          // 清除缓存
+          function localRemoveItem(event){
+            if (window.localStorage) {
+              localStorage.removeItem('utilsTest');
+              lBtnTips.innerHTML = '删除成功！';
+            }else {
+              lBtnTips.innerHTML = '删除失败！';
+            }
+          }
+        }
+      </script>
     </body>
 </html>

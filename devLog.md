@@ -53,6 +53,7 @@
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
+2.IE7 中（模拟）使用json2.js 堆栈溢出报错；
 
 ### 设计本项目代码的笔试题：
 

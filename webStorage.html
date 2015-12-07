@@ -87,9 +87,7 @@
         //   http://rainsilence.iteye.com/blog/984569(更详细的资料) (db.setVersion方法已被弃用) http://www.tfan.org/no-setversion-now-onupgradeneeded/
         // 全局变量，可以将需要暴露的方法放置其中
         var xq = {};
-
         init();
-
         function init() {
           // IndexDb待加
           initlocalStorageDemo();
@@ -98,7 +96,6 @@
           initWebSqlDemo();
           initIndexDbDemo();
         }
-
         // sessionStorage 模块
         function initSessionDemo(){
           var session_storage, s_set_btn, s_remove_btn, s_show_btn, s_btn_tips;
@@ -150,7 +147,6 @@
             }
           }
         }
-
         // localStorage 模块， 2015年11月24日 编码风格较之前有所改变
         function initlocalStorageDemo(){
           var localStorage, lSetBtn, lRemoveBtn, lShowBtn, lBtnTips;
@@ -199,7 +195,6 @@
             }
           }
         }
-
         // 启动cookie 事件
         function initCookieDemo(){
           var c_set_btn, c_remove_btn, c_show_btn, c_btn_tips;
@@ -272,9 +267,7 @@
             }
             return _value;
           }
-
         }
-
         // web sql 模块(w3c 已表示不再维护，indexDb代替之)
         function initWebSqlDemo(){
           var wSetBtn, wRemoveBtn, wShowBtn, wBtnTips;
@@ -327,7 +320,6 @@
             });
           }
         }
-
         // indexDb 模块
         function initIndexDbDemo(){
           var iSetBtn, iRemoveBtn, iShowBtn, iBtnTips;
@@ -432,7 +424,6 @@
             cursorRequest.onerror = indexError;
           }// end of showIndexDb
         }
-
       </script>
     </body>
 </html>
