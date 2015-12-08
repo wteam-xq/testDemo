@@ -29,6 +29,7 @@
         <script type="text/javascript" src="lib/json2.js"></script>
       <![endif]-->
       <script type="text/javascript" src="utils/base.js"></script>
+      <script type="text/javascript" src="utils/client.js"></script>
       <script type="text/javascript" src="utils/localStorageUtil.js"></script>
       <script>
         var TestUtils = {
@@ -73,8 +74,12 @@
           // 显示storage, 转成字符串显示，JSON对象赋值之，ie8（不包括IE8）以下浏览器需引入json3
           function showLocalStorage(){
             if (window.localStorage) {
-              lBtnTips.innerHTML = 'utilsTest: ' + localStorage.getItem("utilsTest");
-              // lBtnTips.innerHTML = 'localStorage: utilsTest:' + JSON.stringify(localStorage);
+              // IE7 IE6 特殊处理
+              if (client.browser.ie && parseInt(client.browser.ver,10) == 6 ) {
+                lBtnTips.innerHTML = 'utilsTest: ' + localStorage.getItem("utilsTest");
+              } else {
+                lBtnTips.innerHTML = 'localStorage: utilsTest:' + JSON.stringify(localStorage);
+              }
             } else {
               lBtnTips.innerHTML = '浏览器不支持localStorage';
             }
