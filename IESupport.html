@@ -41,6 +41,13 @@
         <div class="t8_ab"></div>
       </div>
 
+      <div class="t14_wrap">
+        <!-- IE6下 可能会出问题 -->
+        <a href="javascript:void(0);"></a>
+        <!-- 推荐用法 -->
+        <a href="####" onclick="return false;"></a>
+      </div>
+
       <script>
         // 模拟低版本浏览器 安装虚拟机： virtualbox，然后 将文件放置在模拟服务器中让虚拟机配置host访问（同个网段可以相互访问）
         // ie developer toolbar 查看某节点对应样式比较方便， firebug lite 则方便脚本操作，例如脚本报错，控制台日志，控制台代码执行等；
@@ -90,6 +97,8 @@
         // 11.IE6下 position: fixed; 无效；absolute替代实现；http://www.cnblogs.com/blosaa/archive/2011/12/29/2305990.html
         // 12.IE6下 左浮动（或右浮动）如果是最后一个节点， 则会自动换行；http://www.wangmengyu.cn/?p=139
         // 13.IE6下 设置为 display:none;并且生效后的dom节点竟然不消失！！！（神奇，待模拟重现）解决：ie6 下在原有基础上新增样式：visibility:hidden; (还不行就用其他方式隐藏， 例如：宽高为零，绝对定位位置偏移至无法看见的位置；)
+        // 14.IE6下 a 标签去除默认跳转事件， 常规用法对比：javascript:void(0); 比较常见，但可能会导致问题，最佳方案： <a href="####" onclick="return false;"></a>
+        //  对应教程：http://segmentfault.com/q/1010000000339082
       </script>
 
     </body>

@@ -80,6 +80,7 @@
 
           // javascript 中的 float 精度问题： javascript使用IEEE 754-2008 标准定义的64bit浮点格式存储number，导致浮点计算不精确
           // 或者 使用 float 类型的 toFixed(x);方法（使用前确定已经转换成 float类型）
+          // http://www.cnblogs.com/onedayof2010/p/4497488.html
           var f_a = 0.07,
               f_r = f_a * 100;
           // 解决：f_r = parseInt(f_a * 100); 或 f_r = Math.round(f_r);(Math.floor也可以)， 就是将计算后的值强制转换回来。。。
