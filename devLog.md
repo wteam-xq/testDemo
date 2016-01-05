@@ -55,6 +55,8 @@
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
 * 动态插入unitpngfix.js代码会报错
 
+* 2015-12-25 收集装包软件：fiddler安装使用：http://www.kuqin.com/shuoit/20140910/342081.html
+
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 2.IE7 中（模拟）使用json2.js 堆栈溢出报错；
