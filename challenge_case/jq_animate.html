@@ -7,12 +7,15 @@
     <style type="text/css">
         .move_obj{ width:200px; height:200px; background-color:#CCC; font-size:16px; color:#fff; position:relative; }
         .radius-btn{ width:150px; text-align:center;}
+        .test_append{ margin-top:20px; }
     </style>
 </head>
 <body>
     <div class="radius-btn" id="startBtn">点击执行动画</div>
 
-    <div class="mt20 move_obj" id="moveObj">移动对象</div>
+    <div class="mt20 move_obj" id="moveObj">移动对象, 执行动画时 1.5秒后去除</div>
+
+    <div class="test_append" id="testAppend">Test_append</div>
 
     <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
@@ -21,6 +24,7 @@
                 count = 0,
                 distance = 300, 
                 $moveObj = $('#moveObj');
+            var $testAppend = $('#testAppend');
 
             $startBtn.on('click', startAnimate);
 
@@ -39,11 +43,23 @@
             }
 
             function removeAnimateObj(obj) {
-                // 3.5秒后删除动画dom
+                // 1.5秒后删除动画dom
                 setTimeout(function(){
                     $moveObj.remove();
                 }, 1*1000 + 500 );
             }
+
+            function apendTest(){
+                var $a = $('#testAppend'),
+                    $tmpA = $('#testAppend');
+
+                // 插入空字符串不会报错
+                $testAppend.append('');
+                // 两变量同时指向一节点，当节点删除后另一变量会改变？(结果：不会改变)
+                $a.remove();
+                console.log($tmpA.length);
+            }
+            apendTest();
         });
     </script>
 </body>
