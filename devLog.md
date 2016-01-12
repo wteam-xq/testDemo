@@ -15,7 +15,6 @@
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * webpack 模块化学习， tkd_v3 开发;
-  C$YN61eLKr
 
 ### 开发日志
 
@@ -56,6 +55,7 @@
 * 动态插入unitpngfix.js代码会报错
 
 * 2015-12-25 收集装包软件：fiddler安装使用：http://www.kuqin.com/shuoit/20140910/342081.html
+* 2016-01-12 在线演示地址去除（阿里云服务器暂停一段时间）
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
