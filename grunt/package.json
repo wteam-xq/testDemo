@@ -1,0 +1,35 @@
+{
+  "name": "gruntTest",
+  "version": "0.0.1",
+  "description": "test gulp",
+  "main": "gulpfile.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-htmlmin": "~0.3.0",
+    "grunt-contrib-imagemin": "~1.0.0",
+    "grunt-contrib-uglify": "~0.6.0",
+    "grunt-strip": "~0.2.1",
+    "grunt-usemin": "~2.6.2"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wteam-xq/testDemo"
+  },
+  "keywords": [
+    "js",
+    "nodejs",
+    "grunt"
+  ],
+  "author": "wteam-xq",
+  "license": "MIT"
+}

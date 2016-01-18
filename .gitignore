@@ -2,5 +2,9 @@
 dest/*
 gulp/node_modules/*
 gulp/dist/*
+gulp/images/*
+grunt/node_modules/*
+grunt/dist/*
+grunt/images/*
 npm-debug.log
 webpack/node_modules/*
