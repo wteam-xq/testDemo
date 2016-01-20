@@ -314,6 +314,7 @@ function insertScript(url, callback){
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(js);
   if(navigator.appName.toLowerCase().indexOf('netscape') == -1){
+      // 低版本IE浏览器下 js 类型的dom不支持 onload
       js.onreadystatechange = function(){
         if(js.readyState == 'complete'){
           callback(js);
@@ -325,6 +326,3 @@ function insertScript(url, callback){
     }
   }
 }
-// insertScript demo 
-// insertScript('http://static.gongju.com/js/jquery-1.4.4.min.js', function(js){
-// });

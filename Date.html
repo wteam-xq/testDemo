@@ -24,7 +24,8 @@
       </div>
 
       <script>
-        
+        // 前言： javascript日期处理最经典的类库为：http://momentjs.cn/
+        // 本代码 用于理解日期的原生js具体实现方式
         init();
 
         function init() {
@@ -92,7 +93,7 @@
           alert(resStr);
         }
 
-        // 公用， 格式化日期
+        // 公用， 格式化日期 格式：yyyy-mm-dd
         function formateDate(date){
           function getDoubleNum(num){
             if (num >= 10){
