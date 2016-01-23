@@ -17,45 +17,29 @@
   * webpack 模块化学习， tkd_v3 开发;
 
 ### 开发日志
-
 * 20150629 tr 设置了border无效
 * 解决方案：table设置 border-collapse 为collapse, border-collapse属性设置表格的边框是否被合并为一个单一的边框，还是象在标准的 HTML 中那样分开显示。
-
 * 20150712 给canvas标签添加控制宽高的样式后，绘制出来的宽高会异常；
 * 解决方案： 不用样式控制宽高，使用属性控制之。
-
 * 20150714 canvas context.translate 改动后会将设置保存在内存中（下次获取 该元素的context位置还是translate后的）
 * 解决方案： 使用完后将位置变回去， es： context(100, 100); afater used: context(-100, -100);
-
 * 20150721 canvas ctx.getImageData方法： 读取图像文件需要tomcat服务器环境
 * 20150724 canvas ctx.globalCompositeOperation 作用区间是整个canvas画布，演示所有参数得使用ctx.createPattern在画布上绘制画布。
 * 解决方案： 新生成一个canvas节点， 然后在这个节点操作合成。
-
-* 20150731 新增“其他”文件夹（others），放置相关代码，例如人人测试题及基本知识的其他实现；
-
-* 20150807 angularjs 开始 ng-route研究报告：
-
 * 20150809 统一项目文件命名风格：文件夹使用蛇形命名法，如:syntax_highlighter, 文件使用驼峰命名法，如：angularRoute.html
-
 * 20150831 编码风格， 文件使用驼峰命名法，如：angularRoute.html这样不妥， 当出现表示版本号的多个数字时会出问题；（还是得改回 文件夹驼峰、文件蛇形）
-
-* 实现弹出框然后 用css三角形绘制，项目弹出框bug修复。
-* 2015年9月25日 今天开始维护一请假同事代码，虽原代码功能完成有点仓促问题较多，但其代码风格挺有意思值得模仿。
-
+* 2015年9月25日 开始维护请假同事代码，研究其代码风格编写博文代码：vue/vue_vs_jquery.html中脚本实现。
 * 2015-10-16 vue.js 如何实现新增表单操作（在不操作dom的情况下）， 思考如何VUE 完成 jq实现中
 * 解决方案：从样式上解决，正常文档流布局display:inline-block; text-align:justify; 两端对齐
-
 * 2015-11-9 滚动条代码优化,前端实现自动滚动（每隔5秒向上滚动）效果，只有滚动条数大于2时滚动；鼠标放置上面停止滚动，移开继续滚动；
 * 优化方案：
 * 1.在 操作dom时 隐藏， 操作完后出现；
 * 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
 * 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;  
-
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
-* 动态插入unitpngfix.js代码会报错
 
-* 2015-12-25 收集装包软件：fiddler安装使用：http://www.kuqin.com/shuoit/20140910/342081.html
-* 2016-01-12 在线演示地址去除（阿里云服务器暂停一段时间）
+
+
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
@@ -64,16 +48,12 @@
 ### 设计本项目代码的笔试题：
 
 * 2014面试题大全（141101 更新）：
-  
   [2014年最新前端开发面试题](http://clisvoi.blog.163.com/blog/static/2014980502014327104119515/)  
   [腾讯面试](http://www.w3cfuns.com/article-5598237-1-1.html)  
   [跳槽必看](http://developer.51cto.com/art/201202/314618.htm)  
   [常见问题](http://www.csdn.net/article/2012-10-18/2810902-Front-end-Developer-Interview-Questions)  
-
 * 150302(更新)  
   [简历模板](https://github.com/hacke2/ResumeSample)
-
-
 * 我最近收藏的题库(150629更新)：  
   [魅族前端面试题](http://weibo.com/p/1001603857375168721423)  
   [人人面试题](http://www.w3cfuns.com/thread-5591957-1-1.html)  
