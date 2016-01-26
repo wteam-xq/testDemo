@@ -1,3 +1,7 @@
+/*
+参考代码网址：
+http://www.gruntjs.net/getting-started
+ */
 // 执行压缩、合并代码、优化图片 操作
 module.exports = function (grunt) {
 

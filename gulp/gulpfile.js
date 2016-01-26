@@ -1,8 +1,8 @@
 /*
 参考代码网址：
-http://www.ido321.com/1622.html                                                 很不错的入门教程
-http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename             gulp 常见插件介绍
-https://github.com/nimojs/gulp-book                                             另一简单易懂的入门教程
+http://www.ido321.com/1622.html           
+http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename            
+https://github.com/nimojs/gulp-book  
  */
 // 获取 gulp
 var gulp = require('gulp'),
