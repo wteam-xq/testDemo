@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+        <meta charset="utf-8" />
+
+        <title>Demo Chat</title>
+
+        <link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		body { 
+			padding:20px;
+		}
+		#console { 
+			height: 400px; 
+			overflow: auto; 
+		}
+		.username-msg {color:orange;}
+		.connect-msg {color:green;}
+		.disconnect-msg {color:red;}
+		.send-msg {color:#888}
+	</style>
+
+
+	<script src="socket.io.js"></script>
+        <script src="moment.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	
+	<script>
+
+                var userName = 'user' + Math.floor((Math.random()*1000)+1);
+
+     	var socket =  io.connect('http://connector.game.qf.56.com:8001');
+		//var socket =  io.connect('http://192.168.11.123:9092');
+
+		socket.on('connect', function() {
+            var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
+            output('<span class="connect-msg">Client has connected to the server!</span>');
+            setTimeout(function(){
+                socket.emit('auth',jsonObject,function(result) {
+                                alert(result.code  + "  " + result.msg + "   "  + result.data);
+                                alert('授权成功！');
+                            });
+            }, 100);
+            
+		});
+		
+		socket.on('chatevent', function(data) {
+			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+		});
+		
+		socket.on('disconnect', function() {
+			output('<span class="disconnect-msg">The client has disconnected!</span>');
+		});
+
+                function sendDisconnect() {
+                        socket.disconnect();
+                }
+		
+		function sendMessage() {
+                        var message = $('#msg').val();
+                        $('#msg').val('');
+                        
+                        // don't forget to define type field '@class' 
+                        // it should equals to class name which used 
+                        // to deserialize object on server side
+                        // via ...addJsonObjectListener() method
+                        //
+                        // TIP: you can customize type name field
+                        // via Configuration.jsonTypeFieldName property
+                        
+                       /*  var jsonObject = {userName: userName, 
+                                          message: message};
+                        socket.emit('chatevent', jsonObject);
+                        
+                        var cmdObject = {
+                        		cmdType : 1,
+                        		context2 : '你妹妹'
+                        };
+                        
+                        socket.emit('command', cmdObject); */
+                        
+                        
+                        if(message == '1') {
+                        	var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
+                        	socket.emit('auth',jsonObject,function(result) {
+                                alert(result.code  + "  " + result.msg + "   "  + result.data);
+                                alert('授权成功！');
+                            });
+                        }
+                        
+                        /* if(message == '1') {
+                        	var jsonObject = {userId:'wlunm76_561557896',
+                            		token:'2ee7b52f6e7a637708451131369fba403db5e801cbc525a2975061c40d85d70a',
+                            		clientType:1,cmdType:'boom',context:'李妹妹'};
+                            socket.emit('auth',jsonObject,function(result) {
+                                alert(result.code  + "  " + result.msg + "   "  + result.data);
+                                alert('授权成功！');
+                            });
+                        } */
+                        
+                        if(message == '2') {
+                        	var jsonObject = {cmdType:'boom',context:'李妹妹'};
+                            socket.emit('command',jsonObject,function(result) {
+                                alert(result.code  + "  " + result.msg + "   "  + result.data);
+                                alert('发送命令成功！');
+                            });
+                        }
+                        
+		}
+		
+		function output(message) {
+                        var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
+                        var element = $("<div>" + currentTime + " " + message + "</div>");
+			$('#console').prepend(element);
+		}
+
+	</script>
+</head>
+
+<body>
+	
+	<h1>Netty-socketio Demo Chat</h1>
+	
+	<br/>
+
+	<div id="console" class="well">
+	</div>
+
+        <form class="well form-inline" onsubmit="return false;">
+           <input id="msg" class="input-xlarge" type="text" placeholder="Type something..."/>
+           <button type="button" onClick="sendMessage()" class="btn">Send</button>
+           <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
+        </form>
+    
+
+	
+</body>
+
+</html>
