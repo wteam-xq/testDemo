@@ -8,3 +8,4 @@ grunt/dist/*
 grunt/images/*
 npm-debug.log
 webpack/node_modules/*
+socket.io/server/node_modules/*

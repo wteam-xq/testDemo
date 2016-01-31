@@ -1,0 +1,18 @@
+{
+  "name": "socket.io.test",
+  "version": "1.0.0",
+  "description": "just a test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wteam-xq/testDemo"
+  },
+  "author": "wteam-xq",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^1.4.5"
+  }
+}
