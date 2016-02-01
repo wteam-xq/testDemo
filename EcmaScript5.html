@@ -86,7 +86,22 @@
           // 解决：f_r = parseInt(f_a * 100); 或 f_r = Math.round(f_r);(Math.floor也可以)， 就是将计算后的值强制转换回来。。。
           console.log('fr:' + f_r);
 
+          // 关闭浏览器检测  http://www.cnblogs.com/zfc2201/archive/2012/06/22/2558471.html, http://www.asheep.cn/skill/onunload.html
 
+          window.onbeforeunload = windowCloseBefore;
+          window.onunload = windowUnload;
+          function windowCloseBefore(){
+            // IE、Chrome、Safari 完美支持
+            // Firefox 不支持文字提醒信息
+            // Opera 不支持
+          }
+          function windowUnload(){
+            //  IE6~IE8刷新页面、关闭浏览器之后、页面跳转之后都会执行；
+            // IE9 刷新页面 会执行，页面跳转、关闭浏览器不能执行；
+            // firefox(包括firefox3.6)关闭标签之后、页面跳转之后、刷新页面之后能执行，但关闭浏览器不能执行；
+            // Safari 刷新页面、页面跳转之后会执行，但关闭浏览器不能执行；
+            // Opera、Chrome 任何情况都不执行。
+          }
       </script>
     </body>
 </html>

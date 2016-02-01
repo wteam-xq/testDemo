@@ -21,7 +21,8 @@
 	<script>
 
         var userName = 'user' + Math.floor((Math.random()*1000)+1);
-     	var socket =  io.connect('http://localhost:3002');
+        // var socket =  io.connect('http://localhost:3002');
+     	var socket =  io.connect('http://10.7.242.75:3002');
 		//var socket =  io.connect('http://192.168.11.123:9092');
 		socket.on('connect', function() {
             var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
@@ -51,10 +52,10 @@
             if (message == ''){
                 return false;
             }
-            jsonObject = {"msg": message};
-            socket.emit('chatevent',jsonObject,function(result) {
+            jsonObject = {"userName": userName, "message":message};
+            socket.emit('chatevent',jsonObject, function(result) {
                 // 发送成功
-                console.log('success:' + result);
+                // console.log('success:' + result);
             });
 		}
 		function output(message) {
@@ -66,7 +67,7 @@
 </head>
 
 <body>
-	<h1>Netty-socketio Demo Chat</h1>
+	<h1>socketio Demo Chat</h1>
 	<br/>
 	<div id="console" class="well">
 	</div>
