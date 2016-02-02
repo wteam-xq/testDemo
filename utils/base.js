@@ -307,22 +307,24 @@ function removeClass(dom, className) {
 
 // 动态插入脚本(待更新，加入加载完成的回调函数) 待研究：http://www.cnblogs.com/w-y-f/p/3469211.html
 function insertScript(url, callback){
-  var js = document.createElement("script");
-  this.js = js;
-  js.setAttribute("type",'text/javascript');
-  js.src = url;
-  var head = document.getElementsByTagName('head')[0];
-  head.appendChild(js);
-  if(navigator.appName.toLowerCase().indexOf('netscape') == -1){
-      // 低版本IE浏览器下 js 类型的dom不支持 onload
-      js.onreadystatechange = function(){
-        if(js.readyState == 'complete'){
-          callback(js);
+    var script = document.createElement("script");
+    var scriptOnloadEvent = 'onload' in document.createElement('script') ? 'onload' : 'onreadystatechange';
+    var head = document.getElementsByTagName('head')[0];
+
+    var scriptOnload = function() {
+        if ( !script.readyState || /loaded|complete/.test(script.readyState) ) {
+            script[scriptOnloadEvent] = null;
+            // 移除script节点
+            // if (script.parentNode) { 
+            //     script.parentNode.removeChild(script); 
+            // }
+            script = null;
+            callback();
         }
-      }
-  }else{
-    js.onload = function(){
-      callback(js);
-    }
-  }
+    };
+    script.setAttribute("type",'text/javascript');
+    script.src = url;
+    script.charset = "UTF-8";
+    head.insertBefore(script, head.firstChild);
+    script[scriptOnloadEvent] = scriptOnload;
 }

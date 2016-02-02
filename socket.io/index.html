@@ -13,56 +13,149 @@
 		.send-msg {color:#888}
 	</style>
 
-
-	<script src="socket.io.js"></script>
-        <script src="moment.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	
+	<!-- <script src="socket.io.js"></script> -->
+    <script src="moment.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script>
-
+        var socketObj = null;
         var userName = 'user' + Math.floor((Math.random()*1000)+1);
-        // var socket =  io.connect('http://localhost:3002');
-     	var socket =  io.connect('http://10.7.242.75:3002');
-		//var socket =  io.connect('http://192.168.11.123:9092');
-		socket.on('connect', function() {
-            var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
-            output('<span class="connect-msg">Client has connected to the server!</span>');
-            // setTimeout(function(){
-            //     socket.emit('auth',jsonObject,function(result) {
-            //         alert(result.code  + "  " + result.msg + "   "  + result.data);
-            //         alert('授权成功！');
-            //     });
-            // }, 100);
-		});
-		socket.on('chatevent', function(data) {
-			output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
-		});
-		socket.on('disconnect', function() {
-			output('<span class="disconnect-msg">The client has disconnected!</span>');
-            socket.close();
-		});
 
-        function sendDisconnect() {
-            socket.disconnect();
+     	// var socket =  io.connect('http://10.7.242.75:3002');
+		//var socket =  io.connect('http://192.168.11.123:9092');
+        function initSockietObj(cb, authCb){
+            var socket = null;
+
+            // 如果已经导入过,不重复加载动态脚本
+            if (window.loadedSocketClient){
+                socket = io.connect('http://10.7.242.75:3002',{"force new connection": true});
+                if (cb){
+                    cb(socket, authCb);
+                }
+                return false;
+            }
+            insertScript("socket.io.js", socketLoad);
+
+            // 动态插入脚本
+            function insertScript(url, callback){
+                var script = document.createElement("script");
+                var scriptOnloadEvent = 'onload' in document.createElement('script') ? 'onload' : 'onreadystatechange';
+                var head = document.getElementsByTagName('head')[0];
+
+                var scriptOnload = function() {
+                    if ( !script.readyState || /loaded|complete/.test(script.readyState) ) {
+                        script[scriptOnloadEvent] = null;
+                        // 移除script节点
+                        // if (script.parentNode) { 
+                        //     script.parentNode.removeChild(script); 
+                        // }
+                        script = null;
+                        callback();
+                    }
+                };
+                script.setAttribute("type",'text/javascript');
+                script.src = url;
+                script.charset = "UTF-8";
+                head.insertBefore(script, head.firstChild);
+                script[scriptOnloadEvent] = scriptOnload;
+            }
+            // 插入脚本成功后执行
+            function socketLoad(){
+                window.loadedSocketClient = true;
+                socket = io.connect('http://10.7.242.75:3002');
+                if (cb){
+                    cb(socket, authCb);
+                }
+            }
         }
+        // 断开连接
+        function sendDisconnect() {
+            if (socketObj){
+                socketObj.close();
+                socketObj = null;
+            } else {
+                alert('socket暂未建立连接');
+            }
+        }
+        // socket连接成功后，发送消息或指令
 		function sendMessage() {
             var message = $('#msg').val(),
                 jsonObject = null;
+            var opt = {
+                clientType: 1,
+                userId: userName,
+                token: 'token',
+                context: 1,
+                cmdType: 'boom'
+            };
+
+            if (!socketObj){
+                alert('未连接！');
+            }
             $('#msg').val('');
             if (message == ''){
                 return false;
             }
-            jsonObject = {"userName": userName, "message":message};
-            socket.emit('chatevent',jsonObject, function(result) {
-                // 发送成功
-                // console.log('success:' + result);
-            });
+            if(message == "2"){
+                // 请求 开始游戏
+                jsonObject = {"uid":"xq1","nickname":"wteam-xq","action":"join"};
+                // 请求开始游戏
+                socketObj.emit('command',jsonObject, function(result) {
+                    // 发送成功
+                    // console.log('success:' + result);
+                    if (result && result.status == 200){
+                        alert('开始游戏成功!');
+                    }
+                });
+            } else {
+                jsonObject = {"userName": userName, "message":message};
+                socketObj.emit('chatevent',jsonObject, function(result) {
+                    // 发送成功
+                    // console.log('success:' + result);
+                });
+            }
 		}
 		function output(message) {
             var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
             var element = $("<div>" + currentTime + " " + message + "</div>");
 			$('#console').prepend(element);
 		}
+        // 动态插入socket.io脚本，然后建立连接
+        function sendConnect(){
+            initSockietObj(locadSocketSuccess, reqAuth);
+            // 请求授权
+            function reqAuth(){
+                jsonObject = {"uid":"xq1", "nickname":"wteam-xq"};
+                // 连接socket，然后去请求授权， 
+                socketObj.emit('auth',jsonObject, function(result) {
+                    var opt = {"action": "getTickets"};
+                    // 发送成功
+                    if(result.code == 0){
+                        socketObj.emit('command', opt, function(result){
+                            if (result.status == 200){
+                                alert('获得门票成功!');
+                            }
+                        });
+                    }
+                });
+            }
+        }
+        // 动态加载socket.io成功 初始化socket事件
+        function locadSocketSuccess(socketIo, authCb){
+            socketObj = socketIo;
+            socketObj.on('connect', function() {
+                var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
+                output('<span class="connect-msg">Client has connected to the server!</span>');
+                    // 连接上延时几秒后调用授权代码
+                    setTimeout(authCb, 100);
+            });
+            socketObj.on('chatevent', function(data) {
+                output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+            });
+            socketObj.on('disconnect', function() {
+                output('<span class="disconnect-msg">The client has disconnected!</span>');
+                socketObj.close();
+            });
+        }
 	</script>
 </head>
 
@@ -75,6 +168,7 @@
        <input id="msg" class="input-xlarge" type="text" placeholder="Type something..."/>
        <button type="button" onClick="sendMessage()" class="btn">Send</button>
        <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
+       <button type="button" onClick="sendConnect()" class="btn">connect</button>
     </form>
 </body>
 
