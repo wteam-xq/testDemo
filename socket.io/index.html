@@ -33,7 +33,7 @@
                 }
                 return false;
             }
-            insertScript("socket.io.js", socketLoad);
+            insertScript("socket.io-debug.js?v=1", socketLoad);
 
             // 动态插入脚本
             function insertScript(url, callback){
@@ -97,13 +97,14 @@
             }
             if(message == "2"){
                 // 请求 开始游戏
-                jsonObject = {"uid":"xq1","nickname":"wteam-xq","action":"join"};
+                jsonObject = {"userName":userName,"nickname":"wteam-xq","action":"join"};
                 // 请求开始游戏
                 socketObj.emit('command',jsonObject, function(result) {
                     // 发送成功
                     // console.log('success:' + result);
-                    if (result && result.status == 200){
-                        alert('开始游戏成功!');
+                    if (result && result.code == 0){
+                        // alert('开始游戏成功!');
+                        output('<span class="username-msg">开始游戏成功, 游戏数据：</span>' + result.data);
                     }
                 });
             } else {
@@ -132,7 +133,9 @@
                     if(result.code == 0){
                         socketObj.emit('command', opt, function(result){
                             if (result.status == 200){
-                                alert('获得门票成功!');
+                                // alert('获得门票成功!');
+                                // 显示门票信息
+                                output('<span class="username-msg">成功连接，' + result.data + '成功获取游戏票!</span> ');
                             }
                         });
                     }
@@ -154,6 +157,9 @@
             socketObj.on('disconnect', function() {
                 output('<span class="disconnect-msg">The client has disconnected!</span>');
                 socketObj.close();
+            });
+            socketObj.on('startGame', function(data) {
+                output('<span class="username-msg">' + data.userName + '开始了游戏!</span> ');
             });
         }
 	</script>
