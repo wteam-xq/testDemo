@@ -101,7 +101,9 @@
           .text_overflow{width:27em; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
           
           /*CSS 图片灰阶处理*/
-          /*http://www.zhangxinxu.com/wordpress/2012/08/css-svg-filter-image-grayscale/*/
+          /*http://www.zhangxinxu.com/wordpress/2012/08/css-svg-filter-image-grayscale/ 
+            实际应用中如果要兼容所有浏览器（包括但不限于ie6~ie11），样式无法办到，只能使用一个新的黑色透明节点盖上面迂回实现；
+          */
           .gray { -webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray; }
           /*http://www.cnblogs.com/qiyebao/p/4028129.html*/
         </style>
