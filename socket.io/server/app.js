@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
   });
   socket.on('command', function(data, cb){
   	var _action = "",
-  		relData = {"code":0,"msg":"è¯·æ±æåï¼","data":"{\"message\":{\"boomid\":20311,\"num\":1,\"delay\":180,\"ticket\":200,\"players\":[{\"uid\":\"qq-jumyxeyvhr\",\"isBoom\":0,\"isOri\":1,\"avatar\":\"http://004.img.qf.56.itc.cn/group3/M04/26/F5/MTAuMTAuODguODM\\u003d/dXBsb2FkRmlsZV8xXzE0NDA1MDY1NzAyODQ\\u003d.png\",\"nickname\":\"åå¾ä»\"}]},\"status\":200}"};
+  		relData = {"code":0,"msg":"è¯·æ±æåï¼","data":"{\"message\":{\"boomid\":20311,\"num\":1,\"delay\":180,\"ticket\":200,\"players\":[{\"uid\":\"qq-jumyxeyvhr\",\"isBoom\":0,\"isOri\":1,\"avatar\":\"http://004.img.qf.56.itc.cn/group3/M04/26/F5/MTAuMTAuODguODM=/dXBsb2FkRmlsZV8xXzE0NDA1MDY1NzAyODQ=.png\",\"nickname\":\"åå¾ä»\"}]},\"status\":200}"};
 
   	_action = data.action;
   	// 根据data里参数判断，执行哪一类业务逻辑（本次是主要两中：getTicket  startGame）

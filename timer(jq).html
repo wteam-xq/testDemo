@@ -1,4 +1,4 @@
-<!-- 无聊 试试编写一个计时器 -->
+<!-- 主流浏览器最小化时会停止timeOut计时，所以计数代码需要更新下 -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,22 +35,33 @@
 
                 // 计时器写法1
                 function countDown1_init() {
-                  var val_time = 60;
-                  var timer = null;
-                  var flag = true;
+                  var val_time = 60,
+                      isFirstStart = true,
+                      startTime = 0,
+                      timer = null,
+                      flag = true;
 
                   $('#time_val').text(val_time);
                   $('#timeBtn').on('click', startOrStopTime)
                   $('#resetTimeBtn').on('click', resetTime)
                   // 启动、关闭时间
                   function startOrStopTime(){
+                    var _val_time = 0;
                     $this = $(this);
                     if ( $this.hasClass('on') ){
                       $this.val('关闭');
                       $this.removeClass('on').addClass('off');
                       flag = true;
+                      if(isFirstStart){
+                        startTime = new Date().getTime();
+                        isFirstStart = false;
+                      }
+                      _val_time = parseInt( $('#time_val').text(), 10 );
+                      // 获取相对于上次停止时间的时间值
+                      if (_val_time < 60){
+                        startTime = new Date().getTime() - (60 - _val_time) * 1000;
+                      }
                       timer = setTimeout(updateTime, 1000);
-
                     }else if( $this.hasClass('off') ){
                       $this.val('启动');
                       $this.removeClass('off').addClass('on');
@@ -60,17 +71,25 @@
                   // 复位时间
                   function resetTime(){
                     val_time = 60;
+                    // isFirstStart = true;
+                    startTime = new Date().getTime();
                     $('#time_val').text(val_time);
                   }
                   function updateTime(){
+                    var nowTime = new Date().getTime();
+                    val_time = Math.floor( (nowTime - startTime)/1000 );
+                    if (val_time > 60 || val_time < 0){
+                      val_time = 0;
+                    }
+                    val_time = 60 - val_time;
                     if (val_time == 0 || !flag) {
                       clearTimeout(timer);
                       return;
                     }
-                    val_time--;
                     $('#time_val').text(val_time);
                     timer = setTimeout(updateTime, 1000);
                   }
+
                 }
 
                 var $countDownWrap = $('#con_apa2');
@@ -105,29 +124,22 @@
                     initDom : function(parent) {
                         var dom_str = '',
                             $countDownDom = null;
-
                         dom_str = '<div class="count_down">' +
                                       '<span class="min">03</span>' +
                                       '<span class="separate">:</span>' +
                                       '<span class="sec">00</span>' +
                                   '</div>';
                         $countDownDom = $(dom_str);
-
                         parent.append($countDownDom);
-
                         this.countDownObj = parent.find('.count_down');
-
                         this.minObj = this.countDownObj.find('.min');
                         this.secObj = this.countDownObj.find('.sec');
                     },
                     callback : null,
                     start : function(callback) {
                         var This = this, date = new Date();
-
                         this.callback = callback;
-
                         this.startTime = date.getTime();
-
                         window.setTimeout(function() {
                             This.startTimer();
                         }, this.time);
@@ -136,25 +148,19 @@
                      * 开始 倒计时
                      */
                     startTimer : function() {
-                        var This = this, timeObj = null;
-
+                        var This = this, timeObj = null, nowTime = new Date().getTime();
+                        this.count = parseInt( (nowTime - this.startTime)/1000, 10 );
                         if (this.count >= this.totalTime) {//到时间了
                             if ( typeof this.callback === 'function') {
                                 this.callback();
                             }
-
                             this.reset();
-
                             this.startTimer();
-
                             return false;
                         }
-
-                        this.count += 1;
                         timeObj = this.calculateTime(this.totalTime - this.count);
                         // 根据数字更新 节点信息, 分钟 跟 秒数各一个变量即可
                         this.updateDom(timeObj);
-
                         this.timeout = window.setTimeout(function() {
                             This.startTimer();
                         }, this.time);
@@ -177,9 +183,7 @@
                         'min': doubleNum(min),
                         'sec': doubleNum(sec)
                       };
-
                       return result;
-
                       function doubleNum(num){
                         var rel = 0;
                         if (num >= 10) {
@@ -195,9 +199,7 @@
                      */
                     reset : function() {
                         this.count = 0;
-
                         this.startTime = new Date().getTime();
-
                         this.minObj.html('00');
                         this.secObj.html('00');
                     },
