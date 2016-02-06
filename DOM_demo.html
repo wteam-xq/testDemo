@@ -12,9 +12,21 @@
     </head>
     
     <body>
-      <h3>DOM理解</h3>
+      <h1>DOM理解</h1>
+      <h2 class="h2_offset_top" id="h2_offset_top">元素到顶部（显示屏、浏览器、body）距离</h2>
+      <img src="images/js_offsetTop.jpg" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..."/>
+
+      <h2 class="h2_offset_top_2" id="h2_offset_top_2">点击某坐标 各相对位置图</h2>
+      <img src="images/js_offsetTop.png" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..."/>
 
       <script>
+        // 元素距离顶端的高度
+        var h2Top1 = document.getElementById('h2_offset_top'),
+            h2Top2 = document.getElementById('h2_offset_top_2');
+
+        console.log('h2_o_t_2_scrollTop:' + h2Top2.scrollTop + '\n');
+        console.log('h2_o_t_2_clientTop:' + h2Top2.clientTop + '\n');
+        console.log('h2_o_t_2_offsetTop:' + h2Top2.offsetTop + '\n');
       </script>
 
     </body>
