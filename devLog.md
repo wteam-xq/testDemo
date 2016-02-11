@@ -36,9 +36,7 @@
 * 1.在 操作dom时 隐藏， 操作完后出现；
 * 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
 * 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;  
-* 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；(加上 html5 的web Sql index db 可以出博文了)
-
-
+* 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；
 
 
 ### 遗留bug:
@@ -75,4 +73,5 @@
   [最全前端面试问题及答案总结](http://segmentfault.com/a/1190000002562454)  
   [如何面试一名前端开发工程师？](http://www.html-js.com/article/Large-search-front-team-column%202961)  
   [世上最全面试题](https://github.com/hawx1993/Front-end-Interview-questions)
+
   

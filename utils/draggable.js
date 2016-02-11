@@ -10,7 +10,7 @@ var uaDetector = require('uadetector/1.0.x/'),
 
 var startWhen, endWhen, moveWhen;
 // 检测设备类型
-if ( uaDetector.isDevice('mobile') && uaDetector.hasFeature('touch') ) {
+if ( isMobile() && hasTouch() ) {
 	// 触摸屏
 	startWhen = 'touchstart';
 	endWhen = 'touchend';
@@ -35,12 +35,12 @@ if ( uaDetector.isDevice('mobile') && uaDetector.hasFeature('touch') ) {
  */
 function Draggable(options){
 	var t = this;
-
 	t._wrapper = options.wrapper;
 	t._dragTrigger = t._wrapper.find('.draggable-trigger');
-
 	// 没有指定触发节点时，由wrapper进行触发
 	if (!t._dragTrigger.length) { t._dragTrigger = t._wrapper; }
+	// 调用初始化函数
+	t._init(options);
 }
 Draggable._init = function(options){
 	var t = this;
@@ -253,3 +253,103 @@ Draggable._destroy = function(options){
 	delete t.start;
 }
 
+function hasTouch(){
+	return ('ontouchstart' in document) || !!(window.PointerEvent || window.MSPointerEvent)
+}
+
+// 检测设备
+function isMobile(){
+	var ua = window.navigator.userAgent,
+		_result = false,
+		// 设备对象
+		result = {
+			device: { },
+			os: { },
+			layoutEngine: { },
+			browser: { }
+		};
+	var os = null, device = null, browser = null;
+
+	// 设备识别
+	execRules([
+		['ipad', /iPad(?:.*OS\s([\d_]+))?/],
+		['ipod', /iPod(?:.*OS\s([\d_]+))?/],
+		['iphone', /iPhone(?:\sOS\s([\d_]+))?/],
+		['mac', /Macintosh/],
+		['kindle', /Kindle/],
+		['playbook', /PlayBook/],
+		['blackberry', /BlackBerry/],
+		['bb10', /BB10/],
+		['nokia', /nokia/i]
+	], 'device', true);
+
+	// 系统识别
+	execRules([
+		['windowsphone', /Windows\sPhone\s([\d.]+)/],
+		['windowsmobile', /Windows\sMobile/],
+		['windowsce', /Windows\sCE/],
+		['windows', /Windows\sNT\s([\d.]+)/],
+		['macosx', /Mac\sOS\sX\s([\d_.]+)/],
+		['android', /Android;?[\s\/]+([\d.]+)?/],
+		['symbian', /Symbian(?:OS)?\/([\d.]+)/],
+		['linux', /Linux/]
+	], 'os', true);
+
+	// 浏览器排版引擎识别
+	execRules([
+		['trident', /Trident\/([\d.]+)/],
+		['webkit', /Web[kK]it[\/]?([\d.]+)/],
+		['gecko', /Gecko\/([\d.]+)/],
+		['presto', /Presto\/([\d.]+)/]
+	], 'layoutEngine', true);
+
+	// 浏览器识别
+	execRules([
+		['ie', /MSIE\s([\d.]+)/],
+		['ie', /Trident\/.*;\srv:([\d.]+)/],
+		['firefox', /Firefox\/([\d.]+)/],
+		['operamini', /Opera\sMini\/([\d.]+)/],
+		['opera', /Opera\/.*Version\/([\d.]+)/],
+		['opera', /Opera\/([\d.]+)/],
+		['opera', /OPR\/([\d.]+)/],
+		['chrome', /Chrome\/([\d.]+)/],
+		['chrome', /CriOS\/([\d.]+)/],
+		['safari', /Version\/([\d.]+).*Safari/]
+	], 'browser', true);
+
+	device = result.device;
+	os = result.os;
+	browser = result.browser;
+
+	device.tablet = !os.windows && !!(
+		device.ipad || device.playbook || ( os.android && !ua.match(/Mobile/) ) ||
+		( browser.firefox && /Tablet/.test(ua) ) ||
+		( browser.ie && !/Phone/.test(ua) && /Touch/.test(ua) )
+	);
+	device.phone = !os.windows && !!(
+		!device.tablet && (
+			os.android || device.iphone || device.ipod ||
+			device.blackberry || device.bb10 ||
+			os.windowsce || os.windowsmobile || os.windowsphone || 
+			( browser.chrome && /Android/.test(ua) ) || ( browser.chrome && /CriOS\/[\d.]+/.test(ua) ) ||
+			( browser.firefox && /Mobile/.test(ua) ) || ( browser.ie && /Touch/.test(ua) )
+		)
+	);
+
+	_result = !os.windows && ( device.tablet || device.phone ||
+	/mobile/i.test(ua) || /tablet/i.test(ua) || /phone/i.test(ua) );
+
+	// 执行规则匹配
+	function execRules(rules, type, breakWhenMatch) {
+		var i, match;
+		for (i = 0; i < rules.length; i++) {
+			match = ua.match(rules[i][1]);
+			if (match) {
+				result[type][rules[i][0]] = true;
+				result[type].version = match[1] || '';
+				if (breakWhenMatch) { break; }
+			}
+		}
+		return match != null;
+	}
+}
