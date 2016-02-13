@@ -4,11 +4,10 @@
  * @module 
  * @category Widget
  */
-var uaDetector = require('uadetector/1.0.x/'),
-	$window = $(window),
+var $window = $(window),
 	$document = $(document);
-
-var startWhen, endWhen, moveWhen;
+var startWhen, endWhen, moveWhen,
+	Draggable = null;
 // 检测设备类型
 if ( isMobile() && hasTouch() ) {
 	// 触摸屏
@@ -21,7 +20,6 @@ if ( isMobile() && hasTouch() ) {
 	endWhen = 'mouseup';
 	moveWhen = 'mousemove';
 }
-
 /**
  * 拖动功能组件类
  * @class Draggable
@@ -33,7 +31,7 @@ if ( isMobile() && hasTouch() ) {
  *   @param {NodeList|Object|String} [options.boundary] 拖动边界，
  *     'parent'时为父节点，'window'时为窗口
  */
-function Draggable(options){
+Draggable = function(options){
 	var t = this;
 	t._wrapper = options.wrapper;
 	t._dragTrigger = t._wrapper.find('.draggable-trigger');
@@ -41,7 +39,7 @@ function Draggable(options){
 	if (!t._dragTrigger.length) { t._dragTrigger = t._wrapper; }
 	// 调用初始化函数
 	t._init(options);
-}
+};
 Draggable._init = function(options){
 	var t = this;
 	/*
@@ -111,7 +109,6 @@ Draggable._init = function(options){
 			overwrite: false
 		}));
 	};
-
 	/*
 	 * 终止拖动
 	 * @method end
@@ -144,7 +141,6 @@ Draggable._init = function(options){
 		 */
 		t.trigger('dragend', e);
 	};
-
 	/*
 	 * 开始拖动
 	 * @method start
@@ -240,7 +236,6 @@ Draggable._init = function(options){
 		if (endWhen) { $document.on(endWhen, t.end); }
 		$window.on('blur', t.end);
 	};
-
 	t._dragTrigger.on(startWhen, t.start);
 }
 Draggable._destroy = function(options){
@@ -252,11 +247,9 @@ Draggable._destroy = function(options){
 	delete t.end;
 	delete t.start;
 }
-
 function hasTouch(){
 	return ('ontouchstart' in document) || !!(window.PointerEvent || window.MSPointerEvent)
 }
-
 // 检测设备
 function isMobile(){
 	var ua = window.navigator.userAgent,

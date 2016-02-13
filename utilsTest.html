@@ -9,6 +9,9 @@
       </title>
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      <style>
+        .dragg_div{ width:200px; height:200px; background-color:#222; }
+      </style>
     </head>
     
     <body>
@@ -24,19 +27,23 @@
         <span id="lBtnTips"></span>
       </p>
       <br/>
-
+      <div class="dragg_div" id="dragg_div"></div>
       <!--[if lt IE 8]>
         <script type="text/javascript" src="lib/json2.js"></script>
       <![endif]-->
       <script type="text/javascript" src="utils/base.js"></script>
+      <script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>
       <script type="text/javascript" src="utils/client.js"></script>
+      <script type="text/javascript" src="utils/draggable.js"></script>
       <script type="text/javascript" src="utils/localStorageUtil.js"></script>
       <script>
         var TestUtils = {
           init: function(){
             var This = this;
             // this.insertScript();
-            initlocalStorageDemo();
+            // initlocalStorageDemo();
+            // 测试移动库
+            new Draggable({"wrapper": $("#dragg_div")});
           },
           insertScript: function(){
             var COOKIE_URL = 'utils/cookieUtil.js';
@@ -46,9 +53,7 @@
             });
           }
         }; 
-
         TestUtils.init();
-
         function initlocalStorageDemo(){
           var localStorage, lSetBtn, lRemoveBtn, lShowBtn, lBtnTips;
 
