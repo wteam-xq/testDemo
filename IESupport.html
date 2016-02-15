@@ -17,7 +17,13 @@
         .png-pos{ background: url('images/icon_user.png') no-repeat; width:63px; height:16px; }
         .t8_wrap{ margin:20px 0px; width:200px; height:100px; background:#8DD9E7; position: relative; opacity:0.6; filter:alpha(opacity=60); }
         .t8_ab{ width:20px; height:20px; background:#000; position: absolute; top:-10px; left:20px; }
-        .tb_tip{padding:20px 5px;}
+        .tb_tip{ padding:20px 5px; }
+        .t15_wrap{ width:500px; height:200px; }
+        .t15_a, .t15_b{ width:250px; height:20px; margin:10px auto; }
+        .t15_wrap .t15_a{ background-color:#8eb7be; color:#fff; }
+        .t15_wrap .t15_b{ background-color:#fdcc5e; color:#000; }
+        .t15_wrap .t15_a.un_use{ color:#149399; background-color:#8eb7be; }
+        .t15_wrap .t15_b.un_use{ color:#eea902; cursor:default; }
       </style>
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -46,6 +52,11 @@
         <a href="javascript:void(0);"></a>
         <!-- 推荐用法 -->
         <a href="####" onclick="return false;"></a>
+      </div>
+
+      <div class="t15_wrap">
+        <div class="t15_a un_use">IE6，下面的元素样式会被覆盖</div>
+        <div class="t15_b un_use">IE6，该元素样式会被覆盖</div>
       </div>
 
       <script>
@@ -90,7 +101,7 @@
         // 5.getAttribute("class") 在IE下可能无法获取正确类名， IE对应的应该为 getAttribute("className")
         //   另：IE下获得float的方式也不同：obj.style.styleFloat=style; （IE） obj.style.cssFloat=style; （非IE）
         // 6.position absolute; 在IE6下 定位很容易出问题，给父类zoom:1; 触发layout解决；http://blog.csdn.net/wuchengzhi82/article/details/7730207
-        // 7.IE6下 line-height 对应节点， 如果不是全文字的话（包含图片/input textarea/select等）会无效；
+        // 7.IE6下 line-height 对应节点， 如果不是全文字的话（包含图片/input textarea/select等）会无效, 解决办法：在其中一个非文字对象中添加样式：margin: (容器的line-height - 对象本身的高度)/2px 0;  vertical-align:middle;
         // 8.IE6下 position:absolute; 如果父节点已经透明显示， 子类超出父节点部分会被隐藏（即使显示优先级 高于任何子节点）；
         // 9.IE6下 ；css 三角形需注意背景色、border-style, line-height; http://www.cnphp6.com/archives/63736
         // 10.IE6下 ；margin 设置为负值无效， 父类添加zoom:1, 自身添加position：relative后方有效；(仍然不行， 就添加 top:-XXpx; 实现)
@@ -99,6 +110,7 @@
         // 13.IE6下 设置为 display:none;并且生效后的dom节点竟然不消失！！！（神奇，待模拟重现）解决：ie6 下在原有基础上新增样式：visibility:hidden; (还不行就用其他方式隐藏， 例如：宽高为零，绝对定位位置偏移至无法看见的位置；)
         // 14.IE6下 a 标签去除默认跳转事件， 常规用法对比：javascript:void(0); 比较常见，但可能会导致问题，最佳方案： <a href="####" onclick="return false;"></a>
         //  对应教程：http://segmentfault.com/q/1010000000339082
+        // 15.IE6下 复合样式如果有相同的样式名且共用一个父类，样式会异常（具体看demo）
       </script>
 
     </body>

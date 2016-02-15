@@ -13,8 +13,36 @@
     
     <body>
       <h3>BOM理解</h3>
+      <h4>最常用：</h4>
+      <h5> Navigator - userAgent:</h5>
+      <div id="agent_cont"></div>
+
+      <h5>Location - href/hash/search </h5>
+      <div id="href_cont"></div>
+      <div id="hash_cont"></div>
+      <div id="port_cont"></div>
+      <div id="search_cont"></div>
 
       <script>
+        var BomObj = null;
+
+        BomObj = {
+          init: function(){
+            var agentDom = document.getElementById('agent_cont'),
+                hrefDom = document.getElementById('href_cont'),
+                hashDom = document.getElementById('hash_cont'),
+                portDom = document.getElementById('port_cont'),
+                searchDom = document.getElementById('search_cont');
+
+            agentDom.innerHTML = window.navigator.userAgent;
+            hrefDom.innerHTML = window.location.href;
+            hashDom.innerHTML = window.location.hash;
+            portDom.innerHTML = window.location.port;
+            searchDom.innerHTML = window.location.search;
+          }
+        };
+
+        BomObj.init();
       </script>
 
     </body>
