@@ -45,9 +45,9 @@
                     if ( !script.readyState || /loaded|complete/.test(script.readyState) ) {
                         script[scriptOnloadEvent] = null;
                         // 移除script节点
-                        // if (script.parentNode) { 
-                        //     script.parentNode.removeChild(script); 
-                        // }
+                        if (script.parentNode) { 
+                            script.parentNode.removeChild(script); 
+                        }
                         script = null;
                         callback();
                     }

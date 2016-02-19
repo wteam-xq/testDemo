@@ -1,3 +1,6 @@
+/**
+**  模拟项目开发中socket.io连接异常；
+**/
 var io = require('socket.io')(3002);
 var fs = require('fs');
 var url = require("url");
