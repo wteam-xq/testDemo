@@ -158,3 +158,13 @@ gulp.task('htmlcomp', function(){
 gulp.task('default', ['clean'], function(){
     gulp.start('ugconjs', 'htmlcomp', 'copy', 'css', 'images');
 });
+
+/*************************************************************
+ *                本地js  html css字符串压缩      
+ ************************************************************/
+ // 字符串拷贝进 js/str.js 中, 然后运行 `gulp str-js`
+
+ // 字符串拷贝进 css/str.css 中, 然后运行 `gulp str-css`
+
+ // 字符串拷贝进 str.html 中, 然后运行 `gulp str-html`
+
