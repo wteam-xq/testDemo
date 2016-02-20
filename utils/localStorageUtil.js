@@ -1,6 +1,6 @@
 /*20151206 localStorage工具类， userData 相关教程：http://www.cnblogs.com/QLeelulu/archive/2008/03/29/1129322.html
  * 低版本ie浏览器中userData模拟实现localStorage
- * 低版本浏览器（ie6 ie7）使用userDat注意事项：清除浏览器缓存时无法加工userData里的文件清除，需手动到系统目录清除对应的xml文件；
+ * 低版本浏览器（ie6 ie7）使用userData注意事项：清除浏览器缓存时无法清除userData数据，需手动到系统目录清除对应的xml文件；
  * userData在 XP系统中的位置： C盘 关键字“userData”搜索即可。
  */
 
