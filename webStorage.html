@@ -336,7 +336,6 @@
               indexDbObj = {},
               //实例化IndexDB数据上下文，根据浏览器类型来做选择
               indexedDB = null;
-
           try {
             indexedDB = window.indexedDB || window.webkitIndexedDB ||window.mozIndexedDB;
             if ('webkitIndexedDB' in window) {

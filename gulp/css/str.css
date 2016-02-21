@@ -1,0 +1,25 @@
+.l{
+	float:left;
+}
+.r{
+	float:right;
+}
+.cl{
+	clear:both;
+}
+.n{
+	font-weight:normal; 
+	font-style:normal;
+}
+.b{
+	font-weight:bold;
+}
+.i{
+	font-style:italic;
+}
+.fa{
+	font-family:Arial;
+}
+.fg{
+	font-family:Georgia;
+}
