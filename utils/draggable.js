@@ -6,8 +6,8 @@
  */
 var $window = $(window),
 	$document = $(document);
-var startWhen, endWhen, moveWhen,
-	Draggable = null;
+var startWhen, endWhen, moveWhen;
+	// Draggable = null;
 // 检测设备类型
 if ( isMobile() && hasTouch() ) {
 	// 触摸屏
@@ -31,7 +31,7 @@ if ( isMobile() && hasTouch() ) {
  *   @param {NodeList|Object|String} [options.boundary] 拖动边界，
  *     'parent'时为父节点，'window'时为窗口
  */
-Draggable = function(options){
+ function Draggable(options){
 	var t = this;
 	t._wrapper = options.wrapper;
 	t._dragTrigger = t._wrapper.find('.draggable-trigger');
@@ -39,8 +39,8 @@ Draggable = function(options){
 	if (!t._dragTrigger.length) { t._dragTrigger = t._wrapper; }
 	// 调用初始化函数
 	t._init(options);
-};
-Draggable._init = function(options){
+}
+Draggable.prototype._init = function(options){
 	var t = this;
 	/*
 	 * 拖动过程
@@ -238,7 +238,7 @@ Draggable._init = function(options){
 	};
 	t._dragTrigger.on(startWhen, t.start);
 }
-Draggable._destroy = function(options){
+Draggable.prototype._destroy = function(options){
 	var t = this;
 	// 停止正在进行的拖动
 	if (t._startPos) { t.end(); }
@@ -247,6 +247,7 @@ Draggable._destroy = function(options){
 	delete t.end;
 	delete t.start;
 }
+
 function hasTouch(){
 	return ('ontouchstart' in document) || !!(window.PointerEvent || window.MSPointerEvent)
 }

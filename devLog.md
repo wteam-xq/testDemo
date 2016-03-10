@@ -38,7 +38,6 @@
 * 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;  
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；
 
-
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 2.IE7 中（模拟）使用json2.js 堆栈溢出报错；
