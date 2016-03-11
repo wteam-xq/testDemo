@@ -4,6 +4,8 @@
  * @module 
  * @category Widget
  */
+
+// 原代码， 相互间联系太紧，抽离难度很大！！
 var $window = $(window),
 	$document = $(document);
 var startWhen, endWhen, moveWhen;

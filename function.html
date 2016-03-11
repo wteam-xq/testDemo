@@ -12,7 +12,7 @@
     <body>
         <h3>函数理解</h3>
         <script>
-          // 函数 add可以实现连续的加法运算， 函数add的语法如下：
+          // 1. 函数 add可以实现连续的加法运算， 函数add的语法如下：
           // add(num1)(num2)(num3)...;
           // 使用举例：
           // add(10)(10) = 20
@@ -31,8 +31,9 @@
           // alert(add(10)(20)(30))   //60
           //看结果的时候必须用alert ，因为alert接收的必须是字符串，所以它会自动调用toString()方法
           // console.log(add(20).toString());
-          // 递归函数
-          // 斐波那契数列实现
+
+          // 2.递归函数
+          // 斐波那契数列实现, 实现递归的两种方式：调用自身函数名（推荐），调用参数对象的方法（严格模式下报错，有时万不得已得用该方法）
           function fibonac(n){
             if (n <= 0){
               return 0;
@@ -54,7 +55,8 @@
           // var test_res = fibonac(8);
           // var test_res = fibonac2(8);
           // alert(test_res);
-          // call apply 用法
+
+          // 3.call apply 用法区别：参数个数的区别；
           var a = {
             a_num: 2,
             a_str: '3'
@@ -74,17 +76,16 @@
           // callFun.call(a, 1, 2, 3);
           // applyFun.apply(a, [1,2,3]);
 
-          // 有关javascript函数对象（函数当对象字面量使用竟然不报错！） 来源：http://www.zhihu.com/question/31863910
+          // 4.有关javascript函数对象（函数当对象字面量使用竟然不报错！） 来源：http://www.zhihu.com/question/31863910
           // "age:"被看作了标签语句（label statement）不会起作用
           function Persion(){
             age: 20;
           }
           // alert(Persion.age);
-
           Persion.age = 20;
           // alert(Persion.age);
 
-          // 如何在JavaScript里指定一个对象作为上下文去eval字符串？
+          // 5. 如何在JavaScript里指定一个对象作为上下文去eval字符串？
           // 来源 http://www.zhihu.com/question/31930691
           // 比如 d = {x: 1, y: 2} , expr = "x * 2 + y" , 然后evalWith(d, expr) 就返回4
           var d = {x:1, y:2};
@@ -101,6 +102,19 @@
             return (new Function(imports + 'return (' + expr + ')')).call(d)
           }
           // alert( evalWith(d, expr) );
+
+          // 6. 关键字"new" 执行时，构造函数的执行过程
+          function constructorT(){
+            // t 输出为 {}(空对象)， 但其可以共享构造函数原型的方法以及变量；t.b => 'bbbbbb', t.a = functon(){console.log('a fun');}
+            var t = this;
+            console.log('what the fuck!');
+          }
+          constructorT.prototype.a = function(){
+            console.log('a fun');
+          }
+          constructorT.prototype.b = 'bbbbbb';
+          // TObj 即为构造函数中的 this
+          var TObj = new constructorT();
         </script>
     </body>
 </html>
