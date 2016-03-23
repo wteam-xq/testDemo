@@ -33,7 +33,7 @@ if ( isMobile() && hasTouch() ) {
  *   @param {NodeList|Object|String} [options.boundary] 拖动边界，
  *     'parent'时为父节点，'window'时为窗口
  */
- function Draggable(options){
+function Draggable(options){
 	var t = this;
 	t._wrapper = options.wrapper;
 	t._dragTrigger = t._wrapper.find('.draggable-trigger');
@@ -248,6 +248,152 @@ Draggable.prototype._destroy = function(options){
 	delete t.drag;
 	delete t.end;
 	delete t.start;
+}
+Draggable.prototype.handlers = {};
+/**
+ * 触发事件
+ * @method trigger
+ * @for EventDriven
+ * @param {String} type 事件类型
+ * @param {Object} [props] 事件参数属性
+ * @return {Object} 事件参数
+ */
+Draggable.prototype.trigger = function(type, props){
+	var theHandlers = this.handlers[type], e = new EventArg(type, props);
+	if (theHandlers) {
+		for (var i = 0; i < theHandlers.length; i++) {
+			theHandlers[i].call(this, e);
+		}
+	}
+	return e;
+}
+/**
+ * 注册事件监听
+ * @method on
+ * @for EventDriven
+ * @param {String} type 事件类型
+ * @param {Function(e)} handler 回调函数
+ * @return {Object} 当前对象
+ */
+Draggable.prototype.on = function(type, handler) {
+	this.handlers[type] = this.handlers[type] || [ ];
+	this.handlers[type].push(handler);
+	return this;
+}
+/**
+ * 移除事件监听
+ * @method off
+ * @for EventDriven
+ * @param {String} [type] 通知类型。如不指定，则取消所有订阅
+ * @param {Function} [handler] 回调函数。如不指定，则取消指定类型的所有订阅
+ * @return {Object} 当前对象
+ */
+Draggable.prototype.off = function(type, handler) {
+	var handlers = this.handlers;
+	if (!arguments.length) {
+		this.handlers = { };
+	} else if (!handler) {
+		delete handlers[type];
+	} else {
+		var theHandlers = handlers[type];
+		if (theHandlers) {
+			for (var i = theHandlers.length - 1; i >= 0; i--) {
+				if (theHandlers[i] === handler) {
+					theHandlers.splice(i, 1);
+				}
+			}
+			if (!theHandlers.length) {
+				delete handlers[type];
+			}
+		}
+	}
+
+	return this;
+}
+/**
+ * 事件参数类
+ * @class EventArg
+ * @constructor
+ * @exports
+ * @param {Object|String} src 源事件对象或事件类型
+ * @param {Object} [props] 要扩展的属性
+ */
+function EventArg(src, props){
+	var t = this;
+
+	if (src && src.type) {
+		t.originalEvent = src;
+		t.type = src.type;
+		var undefined;
+		t.isDefaultPrevented = src.defaultPrevented ||
+			src.defaultPrevented === undefined && (
+			// Support: IE < 9
+			src.returnValue === false ||
+			// Support: Android < 4.0
+			src.getPreventDefault && src.getPreventDefault()
+		) ? returnTrue : returnFalse;
+	} else {
+		t.type = src;
+	}
+
+	if (props) {
+		for (var p in props) {
+			// 不复制方法
+			if (typeof props[p] !== 'function') { t[p] = props[p]; }
+		}
+	}
+	// 生成时间戳
+	t.timeStamp = src && src.timeStamp || +new Date;
+}
+/**
+ * 阻止事件默认行为
+ * @for EventArg
+ * @method preventDefault
+ */
+EventArg.prototype.preventDefault = function(){
+	this.isDefaultPrevented = returnTrue;
+	var e = this.originalEvent;
+	if (!e) { return; }
+
+	if (e.preventDefault) {
+		e.preventDefault();
+	} else {
+		e.returnValue = false;
+	}
+}
+/**
+ * 停止冒泡
+ * @for EventArg
+ * @method stopPropagation
+ */
+EventArg.prototype.preventDefault = function(){
+	this.isPropagationStopped = returnTrue;
+	var e = this.originalEvent;
+	if (!e) { return; }
+
+	if (e.stopPropagation) {
+		e.stopPropagation();
+	} else {
+		e.cancelBubble = true;
+	}
+}
+/**
+ * 获取是否已阻止事件默认行为
+ * @for EventArg
+ * @method isDefaultPrevented
+ * @return {Boolean} 是否已阻止默认事件行为
+ */
+EventArg.prototype.isDefaultPrevented = function(){
+	return false;
+}
+/**
+ * 获取是否已停止冒泡
+ * @for EventArg
+ * @method isPropagationStopped
+ * @return {Boolean} 是否已停止冒泡
+ */
+EventArg.prototype.isPropagationStopped = function(){
+	return false;
 }
 
 function hasTouch(){
