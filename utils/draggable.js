@@ -4,8 +4,6 @@
  * @module 
  * @category Widget
  */
-
-// 原代码， 相互间联系太紧，抽离难度很大！！
 var $window = $(window),
 	$document = $(document);
 var startWhen, endWhen, moveWhen;
@@ -37,6 +35,7 @@ function Draggable(options){
 	var t = this;
 	t._wrapper = options.wrapper;
 	t._dragTrigger = t._wrapper.find('.draggable-trigger');
+	t._options = options;
 	// 没有指定触发节点时，由wrapper进行触发
 	if (!t._dragTrigger.length) { t._dragTrigger = t._wrapper; }
 	// 调用初始化函数
@@ -105,7 +104,7 @@ Draggable.prototype._init = function(options){
 		 * @param {Object} e 事件对象
 		 *   @param {Object} e.position 新位置（top、left）
 		 */
-		t.trigger('drag', base.mix({
+		t.trigger('drag', mix({
 			position: newPos
 		}, e, {
 			overwrite: false
@@ -394,6 +393,39 @@ EventArg.prototype.isDefaultPrevented = function(){
  */
 EventArg.prototype.isPropagationStopped = function(){
 	return false;
+}
+/**
+ * 把源对象的属性扩展到目标对象。与extend相比，mix提供了更多参数
+ * @method mix
+ * @param {Any} target 目标对象
+ * @param {Any} [source] 源对象
+ * @param {Object} [opts] 参数
+ *   @param {Boolean} [opts.overwrite=true] 是否覆盖目标对象的同名属性
+ *   @param {Array<String>} [opts.whiteList] 扩展属性白名单
+ *   @param {Array<String>} [opts.blackList] 扩展属性黑名单
+ *   @param {Boolean} [opts.ignoreNull=false] 是否不扩展null值的属性
+ * @return {Any} 目标对象
+ */
+function mix(target, source, opts) {
+	if (target == null) { throw new Error('target cannot be null'); }
+
+	if (source != null) {
+		opts = opts || { };
+
+		for (var i in source) {
+			// 是否覆盖属性
+			if (opts.overwrite === false && i in target) { continue; }
+			// 是否忽略null值的属性
+			if (opts.ignoreNull && source[i] == null) { continue; }
+			// 白名单检测
+			if (opts.whiteList && opts.whiteList.indexOf(i) === -1) { continue; }
+			// 黑名单检测
+			if (opts.blackList && opts.blackList.indexOf(i) !== -1) { continue; }
+
+			target[i] = source[i];
+		}
+	}
+	return target;
 }
 
 function hasTouch(){

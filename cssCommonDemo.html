@@ -65,7 +65,7 @@
           }
 
           /*css三角形, css三角形产生器：http://apps.eky.hk/css-triangle-generator/zh-hant*/
-          .css-triangle { width: 0; height: 0; border-style: solid dashed dashed dashed;*border-style:dashed; border-width: 200px 105px 0 105px; border-color: #007bff transparent transparent transparent; }
+          .css-triangle { width: 0; height: 0; border-style: solid dashed dashed dashed; border-width: 150px 100px 0 100px; border-color: #007bff transparent transparent transparent; }
           
           .u_face{ position:relative; padding-top: 30px; width: 60px; margin: 0 auto; cursor:pointer; }
           .u_face img{ width: 60px; height: 60px; display: block; border-radius: 50%;}
@@ -186,6 +186,7 @@
       </div>
       
       <!-- 源自知乎：http://www.zhihu.com/question/35180018/answer/61554144 -->
+      <!-- 兼容性：IE6 不支持border-color:transparent, 额外处理：border-style其他三边设置成虚线 dashed; 结论：需要兼容IE6还是老实用图标（最好雪碧图）吧，效果不会太难看 -->
       <div id="test6" class="demo">
         <p>
           <h2>来源：</h2>

@@ -103,7 +103,7 @@
         // 6.position absolute; 在IE6下 定位很容易出问题，给父类zoom:1; 触发layout解决；http://blog.csdn.net/wuchengzhi82/article/details/7730207
         // 7.IE6下 line-height 对应节点， 如果不是全文字的话（包含图片/input textarea/select等）会无效, 解决办法：在其中一个非文字对象中添加样式：margin: (容器的line-height - 对象本身的高度)/2px 0;  vertical-align:middle;
         // 8.IE6下 position:absolute; 如果父节点已经透明显示， 子类超出父节点部分会被隐藏（即使显示优先级 高于任何子节点）；
-        // 9.IE6下 ；css 三角形需注意背景色、border-style, line-height; http://www.cnphp6.com/archives/63736
+        // 9.IE6下 ；css 三角形需注意背景色、border-style（IE6下, 设置余下三条边的border-style为dashed）, line-height(line-height为零); http://www.cnphp6.com/archives/63736
         // 10.IE6下 ；margin 设置为负值无效， 父类添加zoom:1, 自身添加position：relative后方有效；(仍然不行， 就添加 top:-XXpx; 实现)
         // 11.IE6下 position: fixed; 无效；absolute替代实现；http://www.cnblogs.com/blosaa/archive/2011/12/29/2305990.html
         // 12.IE6下 左浮动（或右浮动）如果是最后一个节点， 则会自动换行；http://www.wangmengyu.cn/?p=139
