@@ -31,6 +31,16 @@
           // 校验字符串是否含有中文
           str = '100万';
           var reg_cn = /[\u4e00-\u9fa5]/.test(str);
+          // 非正则获取中文个数（考虑特殊字符、奇怪字符）
+          function checkChinaCount(value){
+            var i = 0, result = 0;
+            for ( var i = 0; i < value.length; i++){
+                if (value.charCodeAt(i) <= 0 || value.charCodeAt(i) > 128){
+                    result ++ ;
+                } 
+            }
+            return result;
+          }
 
           // 给所有String对象添加trim方法
           String.prototype.trim = function(){
@@ -45,31 +55,7 @@
             for(i=1;i<arr.length;i++)if(String(Number(arr[i]))!=arr[i]||Number(arr[i])>255) return   false;  
             return   true;  
           }
-          alert( testIP2("192.16l8.1.1") );
-
-          // 非正则版本
-          function testIP2(s){  
-            var arr=getStrNum(s);
-            if(arr==null || arr.length != 4) return false;  
-            for(i=1;i<arr.length;i++)if(String(Number(arr[i]))!=arr[i]||Number(arr[i])>255) return false;  
-            return   true;  
-          }
-          function getStrNum(str) {
-            var i, len, i_str, r = [], tmp_str = '';
-            if (!str || str.length == 0) { return r; }
-            for (i = 0, len = str.length; i < len; i++) {
-              i_str = str.charAt(i);
-              if ( isNaN(i_str) && i_str != '.') { r = null; break; }
-              if ( i_str != '.' && parseInt(i_str, 10) > 0 ) {
-                tmp_str += i_str;
-              } else if (i_str == '.') {
-                r.push(tmp_str); 
-                tmp_str = '';
-              } 
-            } 
-            return r;
-          }
-
+          
           // 用js实现一个电话号码提取的方法。
           // 例如：" 1852145998 020-888-999845 测试 021  -  85421987, 19865754"
           // 得到的结果应该是[1852145998, 020-888-999845 , 021 - 85421987, 19865754]

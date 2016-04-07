@@ -50,15 +50,11 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         // 所以Foo.__proto__.age相当于给其Function构造函数添加了age属性。
         // 我想问的问题是，通过Foo.age访问到的age的属性值是从Function继承而来的？
         // 还是因为Foo是Function构造函数的实例，age属性是通过“实例.属性”访问得来的？
-        function Foo(){
-
-        };
+        function Foo(){};
         var foo = new Foo(); 
-
         Foo.__proto__.age = 10;
 
         // alert(Foo.age);//10 
-
         // 实现继承的简单方法
         function object(o){
           function F () {};
@@ -85,7 +81,6 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
 
         // 测试知乎问题：
         testObject();
-
         // 实际开发 继承写法:
         var CreateClassDemo = createClass(function(){
           this.init();
@@ -98,7 +93,6 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
           }
         });
         var createClassDemo = new CreateClassDemo();
-
       </script>
 
     </body>

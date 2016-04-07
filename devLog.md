@@ -7,14 +7,11 @@
 
 * 下月博文： 浅谈浏览器本地缓存，webStorage中 cookies暂不调用utils/cookieUtil.js库；utils新增 localStorage库（兼容IE版）；
 * 博文简介： 目前浏览器支持的缓存5种，实际开发中经常使用3种；
-* 下下月博文： git 代码管理（版本  分支）
-  * 1.版本回退、前进；
-  * 2.分支管理；
-  * 3.忽略文件配置：gitignore.
-
+* 本周计划：20160409-20160410: 单页面路由实现研究；
 * others
   * nodejs 短信系统调试(超时处理, 后台如何不奔溃)
   * webpack 模块化学习， tkd_v3 开发;
+
 
 ### 开发日志
 * 20150629 tr 设置了border无效
