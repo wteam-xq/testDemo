@@ -10,7 +10,8 @@
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       <style>
-        .dragg_div{ width:200px; height:200px; background-color:#222; color:#fff; line-height: 200px; font-size:14px; text-align: center; cursor:move; }
+        .dragg_div{ width:200px; height:200px; background-color:#222; color:#fff;  font-size:14px; text-align: center; cursor:move; }
+        .dragg_txt{ height: 200px; display: table-cell; vertical-align: middle; text-align: center; width:200px; }
       </style>
     </head>
     
@@ -27,7 +28,13 @@
         <span id="lBtnTips"></span>
       </p>
       <br/>
-      <div class="dragg_div" id="dragg_div">可拖动的方块</div>
+      <div class="dragg_div" id="dragg_div">
+        <div class="dragg_txt">
+          <div>可拖动的方块</div>
+          <div>bug:input 无法编辑</div>
+        </div>
+        <input type="text" value="" class="dragg_input"/>
+      </div>
       <!--[if lt IE 8]>
         <script type="text/javascript" src="lib/json2.js"></script>
       <![endif]-->

@@ -9,35 +9,14 @@
       <link rel="icon" href="../favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
       <style>
-        #content{
-          border:5px solid blue;
-          overflow: hidden;
-        }
-        #leftpanel{
-          background-color: lightblue;
-          width: 300px;
-          float: left;
-          padding-bottom: 3000px;
-          margin-bottom: -3000px;
-        }
+        #content{ border:5px solid blue;overflow: hidden; }
+        #leftpanel{background-color: lightblue;width: 300px;float: left;padding-bottom: 3000px;margin-bottom: -3000px; }
         #right{padding-left: 310px;}
-        #rightpanel{
-          padding-bottom: 3000px;
-          margin-bottom: -3000px;
-        }
-        .date{
-          font-size: 12px;
-          color:#999;
-        }
-        .content{
-          background-color: lightyellow;
-        }
-        #container{
-          margin: 10px;
-        }
-        .title {
-          margin-bottom: 10px;
-        }
+        #rightpanel{ padding-bottom: 3000px; margin-bottom: -3000px; }
+        .date{ font-size: 12px; color:#999; }
+        .content{ background-color: lightyellow; }
+        #container{ margin: 10px; }
+        .title { margin-bottom: 10px; }
       </style>
       <script type="text/javascript" src="angular.js"></script>
       <script type="text/javascript" src="angular-route.js"></script>
@@ -86,7 +65,6 @@
               <div class="content">正文：   {{news.content}}</div>
           </div>
         </script>
-                
         <h1>新闻发布系统</h1>
         <div id="content">
           <div id="leftpanel">
@@ -188,16 +166,13 @@
                     content : $scope.content,
                     date : new Date()
                 });
-                
                 $location.path('list');
             }
         });
-
         app.controller('EditController',function($scope, $routeParams, $location){
             $scope.news = newsList[$routeParams.id-1];
             $scope.update = function(){
                 newsList[$routeParams.id-1] = $scope.news;
-                
                 $location.path('list');
             }
         })
