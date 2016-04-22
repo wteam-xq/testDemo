@@ -1,0 +1,136 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:'';content:none;
+}
+table {
+	border-collapse:collapse;border-spacing:0;
+}
+
+a:link,visited{text-decoration:none;}
+a:hover,a:active{text-decoration:underline;color:#FC0000;}
+
+body{color:#333;line-height:1;font:14px Helvetica,Hiragino Sans GB,Microsoft Yahei,Arial,sans-serif;}
+
+.ui_wrap{padding:20px 40px}
+.ui_h1{font-size:28px;font-weight:900;color:#FC0000;line-height:1.8;}
+.ui_h2{font-size:20px;font-weight:700;margin:30px 0 0;color:#289ace;padding-left:30px;line-height:1.8;}
+.ui_p{margin-bottom:15px;padding-left:60px;line-height:1.8;}
+.ui_a,.ui_a:hover,.ui_b,.ui_b:hover{padding-left:60px;color:#ddd;line-height:1.8;}
+.ui_a,.ui_a:hover{color:#FC0000}
+
+.ui_dl{padding-left:60px;line-height:1.8;}
+	.ui_dl dt{font-weight:700;margin-top:10px}
+	.ui_dl dd{padding-left:20px;}
+	.ui_dl em{color:#7F0055;font-weight:700}
+
+.ui_tips{position:fixed;right:30px;top:15px;color:#FC0000;outline:1px dashed red;padding:5px 10px}
+	.ui_tips em{color:#289ace;font-weight:700;margin:0 3px}
+	
+	
+
+/* Generics */
+.DlHighlight {
+  width: 98%;
+  background-color: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  font: 10pt Monaco,serif;
+  padding: 6px 1%;
+  overflow:  auto;
+  color: #222;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.DlHighlight pre { margin: 0; padding: 0; }
+
+.DlHighlight .operand { color: #333; }
+.DlHighlight .keyword { color: #a63091; }
+
+.DlHighlight .builtin { color: #222; }
+
+.DlHighlight .string { color: #891d1f; }
+.DlHighlight .string .before, .DlHighlight .string .after { color: #891d1f; }
+
+.DlHighlight .regexp { color: #394b56; }
+.DlHighlight .regexp .before, .DlHighlight .regexp .after { color: #394b56; font-weight: bold; }
+
+.DlHighlight .comment { color: #2e7d35; }
+.DlHighlight .comment .before, .DlHighlight .comment .after { color: #2e7d35; }
+
+.DlHighlight .hashkey { color: #891d1f; }
+
+.DlHighlight .hasharrow { color: #222; }
+
+.DlHighlight .paren {  color: #222;}
+
+.DlHighlight .operator { color: #222; }
+
+.DlHighlight .error { background-color: #c00; color: #222; }
+
+.DlHighlight .defun { color: #0c77b6;    }
+
+.DlHighlight .line-numbers {
+  float: left;
+  width: 3em;
+  margin-left: -10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #acacac;
+  margin-right: 5px;
+  border-right: 1px solid #d8d8d8;
+  font: 0.9em Monaco,serif;
+  padding-top: 0.06em;
+  display:none;
+}
+
+/* XML */
+
+.DlHighlight .xml-tag-close .before { color: #2e7d35; }
+.DlHighlight .xml-tagangle { color: #222; }
+.DlHighlight .xml-attribute { color: #d75413; }
+
+.DlHighlight .xml-entity { color: #a63091; }
+.DlHighlight .xml-entity .before, .DlHighlight .xml-entity .after { color: #2e7d35; }
+
+/* CSS */
+.DlHighlight .css-element { color: #a63091; }
+.DlHighlight .css-class { color: #222;}
+.DlHighlight .css-pseudo-class { color: #891d1f; }
+.DlHighlight .css-id { font-weight: bold; }
+.DlHighlight .css-color-spec { color: #891d1f; }
+.DlHighlight .css-length { color: #0c77b6; }
+.DlHighlight .css-length .after { }
+.DlHighlight .css-keyword { color: #222; }
+.DlHighlight .css-keyword .after { color: #222; }
+.DlHighlight .css-attribute { color: #891d1f; }
+.DlHighlight .css-comma { color: #891d1f; }
+.DlHighlight .css-url { color: #891d1f; }
+.DlHighlight .css-brack-open { color: #891d1f; }
+.DlHighlight .css-brack-close { color: #891d1f; }
+.DlHighlight .css-end { color: #222; }
+
+	

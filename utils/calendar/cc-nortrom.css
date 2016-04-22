@@ -1,0 +1,78 @@
+/* Generics */
+.DlHighlight {
+  width: 98%;
+  background-color: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  font: 12pt Monaco,serif;
+  padding: 6px 1%;
+  overflow:  auto;
+  color: #222;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.DlHighlight pre { margin: 0; padding: 0; }
+
+.DlHighlight .operand { color: #333; }
+.DlHighlight .keyword { color: #a63091; }
+
+.DlHighlight .builtin { color: #222; }
+
+.DlHighlight .string { color: #891d1f; }
+.DlHighlight .string .before, .DlHighlight .string .after { color: #891d1f; }
+
+.DlHighlight .regexp { color: #394b56; }
+.DlHighlight .regexp .before, .DlHighlight .regexp .after { color: #394b56; font-weight: bold; }
+
+.DlHighlight .comment { color: #2e7d35; }
+.DlHighlight .comment .before, .DlHighlight .comment .after { color: #2e7d35; }
+
+.DlHighlight .hashkey { color: #891d1f; }
+
+.DlHighlight .hasharrow { color: #222; }
+
+.DlHighlight .paren {  color: #222;}
+
+.DlHighlight .operator { color: #222; }
+
+.DlHighlight .error { background-color: #c00; color: #222; }
+
+.DlHighlight .defun { color: #0c77b6;    }
+
+.DlHighlight .line-numbers {
+  float: left;
+  width: 3em;
+  margin-left: -10px;
+  text-align: center;
+  background: #f5f5f5;
+  color: #acacac;
+  margin-right: 5px;
+  border-right: 1px solid #d8d8d8;
+  font: 0.9em Monaco,serif;
+  padding-top: 0.06em;
+}
+
+/* XML */
+
+.DlHighlight .xml-tag-close .before { color: #2e7d35; }
+.DlHighlight .xml-tagangle { color: #222; }
+.DlHighlight .xml-attribute { color: #d75413; }
+
+.DlHighlight .xml-entity { color: #a63091; }
+.DlHighlight .xml-entity .before, .DlHighlight .xml-entity .after { color: #2e7d35; }
+
+/* CSS */
+.DlHighlight .css-element { color: #a63091; }
+.DlHighlight .css-class { color: #222;}
+.DlHighlight .css-pseudo-class { color: #891d1f; }
+.DlHighlight .css-id { font-weight: bold; }
+.DlHighlight .css-color-spec { color: #891d1f; }
+.DlHighlight .css-length { color: #0c77b6; }
+.DlHighlight .css-length .after { font-weight: bold; }
+.DlHighlight .css-keyword { color: #222; }
+.DlHighlight .css-keyword .after { color: #222; }
+.DlHighlight .css-attribute { color: #891d1f; }
+.DlHighlight .css-comma { color: #891d1f; }
+.DlHighlight .css-url { color: #891d1f; }
+.DlHighlight .css-brack-open { color: #891d1f; }
+.DlHighlight .css-brack-close { color: #891d1f; }
+.DlHighlight .css-end { color: #222; }
