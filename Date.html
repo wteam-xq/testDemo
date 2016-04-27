@@ -26,8 +26,12 @@
       <script>
         // 前言： javascript日期处理最经典的类库为：http://momentjs.cn/
         // 本代码 用于理解日期的原生js具体实现方式
-        init();
+        // 写的很不错的 日历算法： https://github.com/leecade/date/blob/master/src/g.date.js
+        // 对应文档： http://leecade.github.io/date/
+        var DAYS = [31,28,31,30,31,30,31,31,30,31,30,31];
 
+        init();
+        // 年月份数组
         function init() {
           var tomorrowBtn = document.getElementById('tomorrow'),
               formatBtn = document.getElementById('format'),
@@ -36,7 +40,9 @@
           tomorrowBtn.onclick = tomorrowEvent;
           formatBtn.onclick = formatEvent;
           isleap.onclick = isleapEvent;
-
+          // 测试计算天数函数
+          console.log( '指定月份天数201604：' + getDaysByMonth(2016, 4) );
+          console.log( '指定年份天数2015：' + getDaysByYear(2015) );
           // initDate();
           browserDate();
         }
@@ -45,6 +51,7 @@
         // http://jishu.admin5.com/biancheng/131230/499.html
         function initDate() {
           // 初始化日期， 常用写法：new date(yyyy,mth,dd);   new date(ms); 
+          // 注意： 月份是从0开始计算，例如：new Date(2015, 10, 26)返回的是2015年11月26号的对象
           // var data1 = new Date("2015", "10", "27");
           var data1 = new Date(2015, 10, 26);
           var data2 = new Date(1445922341227);
@@ -55,6 +62,7 @@
         // http://blog.csdn.net/blueheart20/article/details/44902747
         function browserDate(){
           // 浏览器兼容初始化日期写法
+          // 注意： 月份是从0开始计算，例如：new Date(2015, 10, 26)返回的是2015年11月26号的对象
           var data1 = new Date('2015-10-26'); // IE9+ , chrome support
           var data2 = new Date('2015/10/26'); // all support
           // var data2 = new Date('2015/10/2'); // 支持单数字写法
@@ -130,7 +138,21 @@
           }
           return result;
         }
-
+        // 公用， 返回指定年、月的对应的天数
+        function getDaysByMonth(y, m){
+          return m == 2 ? ((y%4 == 0) && (y%100 != 0) || (y%400 == 0)) ? 29 : 28 : DAYS[m-1];
+        }
+        // 公用， 返回指定年的对应总天数
+        function getDaysByYear(y){
+          var _days = DAYS, i, len = _days.length, sum = 0;
+          if ( (y%4 == 0) && (y%100 != 0) || (y%400 == 0) ){
+            _days[1] = 29;
+          }
+          for(i = 0; i < len; i++){
+            sum += _days[i];
+          }
+          return sum;
+        }
       </script>
 
     </body>

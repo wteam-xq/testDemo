@@ -1,3 +1,4 @@
+# 本demo server代码需要在node环境运行：
 # sockiet.io.js 使用日志
 * 2016-01-20  与后台连接socket成功后立即请求授权“auth”(emit通信)会导致回调不执行，应该延时100毫秒
 * 2016-01-26  断开socket重连， 带上参数：{"force new connection": true}

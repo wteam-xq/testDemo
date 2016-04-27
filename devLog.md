@@ -33,7 +33,6 @@
 * 2. dom 动画 脱离文档流，使用 position: absolute; fixed;等
 * 3.尽量少 获取导致 回流（reflow）的全局样式值， 例如 offsetTop(left Height Width)  top left;  
 * 2015-11-16 浏览器缓存方案总结: 2015，研究IE使用 userData模拟localStorage方案；
-* 2016-04-23 git 图解2 代码回退博文准备
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
