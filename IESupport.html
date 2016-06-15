@@ -112,6 +112,13 @@
         //  对应教程：http://segmentfault.com/q/1010000000339082
         // 15.IE6下 IE6 CSS类名优先级；CSS多类选择符优先级不起作用，多么的令人气愤啊，经过测试：IE6下这种类组合的优先级不如单个类；（具体看demo）
         // 16.IE6 IE7, 块级元素（如:div）如使用：white-space:nowrap;进行强制不换行，需要设置长度才能生效；
+        // 17.IE6的bug——div绝对定位，相邻的margin-top失效； 
+        // 1、给相邻元素增加一个浮动。
+        // 2、两个div都设置宽度了，去掉第二个div的宽度，bug即可修复。
+        // 3、针对IE6： _position:relatvie; _top: xxpx;
+        // 18.css ie6、ie7、ie8中overflow:hidden无效
+        // 1.在父元素中使用position:relative;即可解决该bug;
+        // 2.增加了position:relative还不行的话， 给父元素添加zoom:1；
       </script>
 
     </body>
