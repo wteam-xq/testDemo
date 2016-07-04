@@ -1,7 +1,7 @@
 /**
 **  模拟项目开发中socket.io连接异常；
 **/
-var io = require('socket.io')(3002);
+var io = require('socket.io')(3003);
 var fs = require('fs');
 var url = require("url");
 
@@ -14,7 +14,7 @@ io.on('connection', function (socket) {
     io.emit('chatevent', data);
   });
   socket.on('disconnect', function (data) {
-    console.log('已断开连接，data:' + data);
+    console.log('服务器2：已断开连接，data:' + data);
   });
 
   socket.on('auth', function(data, cb){
@@ -28,10 +28,10 @@ io.on('connection', function (socket) {
   	_action = data.action;
   	// 根据data里参数判断，执行哪一类业务逻辑（本次是主要两中：getTicket  startGame）
   	if (_action == "getTickets"){
-  		console.log('请求票成功！');
-  		cb({"status":200, "data": '服务器1'});
+  		console.log('服务器2：请求票成功！');
+  		cb({"status":200, "data": '服务器2'});
   	} else if(_action == "join"){
-  		console.log('请求开始游戏成功！');
+  		console.log('服务器2：请求开始游戏成功！');
   		cb(relData);
   		io.emit('startGame', data);
   	}

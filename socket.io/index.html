@@ -17,17 +17,27 @@
     <script src="moment.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script>
-        var socketObj = null;
+        var socketObj = null,
+            socketObj2 = null;
         var userName = 'user' + Math.floor((Math.random()*1000)+1);
-
+        // 服务器地址
+        var SERVER_URL = 'http://10.7.242.75:3002',
+            SERVER_URL_2 = 'http://10.7.242.75:3003';
+        // 初始化页面不启动socket，用户主动点击connect按钮时启动socket， 断开按钮 关闭socket；
+        // 待实现：一个client对应多 服务端socket连接、关闭；
      	// var socket =  io.connect('http://10.7.242.75:3002');
 		//var socket =  io.connect('http://192.168.11.123:9092');
-        function initSockietObj(cb, authCb){
-            var socket = null;
-
+        function initSockietObj(cb, authCb, type){
+            var socket = null, 
+                serverUrl = '';
+            if (type == 2) {
+                serverUrl = SERVER_URL_2;
+            } else {
+                serverUrl = SERVER_URL;
+            }
             // 如果已经导入过,不重复加载动态脚本
             if (window.loadedSocketClient){
-                socket = io.connect('http://10.7.242.75:3002',{"force new connection": true});
+                socket = io.connect(serverUrl,{"force new connection": true});
                 if (cb){
                     cb(socket, authCb);
                 }
@@ -61,25 +71,36 @@
             // 插入脚本成功后执行
             function socketLoad(){
                 window.loadedSocketClient = true;
-                socket = io.connect('http://10.7.242.75:3002');
+                socket = io.connect(serverUrl);
                 if (cb){
                     cb(socket, authCb);
                 }
             }
         }
         // 断开连接
-        function sendDisconnect() {
-            if (socketObj){
-                socketObj.close();
-                socketObj = null;
+        function sendDisconnect(type) {
+            if (type == 2) {
+                if (socketObj2){
+                    socketObj2.close();
+                    socketObj2 = null;
+                } else {
+                    alert('socket暂未建立连接');
+                }
             } else {
-                alert('socket暂未建立连接');
+                if (socketObj){
+                    socketObj.close();
+                    socketObj = null;
+                } else {
+                    alert('socket暂未建立连接');
+                }
             }
         }
         // socket连接成功后，发送消息或指令
-		function sendMessage() {
-            var message = $('#msg').val(),
-                jsonObject = null;
+		function sendMessage(type) {
+            var message = '',
+                $msg = null,
+                jsonObject = null,
+                _socketObj = null;
             var opt = {
                 clientType: 1,
                 userId: userName,
@@ -87,11 +108,18 @@
                 context: 1,
                 cmdType: 'boom'
             };
-
-            if (!socketObj){
+            if (type == 2) {
+                _socketObj = socketObj2;
+                $msg = $('#msg_2');
+            } else {
+                _socketObj = socketObj;
+                $msg = $('#msg');
+            }
+            message = $msg.val();
+            $msg.val('');
+            if (!_socketObj){
                 alert('未连接！');
             }
-            $('#msg').val('');
             if (message == ''){
                 return false;
             }
@@ -99,7 +127,7 @@
                 // 请求 开始游戏
                 jsonObject = {"userName":userName,"nickname":"wteam-xq","action":"join"};
                 // 请求开始游戏
-                socketObj.emit('command',jsonObject, function(result) {
+                _socketObj.emit('command',jsonObject, function(result) {
                     // 发送成功
                     // console.log('success:' + result);
                     if (result && result.code == 0){
@@ -109,7 +137,7 @@
                 });
             } else {
                 jsonObject = {"userName": userName, "message":message};
-                socketObj.emit('chatevent',jsonObject, function(result) {
+                _socketObj.emit('chatevent',jsonObject, function(result) {
                     // 发送成功
                     // console.log('success:' + result);
                 });
@@ -120,9 +148,15 @@
             var element = $("<div>" + currentTime + " " + message + "</div>");
 			$('#console').prepend(element);
 		}
-        // 动态插入socket.io脚本，然后建立连接
-        function sendConnect(){
-            initSockietObj(locadSocketSuccess, reqAuth);
+        // 动态插入socket.io脚本，然后建立连接(插入一次后，以后为重连socket)
+        // type : 2 服务器类型； 默认为空
+        function sendConnect(type){
+            if (!type) {
+                type = 1;
+                initSockietObj(locadSocketSuccess, reqAuth, type);
+            } else {
+                initSockietObj(locadSocketSuccess2, reqAuth2, type);
+            }
             // 请求授权
             function reqAuth(){
                 jsonObject = {"uid":"xq1", "nickname":"wteam-xq"};
@@ -135,7 +169,24 @@
                             if (result.status == 200){
                                 // alert('获得门票成功!');
                                 // 显示门票信息
-                                output('<span class="username-msg">成功连接，' + result.data + '成功获取游戏票!</span> ');
+                                output('<span class="username-msg">成功连接' + result.data + '成功获取游戏票!</span> ');
+                            }
+                        });
+                    }
+                });
+            }
+            function reqAuth2(){
+                jsonObject = {"uid":"xq1", "nickname":"wteam-xq"};
+                // 连接socket，然后去请求授权， 
+                socketObj2.emit('auth',jsonObject, function(result) {
+                    var opt = {"action": "getTickets"};
+                    // 发送成功
+                    if(result.code == 0){
+                        socketObj2.emit('command', opt, function(result){
+                            if (result.status == 200){
+                                // alert('获得门票成功!');
+                                // 显示门票信息
+                                output('<span class="username-msg">成功连接' + result.data + '成功获取游戏票!</span> ');
                             }
                         });
                     }
@@ -162,6 +213,25 @@
                 output('<span class="username-msg">' + data.userName + '开始了游戏!</span> ');
             });
         }
+        function locadSocketSuccess2(socketIo, authCb){
+            socketObj2 = socketIo;
+            socketObj2.on('connect', function() {
+                var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
+                output('<span class="connect-msg">客户端已经上了服务器2了!</span>');
+                    // 连接上延时几秒后调用授权代码
+                    setTimeout(authCb, 100);
+            });
+            socketObj2.on('chatevent', function(data) {
+                output('<span class="username-msg">' + data.userName + '曰:</span> ' + data.message);
+            });
+            socketObj2.on('disconnect', function() {
+                output('<span class="disconnect-msg">糟糕！与服务器2连接中断!</span>');
+                socketObj2.close();
+            });
+            socketObj2.on('startGame', function(data) {
+                output('<span class="username-msg">服务器2：' + data.userName + '开始了游戏!</span> ');
+            });
+        }
 	</script>
 </head>
 
@@ -175,6 +245,13 @@
        <button type="button" onClick="sendMessage()" class="btn">Send</button>
        <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
        <button type="button" onClick="sendConnect()" class="btn">connect</button>
+    </form>
+
+    <form class="well form-inline" onsubmit="return false;">
+       <input id="msg_2" class="input-xlarge" type="text" placeholder="随便扯点东东..."/>
+       <button type="button" onClick="sendMessage(2)" class="btn">发送消息</button>
+       <button type="button" onClick="sendDisconnect(2)" class="btn">断开连接</button>
+       <button type="button" onClick="sendConnect(2)" class="btn">立马连接</button>
     </form>
 </body>
 
