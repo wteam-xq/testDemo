@@ -100,6 +100,7 @@
             var message = '',
                 $msg = null,
                 jsonObject = null,
+                _serverName = '',
                 _socketObj = null;
             var opt = {
                 clientType: 1,
@@ -110,15 +111,17 @@
             };
             if (type == 2) {
                 _socketObj = socketObj2;
+                _serverName = '服务器2';
                 $msg = $('#msg_2');
             } else {
                 _socketObj = socketObj;
+                _serverName = '服务器1';
                 $msg = $('#msg');
             }
             message = $msg.val();
             $msg.val('');
             if (!_socketObj){
-                alert('未连接！');
+                alert(_serverName + '未连接！');
             }
             if (message == ''){
                 return false;
@@ -203,7 +206,7 @@
                     setTimeout(authCb, 100);
             });
             socketObj.on('chatevent', function(data) {
-                output('<span class="username-msg">' + data.userName + ':</span> ' + data.message);
+                output('<span class="username-msg">server_1:' + data.userName + ':</span> ' + data.message);
             });
             socketObj.on('disconnect', function() {
                 output('<span class="disconnect-msg">The client has disconnected!</span>');
@@ -222,7 +225,7 @@
                     setTimeout(authCb, 100);
             });
             socketObj2.on('chatevent', function(data) {
-                output('<span class="username-msg">' + data.userName + '曰:</span> ' + data.message);
+                output('<span class="username-msg">服务器2：' + data.userName + '说:</span> ' + data.message);
             });
             socketObj2.on('disconnect', function() {
                 output('<span class="disconnect-msg">糟糕！与服务器2连接中断!</span>');
