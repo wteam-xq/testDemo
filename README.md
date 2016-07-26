@@ -60,11 +60,15 @@
 * 20.浏览器缓存
   * [webStorage.html](https://github.com/wteam-xq/testDemo/blob/master/webStorage.html)
 
+* 21.flash与js通信
+  * [flashDemo](https://github.com/wteam-xq/testDemo/blob/master/flashDemo/index.html)
+
 * other:
   * [人人网鄙视题](https://github.com/wteam-xq/testDemo/blob/master/others/renrenTest.html)
   * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
   * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
+  * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
 
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)

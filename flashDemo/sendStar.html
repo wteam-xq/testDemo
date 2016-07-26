@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+	<head>
+		<title>sendStar</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<style type="text/css" media="screen">
+			html, body { height:100%; background-color: #003366;}
+			body { margin:0; padding:0; overflow:hidden; }
+			#flashContent { width:550px; height:500px; margin:0 auto; }
+			.trigger_btn { margin:10px 20px; cursor:pointer; }
+		</style>
+		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+      	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+      	<script>
+      		window.hideFlash = hideFlash;
+      		// sendStar.swf为新生成的swf 调用 hideFlash 函数
+      		// sendStar_2.swf位旧的swf，旧swf文件调用 _modjsToPage_.hideStarSwf 函数
+   			// if (window._modjsToPage_) {
+			// 	window._modjsToPage_['showStarSwf'] = showFlash;
+			// 	window._modjsToPage_['hideStarSwf'] = hideFlash;
+			// } else {
+			// 	window._modjsToPage_ = {
+			// 		'showStarSwf': showFlash,
+			// 		'hideStarSwf': hideFlash
+			// 	}; 
+			// }
+
+	        // 全局被调用函数
+      	 	window.onload = function(){
+      	 		var triggerBtn = document.getElementById('triggerBtn');
+      	 		// 先不做IE兼容
+      	 		triggerBtn.onclick = showFlash;
+      	 	}
+      	 	function showFlash() {
+      	 		var flashWrap = document.getElementById('flashContent');
+      	 		flashWrap.innerHTML = '<object id="sendStar" width="100%" height="100%" type="application/x-shockwave-flash"><param name="movie" value="sendStar.swf"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"></object>';
+      	 		flashWrap.style.height = '550px';
+      	 		flashWrap.style.width = '500px';
+      	 		flashWrap.style.visibility = 'visible';
+      	 	}
+      	 	function hideFlash() {
+              	var flashWrap = document.getElementById('flashContent');
+              	flashWrap.style.height = '0px';
+      	 		flashWrap.style.width = '0px';
+      	 		flashWrap.style.visibility = 'hidden';
+      	 		console.log('调用成功！');
+            }
+        </script>
+	</head>
+	<body>
+		<button id="triggerBtn" class="trigger_btn">点击出现星星</button>
+ 		<div id="flashContent">
+		</div>
+		<!-- IE 浏览器 -->
+		<!-- <object id="sendStar" width="100%" height="100%" type="application/x-shockwave-flash" data="sendStar.swf">
+	         <param name="movie" value="sendStar.swf">
+	         <param name="allowScriptAccess" value="always">
+	         <param name="wmode" value="transparent">
+		</object> -->
+ </body>
+</html>
