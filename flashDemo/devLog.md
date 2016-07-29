@@ -14,6 +14,16 @@ stop();
 *　html代码需放在虚拟服务器执行，才能让flash与js通信。
 
 * sendStar.html 主要调试 flash调用 js 函数以及 调用flash的方式（object or embed）；
-* [object标签跟embed标签的区别](http://blog.csdn.net/zhengbo0/article/details/21087995) embed标签比较旧兼容很低版本的IE浏览器，实际上， 现在（2016）IE6 IE7都很少见，IE8是常见的低版本浏览器所以直接用<object>标签即可。
+* [object标签跟embed标签的区别](http://blog.csdn.net/zhengbo0/article/details/21087995) embed标签比较旧兼容很低版本的IE浏览器，实际上， 现在（2016）IE6 IE7都很少见，IE8是常见的低版本浏览器所以直接用 object 标签即可。
 * [flash object的param属性参数详解](http://home.51.com/bizi_2000/diary/item/10048445.html)
 * [flash embed 参数详解](http://blog.csdn.net/yijishashou/article/details/5495079)
+
+* flash IDE 加入脚本（as3），一般是新建一个图层， 然后在该图层新建 “空白关键帧”；
+* fla 调用 flashVars参数中的变量
+```
+import flash.external.ExternalInterface;
+var starNo:String=stage.loaderInfo.parameters["starNo"];
+ExternalInterface.call("hideFlash",starNo);
+stop();
+
+```

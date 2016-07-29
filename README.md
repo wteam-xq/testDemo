@@ -69,6 +69,7 @@
   * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
   * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
+  * [收藏的面试题连接大全](https://github.com/wteam-xq/testDemo/blob/master/exam_questions.md)
 
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)
