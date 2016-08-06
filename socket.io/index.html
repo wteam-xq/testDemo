@@ -19,10 +19,19 @@
 	<script>
         var socketObj = null,
             socketObj2 = null;
-        var userName = 'user' + Math.floor((Math.random()*1000)+1);
+        var userName = '';
         // 服务器地址
-        var SERVER_URL = 'http://10.7.242.75:3002',
-            SERVER_URL_2 = 'http://10.7.242.75:3003';
+        var SERVER_URL = '',
+            SERVER_URL_2 = '';
+
+        init();
+        // 脚本入口
+        function init(){
+            // 该方式用户名可能重复，后续使用时间戳或mad5方式生成随机名
+            userName = 'user' + Math.floor((Math.random()*1000)+1);
+            SERVER_URL = 'http://127.0.0.1:3002';
+            SERVER_URL_2 = 'http://127.0.0.1:3003';
+        }
         // 初始化页面不启动socket，用户主动点击connect按钮时启动socket， 断开按钮 关闭socket；
         // 待实现：一个client对应多 服务端socket连接、关闭；
      	// var socket =  io.connect('http://10.7.242.75:3002');
@@ -37,13 +46,15 @@
             }
             // 如果已经导入过,不重复加载动态脚本
             if (window.loadedSocketClient){
-                socket = io.connect(serverUrl,{"force new connection": true});
+                socket = io.connect(serverUrl,
+                    {"force new connection": true}
+                );
                 if (cb){
                     cb(socket, authCb);
                 }
                 return false;
             }
-            insertScript("socket.io-debug.js?v=1", socketLoad);
+            insertScript("socket.io.js?v=1", socketLoad);
 
             // 动态插入脚本
             function insertScript(url, callback){
@@ -149,8 +160,14 @@
 		function output(message) {
             var currentTime = "<span class='time'>" +  moment().format('HH:mm:ss.SSS') + "</span>";
             var element = $("<div>" + currentTime + " " + message + "</div>");
-			$('#console').prepend(element);
+            var $consolePanel = $('#console');
+			$consolePanel.prepend(element);
 		}
+        // 清空聊天区消息
+        function clearMsg(){
+            var $consolePanel = $('#console');
+            $consolePanel.empty();
+        }
         // 动态插入socket.io脚本，然后建立连接(插入一次后，以后为重连socket)
         // type : 2 服务器类型； 默认为空
         function sendConnect(type){
@@ -162,7 +179,7 @@
             }
             // 请求授权
             function reqAuth(){
-                jsonObject = {"uid":"xq1", "nickname":"wteam-xq"};
+                jsonObject = {"uid":userName + '_id', "nickname":userName};
                 // 连接socket，然后去请求授权， 
                 socketObj.emit('auth',jsonObject, function(result) {
                     var opt = {"action": "getTickets"};
@@ -179,7 +196,7 @@
                 });
             }
             function reqAuth2(){
-                jsonObject = {"uid":"xq1", "nickname":"wteam-xq"};
+                jsonObject = {"uid":userName + '_id', "nickname":userName};
                 // 连接socket，然后去请求授权， 
                 socketObj2.emit('auth',jsonObject, function(result) {
                     var opt = {"action": "getTickets"};
@@ -202,8 +219,8 @@
             socketObj.on('connect', function() {
                 var jsonObject = {cmdType:"boom",clientType:3,userId:"123456",token:"",context:1};
                 output('<span class="connect-msg">Client has connected to the server!</span>');
-                    // 连接上延时几秒后调用授权代码
-                    setTimeout(authCb, 100);
+                // 连接上延时几秒后调用授权代码
+                setTimeout(authCb, 100);
             });
             socketObj.on('chatevent', function(data) {
                 output('<span class="username-msg">server_1:' + data.userName + ':</span> ' + data.message);
@@ -214,6 +231,10 @@
             });
             socketObj.on('startGame', function(data) {
                 output('<span class="username-msg">' + data.userName + '开始了游戏!</span> ');
+            });
+
+            socketObj.on('tips', function(data){
+                output('<span class="tips-msg">' + data.tips + '</span> ');
             });
         }
         function locadSocketSuccess2(socketIo, authCb){
@@ -239,7 +260,7 @@
 </head>
 
 <body>
-	<h1>socketio Demo Chat</h1>
+	<h2>socketio Demo Chat</h2>
 	<br/>
 	<div id="console" class="well">
 	</div>
@@ -248,6 +269,7 @@
        <button type="button" onClick="sendMessage()" class="btn">Send</button>
        <button type="button" onClick="sendDisconnect()" class="btn">Disconnect</button>
        <button type="button" onClick="sendConnect()" class="btn">connect</button>
+       <button type="button" onClick="clearMsg()" class="btn">clearMsg</button>
     </form>
 
     <form class="well form-inline" onsubmit="return false;">
@@ -255,6 +277,7 @@
        <button type="button" onClick="sendMessage(2)" class="btn">发送消息</button>
        <button type="button" onClick="sendDisconnect(2)" class="btn">断开连接</button>
        <button type="button" onClick="sendConnect(2)" class="btn">立马连接</button>
+       <button type="button" onClick="clearMsg()" class="btn">清空聊天记录</button>
     </form>
 </body>
 

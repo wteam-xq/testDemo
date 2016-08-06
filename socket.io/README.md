@@ -8,4 +8,8 @@ node app.js
   ```
 node app_2.js
  ```
+* 方便调试可以：
+```
+node-dev app.js
+```
 * 2.将该 工程放入虚拟服务器（tomcat或apache）中，通过虚拟服务器访问socket.io/index.html；
