@@ -38,7 +38,8 @@ io.on('connection', function (socket) {
     socketObj = getSocketObjById(uid);
     if (!socketObj) {
       clientArray.push(clientObj);
-    } else {}// 在else内做 踢人下线业务逻辑
+    } else {}
+    // 在else内做 踢人下线业务逻辑
     // 测试发送全站消息  
     // io.emit  所有客户端可见（包括自己）
     // socket.broadcast.emit 所有客户端可见（不包括自己）

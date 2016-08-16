@@ -1,0 +1,11 @@
+/*
+ sass 7大特性：
+ 变量、嵌套、导入、mixin（函数）、继承、运算、颜色
+*/
+// 变量
+$xqColor: #333;
+body {
+	font-family: Helvetica, sans-serif;
+	color: $xqColor;
+}
+// 嵌套
