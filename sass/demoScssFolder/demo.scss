@@ -1,0 +1,64 @@
+/*
+ sass 7大特性：
+ 变量、嵌套、导入、mixin（函数）、继承、运算、颜色
+*/
+// 变量
+$xqColor: #333;
+$fontBlue: #5fdfe8;
+$fontGray: #ccc;
+body { font-family: Helvetica, sans-serif; color: $xqColor; }
+
+.text_center{ text-align: center; }
+// 嵌套
+.sass_features { 
+	color:$xqColor; width:100%; text-align: left; 
+	li{ color:$fontGray; margin:0px 0px 10px; }
+	.key_point{ font-weight:bolder; color:$fontBlue; }
+}
+
+// 导入(base.scss 改动的话，会触发本scss的watch)
+@import 'base';
+
+// minxin(函数)
+@mixin box-sizing ($sizing) {
+    -webkit-box-sizing:$sizing;     
+       -moz-box-sizing:$sizing;
+            box-sizing:$sizing;
+}
+// box-sizing:border-box; 注释：padding和border别包含在定义的width和height之内，即使定义有border和padding也不会改变对象的实际宽高；
+.border_box{
+    @include box-sizing(border-box);
+}
+.box_block{ margin-bottom:10px; width:200px; height:200px; padding:2px; border:1px solid $fontBlue; background-color: $fontGray; }
+
+// 扩展/继承
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+  margin-bottom: 5px;
+  width:300px;
+}
+.success {
+  @extend .message;
+  border-color: green;
+}
+.error {
+  @extend .message;
+  border-color: red;
+}
+.warning {
+  @extend .message;
+  border-color: yellow;
+}
+// 运算
+.article{ float:left; width:300px / 960px * 100%; }
+// 颜色
+$linkColor: #08c;
+a.xq_link {
+    text-decoration:none;
+    color:$linkColor;
+    &:hover{
+      color:darken($linkColor,10%);
+    }
+}

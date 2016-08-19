@@ -30,7 +30,7 @@ sass --watch demoScssFolder:democssFolder
 
 * 本人喜欢 `compact`样式， 所以一般使用：
 ```
-sass --watch demoScssFolder:demoCssFolder --style compact
+sass --watch demoScssFolder/demo.scss:demoCssFolder/demo.css --style compact
 ``` 
 
 
