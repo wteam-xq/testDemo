@@ -14,6 +14,7 @@
         <iframe src="http://wteamxq.com/photoDemo/" frameborder="0" scrolling="no" width="100%" height="460" id="testIframe"></iframe>
         <script>
           // 待更新， iframe其他实战用法：
+          // 问题源：https://www.zhihu.com/question/20653055/answer/15751248
           // http://div.io/topic/855
           var iframeObj = {
             init: function() {
@@ -22,7 +23,7 @@
             initEvt: function(){
 
             },
-            // 跨域通信
+            // 1.跨域通信
             crossDomain: function(){
               // 跨域通信原理：1.通过在iframe.src后添加“#” + 本页面url,让iframe框架页能访问本页面url；
               // 2.子页面（iframe页）内修改window.top.location（“#”+“height=xxx”），使父页面（本页）url改变而不刷新；
@@ -60,8 +61,29 @@
               //   window.top.location = hostUrl;
               // }
             },
-            // 实现长连接和服务端“推”技术 http://www.ibm.com/developerworks/cn/web/wa-lo-comet/#N10101
+            // 2.websocket不可用时（低版本浏览器兼容），替代实现长连接和服务端“推”技术 http://www.cnblogs.com/lecaf/archive/2011/07/20/2111618.html
             commetEvt: function(){
+
+            },
+            // 3.纯前端的utf8和gbk编码互转
+            gbkEachToUtf8: function(){
+
+            },
+            // 4.无刷新上传
+            upload: function(){
+
+            },
+            // 5.移动端从网页调起客户端应用
+            launchApp: function(){
+
+            },
+            // 6.创建全新的宿主环境
+            newScope: function(){
+
+            },
+            // 7.解决IE6 模态窗口无法遮住select bug
+            ie6Select: function(){
+              
             }
           };
         </script>

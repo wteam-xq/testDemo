@@ -98,7 +98,6 @@
           // 3.函数是否通过apply/call调用？若是，则this指向指定对象；
           // 4.是否作为对象的方法调用？若是，则this指向该对象；
           // 5.this指向全局。
-
           // 全局变量
           var length = 10;
           function test3(){
@@ -115,6 +114,20 @@
             obj.method(fn, 1); //根据第四步判断，得出this指向arguments对象
           }
           test3();
+
+          // 题目4：知乎 https://www.zhihu.com/question/41220520?q=javascript%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC
+          // 答案：https://segmentfault.com/q/1010000002637728
+          function test4(){
+            var a = {n:1};  
+            var b = a; // 持有a，以回查  
+            a.x = a = {n:2};  
+            alert(a.x);// --> undefined  
+            alert(b.x);// --> {n:2}
+            // a: {n:2}
+            // b: {n:1, x:{n:2}}
+          }
+          test4();
+
         </script>
     </body>
 </html>

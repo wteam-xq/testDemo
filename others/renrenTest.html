@@ -10,260 +10,61 @@
         <![endif]-->
         <link rel="stylesheet" href="../common.css" type="text/style"/>
         <style>
-          ol li{
-            line-height: 1.5em;
-          }
-          ul{
-            font-size: 100%;
-            padding: 0;
-            margin: 0;
-          }
+          ol li{ line-height: 1.5em; }
+          ul{ font-size: 100%; padding: 0; margin: 0; }
 
           /*滚动 相册样式*/
-          .thumbs {
-            overflow: hidden;
-          }
-          .thumbs ul {
-            word-break: keep-all;
-            white-space: nowrap;
-            overflow: hidden;
-            margin: auto;
-            font-size: 1px;
-            _width: expression(document.documentElement.clientWidth-280);
-          }
-          .thumbs li {
-            list-style: none;
-            display: inline;
-          }
-          .thumbs a {
-            border: 2px solid #B7B7B7;
-            text-decoration: none;
-            display: inline-block;
-            outline: none;
-            margin: 0 9px;
-          }
-          .thumbs img {
-            vertical-align: top;
-            width: 115px;
-            height: 85px;
-          }
-          .thumbs a:hover {
-            border-color: #65B6DD;
-          }
+          .thumbs { overflow: hidden; }
+          .thumbs ul {word-break: keep-all;white-space: nowrap;overflow: hidden;margin: auto;font-size: 1px;_width: expression(document.documentElement.clientWidth-280); }
+          .thumbs li { list-style: none; display: inline; }
+          .thumbs a { border: 2px solid #B7B7B7; text-decoration: none; display: inline-block; outline: none; margin: 0 9px; }
+          .thumbs img { vertical-align: top; width: 115px; height: 85px; }
+          .thumbs a:hover { border-color: #65B6DD; }
           .thumbs a:focus,
-          .thumbs a:active {
-            border-color: #0084B4;
-          }
+          .thumbs a:active { border-color: #0084B4; }
+
           .thumbs .scroll_left,
-          .thumbs .scroll_right {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            font-family: SimHei;
-            background: #65B6DD;
-            text-align: center;
-            line-height: 85px;
-            overflow: hidden;
-            font-size: 20px;
-            cursor: pointer;
-            height: 85px;
-            width: 20px;
-            color: #fff;
-            behavior: url("PIE.htc");
-          }
-          .thumbs .scroll_left {
-            -webkit-border-radius: 10px 3px 3px 10px;
-               -moz-border-radius: 10px 3px 3px 10px;
-                border-radius: 10px 3px 3px 10px;
-            margin-right: 15px;
-            float: left;
-          }
-          .thumbs .scroll_right {
-            -webkit-border-radius: 3px 10px 10px 3px;
-               -moz-border-radius: 3px 10px 10px 3px;
-                border-radius: 3px 10px 10px 3px;
-            margin-left: 15px;
-            float: right;
-          }
+          .thumbs .scroll_right { -webkit-user-select: none; -moz-user-select: none; user-select: none; font-family: SimHei; background: #65B6DD; text-align: center; line-height: 85px; overflow: hidden; font-size: 20px; cursor: pointer; height: 85px; width: 20px; color: #fff; behavior: url("PIE.htc"); }
+
+          .thumbs .scroll_left { -webkit-border-radius: 10px 3px 3px 10px; -moz-border-radius: 10px 3px 3px 10px; border-radius: 10px 3px 3px 10px; margin-right: 15px; float: left; }
+          .thumbs .scroll_right { -webkit-border-radius: 3px 10px 10px 3px; -moz-border-radius: 3px 10px 10px 3px; border-radius: 3px 10px 10px 3px; margin-left: 15px; float: right; }
           * html .thumbs .scroll_left,
-          * html .thumbs .scroll_right {
-            _margin: 0;
-          }
-          .thumbs .disabled {
-            cursor: not-allowed;
-            background: #CCC;
-            color: #999;
-          }
+          * html .thumbs .scroll_right { _margin: 0; }
+          .thumbs .disabled { cursor: not-allowed; background: #CCC; color: #999; }
           /*试题2 对话框*/
-          #dialogbg {
-            background: rgba(0,0,0,.2);
-            overflow: hidden;
-            position: fixed;
-          }
+          #dialogbg { background: rgba(0,0,0,.2); overflow: hidden; position: fixed; }
           #dialogbg,
-          #dialogbg .bgcolor {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            left: 0;
-            top: 0;
-          }
-          #dialogbg .bgcolor {
-            filter: alpha(opacity=20);
-            background: #000;
-            position: absolute;
-          }
-          :root #dialogbg .bgcolor {
-            display: none;
-          }
-          * html #dialogbg {
-            _position: absolute;
-            _top: expression(offsetParent.scrollTop);
-          }
-          #dialogbg .dialog {
-            -webkit-border-radius: 5px 5px 0 0;
-               -moz-border-radius: 5px 5px 0 0;
-                border-radius: 5px 5px 0 0;
-            border: 1px solid #666;
-            display: inline-block;
-            position: absolute;
-            background: white;
-            text-align: left;
-            overflow: hidden;
-            margin: auto;
-            left: 50%;
-            top: 50%;
-            behavior: url("PIE.htc");
-            *behavior: none;
-          }
-          .dialog .title {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00aaee,endColorstr=#0066cc);
-            background: #0095cd;
-            background: -webkit-gradient(linear, left top, left bottom, from(#00aaee), to(#0066cc));
-            background: -webkit-linear-gradient(top, #00aaee, #0066cc);
-            background:    -moz-linear-gradient(top, #00aaee, #0066cc);
-            background:     -ms-linear-gradient(top, #00aaee, #0066cc);
-            background:      -o-linear-gradient(top, #00aaee, #0066cc);
-            background:         linear-gradient(top, #00aaee, #0066cc);
-            text-shadow: 0 0 1px black;
-            font-weight: bold;
-            line-height: 28px;
-            overflow: hidden;
-            cursor: move;
-            color: white;
-            *width: expression(this.parentNode.clientWidth);
-          }
-          .dialog .title div {
-            padding: 0 8px;
-          }
+          #dialogbg .bgcolor { height: 100%; width: 100%; margin: 0; left: 0; top: 0; }
+          #dialogbg .bgcolor { filter: alpha(opacity=20); background: #000; position: absolute; }
+          :root #dialogbg .bgcolor { display: none; }
+          * html #dialogbg { _position: absolute; _top: expression(offsetParent.scrollTop); }
+          #dialogbg .dialog { -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; border: 1px solid #666; display: inline-block; position: absolute; background: white; text-align: left; overflow: hidden; margin: auto; left: 50%; top: 50%; behavior: url("PIE.htc"); *behavior: none; }
+          .dialog .title { -webkit-user-select: none; -moz-user-select: none; user-select: none; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00aaee,endColorstr=#0066cc); background: #0095cd; background: -webkit-gradient(linear, left top, left bottom, from(#00aaee), to(#0066cc)); background: -webkit-linear-gradient(top, #00aaee, #0066cc); background:    -moz-linear-gradient(top, #00aaee, #0066cc); background:     -ms-linear-gradient(top, #00aaee, #0066cc); background:      -o-linear-gradient(top, #00aaee, #0066cc); background:         linear-gradient(top, #00aaee, #0066cc); text-shadow: 0 0 1px black; font-weight: bold; line-height: 28px; overflow: hidden; cursor: move; color: white; *width: expression(this.parentNode.clientWidth); }
+          .dialog .title div { padding: 0 8px; }
           .dialog .text,
-          .dialog .content {
-              margin: 20px;
-          }
-          .dialog .text{
-            text-align: center;
-          }
-          .dialog .content {
-            word-break: keep-all;
-            white-space: nowrap;
-          }
+          .dialog .content { margin: 20px; }
+          .dialog .text{ text-align: center; }
+          .dialog .content { word-break: keep-all; white-space: nowrap; }
           .dialog input,
-          .dialog .content {
-            min-width: 200px;
-            _width: 200px;
-          }
-          .dialog input {
-            -webkit-box-sizing:border-box;
-            -moz-box-sizing:border-box;
-            -ms-box-sizing:border-box;
-            box-sizing:border-box;
-            display: block;
-            width: 100%;
-            *width: auto;
-          }
-          .dialog .btns {
-            text-align: center;
-            margin: 10px 5px;
-          }
-          .dialog .btns * {
-            border: 1px solid #CCC;
-            text-decoration: none;
-            background: none;
-            padding: 5px 20px;
-            margin: 0 5px;
-            color: #000;
-          }
-          #dialogbg, .dialog,.dialog .winbtns .size,.dialog input  {
-              /*display: none ;*/
-          }
-          #dialogbg, .dialog {
-            display: block;
-          }
+          .dialog .content { min-width: 200px; _width: 200px; }
+          .dialog input { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; box-sizing:border-box; display: block; width: 100%; *width: auto; }
+          .dialog .btns { text-align: center; margin: 10px 5px; }
+          .dialog .btns * { border: 1px solid #CCC; text-decoration: none; background: none; padding: 5px 20px; margin: 0 5px; color: #000; }
+          
+          #dialogbg, .dialog { display: block; }
           /*demo3 自动提示功能*/
-          .datalist {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            box-shadow: 2px 2px 2px #777;
-            border: 1px solid black;
-            background: window;
-            position: absolute;
-            overflow: hidden;
-            cursor: default;
-            color: menutext;
-            z-index: 99999;
-            display: none;
-            font: menu;
-            padding: 0;
-            margin: 0;
-            behavior: url("PIE.htc");
-          }
-          :root .datalist {
-            behavior: none;
-            -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.5);
-               -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.5);
-                box-shadow: 2px 2px 2px rgba(0,0,0,.5);
-          }
-          .datalist li {
-            line-height: 20px;
-            list-style: none;
-            font-size: 14px;
-            padding: 0 10px;
-            display: block;
-          }
-          .datalist li.highlight {
-            background: highlight;
-            color: highlighttext;
-          }
+          .datalist { -webkit-user-select: none; -moz-user-select: none; user-select: none; box-shadow: 2px 2px 2px #777; border: 1px solid black; background: window; position: absolute; overflow: hidden; cursor: default; color: menutext; z-index: 99999;  display: none; font: menu; padding: 0; margin: 0; behavior: url("PIE.htc"); }
+          :root .datalist { behavior: none; -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.5); -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.5); box-shadow: 2px 2px 2px rgba(0,0,0,.5); }
+          .datalist li { line-height: 20px; list-style: none; font-size: 14px; padding: 0 10px; display: block; }
+          .datalist li.highlight { background: highlight; color: highlighttext; }
           /*demo5 富文本编辑器*/
-          #wrap5 {
-            padding: 100px;
-          }
-          #wrap5 p {
-            padding-bottom: 20px;
-            line-height: 30px;
-          }
-          #wrap5 p * {
-            vertical-align: middle;
-          }
-          button {
-            padding: 0 10px;
-          }
-          #editor {
-            border: 2px inset #ccc;
-            font-family: SimSun;
-            overflow: hidden;
-            cursor: text;
-            margin: auto;
-          }
-          #editor div{
-            height: 500px;
-            outline: none;
-            padding: 10px;
-          }
+          #wrap5 { padding: 100px; }
+          #wrap5 p { padding-bottom: 20px; line-height: 30px; }
+          #wrap5 p * { vertical-align: middle; }
+          button { padding: 0 10px; }
+          #editor { border: 2px inset #ccc; font-family: SimSun; overflow: hidden; cursor: text; margin: auto; }
+          #editor div{ height: 500px; outline: none; padding: 10px; }
+
         </style>
         <link rel="icon" href="../favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
@@ -861,6 +662,5 @@
           }
 
         </script>
-
     </body>
 </html>
