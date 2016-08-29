@@ -6,6 +6,7 @@ var fs = require('fs');
 var url = require("url");
 
 // 连接成功事件
+// socket对象默认属于命名空间：'/'
 io.on('connection', function (socket) {
   socket.on('chatevent', function (data, cb) {
   	var msg = data.msg;
@@ -18,9 +19,18 @@ io.on('connection', function (socket) {
   });
 
   socket.on('auth', function(data, cb){
+    var socketRooms = socket.rooms;
+    // var aObjArray = [{x:2}, {y:3},{z:8}];
+    // console.log('aObjArray:' + aObjArray);
+    // console.log( 'aObjArray_to_string:' + JSON.stringify(aObjArray) );
+
+    // 输出 socket 客户端对象相关属性值
+    console.log( 'socket.rooms: ' + JSON.stringify(socketRooms) );
+    console.log('socket.id: ' + socket.id);
   	// data里的参数用不着, 100%返回授权通过
   	cb({"code":0, "msg":"xx"});
   });
+
   socket.on('command', function(data, cb){
   	var _action = "",
   		relData = {"code":0,"msg":"è¯·æ±æåï¼","data":"{\"message\":{\"boomid\":20311,\"num\":1,\"delay\":180,\"ticket\":200,\"players\":[{\"uid\":\"qq-jumyxeyvhr\",\"isBoom\":0,\"isOri\":1,\"avatar\":\"http://004.img.qf.56.itc.cn/group3/M04/26/F5/MTAuMTAuODguODM=/dXBsb2FkRmlsZV8xXzE0NDA1MDY1NzAyODQ=.png\",\"nickname\":\"åå¾ä»\"}]},\"status\":200}"};

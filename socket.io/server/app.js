@@ -12,7 +12,7 @@ io.on('connection', function (socket) {
   var clientObj = {
     uid:'',
     uname:'',
-    socket: socket
+    socketList: []
   };
   
   socket.on('chatevent', function (data, cb) {
@@ -27,6 +27,7 @@ io.on('connection', function (socket) {
 
   socket.on('disconnect', function (data) {
     console.log('已断开连接，data:' + data);
+    socket['offline'] = true;
   });
 
   socket.on('auth', function(data, cb){
@@ -35,10 +36,17 @@ io.on('connection', function (socket) {
     var socketObj = null;
     clientObj['uname'] = userName;
     clientObj['uid'] = uid;
-    socketObj = getSocketObjById(uid);
-    if (!socketObj) {
+
+    // 如果客服已上线，则会更新对应socketList队列
+    hasAuth = clientHasAuth(uid, socket);
+    if (!hasAuth){
+      console.log('客服上线了：' + clientId);
+      // 不存在列表中
+      clientObj.socketList.push(socket);
       clientArray.push(clientObj);
-    } else {}
+    } else {
+      console.log('该客服在其他设备已上线，已更新socket队列，通知其他客服...');
+    }
     // 在else内做 踢人下线业务逻辑
     // 测试发送全站消息  
     // io.emit  所有客户端可见（包括自己）
@@ -80,16 +88,96 @@ function testSocketMessage(){
   io.sockets.emit('tips',obj);
 }
 
-// 根据socket id 获取对应的socketObj对象
-function getSocketObjById(clientId){
-  var i, len, socketObj = null, result = null;
+// 根据 clientId 获取socket 队列
+function getSocketListById(clientId){
+  var i, len, clientObj, result = [];
   len = clientArray.length;
+  console.log('开始寻找对应 客服socket,id:' + clientId);
+  console.log('当前客服队列:' + clientArray );
   for (i = 0; i < len; i++) {
-    socketObj = clientArray[i];
-    if (socketObj.uid == clientId) {
-      result = socketObj;
+    clientObj = clientArray[i];
+    console.log('clientObj.clientId:' + clientObj.clientId);
+    console.log('clientId:' + clientId);
+    console.log('clientObj.socketList:' + clientObj.socketList);
+    if (clientObj.clientId == clientId) {
+      result = clientObj.socketList;
       break;
     }
   }
   return result;
+}
+
+// 判断客服是否已在线, 如在线，更新队列(先清除掉线socket)
+function clientHasAuth(clientId, socket){
+  var clientObj, i, len,
+      socketList = [],
+      newSocketList = [],
+      socketObj = null,
+      listLen, j;
+  var result = false;
+
+  len = clientArray.length;
+  for (i = 0; i < len; i++) {
+    clientObj = clientArray[i];
+    if (clientObj.clientId == clientId) {
+      socketList = clientObj.socketList;
+      listLen = socketList.length;
+      // 清除掉线socket
+      for (j = 0; j < listLen; j++) {
+        socketObj = socketList[j];
+        if (socketObj && !socketObj['offline']) {
+          newSocketList.push(socketObj);
+        }
+      }
+      if (newSocketList.length > 0) {
+        // 通知其他客服，账号重复登录
+        msgToOtherSocket(newSocketList);
+        newSocketList.push(socket);
+        result = true;
+        clientObj.socketList = newSocketList;
+      } else {
+        // 清除该clietnObj
+        clientArray.splice(i, 1);
+        console.log('clientObj已无socketObj清除之，编号:' + i);
+      }
+      break;
+    }
+  }
+  return result;
+}
+
+// 通知其他客服账号
+function msgToOtherSocket(newSocketList){
+  var len = newSocketList.length,
+      socketObj = null,
+      i;
+  console.log('通知其他客服，账号重复登录，通知人数：' + len);
+  for (i = 0; i < len; i++){
+    socketObj = newSocketList[i];
+    socketObj.emit('reLogin', {"len": len});
+  }
+}
+
+// 将消息推送给指定用户（DC 单播）
+function messageDc(customid, obj){
+  var socketList = [], socketObj = null;
+  var i, len, offlineList = [];
+  
+  socketList = getSocketListById(customid);
+  len = socketList.length;
+  
+  if (len > 0) {
+    for (i = 0; i < len; i++) {
+      socketObj = socketList[i];
+      if (!socketObj || socketObj['offline']) {
+        // 记录已掉线socket
+        offlineList.push(i);
+        continue;
+      }
+      socketObj.emit('message',obj);
+    }
+  } else {
+    // 该客服不在线
+    console.log('该clientId客服已离线');
+  }
 }

@@ -16,3 +16,8 @@ socket = io.connect('http://10.10.53.53:8001', {"force new connection": true});
 * 原因： 前端跟后端使用的socket.io版本库没对应上， 后台库更新到最新解决；
 
 * 2016-07-04 使用 socket.io 连接多个 socket服务器管理；（公司项目单页面将对应多个socket服务器： 有nodeJs后台、JAVA后台，分别在不同服务器）
+
+* 2016-08-29 查阅socket.io 官方文档， 理解后台服务的命名空间、socket对象房间、id等；顺便熟悉forever用法；（app_2.js中）
+* [命名空间用法](http://socket.io/docs/rooms-and-namespaces/)
+
+
