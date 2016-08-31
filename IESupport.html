@@ -14,9 +14,35 @@
       <!-- IE6 png透明最佳实现库// <script type="text/javascript" src="lib/fixedpng.js"></script> -->
       <script type="text/javascript" src="utils/client.js"></script>
       <style>
+        /* 透明背景(黑色) */
+        .opactiyBg10{background: rgba(0,0,0,.1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#11000000,endColorstr=#11000000);}
+        .opactiyBg20{background: rgba(0,0,0,.2); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#22000000,endColorstr=#22000000);}
+        .opactiyBg30{background: rgba(0,0,0,.3); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3d000000,endColorstr=#3d000000);}
+        .opactiyBg40{background: rgba(0,0,0,.4); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5b000000,endColorstr=#5b000000);}
+        .opactiyBg50{background: rgba(0,0,0,.5); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7d000000,endColorstr=#7d000000);}
+        .opactiyBg60{background: rgba(0,0,0,.6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#95000000,endColorstr=#95000000);}
+        .opactiyBg70{background: rgba(0,0,0,.7); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#aa000000,endColorstr=#aa000000);}
+        .opactiyBg80{background: rgba(0,0,0,.8); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#bb000000,endColorstr=#bb000000);}
+        .opactiyBg90{background: rgba(0,0,0,.9); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dd000000,endColorstr=#dd000000);}
+
+        .t3_wrap{ margin:20px 0px; width:400px; height:200px; background:#8DD9E7; position: relative; overflow: hidden; }
+        .t3_wrap ul{ height:auto; width:100%; }
+        .t3_wrap li{ display: inline-block; *zoom:1; *display: inline; }
+
+
         .png-pos{ background: url('images/icon_user.png') no-repeat; width:63px; height:16px; }
         .t8_wrap{ margin:20px 0px; width:200px; height:100px; background:#8DD9E7; position: relative; opacity:0.6; filter:alpha(opacity=60); }
         .t8_ab{ width:20px; height:20px; background:#000; position: absolute; top:-10px; left:20px; }
+
+        .t8_2_wrap_cont{ height: 400px; width:600px; margin:0 auto; position: relative; }
+        .t8_2_wrap_cont .t8_2_wrap_bg{ position:absolute; z-index: 0; width:600px; height:400px; top:0px; left:0px; }
+        .t8_2_wrap{ width:500px; height:400px; position: relative; zoom:1; z-index: 3; margin:0 auto; }
+        .t8_2_wrap .next_page_btn,
+        .t8_2_wrap .prev_page_btn{ width:20px; cursor:pointer; position: absolute; top:0; height:100%; line-height: 100%; *height:400px; *line-height:400px; display: block; }
+        .t8_2_wrap .next_page_btn{ right:-50px; z-index:3; }
+        .t8_2_wrap .prev_page_btn{ left:-50px; z-index:3; }
+        .t8_2_wrap .box_list_wrap{ z-index: 1; *position: relative; overflow: hidden; width:100%; height:100%; float:left; background-color:#000; }
+
         .tb_tip{ padding:20px 5px; }
         .t15_wrap{ width:500px; height:200px; }
         .t15_a, .t15_b{ width:250px; height:20px; margin:10px auto; }
@@ -24,6 +50,14 @@
         .t15_wrap .t15_b{ background-color:#fdcc5e; color:#000; }
         .t15_wrap .t15_a.un_use{ color:#149399; background-color:#8eb7be; }
         .t15_wrap .t15_b.un_use{ color:#eea902; cursor:default; }
+
+        .t2_wrap{ width:500px; height:200px; position: relative; }
+        .t2_wrap .t2_a{ display: block; position: absolute; }
+        .t2_wrap .t2_a:hover{ zoom:1; }
+        .t2_wrap .t2_a .t2_a_txt,
+        .t2_wrap .t2_a .t2_a_content{ display: none; }
+        .t2_wrap .t2_a:hover .t2_a_txt,
+        .t2_wrap .t2_a:hover .t2_a_content{ display: block; }
       </style>
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -41,10 +75,30 @@
         <div class="png-pos"></div>
       </div>
 
+      <!-- ie6 ie7常见排列样式 -->
+      <!-- <div class="t3_wrap">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div> -->
+
       <div class="t8_wrap">
         <!-- IE6下 该子节点会被截断 -->
         <div class="tb_tip">IE6下灰色小方块会被截断</div>
         <div class="t8_ab"></div>
+      </div>
+
+      <!-- IE6下 左右两个按钮可能会无法显示 -->
+      <div class="t8_2_wrap_cont">
+        <div class="t8_2_wrap_bg opactiyBg40"></div>
+        <div class="t8_2_wrap">
+          <div class="prev_page_btn opactiyBg50"></div>
+          <div class="next_page_btn opactiyBg50"></div>
+          <div class="box_list_wrap"></div>
+        </div>
       </div>
 
       <div class="t14_wrap">
@@ -57,6 +111,14 @@
       <div class="t15_wrap">
         <div class="t15_a un_use">IE6，下面的元素样式会被覆盖</div>
         <div class="t15_b un_use">IE6，该元素样式会被覆盖</div>
+      </div>
+
+      <div class="t2_wrap">
+        <a href="#" class="t2_a">
+            <span>小面的文字hover能显示么？</span>
+            <div class="t2_a_content">鼠标hover显示</div>
+            <span class="t2_a_txt">鼠标hover显示2</span>
+        </a>
       </div>
 
       <script>
@@ -77,11 +139,13 @@
           },
           topFunction:function(){
             var testTopVal = 2;
-            testTop();
+            printLog();
             // IE6 IE7函数声明 必须置顶
-            function testTop(){
+            function printLog(){
               // console.log 参见 EcmaScript5.html
-              console.log('ie6 下不报错？');
+              try{
+                console.log('ie6 会报错，因为IE6没有console对象.');
+              } catch(e){}
             }
           }
         };
@@ -122,6 +186,11 @@
         // 18.css ie6、ie7、ie8中overflow:hidden无效
         // 1.在父元素中使用position:relative;即可解决该bug;
         // 2.增加了position:relative还不行的话， 给父元素添加zoom:1；
+
+        // 19.IE浏览器处理超出父节点 的子节点跟chrome不同，例如 A_sub 是 A的子节点，且A_sub宽高 比 A 大、A_sub背景色为默认的透明。
+        // 鼠标移动至A_sub ，chrome  firefox 能检测到当前鼠标在A_sub上，而IE（edge 及以下所有IE版本）不能；
+        // 解决方案： 给A_sub添加背景色 + 设置透明度为零；
+
       </script>
 
     </body>

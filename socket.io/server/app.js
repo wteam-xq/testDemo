@@ -4,7 +4,7 @@
 var io = require('socket.io')(3002);
 var fs = require('fs');
 var url = require("url");
-// 存储用户client_id, 方便日后做私聊、踢人等功能
+// 存储用户client_id, 方便日后做私聊、踢人等功能（师兄CRM系统代码迁移）
 var clientArray = [];
 
 // 连接成功事件

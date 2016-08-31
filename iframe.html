@@ -7,18 +7,46 @@
         </title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <style>
+            .modal_wrap{ width:100%; height:100%; position: absolute; top:0px; left:0px; display: none; }
+            .modal_wrap .mod_bg{ background-color:#000; opacity:0.7; filter:alpha(opacity=50); position: absolute; width:100%; height:100%; }
+            .modal_wrap .modal_cont{ position: absolute; z-index: 2; width:500px; height:200px; top:200px; left:200px; background-color:#fff; }
+            .modal_wrap .close_btn{ position: absolute; top: 20px; color: #fff; right: 20px; font-size: 24px; z-index: 2; cursor: pointer; }
+            .modal_wrap .close_btn:hover{ color:red; }
+            .modal_wrap .modal_iframe{ position: relative; width:100%; height:100%; }
+
+            .demo_select{ width:200px; }
+            .show_modal{ margin:0 10px 0 0; }
+        </style>
     </head>
     
     <body>
         <h3>iframe自适应高度（跨域通信）:演示需放置tomcat中</h3>
-        <iframe src="http://wteamxq.com/photoDemo/" frameborder="0" scrolling="no" width="100%" height="460" id="testIframe"></iframe>
+        <!-- <iframe src="http://wteamxq.com/photoDemo/" frameborder="0" scrolling="no" width="100%" height="460" id="testIframe"></iframe> -->
+        
+        <H3>IE6 select 遮住bug:</H3>
+        <select class="demo_select">
+          <option value="se1">se1</option>
+          <option value="se2">se2</option>
+          <option value="se3">se3</option>
+          <option value="se4">se4</option>
+        </select>
+        <button class="show_modal" id="show_modal">显示弹层</button>
+
+        <div class="modal_wrap" id="modal_wrap">
+          <div class="modal_cont">弹层内容</div>
+          <div class="mod_bg"></div>
+          <div class="modal_iframe" id="modDivIframe"></div>
+          <div class="close_btn" id="close_btn" title="关闭弹层">x</div>
+        </div>
+
         <script>
           // 待更新， iframe其他实战用法：
           // 问题源：https://www.zhihu.com/question/20653055/answer/15751248
           // http://div.io/topic/855
           var iframeObj = {
             init: function() {
-
+              this.ie6Select();
             },
             initEvt: function(){
 
@@ -83,9 +111,29 @@
             },
             // 7.解决IE6 模态窗口无法遮住select bug
             ie6Select: function(){
-              
+              // IE6 将select标签当做窗口级别元素， 所以会有该bug；
+              // 解决方法：1.当浮动层div出现的时候，用JS将select隐藏，当浮动层div消失的时候select恢复出现。
+              // 2.用select同级别元素：iframe标签，<iframe frameborder="0"></iframe> 然后用实际的浮动层div和iframe放在一起。间接的使div遮住了select。
+              var targetDiv = document.getElementById('modDivIframe'),
+                  closeBtn = document.getElementById('close_btn'),
+                  showBtn = document.getElementById('show_modal');
+
+              showBtn.onclick = showModPop;
+              closeBtn.onclick = hideModPop;
+              targetDiv.innerHTML = '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;filter:alpha(opacity=0);"></iframe>';
             }
           };
+
+          iframeObj.init();
+
+          function showModPop(){
+            var modalWrap = document.getElementById("modal_wrap");
+            modalWrap.style.display = 'block';
+          }
+          function hideModPop(){
+            var modalWrap = document.getElementById("modal_wrap");
+            modalWrap.style.display = 'none';
+          }
         </script>
     </body>
 </html>
