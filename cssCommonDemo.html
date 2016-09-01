@@ -107,8 +107,25 @@
           .gray { -webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray; }
           /*http://www.cnblogs.com/qiyebao/p/4028129.html*/
 
-          /* position 跟 z-index 的关系； z-index只能在position属性值为relative或absolute或fixed的元素上有效。 http://www.cnblogs.com/mind/archive/2012/04/01/2198995.html */
+          /* position 跟 z-index 的关系； z-index只能在position属性值为relative或absolute或fixed的元素上有效。
+          z-index 不会继承；
+          http://www.cnblogs.com/ForEvErNoME/p/3373641.html
+          http://www.zhangxinxu.com/wordpress/2011/08/css%E7%9B%B8%E5%AF%B9%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%BA%94%E4%B9%8Bz-index%E7%AF%87/
 
+          
+          IE6 IE7 设置了position:relative;的节点会自动加上 z-index:0; 其他浏览器则为 z-index:auto;(auto不参与z-index数值对比，所以子节点如果 z-index比父节点同级的节点高会优先显示)
+          http://www.cnblogs.com/mind/archive/2012/04/01/2198995.html
+
+          总结：
+          层级关系的比较
+          1. 对于同级元素，默认(或position:static)情况下文档流后面的元素会覆盖前面的。
+
+          2. 对于同级元素，position不为static且z-index存在的情况下z-index大的元素会覆盖z-index小的元素，即z-index越大优先级越高。
+
+          3. IE6/7下position不为static，且z-index不存在时z-index为0，除此之外的浏览器z-index为auto。
+
+          4. z-index为auto的元素不参与层级关系的比较，由向上遍历至此且z-index不为auto的元素来参与比较。
+          */
         </style>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
