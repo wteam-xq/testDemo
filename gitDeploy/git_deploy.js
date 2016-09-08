@@ -3,27 +3,34 @@ window.onload = function(){
 	var oriDom = document.getElementById('original_txt'),
 		countDownWrap = document.getElementById('txt_count_down'),
 		finalDom = document.getElementById('final_txt');
+	var spanDom = null;
 	var txtCountTimer = null,
-		txtCountVal = 10;
+		txtCountVal = 20;
 
+	// 脚本入口
 	init();
 
 	function init(){
+		spanDom = getChildNodes(countDownWrap)[0];
 		// 5秒后文本变化
 		txtCountTimer = setTimeout(changeTxt, 1000);
 	}
 
 	// 5秒后原始文本消失，最新文本变空；
 	function changeTxt(){
-		var spanDom = null;
 		clearTimeout(txtCountTimer);
-		spanDom = getChildNodes(countDownWrap)[0];
 		txtCountVal--;
 		spanDom.innerHTML = '' + txtCountVal;
 		if (txtCountVal <= 0) {
 			oriDom.style.display = 'none';
 			countDownWrap.style.display = 'none';
-			finalDom.innerHTML = '这是5秒后出现的新文本';
+			finalDom.innerHTML = '这是20秒后出现的新文本';
+			// 闭包 释放内存
+			oriDom = null;
+			countDownWrap = null;
+			spanDom = null;
+			txtCountTimer = null;
+			txtCountVal = null;
 			return true;
 		}
 		txtCountTimer = setTimeout(changeTxt, 1000);

@@ -7,6 +7,7 @@ grunt/node_modules/*
 grunt/dist/*
 grunt/images/*
 gitDeploy/rev/*
+gitDeploy/dist/*
 npm-debug.log
 webpack/node_modules/*
 socket.io/server/node_modules/*

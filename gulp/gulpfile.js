@@ -210,38 +210,48 @@ gulp.task('str-html', function () {
 /*************************************************************
  *               gitDeploy项目部署      
  ************************************************************/
- // 清除文件任务
+// 清除文件任务
 gulp.task('gitDeploy_clean', function(cb){
     del([gitDeployUrl + 'dist/*', gitDeployUrl + 'rev/*'], {force: true});
     cb();
 });
 
- gulp.task('gitDeploy_sass', function(){
+gulp.task('gitDeploy_sass', function(){
     return gulp.src(gitDeployUrl + '*.scss')
         .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
-        .pipe(gulp.dest(gitDeployUrl + 'dist/'));
- });
- gulp.task('gitDeploy_sass:watch', function(){
+        .pipe(gulp.dest(gitDeployUrl));
+});
+gulp.task('gitDeploy_sass:watch', function(){
     gulp.watch(gitDeployUrl + '*.scss', ['sass']);
- });
- // 压缩脚本
- gulp.task('gitDeploy_js', ['gitDeploy_clean'], function(){
-    gulp.src(gitDeployUrl + '*.js')
+});
+// JS压缩
+gulp.task('gitDeploy_js', ['gitDeploy_clean'], function(){
+    return gulp.src(gitDeployUrl + '*.js')
         .pipe(uglify())
-        .pipe(gulp.dest(gitDeployUrl + 'dist/'));
- });
-
- // CSS JS自动改名
- gulp.task('gitDeploy_rev', ['gitDeploy_sass', 'gitDeploy_js'], function () {
-    return gulp.src([gitDeployUrl + 'dist/*.css', gitDeployUrl + 'dist/*.js'])
+        .pipe(gulp.dest(gitDeployUrl + 'dist/mini/'));
+});
+// CSS压缩
+gulp.task('gitDeploy_css', ['gitDeploy_js'], function(){
+    return gulp.src(gitDeployUrl + '*.css')
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(gitDeployUrl + 'dist/mini/'));
+});
+// css js改名
+gulp.task('gitDeploy_rev', ['gitDeploy_css'], function(){
+    return gulp.src(gitDeployUrl + 'dist/mini/*')
         .pipe(rev())
-        .pipe(gulp.dest(gitDeployUrl + 'dist/rev/'))
+        .pipe(gulp.dest(gitDeployUrl + 'dist/'))
         .pipe(rev.manifest('manifest.json'))
         .pipe(gulp.dest(gitDeployUrl + 'rev/'));
 });
+// 删除原压缩文件
+gulp.task('gitDeploy_delMini', ['gitDeploy_rev'], function(cb){
+    del([gitDeployUrl + 'dist/mini'], {force: true});
+    cb();
+});
 
 // 根据上述资源文件，更改调用资源名，压缩html
-gulp.task('gitDeploy_final', ['gitDeploy_rev'], function () {
+gulp.task('gitDeploy_final', ['gitDeploy_delMini'], function () {
     return gulp.src([gitDeployUrl + 'rev/manifest.json', gitDeployUrl + 'index.html'])
         .pipe( revCollector({
             replaceReved: true
@@ -253,7 +263,7 @@ gulp.task('gitDeploy_final', ['gitDeploy_rev'], function () {
         .pipe( gulp.dest(gitDeployUrl + 'dist/') );
 });
 
- // 组合任务(关系依赖顺序执行， 另也可以 升级gulp或使用插件实现顺序执行)
- gulp.task('gitDeploy', function(){
+// 组合任务(关系依赖顺序执行， 另也可以 升级gulp或使用插件实现顺序执行)
+gulp.task('gitDeploy', function(){
     gulp.start( 'gitDeploy_final' );
- });
+});
