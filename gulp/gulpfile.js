@@ -222,7 +222,7 @@ gulp.task('gitDeploy_sass', function(){
         .pipe(gulp.dest(gitDeployUrl));
 });
 gulp.task('gitDeploy_sass:watch', function(){
-    gulp.watch(gitDeployUrl + '*.scss', ['sass']);
+    gulp.watch(gitDeployUrl + '*.scss', ['gitDeploy_sass']);
 });
 // JS压缩
 gulp.task('gitDeploy_js', ['gitDeploy_clean'], function(){
