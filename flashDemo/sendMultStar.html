@@ -6,9 +6,12 @@
 		<style type="text/css" media="screen">
 			html, body { height:100%; background-color: #003366;}
 			body { margin:0; padding:0; overflow:hidden; }
-			#flashContent { width:550px; height:500px; margin:0 auto; }
 			.trigger_btn { margin:10px 20px; cursor:pointer; }
-			.flash_content{ float:right; }
+			.flash_content{ width:550px; height:500px; margin:0 auto; position: absolute; top:0px; left:0px; }
+			#flashContent_2 { left:300px; }
+			#flashContent_3 { left:600px; }
+			.btn_wrap{ width:150px; height:20px; line-height: 20px; }
+			.flash_wrap{ position: absolute; top:20px; left:120px; width:100%; }
 		</style>
 		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
       	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
@@ -44,6 +47,7 @@
       	 	function hideFlash(starNo) {
               	var flashWrap = null,
               	flashWrap = document.getElementById('flashContent_' + starNo);
+              	console.log('hiden no:' + starNo);
               	flashWrap.style.height = '0px';
       	 		flashWrap.style.width = '0px';
       	 		flashWrap.style.visibility = 'hidden';
@@ -53,20 +57,14 @@
 	<body>
 		<div class="btn_wrap">
 			<button id="triggerBtn_1" class="trigger_btn" data-no="1">点击出现星星1</button>
-	 		<div id="flashContent_1" class="flash_content">
-			</div>
-		</div>
-
-		<div class="btn_wrap">
 			<button id="triggerBtn_2" class="trigger_btn" data-no="2">点击出现星星2</button>
-	 		<div id="flashContent_2" class="flash_content">
-			</div>
+	 		<button id="triggerBtn_3" class="trigger_btn" data-no="3">点击出现星星3</button>
 		</div>
 
-		<div class="btn_wrap">
-			<button id="triggerBtn_3" class="trigger_btn" data-no="3">点击出现星星3</button>
-	 		<div id="flashContent_3" class="flash_content">
-			</div>
+		<div class="flash_wrap">
+			<div id="flashContent_1" class="flash_content"></div>
+			<div id="flashContent_2" class="flash_content"></div>
+			<div id="flashContent_3" class="flash_content"></div>
 		</div>
  </body>
 </html>
