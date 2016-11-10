@@ -16,8 +16,6 @@
 		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
       	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
       	<script>
-      		window.hideFlash = hideFlash;
-
 	        // 全局被调用函数
       	 	window.onload = function(){
       	 		var triggerBtn1 = document.getElementById('triggerBtn_1'),
@@ -27,11 +25,10 @@
       	 		triggerBtn2.onclick = showFlash;
       	 		triggerBtn3.onclick = showFlash;
       	 	}
-      	 	function showFlash() {
+      	 	window.showFlash = function() {
       	 		var flashWrap = null,
       	 			htmlStr = '',
       	 			starNo = this.getAttribute('data-no');
-
       	 		flashWrap = document.getElementById('flashContent_' + starNo);
       	 		htmlStr = '<object id="sendStar" width="100%" height="100%" type="application/x-shockwave-flash">' +
 	      	 		'<param name="movie" value="sendMultStar.swf">' + 
@@ -44,10 +41,9 @@
       	 		flashWrap.style.width = '500px';
       	 		flashWrap.style.visibility = 'visible';
       	 	}
-      	 	function hideFlash(starNo) {
+      	 	window.hideFlash = function(starNo) {
               	var flashWrap = null,
               	flashWrap = document.getElementById('flashContent_' + starNo);
-              	console.log('hiden no:' + starNo);
               	flashWrap.style.height = '0px';
       	 		flashWrap.style.width = '0px';
       	 		flashWrap.style.visibility = 'hidden';

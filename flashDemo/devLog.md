@@ -11,7 +11,7 @@ stop();
 
 ```
 
-*　html代码需放在**虚拟服务器**执行，才能让flash与js通信。
+*　html代码需放在虚拟服务器执行，才能让flash与js通信。
 
 * sendStar.html 主要调试 flash调用 js 函数以及 调用flash的方式（object or embed）；
 * [object标签跟embed标签的区别](http://blog.csdn.net/zhengbo0/article/details/21087995) `object`标签是IE only， 为了兼容低版本浏览器建议使用`<object>`， 而`embed`则为HTML5的新标签， 为了兼容与优化可以将 `embed`标签嵌入到`object`标签内。
