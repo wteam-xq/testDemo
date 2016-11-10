@@ -9,6 +9,33 @@
 			body { margin:0; padding:0; overflow:hidden; }
 			#flashContent { width:550px; height:500px; margin:0 auto; }
 			.trigger_btn { margin:10px 20px; cursor:pointer; }
+			.ps_demo_wrap{ position: relative; width:300px; height:80px; }
+			.ps_demo_wrap .demo_icon{ 
+				position: relative;
+				float:left; 
+				margin:13px 0px 0px 10px; 
+				background-image:url(../images/PS_demo.png); 
+				width:54px; 
+				height:54px; 
+				cursor: pointer; 
+			}
+			.ps_demo_wrap .weibo_icon{ background-position: 0px 0px; }
+			.ps_demo_wrap .qq_icon{ background-position: -60px 0px; }
+			.ps_demo_wrap .douban_icon{ background-position: -120px 0px; }
+			.ps_demo_wrap .renren_icon{ background-position: -180px 0px; }
+			.ps_demo_wrap .demo_icon .black_bg{ 
+				position:absolute; 
+				top:0px; 
+				left:0px; 
+				z-index:2; 
+				width: 54px; 
+				height:54px; 
+				border-radius:50%;
+				background-color:rgba(0,0,0,.5);
+				cursor: pointer;
+				display: none;
+			}
+			.ps_demo_wrap .demo_icon:hover .black_bg{ display: block; }
 		</style>
 		<link rel="icon" href="../favicon.ico" type="image/x-icon" />
       	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
@@ -38,6 +65,13 @@
 	<body>
 		<button id="triggerBtn" class="trigger_btn">点击出现星星</button>
  		<div id="flashContent">
+		</div>
+
+		<div class="ps_demo_wrap">
+			<div class="demo_icon weibo_icon"><div class="black_bg"></div></div>
+			<div class="demo_icon qq_icon"><div class="black_bg"></div></div>
+			<div class="demo_icon douban_icon"><div class="black_bg"></div></div>
+			<div class="demo_icon renren_icon"><div class="black_bg"></div></div>
 		</div>
 		<!-- IE 浏览器 -->
 		<!-- <object id="sendStar" width="100%" height="100%" type="application/x-shockwave-flash" data="sendStar.swf">
