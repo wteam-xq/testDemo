@@ -21,6 +21,7 @@
 
 * 2016-09-06 [gulp-sass](https://www.npmjs.com/package/gulp-sass)(不依赖ruby环境使用sass) 学习，[gulp-rev-collector](https://www.npmjs.com/package/gulp-rev-collector)(前端去除缓存)学习;
 * [gulp 组合任务顺序执行](http://zhangruojun.com/gulpshun-xu-zhi-xing-ren-wu/)
+* 2016-11-16 gulp-sprite 学习，本项目文件结构迁移：将 gulp 依赖包上移至顶级目录；
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）

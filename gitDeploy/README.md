@@ -8,8 +8,8 @@
 ### 该工程的简单部署
 * 本工程实现 gulp 自动化部署，实现sass开发以及前端上线前去缓存：[gulp-sass：不依赖ruby环境使用sass](https://www.npmjs.com/package/gulp-sass) ，[gulp-rev-collector：前端上线前去缓存](https://www.npmjs.com/package/gulp-rev-collector)；
 
-* 在本项目的顶级目录[testDemo](https://github.com/wteam-xq/testDemo)打开'gulp/'；(本工程的部署代码写在`gulp/gulpfile.js`中)
-* 在上述路径下执行**gulp**指令：
+
+* 本文件部署指令：
 ```
 gulp gitDeploy
 ``` 

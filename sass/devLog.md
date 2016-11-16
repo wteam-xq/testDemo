@@ -1,7 +1,7 @@
 ### 学习日志
 
-[学习资料1](http://www.w3cplus.com/sassguide/)
-[学习资料2](http://www.kancloud.cn/kancloud/sass-tutorial/48498)
+[十分钟入门 sass-w3cplus](http://www.w3cplus.com/sassguide/)
+[sass中文教程-kancloud](http://www.kancloud.cn/kancloud/sass-tutorial/48498)
 
 * 使用 sass需要配置ruby环境， 另总是会创建 .sass-cache, xxx.css.map。 
 * 使用 [gulp-sass](https://www.npmjs.com/package/gulp-sass) 可不用配置ruby环境， 有nodejs环境即可。

@@ -10,7 +10,7 @@
   * 提交所有txt后缀的文件到暂存区
 
 * git add a_file/*
-  * 提交a_file 文件夹下的所有文件到暂存区
+  * 提交a_file 文件夹下的所有文件到暂存区~test
 
 * git add *
 * git add .

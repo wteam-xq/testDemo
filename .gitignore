@@ -1,6 +1,6 @@
 .DS_Store
 dest/*
-gulp/node_modules/*
+node_modules/*
 gulp/dist/*
 gulp/images/*
 grunt/node_modules/*
