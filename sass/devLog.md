@@ -9,8 +9,8 @@
 * .sass-cache 路径可配置[资料](http://sass.bootcss.com/docs/sass-reference/#cache_location-option)
 
 
-### 常用指令
-[参考资料](http://www.w3cplus.com/sassguide/compile.html)
+### sass-ruby 常用指令：
+[sass-Guide-w3cplus](http://www.w3cplus.com/sassguide/compile.html)
 * 单文件转换命令：
 ```
 sass demo.scss demo.css
@@ -35,6 +35,9 @@ sass --watch demoScssFolder:democssFolder
 ```
 sass --watch demoScssFolder/demo.scss:demoCssFolder/demo.css --style compact
 ``` 
+
+### gulp-sass 常用指令：
+* 
 
 
 

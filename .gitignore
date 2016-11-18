@@ -3,12 +3,12 @@ dest/*
 node_modules/*
 gulp/dist/*
 gulp/images/*
-grunt/node_modules/*
 grunt/dist/*
 grunt/images/*
 gitDeploy/rev/*
 gitDeploy/dist/*
 npm-debug.log
+grunt/node_modules/*
 webpack/node_modules/*
 socket.io/server/node_modules/*
 .sass-cache/
