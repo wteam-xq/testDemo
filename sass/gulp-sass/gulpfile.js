@@ -33,10 +33,20 @@ var config = {
 // 输入的第一个参数
 var WATCH_SRC = args[0];
 
-// 清除文件任务
-gulp.task('gitDeploy_clean', function(cb){
-    del([gitDeployUrl + 'dist/*', gitDeployUrl + 'rev/*'], {force: true});
-    cb();
+/* task */
+gulp.task('sass', () => {
+    return gulp.src(config.sass.src + `${WATCH_SRC}/**/*.scss`)
+        .pipe(sass({
+            sourceComments: 'map',
+            outputStyle: 'nested'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest(config.sass.dest + `${WATCH_SRC}`));
+});
+
+gulp.task('sass:watch', () => {
+    gulp.watch(config.sass.src + `${WATCH_SRC}/**/*.scss`, ['sass']);
+    console.dir('=== watch src with ' + config.sass.src + `${WATCH_SRC}/**/*.scss`, { colors: true });
+    // console.log(color('=== watch src with ' + config.sass.src + `${WATCH_SRC}/**/*.scss`, 'RED'));
 });
 
 /*
