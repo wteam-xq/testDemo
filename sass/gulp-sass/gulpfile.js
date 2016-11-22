@@ -2,78 +2,71 @@
 
 // 获取 gulp
 var gulp = require('gulp'),
+    // 模块化管理插件
+    $ = require('gulp-load-plugins')(),
+    // 雪碧图生成工具
+    spritesmith = require('gulp.spritesmith'),
+    // 将文件转化成 stream(流)插件
+    buffer = require('vinyl-buffer'),
+    // 合并流插件
+    merge = require('merge-stream'),
+    // 获取执行 gulp 后续的参数
+    args = require('get-gulp-args')(),
     // sass 插件
-    sass = require('gulp-sass'),
-    // js 压缩插件 （用于压缩 JS）
-    uglify = require('gulp-uglify'),
-    // 压缩css插件(cssnano将取代gulp-minify-css)
-    minifyCSS = require('gulp-minify-css'),
-    // 前端去缓存插件
-    revCollector = require('gulp-rev-collector'),
-    rev = require('gulp-rev'),
-    // 清除文件
-    del = require('del'),
-    // 压缩html(gulp-htmlmin之外的另一插件)
-    minifyHTML = require('gulp-minify-html');
+    sass = require('gulp-sass');
 
-// 配置目录
-var config = {
-    sass: {
-        src: 'scss/',
-        dest: 'style/'
-    },
-    img: {
-        src: 'scss/',
-        dest: 'style/'
-    },
-    js: {
-        src: 'js/'
-    }
-};
 // 输入的第一个参数
 var WATCH_SRC = args[0];
 
-/* task */
-gulp.task('sass', () => {
-    return gulp.src(config.sass.src + `${WATCH_SRC}/**/*.scss`)
+/*
+* 监听（执行）scss文件，使其转化成css文件
+* example: gulp sass --scss
+* example: gulp sass:watch --scss
+*/
+gulp.task('sass', function(){
+    return gulp.src(`${WATCH_SRC}/**/*.scss`)
         .pipe(sass({
             sourceComments: 'map',
             outputStyle: 'nested'
         }).on('error', sass.logError))
-        .pipe(gulp.dest(config.sass.dest + `${WATCH_SRC}`));
+        .pipe(gulp.dest(`css`));
 });
 
-gulp.task('sass:watch', () => {
-    gulp.watch(config.sass.src + `${WATCH_SRC}/**/*.scss`, ['sass']);
-    console.dir('=== watch src with ' + config.sass.src + `${WATCH_SRC}/**/*.scss`, { colors: true });
-    // console.log(color('=== watch src with ' + config.sass.src + `${WATCH_SRC}/**/*.scss`, 'RED'));
+gulp.task('sass:watch', function(){
+    gulp.watch(`${WATCH_SRC}/**/*.scss`, ['sass']);
+    console.dir('=== watch src with ' + `${WATCH_SRC}/**/*.scss`, { colors: true });
 });
 
 /*
 * 雪碧图合并task，
-* 参数1：监听目录；
+* 参数1：执行目录；
 * 参数2：生成的sass和图片的文件名；
-* 参数3：输出目录（非必填）。
-* example：gulp sprite --v1 --mySprite
+* 参数3：输出目录（非必填），不填的话输出目录为执行目录
+* example：gulp sprite --scss --mySprite
 */
-gulp.task('sprite', ['copy:images'], () => {
-    var timestamp = + new Date();
+gulp.task('sprite', function(){
     var DEST_SRC = args[2] !== undefined ? args[2] : args[0];
     var DEST_NAME = args[1];
-    var spriteData = gulp.src(config.img.src + `${WATCH_SRC}/**/*.png`).pipe(spritesmith({
-        imgName: DEST_NAME + '-' + timestamp + '.png',
-        imgPath: 'http://file3.qf.56.itc.cn/style/' + `${DEST_SRC}/img/` + DEST_NAME + '-' + timestamp + '.png',
-        cssName: '_' + args[1] + '.scss'
+    var spriteData = gulp.src(`${WATCH_SRC}/**/*.png`).pipe(spritesmith({
+        imgName: DEST_NAME + '.png',
+        imgPath: '../images/' + DEST_NAME + '.png',
+        cssName: '_' + DEST_NAME + '.scss'
     }));
 
     var imgStream = spriteData.img
         .pipe(buffer())
         .pipe($.imagemin())
-        .pipe(gulp.dest(config.img.dest + `${DEST_SRC}/img`));
+        .pipe(gulp.dest('images'));
 
     var cssStream = spriteData.css
-        .pipe(gulp.dest(config.sass.src + `${DEST_SRC}/css`));
+        .pipe(gulp.dest(`${DEST_SRC}`));
 
     return merge(imgStream, cssStream);
 });
 
+// 压缩图片(jpg, gif格式)
+gulp.task('copy:images', function() {
+    return gulp.src(`${WATCH_SRC}/**/*.{jpg,gif}`)
+        .pipe($.imagemin())
+        .pipe(gulp.dest(`images`));
+});
