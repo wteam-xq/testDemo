@@ -12,6 +12,8 @@ var gulp = require('gulp'),
     merge = require('merge-stream'),
     // 获取执行 gulp 后续的参数
     args = require('get-gulp-args')(),
+    // if 判断插件
+    gulpif = require('gulp-if'),
     // sass 插件
     sass = require('gulp-sass');
 
@@ -29,7 +31,7 @@ gulp.task('sass', function(){
             sourceComments: 'map',
             outputStyle: 'nested'
         }).on('error', sass.logError))
-        .pipe(gulp.dest(`css`));
+        .pipe(gulp.dest('css'));
 });
 
 gulp.task('sass:watch', function(){
@@ -38,7 +40,18 @@ gulp.task('sass:watch', function(){
 });
 
 /*
-* 雪碧图合并task，
+* 压缩CSS样式
+* example: gulp css:min --scss
+*/
+gulp.task('css:min', function(){
+    return gulp.src(`${WATCH_SRC}/**/*.scss`)
+        .pipe(sass().on('error', sass.logError))
+        .pipe($.cssmin())
+        .pipe(gulp.dest('css'));
+});
+
+/*
+* 雪碧图合并task( 输出到 scss文件)
 * 参数1：执行目录；
 * 参数2：生成的sass和图片的文件名；
 * 参数3：输出目录（非必填），不填的话输出目录为执行目录
@@ -63,6 +76,25 @@ gulp.task('sprite', function(){
 
     return merge(imgStream, cssStream);
 });
+
+/*
+* 雪碧图合并task( 输出到 css文件 )
+* 参数1：执行目录；
+* 参数2：生成的sass和图片的文件名；
+* example：gulp sprite-css --scss --mySprite_2
+*/
+gulp.task('sprite-css', function(){
+  var DEST_NAME = args[1];
+  return  gulp.src(`${WATCH_SRC}/**/*.png`)
+              .pipe(spritesmith({
+                  imgName: DEST_NAME + '.png',
+                  cssName: DEST_NAME + '.css',
+                  imgPath: '../images/' + DEST_NAME + '.png'
+              }))
+              .pipe(gulpif('*.png', gulp.dest('images/')))
+              .pipe(gulpif('*.css', gulp.dest('css/')));
+});
+
 
 // 压缩图片(jpg, gif格式)
 gulp.task('copy:images', function() {
