@@ -1,0 +1,34 @@
+.ps_demo_wrap{
+  position: relative;
+  width:300px;
+  height:80px;
+  background:rgba(0,0,0,.3);
+}
+.ps_demo_wrap .demo_icon{
+  position: relative;
+  float:left;
+  margin:13px 0px 0px 10px;
+  cursor: pointer;
+  width:54px;
+  height:54px;
+  background:url("../images/CssGaga.png");
+}
+
+.ps_demo_wrap .weibo_icon{ background-position: -168px 0px; }
+.ps_demo_wrap .qq_icon{ background-position: -56px 0px; }
+.ps_demo_wrap .douban_icon{ background-position: 0px 0px; }
+.ps_demo_wrap .renren_icon{ background-position: -112px 0px; }
+
+.ps_demo_wrap .demo_icon .black_bg{
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:2;
+  width: 54px;
+  height:54px;
+  border-radius:50%;
+  background-color:rgba(0,0,0,.5);
+  cursor: pointer;
+  display: none;
+}
+.ps_demo_wrap .demo_icon:hover .black_bg{ display: block; }

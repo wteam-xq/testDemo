@@ -9,11 +9,6 @@
 	float:left;
 	margin:13px 0px 0px 10px;
 	cursor: pointer;
-}
-.ps_demo_wrap .weibo_icon,
-.ps_demo_wrap .qq_icon,
-.ps_demo_wrap .douban_icon,
-.ps_demo_wrap .renren_icon{
 	width:54px;
 	height:54px;
 }
