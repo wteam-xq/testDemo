@@ -81,7 +81,7 @@ gulp.task('sprite', function(){
 * 雪碧图合并task( 输出到 css文件 )
 * 参数1：执行目录；
 * 参数2：生成的sass和图片的文件名；
-* example：gulp sprite-css --scss --mySprite_2
+* example：gulp sprite-css --scss --index_css_gulp
 */
 gulp.task('sprite-css', function(){
   var DEST_NAME = args[1];

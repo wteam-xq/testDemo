@@ -1,0 +1,70 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/* 手动添加样式 */
+.ps_demo_wrap{
+  position: relative;
+  width:300px;
+  height:80px;
+  background:rgba(0,0,0,.3);
+}
+.ps_demo_wrap .demo_icon{
+  position: relative;
+  float:left;
+  margin:13px 0px 0px 10px;
+  cursor: pointer;
+}
+
+.ps_demo_wrap .demo_icon .black_bg{
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:2;
+  width: 54px;
+  height:54px;
+  border-radius:50%;
+  background-color:rgba(0,0,0,.5);
+  cursor: pointer;
+  display: none;
+}
+.ps_demo_wrap .demo_icon:hover .black_bg{ display: block; }
+/* 自动生成样式 */
+.icon-icon_douban {
+  background-image: url(../images/index_css_gulp.png);
+  background-position: 0px 0px;
+  width: 54px;
+  height: 54px;
+}
+.icon-icon_qq {
+  background-image: url(../images/index_css_gulp.png);
+  background-position: -54px 0px;
+  width: 54px;
+  height: 54px;
+}
+.icon-icon_renren {
+  background-image: url(../images/index_css_gulp.png);
+  background-position: 0px -54px;
+  width: 54px;
+  height: 54px;
+}
+.icon-icon_weibo {
+  background-image: url(../images/index_css_gulp.png);
+  background-position: -54px -54px;
+  width: 54px;
+  height: 54px;
+}
