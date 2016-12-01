@@ -1,0 +1,31 @@
+/* 首页样式 */
+@import "sprite";
+.ps_demo_wrap{
+    position: relative;
+    width:300px;
+    height:80px;
+    background:rgba(0,0,0,.3);
+    .demo_icon{
+        position: relative;
+        float:left;
+        margin:13px 0px 0px 10px;
+        cursor: pointer;
+        .black_bg{
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:2;
+            width: 54px;
+            height:54px;
+            border-radius:50%;
+            background-color:rgba(0,0,0,.5);
+            cursor: pointer;
+            display: none;
+        }
+    }
+    .demo_icon:hover .black_bg{ display: block; }
+    .weibo_icon{ @include sprite($icon-weibo); }
+    .qq_icon{ @include sprite($icon-qq); }
+    .douban_icon{ @include sprite($icon-douban); }
+    .renren_icon{ @include sprite($icon-renren); }
+}

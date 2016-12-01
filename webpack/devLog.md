@@ -4,10 +4,10 @@
     * [webpack中文指南](http://webpackdoc.com/)
     * 完成 webpack 生成雪碧图demo
 
-
-
-
-
+#### 2016-12-01
+    * 完成webpack调用scss;(webpack中的sass-loader也得依赖sass环境-意味着也依赖ruby， 真醉！)
+    * [sass-loader官网](http://webpackdoc.com/)
+    * [webpack调用sass教程](http://www.tuicool.com/articles/2qiE7jN)
 
 
 
