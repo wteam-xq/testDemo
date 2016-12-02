@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+        模拟select组件
+      </title>
+      <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+      <style>
+        .select_wrap{
+            position: relative;
+            width: 120px;
+            height:25px;
+            border-radius: 3px;
+            background-color:rgba(0,0,0,.5);
+            cursor: pointer;
+        }
+        .select_wrap .hide_btn{
+            width:120px;
+            height:25px;
+            cursor: pointer;
+            z-index: 3;
+            position: absolute;
+            top: 0px;
+            left:0px;
+        }
+        .select_wrap .drop_icon_down,
+        .select_wrap .drop_icon{
+            display: block;
+            position: absolute;
+            right:5px;
+            width:12px;
+            height:7px;
+        }
+        .select_wrap .drop_icon {
+            top:8px;
+            background:url('../images/drop_up.png') no-repeat;
+        }
+        .select_wrap .drop_icon_down{
+            top:9px;
+            background:url('../images/drop_down.png') no-repeat;
+        }
+        .select_wrap .show_val{
+            width:80px;
+            margin:0 10px;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            color:#fff;
+            font-size:12px;
+        }
+        .opt_list{
+            position: absolute;
+            top: 26px;
+            left: 0px;
+            list-style: none;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            background-color: rgba(0,0,0,.5);
+            display: none;
+        }
+        .opt_list li{
+            height: 25px;
+            line-height: 25px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+        }
+        .opt_list .opt_item{
+            color:#fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .opt_list .opt_item:hover{
+            color:#cb9c64;
+        }
+
+      </style>
+    </head>
+
+    <body>
+        <h3>模拟select组件</h3>
+        <div class="select_wrap" id="selectWrap">
+            <div class="show_val" id="showVal">我一随便名字</div>
+            <div class="hide_btn" id="hideBtn" data-status="hide"></div>
+            <span class="drop_icon" id="dropIcon"></span>
+            <ul class="opt_list" id="optList">
+                <li><a class="opt_item" href="https://www.sogou.com/" target="_blank">我一随便名字</a></li>
+                <li><a class="opt_item" href="https://www.sogou.com/" target="_blank">我一随便名字2</a></li>
+                <li><a class="opt_item" href="https://www.sogou.com/" target="_blank">我一随便名字3</a></li>
+                <li><a class="opt_item" href="https://www.sogou.com/" target="_blank">我一随便名字4</a></li>
+            </ul>
+        </div>
+
+      <script>
+        window.onload = function(){
+            var $hideBtn = document.getElementById('hideBtn'),
+                $dropIcon = document.getElementById('dropIcon'),
+                $showVal = document.getElementById('showVal'),
+                $optList = document.getElementById('optList');
+            var optItemArray = $optList.children,
+                i, $optItem, len = optItemArray.length;
+
+            $hideBtn.onclick = trogglePanel
+            for (i = 0; i < len; i++) {
+                $optItem = optItemArray[i];
+                $optItem.onclick = selectItem;
+            }
+            // 切换显示面板
+            function trogglePanel(){
+                var status = this.getAttribute('data-status');
+                if (status === 'hide') {
+                    $optList.style.display = 'block';
+                    this.setAttribute('data-status', 'show');
+                    $dropIcon.setAttribute('class', 'drop_icon_down');
+                } else if (status === 'show') {
+                    $optList.style.display = 'none';
+                    this.setAttribute('data-status', 'hide');
+                    $dropIcon.setAttribute('class', 'drop_icon');
+                }
+            }
+            // 点选元素组件项
+            function selectItem(){
+                var optVal = this.children[0].innerHTML;
+                $showVal.innerHTML = optVal;
+                $optList.style.display = 'none';
+                $hideBtn.setAttribute('data-status', 'hide');
+                $dropIcon.setAttribute('class', 'drop_icon');
+            }
+        }
+      </script>
+
+    </body>
+</html>
