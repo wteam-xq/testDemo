@@ -52,7 +52,7 @@
   * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)
 
 * 18.浏览器检测:
-  * [client.js](https://github.com/wteam-xq/testDemo/blob/master/client.js)
+  * [client.js](https://github.com/wteam-xq/testDemo/blob/master/utils/client.js)
 
 * 19.浏览器兼容
   * [IESupport.html](https://github.com/wteam-xq/testDemo/blob/master/IESupport.html)
@@ -64,11 +64,9 @@
   * [flashDemo](https://github.com/wteam-xq/testDemo/blob/master/flashDemo/index.html)
 
 * other:
-  * [人人网笔试题](https://github.com/wteam-xq/testDemo/blob/master/others/renrenTest.html)
-  * [邮箱智能提示2](https://github.com/wteam-xq/testDemo/blob/master/others/zxxAutoComplete.html)
-  * [在线编辑器2](https://github.com/wteam-xq/testDemo/blob/master/others/mditorDemo.html)
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
   * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
+  * [sass学习Demo](https://github.com/wteam-xq/testDemo/blob/master/sass)
   * [收藏的面试题连接大全](https://github.com/wteam-xq/testDemo/blob/master/exam_questions.md)
 
 * angular:

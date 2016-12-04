@@ -23,8 +23,9 @@
 * [gulp 组合任务顺序执行](http://zhangruojun.com/gulpshun-xu-zhi-xing-ren-wu/)
 * 2016-11-16 gulp-sprite 学习，本项目文件结构迁移：将 gulp 依赖包上移至顶级目录；
 
+* 2016-12-02  DOM节点信息包括节点类型（nodeType）、节点名称（nodeName）和节点值（nodeValue）。
+* 2016-12-04 使用了gh-pages分支后就可以使用浏览器访问该项目（相当于放置服务器内容了）， 部分文件夹没了入口， 添加之；
+
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 2.IE7 中（模拟）使用json2.js 堆栈溢出报错；
-
-  
