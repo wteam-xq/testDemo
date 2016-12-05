@@ -42,10 +42,10 @@
       <h4>提示内容:</h4>
       <span id="tips"></span>
     </div>
-    
+
     <!-- 弹出框遮罩层 -->
     <div class="dialog">
-      
+
     </div>
     <div class="dialog-mask" id="dialogMask"></div>
     <div id="nodeDetail" class="nodeDetail">
@@ -59,7 +59,7 @@
         <span id="mTips" class="m-tips">修改提示信息</span>
       </div>
     </div>
-    
+
     <script type="text/javascript" src="utils/base.js"></script>
     <script>
       // 《javascript高级程序设计》 第10章第一节
@@ -74,6 +74,16 @@
           new_dom.innerHTML = "noNew";
           a_parent.insertBefore(new_dom, b_dom);
         }
+        // PS： insertBefore()是节点操作里很常见的方法， 其他常用方法包括：
+        // appendChild(dom) 向childNodes（子节点列表）末尾添加一个节点， 并返回该节点；
+        // replaceChild(dom1, dom2) dom1 插入的节点， dom2 替换的节点（会被移动并返回）；
+        // removeChild(dom)  dom 被移动并返回的节点；
+        // cloneNode(deepOperate)  创建与节点完全相同的副本， deepOperate为布尔型， 是否深度拷贝， 为true则子节点都会被拷贝。
+
+        // dom.clientHeight  可见高度
+        // dom.offsetHieght  节点高度（包括边线的高）
+        // dom.scrollHeight  全文高度
+
         // insertNode();
 
         var node_list = document.getElementById('nodeList');
@@ -81,7 +91,7 @@
         var nodeDetail = document.getElementById('nodeDetail');
         var no_de_l, no_de_t, clientObj;
         clientObj = getClientHW();
-        
+
         var no_de_h = getDomStyle(nodeDetail, 'height');
         var no_de_w = getDomStyle(nodeDetail, 'width');
 
@@ -132,7 +142,7 @@
           // 提示内容更新
           updateTips('新增节点成功！');
         }
-        //删除节点 
+        //删除节点
         function deleteNode(){
           var node_list = document.getElementById('nodeList'),
           last_node, node_array;
@@ -200,7 +210,7 @@
           for (i = 0, len = node_info.length; i < len; i++) {
             node_info[i].style.display = 'none';
           }
-          
+
           if (this.id == 'sel_s') {
             search_panel.style.display = 'block';
             // 改变标题
@@ -214,7 +224,7 @@
             var m_input = document.getElementsByClassName('m-input')[0],
             m_h3 = document.getElementsByClassName('m-h3')[0],
             m_tips = document.getElementsByClassName('m-tips')[0];
-            
+
             m_tips.style.display = 'none';
             m_h3.innerHTML = '输入 "' + sel_node.innerHTML + '" 更新后的节点文字';
             m_input.setAttribute('data-id', sel_node.id);
@@ -281,15 +291,15 @@
           }
           for (i = 0, len = node_array.length; i < len; i++) {
             // 更新select
-            varItem = new Option(node_array[i].innerHTML, node_array[i].getAttribute('data-no'));      
-            new_select.options.add(varItem); 
+            varItem = new Option(node_array[i].innerHTML, node_array[i].getAttribute('data-no'));
+            new_select.options.add(varItem);
           }
           return new_select;
         }
         // 更新提示内容
         function updateTips(str){
           var tipCont = document.getElementById('tipCont'),
-          tips, htips; 
+          tips, htips;
           tipCont.innerHTML = '';
           tips = document.createElement('span');
           tips.id = 'tips';
@@ -299,7 +309,7 @@
           tipCont.appendChild(htips);
           tipCont.appendChild(tips);
         }
-        
+
         // 关闭弹出框
         function closeModal(){
           var nodeDetail = document.getElementById('nodeDetail');
@@ -314,7 +324,7 @@
       // 取得浏览器可见视图的宽、高
       function getClientHW(){
         var _result, pageWidth, pageHeight;
-        
+
         pageWidth = window.innerWidth;
         pageHeight = window.innerHeight;
 
@@ -326,7 +336,7 @@
             pageHeight = document.body.clientHeight;
             pageWidth = document.body.clientWidth;
           }
-        } 
+        }
         _result = {
           h: pageHeight,
           w: pageWidth
@@ -363,7 +373,7 @@
         }
         return _result;
       }
-      
+
     </script>
   </body>
 </html>

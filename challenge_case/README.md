@@ -8,5 +8,9 @@
 * 3.jq滚动显示优化
     * [slide_optimize.html](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/slide_optimize.html)
 
-* 2.原生js模拟select组件
+* 4.原生js模拟select组件
     * [selectModel.html](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/selectModel.html)
+
+* 5.canvas实现飘落效果：
+    * [网友实现](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/canvas_falling.html)
+    * [个人实现](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/canvas_falling_2.html)
