@@ -10,7 +10,7 @@
       <!-- <script type="text/javascript" src="http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js"></script> -->
       <!--[if lt IE 7]>
         <script type="text/javascript" src="lib/unitpngfix/unitpngfix.js"></script>
-      <![endif]--> 
+      <![endif]-->
       <!-- IE6 png透明最佳实现库// <script type="text/javascript" src="lib/fixedpng.js"></script> -->
       <script type="text/javascript" src="utils/client.js"></script>
       <style>
@@ -58,14 +58,26 @@
         .t2_wrap .t2_a .t2_a_content{ display: none; }
         .t2_wrap .t2_a:hover .t2_a_txt,
         .t2_wrap .t2_a:hover .t2_a_content{ display: block; }
+
+        /* 关于 \9 更多详情：
+        * \9  IE8 ~ IE10 都是有效, 
+        * 另： \9 的 hack 是因为 \9 是水平制表符，其他字符如 , \a, \b, \20 都是可以的。
+        * http://www.zhangxinxu.com/wordpress/2010/04/%E5%8C%BA%E5%88%86ie8ie7ie6%E5%8F%8A%E5%85%B6%E4%BB%96%E6%B5%8F%E8%A7%88%E5%99%A8-css-9hack/
+        */
+        #tip{
+            background:blue;/*chrome Firefox等背景变蓝色*/
+            background:red\9;/*IE8背景变红色*/
+            *background:black;/*IE7背景变黑色*/
+            _background:orange;/*IE6背景变橘色*/
+        }
       </style>
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
-    
+
     <body>
       <h3>低版本浏览器兼容相关</h3>
-      
+
       <div class=""></div>
 
       <div class="png_warp">
@@ -163,7 +175,7 @@
         // 例如：var aArray = [{'arg1': '1'}, {'arg2': '2'},];  var aObj = {'arg1': '1',}; 别遗漏最后逗号；
         // 2.IE7以下浏览器(主要IE6) 一般标签样式不支持 伪类hover ， 要使在IE5及IE6中也有效，则必须在外面包裹一个a标签且该a标签必须有href属性；
         // 3.IE6 IE7下不太支持 inline-block, 反而对浮动支持较好； http://www.cnblogs.com/leejersey/archive/2012/07/11/2586506.html, http://www.cnblogs.com/leejersey/archive/2012/07/11/2586506.html
-        //   IE6 下 inline-block vertical-align 中不是全文字，则无效；  
+        //   IE6 下 inline-block vertical-align 中不是全文字，则无效；
         // 4.IE6 下事件处理（参考 utils/base.js   EventUtil ）
         // 5.getAttribute("class") 在IE下可能无法获取正确类名， IE对应的应该为 getAttribute("className")
         //   另：IE下获得float的方式也不同：obj.style.styleFloat=style; （IE） obj.style.cssFloat=style; （非IE）
@@ -179,7 +191,7 @@
         //  对应教程：http://segmentfault.com/q/1010000000339082
         // 15.IE6下 IE6 CSS类名优先级；CSS多类选择符优先级不起作用，多么的令人气愤啊，经过测试：IE6下这种类组合的优先级不如单个类；（具体看demo）
         // 16.IE6 IE7, 块级元素（如:div）如使用：white-space:nowrap;进行强制不换行，需要设置长度才能生效；
-        // 17.IE6的bug——div绝对定位，相邻的margin-top失效； 
+        // 17.IE6的bug——div绝对定位，相邻的margin-top失效；
         // 1、给相邻元素增加一个浮动。
         // 2、两个div都设置宽度了，去掉第二个div的宽度，bug即可修复。
         // 3、针对IE6： _position:relatvie; _top: xxpx;
@@ -190,7 +202,6 @@
         // 19.IE浏览器处理超出父节点 的子节点跟chrome不同，例如 A_sub 是 A的子节点，且A_sub宽高 比 A 大、A_sub背景色为默认的透明。
         // 鼠标移动至A_sub ，chrome  firefox 能检测到当前鼠标在A_sub上，而IE（edge 及以下所有IE版本）不能；
         // 解决方案： 给A_sub添加背景色 + 设置透明度为零；
-
       </script>
 
     </body>
