@@ -5,6 +5,7 @@ http://www.w3.org/TR/html4/strict.dtd">
 http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "
 http://www.w3.org/TR/html4/frameset.dtd"> -->
+<!-- 更多网页解析模式：http://www.w3help.org/zh-cn/kb/001/ -->
 <html>
     <head>
       <meta name="renderer" content="webkit">
@@ -21,7 +22,7 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
       <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" >
       Emulate模式后则更重视<!DOCTYPE>
       （细心的人会注意到，用IE9去访问带有x-ua-compatible的页面时是不会出现兼容视图按钮的）
-      
+
       IE=8
       <meta http-equiv="X-UA-Compatible" content="IE=8" />
       This forces IE 8 to display the page in Internet Explorer Standards mode.
@@ -38,7 +39,7 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
-    
+
     <body>
       <h3>原型理解</h3>
       <canvas id="canvas"></canvas>
@@ -51,10 +52,10 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
         // 我想问的问题是，通过Foo.age访问到的age的属性值是从Function继承而来的？
         // 还是因为Foo是Function构造函数的实例，age属性是通过“实例.属性”访问得来的？
         function Foo(){};
-        var foo = new Foo(); 
+        var foo = new Foo();
         Foo.__proto__.age = 10;
 
-        // alert(Foo.age);//10 
+        // alert(Foo.age);//10
         // 实现继承的简单方法
         function object(o){
           function F () {};
@@ -71,7 +72,7 @@ http://www.w3.org/TR/html4/frameset.dtd"> -->
           var A = function(){}, B = function(){}, a, b;
           A.prototype.test_array = [1,2];
           A.test_array2 = [3, 4];
-          
+
           inheritPrototype(B, A);
           a = new A();
           b = new B();
