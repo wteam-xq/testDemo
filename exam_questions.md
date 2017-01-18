@@ -1,13 +1,13 @@
 ### 笔试题收藏：
 
-* 2014面试题大全（141101 更新）：
+* 2014面试题大全（141101 更新）:    
   [2014年最新前端开发面试题](http://clisvoi.blog.163.com/blog/static/2014980502014327104119515/)  
   [腾讯面试](http://www.w3cfuns.com/article-5598237-1-1.html)  
   [跳槽必看](http://developer.51cto.com/art/201202/314618.htm)  
   [常见问题](http://www.csdn.net/article/2012-10-18/2810902-Front-end-Developer-Interview-Questions)  
 * 150302(更新)  
   [简历模板](https://github.com/hacke2/ResumeSample)
-* 我最近收藏的题库(150629更新)：  
+* 我最近收藏的题库(150629更新):  
   [魅族前端面试题](http://weibo.com/p/1001603857375168721423)  
   [人人面试题](http://www.w3cfuns.com/thread-5591957-1-1.html)  
   [阿里前端面试题](http://www.w3cfuns.com/thread-5598563-2-1.html)  
