@@ -7,24 +7,60 @@
         </title>
         <style>
           /*css3 动画demo*/
-          .testframes{ width:100px; height:100px; background:red;position:relative; animation:mymove 2s infinite; -moz-animation:mymove 2s infinite; /* Firefox */ -webkit-animation:mymove 2s infinite; /* Safari and Chrome */ -o-animation:mymove 2s infinite; /* Opera */ }
-          @keyframes mymove{ 
-            0% {left:0px;} 
-            100% {left:100px;} 
+          /* http://web.jobbole.com/84835/   CSS3动画回调*/
+          .testframes{
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation:mymove 2s 3;
+            /* Firefox */
+            -moz-animation:mymove 2s 3;
+            /* Safari and Chrome */
+            -webkit-animation:mymove 2s 3;
+            /* Opera */
+            -o-animation:mymove 2s 3;
           }
-          @-moz-keyframes mymove /* Firefox */ { 
-            0% {left:0px;} 
-            100% {left:100px;} 
+          .testframes_1{
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation:myjump 2s 2;
+          }
+          .testframes_2{
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation:myJumpAndMove 2s 2;
+          }
+          @keyframes mymove{
+            0% {left:0px;}
+            100% {left:100px;}
+          }
+          @-moz-keyframes mymove /* Firefox */ {
+            0% {left:0px;}
+            100% {left:100px;}
           }
           @-webkit-keyframes mymove /* Safari 和 Chrome */ {
-            0% {left:0px;} 
-            100% {left:100px;} 
+            0% {left:0px;}
+            100% {left:100px;}
           }
           @-o-keyframes mymove /* Opera */ {
-            0% {left:0px;} 
-            100% {left:100px;} 
+            0% {left:0px;}
+            100% {left:100px;}
           }
-          
+          /* 测试CSS3动画回调， 不考虑兼容*/
+          @keyframes myjump{
+            0% { top:0px; }
+            100% { top:100px; }
+          }
+          @keyframes myJumpAndMove{
+              0%{ left:0px; top:0px; }
+              100%{ left:100px; top:100px; }
+          }
+
           /*清除浮动 常用样式*/
           .clearfix{ zoom: 1; }
           .clearfix:before,.clearfix:after{ content:'';display: table; }
@@ -66,13 +102,13 @@
 
           /*css三角形, css三角形产生器：http://apps.eky.hk/css-triangle-generator/zh-hant*/
           .css-triangle { width: 0; height: 0; border-style: solid dashed dashed dashed; border-width: 150px 100px 0 100px; border-color: #007bff transparent transparent transparent; }
-          
+
           .u_face{ position:relative; padding-top: 30px; width: 60px; margin: 0 auto; cursor:pointer; }
           .u_face img{ width: 60px; height: 60px; display: block; border-radius: 50%;}
           .u-face-pop { zoom:1; display:none; margin-top: -235px; margin-left:-70px; width:180px; height:130px; background: #ccc; border:2px solid #007bff; position:relative; padding:10px; }
           .u-face-pop p{ color:#fff; }
           .u-face-pop .triangle-ico { position:absolute; bottom:-16px; left:88px; width: 0; height: 0; border-style: solid dashed dashed dashed; border-width: 15px 10px 0 10px; border-color: #007bff transparent transparent transparent; }
-        
+
           /*文字双击选中默认事件去除*/
           /*IE6-9还没发现相关的CSS属性
             需要在html标签添加事件
@@ -96,12 +132,12 @@
           .t-margin-wrap2{ background-color:#ccc; margin:20px; height:100%; }
 
           /* 给div添加border 不占用宽度，例如原来是50%， 不想因为添加了brder导致div宽度大于50%; box-sizing IE8才开始支持（ie8 得加-ms前缀）*/
-        
+
           /*...样式实现，兼容IE6+，火狐下显示有点小问题*/
           .text_overflow{ width:27em; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
-          
+
           /*CSS 图片灰阶处理*/
-          /*http://www.zhangxinxu.com/wordpress/2012/08/css-svg-filter-image-grayscale/ 
+          /*http://www.zhangxinxu.com/wordpress/2012/08/css-svg-filter-image-grayscale/
             实际应用中如果要兼容所有浏览器（包括但不限于ie6~ie11），样式无法办到，只能使用一个新的黑色透明节点盖上面迂回实现；
           */
           .gray { -webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray; }
@@ -112,7 +148,7 @@
           http://www.cnblogs.com/ForEvErNoME/p/3373641.html
           http://www.zhangxinxu.com/wordpress/2011/08/css%E7%9B%B8%E5%AF%B9%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%BA%94%E4%B9%8Bz-index%E7%AF%87/
 
-          
+
           IE6 IE7 设置了position:relative;的节点会自动加上 z-index:0; 其他浏览器则为 z-index:auto;(auto不参与z-index数值对比，所以子节点如果 z-index比父节点同级的节点高会优先显示)
           http://www.cnblogs.com/mind/archive/2012/04/01/2198995.html
 
@@ -130,7 +166,7 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
-    
+
     <body>
 
       <div class='btn-cont'>
@@ -148,6 +184,8 @@
       <div id='test1' class="demo demo2">
         <h3>CSS3动画</h3>
         <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
+        <button id="changeCssAnimateBtn_1" class="radius-btn">更改为动画1</button>
+        <button id="changeCssAnimateBtn_2" class="radius-btn">更改为动画2</button>
       </div>
 
       <!-- 垂直居中相关教程：http://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/ -->
@@ -166,7 +204,7 @@
           </span>
         </div>
       </div>
-      
+
       <div id='test3' class="demo">
         <h3>用DIV+CSS实现三栏布局（左右固定200px，中间自适应）</h3>
         <div id="main">
@@ -204,7 +242,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- 源自知乎：http://www.zhihu.com/question/35180018/answer/61554144 -->
       <!-- 兼容性：IE6 不支持border-color:transparent, 额外处理：border-style其他三边设置成虚线 dashed; 结论：需要兼容IE6还是老实用图标（最好雪碧图）吧，效果不会太难看 -->
       <div id="test6" class="demo">
@@ -257,7 +295,7 @@
         <h4>调用样式后文本：</h4>
         <div class="text_overflow" title="...样式实现原理，1.固定长度(width)；2.强制文字在一行显示(white-space)；3.超出部分截取(overflow)；4.文字超出部分添加...;(text-overflow)">...样式实现原理，1.固定长度(width)；2.强制文字在一行显示(white-space)；3.超出部分截取(overflow)；4.文字超出部分添加...;(text-overflow)</div>
       </div>
-      
+
       <script src="utils/base.js" type="text/javascript"></script>
       <script>
         // CSS没有发布的概念，俗称是标准规范，实际上只是个建议，并不是强制执行的，W3C也只不过是个民间组织。
@@ -271,16 +309,33 @@
         // 启动函数
         function init() {
           var i, len, btn;
-          // 按钮列表 
+          var moveElement = document.getElementById('moveElement'),
+              changeCssAnimateBtn1 = document.getElementById('changeCssAnimateBtn_1'),
+              changeCssAnimateBtn2 = document.getElementById('changeCssAnimateBtn_2');
+          // 按钮列表
           var btn_list = document.getElementsByClassName('radius-btn');
-
           for (i = 0, len = btn_list.length; i < len; i++) {
             btn = btn_list[i];
             btn.onclick = demoClickHandler;
           }
-
           // 头像点击事件
           popUserInfo();
+          try {
+            // 更新了新动画样式， 也会触发
+            // 在动画执行过程中（没执行完） 更改了动画样式， 新样式动画播放完才触发；
+            // 动画执行完毕会回复原来样式， 所以可以在结束时 添加跟动画结束时样式一样的类。
+            moveElement.addEventListener('animationend', function(){
+                console.log('CSS3 动画完成！');
+            });
+          } catch(e){}
+          changeCssAnimateBtn1.onclick = function(e){
+              // 兼容setAttribute('class')
+              // http://www.cnblogs.com/leejersey/archive/2013/02/20/2919052.html
+              moveElement.className = 'testframes_1';
+          }
+          changeCssAnimateBtn2.onclick = function(e){
+              moveElement.className = 'testframes_2';
+          }
         }
         // 头像事件
         function popUserInfo() {
@@ -303,7 +358,7 @@
             if ( uFacePop.style.display == 'none' || uFacePop.style.display == '') {
               uFacePop.style.display = 'block';
             }
-            
+
           }
           // 隐藏弹出框
           function hideUserInfo(e) {
@@ -349,7 +404,7 @@
         }
 
         function hideAllDemo(){
-          // 获得demo集合 
+          // 获得demo集合
           var demo_list = document.getElementsByClassName('demo');
           var i , len, n_item;
           for (i = 0, len = demo_list.length; i < len; i++) {
