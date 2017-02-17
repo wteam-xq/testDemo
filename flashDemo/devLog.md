@@ -27,3 +27,10 @@ ExternalInterface.call("hideFlash",starNo);
 stop();
 
 ```
+
+* 2017-02-16
+* flash优化日志： 打开Adobe Flash Professional， 发布设置勾选上 HTML包装器， 然后关闭其他所有软件， win7(or win10)`ctrl + shift + Esc`打开任务管理器-》性能； 浏览器打开发布生成的HTML文件， 观察任务管理器里CPU占有率。
+* 后续项目优化方向： 高级浏览器使用 canvas 播放动画， 低级浏览器继续flash创建播放动画；
+* [swf2canvas库：Fanvas](https://github.com/TencentOpen/Fanvas)除了Fanvas还有大名鼎鼎的google和adobe的产品——swiffy(已停止服务)和flashcc；
+* 谷歌 swiffy 为嘛下线？因为它发布时间已有5年， 国外基本完成 flash动画到 H5动画的过渡， 所以不需要维护、更新该工具了；
+* [优化报告文档](https://pan.baidu.com/s/1c2Bsfg0) 后续更新 flash cc生成的HTML5文件研究；
