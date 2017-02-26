@@ -1,4 +1,4 @@
-<!-- 主流浏览器最小化时会停止timeOut计时，所以计数代码需要更新下 -->
+<!-- 主流浏览器最小化时会停止timeOut计时，如需考虑前后端同步秒数 必须使用计时器写法2（通过时间戳计时） -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +14,7 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
-    
+
     <body>
         <div id="con_apa" , class='bg'>
             倒计时
@@ -23,7 +23,7 @@
             <input type="button" class='on' id='timeBtn' value='启动'>
             <input type="button" id='resetTimeBtn' value='复位时间'>
         </div>
-        
+
         <div id="con_apa2" , class='bg'>
         </div>
 
@@ -208,7 +208,7 @@
                         this.minObj.html(timeObj.min);
                         this.secObj.html(timeObj.sec);
                     }
-                }; 
+                };
                 // 时间到了后的业务函数
                 function timeOutFn(){
                   alert('倒计时间到，处理业务吧！');

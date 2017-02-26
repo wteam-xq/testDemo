@@ -14,4 +14,4 @@
 * [无appid申请开发者权限](http://www.wxapp-union.com/forum.php?mod=viewthread&tid=495&extra=page%3D1%26filter%3Dtypeid%26typeid%3D3)
 * 获得以上权限后就可以 后台添加20个体验者，体验者可以扫码体验小程序；
 * 微信小程序开发 前端上手很容易， 就是 H5（css3 + ES6） + VUE(wx自定义标签, 节点事件在模块脚本定义、执行) 开发；
-* 微信小程序需要 https 请求， 得提前准备， 一个appId只能发布一个小程序；(本地开发也得配置 虚拟服务器的https服务)；
+* 微信小程序需要 https 请求，得提前准备， 一个appId只能发布一个小程序；

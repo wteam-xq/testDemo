@@ -4,4 +4,3 @@
 ### 小程序demo列表
 * firstDemo  学习Demo, 官方 quickstart 改动；
 * componentDemo 学习Demo, 官方组件Demo;
-* gitAPI  实践Demo 实现日常git指令查询;

@@ -9,10 +9,10 @@
         JS 日期对象理解
       </title>
     </head>
-    
+
     <body>
       <h3>日期对象理解</h3>
-      
+
       <div class='btn-list'>
         <button id="tomorrow" class="radius-btn">获取明天日期</button>
         <button id="format" class="radius-btn">获得格式为yyyymmdd的字符串</button>
@@ -50,21 +50,21 @@
         // new Date() 参数初始化
         // http://jishu.admin5.com/biancheng/131230/499.html
         function initDate() {
-          // 初始化日期， 常用写法：new date(yyyy,mth,dd);   new date(ms); 
+          // 初始化日期， 常用写法：new date(yyyy,mth,dd);   new date(ms);
           // 注意： 月份是从0开始计算，例如：new Date(2015, 10, 26)返回的是2015年11月26号的对象
           // var data1 = new Date("2015", "10", "27");
           var data1 = new Date(2015, 10, 26);
           var data2 = new Date(1445922341227);
           console.log("data1: " + data1);
           console.log("data2: " + data2);
-          // 创建一个日期对象： var objDate=new Date([arguments list]); 
-          // 参数形式有以下5种： 
-          // 1）new Date("month dd,yyyy hh:mm:ss"); 
-          // 2）new Date("month dd,yyyy"); 
-          // 3）new Date(yyyy,mth,dd,hh,mm,ss); 
-          // PS: 第三种初始化方法，一定要是整型;(别传字符串)
-          // 4）new Date(yyyy,mth,dd); 
-          // 5）new Date(ms); 
+          // 创建一个日期对象： var objDate=new Date([arguments list]);
+          // 参数形式有以下5种：
+          // 1）new Date("month dd,yyyy hh:mm:ss");
+          // 2）new Date("month dd,yyyy");
+          // 3）new Date(yyyy,mth,dd,hh,mm,ss);
+          // PS: 第三种初始化方法，一定要是整型;(别传字符串), 另外mth的取值是0~11, 所以 new Date(2017,1,27,12,00,01) 是指2017年2月27号12:01哦！
+          // 4）new Date(yyyy,mth,dd);
+          // 5）new Date(ms);
         }
         // new Date 浏览器兼容
         // http://blog.csdn.net/blueheart20/article/details/44902747
@@ -115,7 +115,7 @@
               return num;
             } else {
               return '0' + num;
-            } 
+            }
           }
 
           var result = '',
