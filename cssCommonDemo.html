@@ -7,6 +7,8 @@
         </title>
         <style>
           /*css3 动画demo*/
+          /* 关键样式：animation， 浏览器兼容： IE10+ */
+          /* API: http://www.w3school.com.cn/cssref/pr_animation.asp*/
           /* http://web.jobbole.com/84835/   CSS3动画回调*/
           .testframes{
             width:100px;
@@ -39,15 +41,18 @@
             0% {left:0px;}
             100% {left:100px;}
           }
-          @-moz-keyframes mymove /* Firefox */ {
+          /* Firefox */
+          @-moz-keyframes mymove{
             0% {left:0px;}
             100% {left:100px;}
           }
-          @-webkit-keyframes mymove /* Safari 和 Chrome */ {
+          /* Safari 和 Chrome */
+          @-webkit-keyframes mymove {
             0% {left:0px;}
             100% {left:100px;}
           }
-          @-o-keyframes mymove /* Opera */ {
+          /* Opera */
+          @-o-keyframes mymove{
             0% {left:0px;}
             100% {left:100px;}
           }
@@ -186,6 +191,9 @@
         <div id="moveElement" class='testframes'>每秒移动50px，左移100px</div>
         <button id="changeCssAnimateBtn_1" class="radius-btn">更改为动画1</button>
         <button id="changeCssAnimateBtn_2" class="radius-btn">更改为动画2</button>
+
+        <!-- 实践demo: IE10+ CSS3实现动画， 低版本浏览器JQ实现动画 -->
+
       </div>
 
       <!-- 垂直居中相关教程：http://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/ -->
