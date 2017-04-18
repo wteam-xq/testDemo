@@ -7,7 +7,7 @@
       <title>
         vue 学习 Demo(合并)
       </title>
-      <link rel="stylesheet" type="text/css" href="../common.css" />
+      <link rel="stylesheet" type="text/css" href="../../common.css" />
       <style>
         #demo li { cursor: pointer;color: #34495e;-ms-user-select: none;-moz-user-select: none;-webkit-user-select: none; }
         li.done { color: #7f8c8d;text-decoration: line-through; }
@@ -42,7 +42,7 @@
         }
       </style>
     </head>
-    
+
     <body>
       <h3>VUE DEMO</h3>
       <p>
@@ -67,7 +67,7 @@
           <h3>{{fullName}}</h3>
           <input type="text" v-model="fullName" />
         </div>
-        
+
         <!-- 自定义指令， 组件化开发神器 -->
         <div id="directive-panel" class="demo-panel" v-show="show_panel_no == 2">
           <button v-disable="disabled" v-on="click: myClick">
@@ -75,16 +75,16 @@
           </button>
           <!-- 绑定事件，点击时对disabled的值进行取反 -->
           <button v-on="click: disabled = !disabled">toggle</button>
-          
+
           <div id="demo" v-demo="LightSlateGray : msg" class="directive-demo"></div>
-          <input type="text" v-model="msg" /> 
+          <input type="text" v-model="msg" />
           <!-- 字面指令 -->
           <p v-literal-dir="test_foo">字面指令： 留意浏览器控制台输出内容</p>
 
           <p>双向指令： 指令函数能修改原绑定的值</p>
 
         </div>
-        
+
         <!-- 过滤面板 -->
         <div id="filter-panel" class="demo-panel" v-show="show_panel_no == 3">
           <p><strong>原字符串：</strong>{{test_str}}</p>
@@ -94,7 +94,7 @@
           <br/>
 
           <p><strong>组合过滤器(reverse 与 uppercase共同作用)：</strong><span v-text="test_str | reverse | uppercase"></span></p>
-          
+
           <br/>
           <br/>
           <h4>双向过滤器， 惰性更新lazy！</h4>
@@ -102,7 +102,7 @@
           <input type="text" v-model="test_str2 | currencyDisplay" lazy />
           <div>{{test_str2}}</div>
         </div>
-        
+
         <!-- 表单demo 面板 -->
         <div id="form-panel" class="demo-panel" v-show="show_panel_no == 4">
           <form id="form-demo">
@@ -149,7 +149,7 @@
             <p><pre>data: {{$data | json 2}}</pre></p>
           </form>
         </div>
-        
+
         <!-- 事件监听demo 面板 -->
         <div id="on-panel" class="demo-panel" v-show="show_panel_no == 5">
           <h2>{{test_num}}</h2>
@@ -162,7 +162,7 @@
           <h2>{{ test_num3 }}<h2>
           <input v-on="keyup: keyFun" v-model="test_on_str">
         </div>
-        
+
         <!-- 列表渲染demo　面板 -->
         <div id="repeat-panel" class="demo-panel" v-show="show_panel_no == 6">
           <h1>{{title | uppercase}}</h1>
@@ -179,7 +179,7 @@
         <!-- 组件系统 面板 -->
         <div id="componnents-panel" class="demo-panel" v-show="show_panel_no == 7">
           <my-component msg="wteam-xq is 213!"></my-component>
-          
+
           <h3>动态传参 组件：</h3>
           <div>
             <input v-model="parentMsg">
@@ -206,7 +206,7 @@
       </div>
 
       <script src="vue.js"></script>
-      <script src="../utils/base.js"></script>
+      <script src="../../utils/base.js"></script>
       <script type="text/javascript">
         // 全局变量
         var xq = {};
@@ -416,7 +416,7 @@
                   var number = +val.replace(/[^\d.]/g, '')
                   return isNaN(number) ? 0 : number
                 }
-              } 
+              }
             }
           });
           // 方便调试

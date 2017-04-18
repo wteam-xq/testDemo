@@ -7,10 +7,10 @@
       <title>
         vue vs jquery
       </title>
-      <link rel="stylesheet" type="text/css" href="../common.css"/>
-      <link rel="stylesheet" type="text/css" href="../reset.css"/>
-      <link rel="icon" href="../favicon.ico" type="image/x-icon" />
-      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+      <link rel="stylesheet" type="text/css" href="../../common.css"/>
+      <link rel="stylesheet" type="text/css" href="../../reset.css"/>
+      <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
       <style>
         /*注册流程vue*/
         body{ background: #f9f9f9; color: #666; }
@@ -32,7 +32,7 @@
         .listwrap{ margin-bottom: 15px; position: relative; }
         div#reg-phone-select-cty{ height: 40px; padding-left: 14px; line-height: 40px; display: inline-block; vertical-align: middle; border: 1px solid #e8e8e8; -o-border-radius: 4px; border-radius: 4px; color: #555; cursor: pointer; }
         .tits tt{ float: left; width: 275px; border-right: 1px solid #e8e8e8; cursor: pointer; }
-        .icon_cirarr{ float: right; background: url(../images/icon_user.png); width: 16px; height: 16px; margin: 11px 12px 0 12px; }
+        .icon_cirarr{ float: right; background: url(../../images/icon_user.png); width: 16px; height: 16px; margin: 11px 12px 0 12px; }
         .labelbox{ height: 40px; line-height: 40px; display: inline-block; }
         .labelbox input{ height: 20px; line-height: 20px; padding: 10px; display: inline-block; }
         .inputbg input{ width: 310px; height: 20px; line-height: 20px; }
@@ -57,7 +57,7 @@
         .marauto{ margin:0 auto;}
         .cursor_d{ cursor: default; }
         .na-img-area{ width: 80px; height: 80px; border: 2px solid #e3e3e3; border-radius: 50%; padding: 4px; background: #fff; position: relative; z-index: 4; cursor: pointer; }
-        .na-img-bg-area{ background: url(../images/n-avator-bg.png) 0 0 no-repeat; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; }
+        .na-img-bg-area{ background: url(../../images/n-avator-bg.png) 0 0 no-repeat; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; }
         .single_imgarea .us_name{ padding-top:10px; }
         .step3 dt{ margin:15px 0px; }
         .n_succ img{ margin:58px 0 14px; }
@@ -128,7 +128,7 @@
       </style>
     </head>
 
-    <body> 
+    <body>
       <div class="btn-list">
         <button class="radius-btn" v-on="click: showType = 1" v-class="active:showType == 1">注册流程(vue)</button>
         <button class="radius-btn" v-on="click: showType = 1.1" v-class="active:showType == 1.1">注册流程(jq)</button>
@@ -168,7 +168,7 @@
                     <label class="labelbox">
                       <input class="code" type="text" name="icode" value="vc6qu3" autocomplete="off" placeholder="图片验证码">
                     </label>
-                    <img alt="图片验证码" title="看不清换一张" class="chkcode_img" src="../images/miCode.jpg">
+                    <img alt="图片验证码" title="看不清换一张" class="chkcode_img" src="../../images/miCode.jpg">
                   </div>
                   <div>
                     <input class="btn332 btn_reg_1" id="submit-step" data-to="phone-step2" type="submit" value="立即注册" v-on="click: demo1.step = 2">
@@ -185,7 +185,7 @@
                   <div class="inputbg inputcode dis_box">
                     <label class="labelbox wap_resend_label">
                       <input class="resendcode" type="text" placeholder="请输入验证码" value="3344" name="ticket">
-                    </label>   
+                    </label>
                     <span class="remain"><a class="color333 send-status" href="javascript:void(0)">重新发送</a></span>
                   </div>
                   <div class="fixed_bot mar_phone_dis2">
@@ -247,28 +247,28 @@
               <div class="regbox" v-show="demo1.step == 5">
                 <div class="phone_step4">
                   <div class="t_c n_succ">
-                    <img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt="">
+                    <img class="dis_none" width="68" height="68" src="../../images/succ.jpg" alt="">
                     <h4>注册成功! </h4>
                     <div class="fixed_bot mar_phone_dis4">
                       <a class="btn332 btn_reg_1 login-redirect" v-on="click:demo1.step=6" href="javascript:void(0);">
                         登录
                       </a>
                     </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
               <!-- 步骤6 -->
               <div class="regbox" v-show="demo1.step == 6">
                 <div class="phone_step4">
                   <div class="t_c n_succ">
-                    <img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt="">
+                    <img class="dis_none" width="68" height="68" src="../../images/succ.jpg" alt="">
                     <h4>登陆成功! </h4>
                     <div class="fixed_bot mar_phone_dis4">
                       <a class="btn332 btn_reg_1 login-redirect" v-on="click:demo1.step=1" href="javascript:void(0);">
                         返回注册
                       </a>
                     </div>
-                  </div>  
+                  </div>
                 </div>
               </div>
 
@@ -293,7 +293,7 @@
           <button class="btn-radius" id="stepBtn4" >确认注册成功</button>
         </div>
       </div>
-      
+
       <div class="demo-panel" v-show="showType == 2">
         <h1 class="buy-list-demo">2.购物列表(vue)</h1>
         <form class="buy-list" v-show="demo2.step == 1">
@@ -318,7 +318,7 @@
            <div class="buy-list-f">
               <div class="good-total" v-text="demo2.totalPrice | formatPrice">0.00</div>
               <button class="radius-btn" v-on="click: confirmOrder(event)">去支付</button>
-          </div>  
+          </div>
         </form>
         <form class="buy-list" v-show="demo2.step == 2">
           <fieldset>
@@ -327,7 +327,7 @@
 
           <ul>
             <li v-repeat="good in demo2.selectedList">
-              <span class="con-l-label" v-text="good.name"></span> <span class="con-l-label">${{good.price}}</span> 
+              <span class="con-l-label" v-text="good.name"></span> <span class="con-l-label">${{good.price}}</span>
               X<span class="con-l-count" v-text="good.count"></span>
             </li>
             <p class="con-l-total">总价格 ￥<span v-text="demo2.totalPrice"></span></p>
@@ -335,10 +335,10 @@
           <div class="confirm-list-f">
               <button class="radius-btn btn-l" v-on="click: goBack()">返回</button>
               <button class="radius-btn btn-r" v-on="click: submitOrder()">提交订单</button>
-          </div>  
+          </div>
         </form>
         <div class="buy-list buy-list-tip" v-show="demo2.step == 3">
-          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt=""></div>
+          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../../images/succ.jpg" alt=""></div>
           <span>提交订单成功！</span>
           <button class="radius-btn btn-l" v-on="click: goBack()">返回</button>
         </div>
@@ -387,7 +387,7 @@
            <div class="buy-list-f">
               <div class="good-total">0.00</div>
               <button class="radius-btn" id="goBuy">去支付</button>
-          </div>  
+          </div>
         </form>
         <form class="buy-list" id="buyStep2">
           <fieldset>
@@ -396,21 +396,21 @@
 
           <ul>
             <li>
-              <span class="con-l-label">商品2</span> <span class="con-l-label">$45</span> 
+              <span class="con-l-label">商品2</span> <span class="con-l-label">$45</span>
               X<span class="con-l-count">3</span>
             </li>
             <li>
-              <span class="con-l-label">商品3</span> <span class="con-l-label">$75</span> 
+              <span class="con-l-label">商品3</span> <span class="con-l-label">$75</span>
               X<span class="con-l-count">2</span>
             </li>
           </ul>
           <div class="confirm-list-f">
               <button class="radius-btn btn-l goBack">返回</button>
               <button class="radius-btn btn-r" id="submitOrder">提交订单</button>
-          </div>  
+          </div>
         </form>
         <div class="buy-list buy-list-tip" id="buyStep3">
-          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../images/succ.jpg" alt=""></div>
+          <div class="tip-img"><img class="dis_none" width="68" height="68" src="../../images/succ.jpg" alt=""></div>
           <span>提交订单成功！</span>
           <button class="radius-btn btn-l goBack">返回</button>
         </div>
@@ -454,7 +454,7 @@
                 </div>
               </form>
             </div>
-            
+
             <div class="add-btn-wrap" v-show="demo3.formList.length < 3">
               <div class="speeddial  add-btn" title="新增表单" v-on="click: addForm()">
                 <div class="speeddial-inner">
@@ -558,9 +558,9 @@
       </div>
 
       <script type="text/javascript" src="./vue.js"></script>
-      <script type="text/javascript" src="../utils/base.js"></script>
-      <!-- // <script type="text/javascript" src="../lib/jquery-1.8.3.min.js"></script> -->
-      <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="../../utils/base.js"></script>
+      <!-- // <script type="text/javascript" src="../../lib/jquery-1.8.3.min.js"></script> -->
+      <script type="text/javascript" src="../../lib/jquery-1.10.2.min.js"></script>
 
       <script type="text/javascript">
         // 全局变量（方便调试， 浏览器控制台直接能查看VUE对象：xq.vm）
@@ -571,7 +571,7 @@
         function init() {
           var vm = null;
 
-          // 阻止默认事件(原生js) 
+          // 阻止默认事件(原生js)
           function preventDefault(event) {
             var event = EventUtil.getEvent();
             EventUtil.preventDefault(event);
@@ -670,12 +670,12 @@
               'demo2.goodList': {
                 handler: function(val , oldVal){
                   var i, len, good, totalPrice = 0, seledArray = [];
-                  // 更新 订单价格  
+                  // 更新 订单价格
                   for (i = 0, len = this.demo2.goodList.length; i < len; i++) {
                     good = this.demo2.goodList[i];
-                    if (good.selected) { 
+                    if (good.selected) {
                       seledArray.push(good);
-                      totalPrice += good.count * parseInt(good.price, 10); 
+                      totalPrice += good.count * parseInt(good.price, 10);
                     }
                   }
                   this.demo2.selectedList = seledArray;
@@ -760,7 +760,7 @@
               // 根据用户选中的商品， 渲染ul列表
               for(i = 0, len = goodList.length; i < len; i++) {
                 goodObj = goodList[i];
-                htmlStr += '<li data-gId="' + goodObj.id + '">' + 
+                htmlStr += '<li data-gId="' + goodObj.id + '">' +
                               '<span class="con-l-label">' + goodObj.goodName + '</span>' +
                               '<span class="con-l-label">$' + goodObj.price + '</span>' +
                               'X <span class="con-l-count">' + goodObj.count + '</span>' +
@@ -783,7 +783,7 @@
               this.$buyStep1.find('.set-min').on('click', minGoodCount);
               this.$buyStep1.find('.set-count').on('blur', inputBlur);
               this.$buyStep1.find('#goBuy').on('click', confirmOrder);
-              
+
               $('.buy-list').find('.goBack').on('click', goBack);
               this.$buyStep2.find('#submitOrder').on('click', submitOrder);
 
@@ -863,7 +863,7 @@
                 if ( parseInt(This.$buyStep1.find('.good-total').text(), 10) == 0 ) {
                   alert('请选择购买的商品。');
                   return false;
-                } 
+                }
                 This.renderOrderList();
                 return false;
               }
@@ -884,7 +884,7 @@
           // 注册相关 代码
           registInit();
           // 购买列表相关代码
-          BuyList.init(); 
+          BuyList.init();
 
           // 提交表单（3.1）
           var submitForm = {
@@ -906,7 +906,7 @@
             initEvt: function() {
               var This = this;
               this.$addBtn.on('click', function(){
-                This.addForm();                
+                This.addForm();
               });
               this.$subForm.on('click', function(){
                 This.subForm();
