@@ -11,7 +11,7 @@
         .reference_wrap{ margin:10px 20px 10px 0px;}
       </style>
     </head>
-    
+
     <body>
       <h3>ECMAScript6 理解</h3>
 
@@ -23,7 +23,6 @@
          <span>参考资料2： </span>
         <a href="http://www.cnblogs.com/Wayou/p/es6_new_features.html#home" target="_blank">ES6新特性概览（刘哇勇）</a>
       </div>
-      
       <h4>箭头操作符</h4>
       <h4>类的支持</h4>
       <h4>增强的对象字面量</h4>
@@ -40,7 +39,27 @@
       <h4>Promises</h4>
       <div>总结就是一句话，前后端差异越来越小了。</div>
 
-      <script>
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        class Calc {
+          constructor() {
+            console.log('Calc constructor');
+          }
+          add(a, b) {
+            return a + b;
+          }
+        }
+        var c = new Calc();
+        for (let i = 0; i < 10; i++) {
+            // 循环使用 let 变量最合适
+        }
+        console.log(c.add(4,5));
+        // 调试代码：
+        window.xqES6Obj = {
+
+        };
       </script>
     </body>
 </html>
