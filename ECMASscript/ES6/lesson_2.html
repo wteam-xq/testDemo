@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第二章 let 和 const 命令
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>let 和 const 命令</h3>
+      <h4>let（局部变量）</h4>
+      <div>let 声明的变量只存在于当前块级作用域内；</div>
+
+      <h4>块级作用域</h4>
+      <div>ES6新增的块级作用域， 让编码更严谨，更不易出错。</div>
+
+      <h4>const（常量）关键字</h4>
+      <div>const声明一个只读的常量。一旦声明，常量的值就不能改变。</div>
+      <div>ES6 有六种声明变量方式： var命令和function命令、let和const命令、import命令和class命令。</div>
+
+      <h4>顶层对象</h4>
+      <div>顶层对象，在浏览器环境指的是window对象，在Node指的是global对象。</div>
+
+      <h4>global对象</h4>
+      <div>顶层对象的属性与全局变量挂钩，被认为是JavaScript语言最大的设计败笔之一。ES6全局变量（global对象）将逐步与顶层对象的属性脱钩。</div>
+
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        // 第一章  let（局部变量）、const（常量）关键字、块级作用域、顶层对象、global对象
+        // ES6 有六种声明变量方式： var命令和function命令、let和const命令、import命令和class命令。
+        const CANT_CHANGE = 2;
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+        // IIFE 写法
+        (function () {
+          var tmp = 2;
+        }());
+        // 块级作用域写法
+        {
+          let tmp = 2;
+        }
+        // 顶层对象，在浏览器环境指的是window对象，在Node指的是global对象。
+        // 顶层对象的属性与全局变量挂钩，被认为是JavaScript语言最大的设计败笔之一。ES6全局变量将逐步与顶层对象的属性脱钩。
+        window.xqES6Obj = {
+            // const测试
+            changeConst: function(){
+                // 不注释会报错
+                // TypeError: Assignment to constant variable.
+                // CANT_CHANGE = 3;
+            },
+            // let 测试
+            callLeg: function(){
+                //ReferenceError: i is not defined
+                console.log(i);
+            }
+        };
+      </script>
+    </body>
+</html>

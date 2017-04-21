@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第一章 ECMAScript6 简介
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>ECMAScript6 简介</h3>
+      <h4>ECMAScript 和 JavaScript的关系</h4>
+      <div>ECMAScript是浏览器脚本标准，JavaScript是上述标准的实现。</div>
+      <h4>ES6 与 ECMAScript 2015 的关系 </h4>
+      <div>ES6第一个版本在2015年6月份正式发布，名称就是《ECMAScript 2015标准》（简称 ES2015）。</div>
+      <h4>语法提案的批准流程 </h4>
+      <div>Stage 0 - Strawman（展示阶段）</div>
+      <div>Stage 1 - Proposal（征求意见阶段）</div>
+      <div>Stage 2 - Draft（草案阶段）</div>
+      <div>Stage 3 - Candidate（候选人阶段）</div>
+      <div>Stage 4 - Finished（定案阶段）</div>
+      <h4>ECMAScript 的历史 </h4>
+      <div>ES6 从开始制定到最后发布，整整用了15年。
+      <div>2000年，ECMAScript 4.0 开始酝酿。这个版本最后没有通过，但是它的大部分内容被 ES6 继承了。因此，ES6 制定的起点其实是2000年。</div>
+      <h4>部署进度</h4>
+      <div><a href="http://kangax.github.io/compat-table/es6/" target="_blank">各大浏览器对ES6支持情况</a></div>
+      <div><a href="http://ruanyf.github.io/es-checker/" target="_blank">您的浏览器对ES6支持情况</a></div>
+      <h4>Babel 转码器</h4>
+      <div>Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在现有环境执行。</div>
+      <h4>Traceur 转码器</h4>
+      <div>Google公司的Traceur转码器，也可以将 ES6 代码转为 ES5 代码。</div>
+      <div>本目录调试代码，用的就是Traceur 转码器</div>
+
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        class Calc {
+          constructor() {
+            console.log('Calc constructor');
+          }
+          add(a, b) {
+            return a + b;
+          }
+        }
+        var c = new Calc();
+        // 控制台打印出 9
+        console.log(c.add(4,5));
+      </script>
+    </body>
+</html>
