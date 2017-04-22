@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第三章 变量的解构赋值
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>变量的解构赋值</h3>
+      <h4>1.数组的解构赋值</h4>
+      <div>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</div>
+
+      <h4>2.对象的解构赋值</h4>
+      <div>解构不仅可以用于数组，还可以用于对象。</div>
+
+      <h4>3.字符串的解构赋值</h4>
+      <div>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</div>
+
+      <h4>4.数值和布尔值的解构赋值</h4>
+      <div>解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。</div>
+
+      <h4>5.函数参数的解构赋值</h4>
+      <div>函数的参数也可以使用解构赋值。</div>
+
+      <h4>6.圆括号问题</h4>
+      <div>解构赋值虽然很方便，但是解析起来并不容易。建议只要有可能，就不要在模式中放置圆括号。</div>
+
+      <h4>7.用途(重点！)</h4>
+      <div>交换变量的值</div>
+      <div>从函数返回多个值</div>
+      <div>函数参数的定义</div>
+      <div>提取JSON数据</div>
+      <div>函数参数的默认值</div>
+      <div>遍历Map结构</div>
+      <div>输入模块的指定方法</div>
+
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        // 数组解构赋值 相当于： let a = 1; let b = 2; let c = 3;
+        let [a, b, c] = [1, 2, 3];
+
+        // 对象解构赋值
+        // foo // "aaa"
+        // bar // "bbb"
+        let { foo, bar } = { foo: "aaa", bar: "bbb" };
+
+        // 字符串解构赋值
+        // first // "h"
+        // two // "e"
+        // three // "l"
+        // four // "l"
+        // five // "o"
+        const [first, two, three, four, five] = 'hello';
+
+        // 数值、布尔型解构赋值
+        let {toString: s} = 123;
+        // s === Number.prototype.toString // true
+        let {toString: s2} = true;
+        // s === Boolean.prototype.toString // true
+
+        // 函数参数解构赋值
+        function add([x, y]){
+          return x + y;
+        }
+        add([1, 2]); // 3
+
+        // 圆括号问题: 全部报错
+        // let [(a)] = [1];
+        //
+        // let {x: (c)} = {};
+        // let ({x: c}) = {};
+        // let {(x: c)} = {};
+        // let {(x): c} = {};
+        //
+        // let { o: ({ p: p }) } = { o: { p: 2 } };
+
+        // 7.1 交换变量的值
+        let x = 1;
+        let y = 2;
+        [x, y] = [y, x];
+        // 7.2 从函数返回多个值
+        function example() {
+          return [1, 2, 3];
+        }
+        let [fnOne, fnTwo, fnThree] = example();
+        // 7.3 函数参数的定义
+        // function f([x, y, z]) { ... }
+        // f([1, 2, 3]);
+        // 7.4 提取JSON数据
+        let jsonData = {
+          id: 42,
+          status: "OK",
+          data: [867, 5309]
+        };
+        let { id, status, data: number } = jsonData;
+        // 7.5 函数参数的默认值
+        // $.ajax = function (url, {
+        //   async = true,
+        //   beforeSend = function () {},
+        //   cache = true,
+        //   complete = function () {},
+        //   crossDomain = false,
+        //   global = true,
+        //   // ... more config
+        // }) {
+        //   // ... do stuff
+        // };
+        // 7.6 遍历Map结构
+        var map = new Map();
+        map.set('first', 'hello');
+        map.set('second', 'world');
+        for (let [key, value] of map) {
+          console.log(key + " is " + value);
+        }
+        // 7.7 输入模块的指定方法
+        // const { SourceMapConsumer, SourceNode } = require("source-map");
+
+      </script>
+    </body>
+</html>
