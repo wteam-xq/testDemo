@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第四章 字符串的扩展
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>字符串的扩展</h3>
+      <h4>1.字符的 Unicode 表示法</h4>
+      <div>JavaScript 允许采用\uxxxx形式表示一个字符，其中xxxx表示字符的 Unicode 码点。</div>
+
+      <h4>2.codePointAt()</h4>
+      <div>JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2个字节。对于那些需要4个字节储存的字符（Unicode码点大于0xFFFF的字符），JavaScript会认为它们是两个字符。</div>
+
+      <h4>3.String.fromCodePoint()</h4>
+      <div>ES6提供了String.fromCodePoint方法，可以识别大于0xFFFF的字符，弥补了String.fromCharCode方法的不足。</div>
+
+      <h4>4.字符串的遍历器接口</h4>
+      <div>ES6为字符串添加了遍历器接口（详见《Iterator》一章），使得字符串可以被for...of循环遍历。</div>
+
+      <h4>5.at()</h4>
+      <div>ES6字符串的“.at()”，可以识别Unicode编号大于0xFFFF的字符，返回正确的字符。</div>
+
+      <h4>6.normalize() </h4>
+      <div>许多欧洲语言有语调符号和重音符号。为了表示它们，Unicode提供了两种方法。</div>
+      <div>一种是直接提供带重音符号的字符，比如Ǒ（\u01D1）。</div>
+      <div>另一种是提供合成符号（combining character），即原字符与重音符号的合成，两个字符合成一个字符，比如O（\u004F）和ˇ（\u030C）合成Ǒ（\u004F\u030C）。</div>
+      <div>ES6提供字符串实例的normalize()方法，用来将字符的不同表示方法统一为同样的形式，这称为Unicode正规化。</div>
+
+      <h4>7.includes(), startsWith(), endsWith()</h4>
+      <div>传统上，JavaScript只有indexOf方法，可以用来确定一个字符串是否包含在另一个字符串中。ES6又提供了三种新方法。</div>
+      <div>includes()：返回布尔值，表示是否找到了参数字符串。</div>
+      <div>startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部。</div>
+      <div>endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部。</div>
+
+      <h4>8.repeat()</h4>
+      <div>repeat方法返回一个新字符串，表示将原字符串重复n次。</div>
+
+      <h4>9.padStart()，padEnd()</h4>
+      <div>ES2017 引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。</div>
+
+      <h4>10.模板字符</h4>
+      <div>ES6引入了模板字符串解决动态html插入的问题。（模板引擎）</div>
+
+      <h4>11.实例：模板编译</h4>
+      <div>模板字符串使用“<%...%>”放置JavaScript代码，使用“<%= ... %>”输出JavaScript表达式。</div>
+
+      <h4>12.标签模板</h4>
+      <div>模板字符串的功能，不仅仅是上面这些。它可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。</div>
+
+      <h4>13.String.raw()</h4>
+      <div>String.raw方法，往往用来充当模板字符串的处理函数，返回一个斜杠都被转义（即斜杠前面再加一个斜杠）的字符串，对应于替换变量后的模板字符串。</div>
+
+      <h4>14.模板字符串的限制</h4>
+      <div>内嵌其他语言，模板字符串默认会将字符串转义，因此导致了无法嵌入其他语言。对字符串转义的放松，只在标签模板解析字符串时生效</div>
+
+      <div id="result"> </div>
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        var strOne = "\u0061";
+        // "a"
+
+        function is32Bit(c) {
+          return c.codePointAt(0) > 0xFFFF;
+        }
+        is32Bit("𠮷"); // true
+        is32Bit("a"); // false
+
+        var strThree = String.fromCodePoint(0x20BB7);
+        // "𠮷"
+
+        for (let codePoint of 'foo') {
+          console.log(codePoint);
+        }
+        // "f"
+        // "o"
+        // "o"
+
+        // console.log( ("吉".at(0)) ); // "𠮷"
+
+        '\u01D1'.normalize() === '\u004F\u030C'.normalize();// true
+
+        var strSeven = 'Hello world!';
+        strSeven.startsWith('world', 6) // true
+        strSeven.endsWith('Hello', 5) // true
+        strSeven.includes('Hello', 6) // false
+
+        // 'x'.repeat(3); // "xxx"
+        // 'hello'.repeat(2); // "hellohello"
+        // 'na'.repeat(0);// ""
+        //
+        // 'x'.padStart(5, 'ab') // 'ababx'
+        // 'x'.padStart(4, 'ab') // 'abax'
+        // 'x'.padEnd(5, 'ab') // 'xabab'
+        // 'x'.padEnd(4, 'ab') // 'xaba'
+
+        // $('#result').append(`
+        //   There are <b>${basket.count}</b> items
+        //    in your basket, <em>${basket.onSale}</em>
+        //   are on sale!
+        // `);
+
+        var data = {supplies:[1,2,3,4,5]};
+        var template = `
+        <ul>
+          <% for(var i=0; i < data.supplies.length; i++) { %>
+            <li><%= data.supplies[i] %></li>
+          <% } %>
+        </ul>
+        `;
+
+        alert`123`;
+        // 等同于
+        // alert(123)
+
+        String.raw`Hi\n${2+3}!`;
+        // "Hi\\n5!"
+        String.raw`Hi\u000A!`;
+        // 'Hi\\u000A!'
+
+      </script>
+    </body>
+</html>
