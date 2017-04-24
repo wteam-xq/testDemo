@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第五章 正则的扩展
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>正则的扩展</h3>
+
+      <h4>1.RegExp构造函数</h4>
+      <div>ES6，如果RegExp构造函数第一个参数是一个正则对象，那么可以使用第二个参数指定修饰符。（ES5下会报错）</div>
+
+      <h4>2.字符串的正则方法</h4>
+      <div>字符串对象共有4个方法，可以使用正则表达式：match()、replace()、search()和split()。</div>
+
+      <h4>3.u修饰符</h4>
+      <div>ES6对正则表达式添加了u修饰符，含义为“Unicode模式”，用来正确处理大于\uFFFF的Unicode字符。也就是说，会正确处理四个字节的UTF-16编码。</div>
+
+      <h4>4.y 修饰符</h4>
+      <div>y修饰符的作用与g修饰符类似，也是全局匹配，后一次匹配都从上一次匹配成功的下一个位置开始。</div>
+      <div>不同之处在于，g修饰符只要剩余位置中存在匹配就可，而y修饰符确保匹配必须从剩余的第一个位置开始，这也就是“粘连”的涵义。</div>
+
+      <h4>5.sticky属性</h4>
+      <div>与y修饰符相匹配，ES6的正则对象多了sticky属性，表示是否设置了y修饰符。</div>
+
+      <h4>6.flags属性</h4>
+      <div>ES6为正则表达式新增了flags属性，会返回正则表达式的修饰符。</div>
+
+      <h4>7.RegExp.escape()</h4>
+      <div>字符串必须转义，才能作为正则模式。使用静态方法RegExp.escape()可以该简化步骤，不再需要“\”进行转义。（有安全隐患，可能废除）</div>
+
+      <h4>8.s 修饰符：dotAll 模式</h4>
+      <div>正则表达式中，点（.）是一个特殊字符，代表任意的单个字符，但是行终止符（line terminator character）除外。</div>
+      <div>以下四个字符属于”行终止符“。</div>
+      <div>U+000A 换行符（\n）</div>
+      <div>U+000D 回车符（\r）</div>
+      <div>U+2028 行分隔符（line separator）</div>
+      <div>U+2029 段分隔符（paragraph separator）</div>
+
+      <h4>9.后行断言</h4>
+      <div>avaScript 语言的正则表达式，只支持先行断言（lookahead）和先行否定断言（negative lookahead），不支持后行断言（lookbehind）和后行否定断言（negative lookbehind）。</div>
+      <div>ES6有一个提案，引入后行断言。</div>
+
+      <h4>10.Unicode属性类</h4>
+      <div>ES6有一个提案，引入了一种新的类的写法\p{...}和\P{...}，允许正则表达式匹配符合Unicode某种属性的所有字符。</div>
+
+      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+      <script type="module">
+        var regOne = new RegExp(/abc/ig, 'i');
+        // "i"
+
+        var regTwo = '中文个数'.match(/[\s\S]/gu);
+
+        // \uD83D\uDC2A是一个四个字节的UTF-16编码，代表一个字符。
+        // 但是，ES5不支持四个字节的UTF-16编码，会将其识别为两个字符，导致第二行代码结果为true。
+        // 加了u修饰符以后，ES6就会识别其为一个字符，所以第一行代码结果为false。
+        /^\uD83D/u.test('\uD83D\uDC2A');
+        // false
+        /^\uD83D/.test('\uD83D\uDC2A');
+        // true
+
+        var sFour = 'aaa_aa_a';
+        var r1 = /a+/g;
+        var r2 = /a+/y;
+        r1.exec(sFour); // ["aaa"]
+        r2.exec(sFour); // ["aaa"]
+        r1.exec(sFour); // ["aa"]
+        r2.exec(sFour); // null
+
+        var rFive = /hello\d/y;
+        rFive.sticky // true
+
+        // ES5的source属性
+        // 返回正则表达式的正文
+        /abc/ig.source
+        // "abc"
+
+        // ES6的flags属性
+        // 返回正则表达式的修饰符
+        /abc/ig.flags
+        // 'gi'
+
+        // 上面代码中，因为.不匹配\n，所以正则表达式返回false。
+        /foo.bar/.test('foo\nbar');
+        // false
+
+        /(?<=\$)\d+/.exec('Benjamin Franklin is on the $100 bill');  // ["100"]
+        /(?<!\$)\d+/.exec('it’s is worth about €90');                // ["90"]
+
+        // \p{Script=Greek}指定匹配一个希腊文字母，所以匹配π成功。
+        const regexGreekSymbol = /\p{Script=Greek}/u;
+        regexGreekSymbol.test('π'); // u
+      </script>
+    </body>
+</html>
