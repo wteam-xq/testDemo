@@ -82,12 +82,12 @@
 
         // ES5的source属性
         // 返回正则表达式的正文
-        /abc/ig.source
+        /abc/ig.source;
         // "abc"
 
         // ES6的flags属性
         // 返回正则表达式的修饰符
-        /abc/ig.flags
+        /abc/ig.flags;
         // 'gi'
 
         // 上面代码中，因为.不匹配\n，所以正则表达式返回false。
@@ -98,8 +98,8 @@
         /(?<!\$)\d+/.exec('it’s is worth about €90');                // ["90"]
 
         // \p{Script=Greek}指定匹配一个希腊文字母，所以匹配π成功。
-        const regexGreekSymbol = /\p{Script=Greek}/u;
-        regexGreekSymbol.test('π'); // u
+        // const regexGreekSymbol = /\p{Script=Greek}/u;
+        // regexGreekSymbol.test('π'); // u
       </script>
     </body>
 </html>
