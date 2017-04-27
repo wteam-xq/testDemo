@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第七章 数组的扩展
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>数组的扩展</h3>
+
+      <h4>1.Array.from()</h4>
+      <div>Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</div>
+
+      <h4>2.Array.of()</h4>
+      <div>Array.of方法用于将一组值，转换为数组。</div>
+
+      <h4>3.数组实例的copyWithin()</h4>
+      <div>数组实例的copyWithin方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</div>
+
+      <h4>4.数组实例的find()和findIndex()</h4>
+      <div>数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。</div>
+      <div>数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。</div>
+
+      <h4>5.数组实例的fill() </h4>
+      <div>fill方法使用给定值，填充一个数组。</div>
+
+      <h4>6.数组实例的entries()，keys()和values() </h4>
+      <div>ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。</div>
+      <div>它们都返回一个遍历器对象（详见《Iterator》一章），可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。</div>
+
+      <h4>7.数组实例的includes() </h4>
+      <div>Array.prototype.includes方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似。该方法属于ES7，但Babel转码器已经支持。</div>
+
+      <h4>8.数组的空位</h4>
+      <div>数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。</div>
+      <div>ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位。</div>
+      <div>ES6则是明确将空位转为undefined。</div>
+
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
+        let arrayLike = {
+              '0': 'a',
+              '1': 'b',
+              '2': 'c',
+              length: 3
+        };
+        let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+        Array.of(3, 11, 8); // [3,11,8]
+        [1, 2, 3, 4, 5].copyWithin(0, 3);
+        console.log(arr2);
+
+        ['a', 'b', 'c'].fill(7); // [7,7,7]
+
+        // 0， 1
+        for (let index of ['a', 'b'].keys()) {
+          console.log(index);
+        }
+
+        [1, 2, 3].includes(2);     // true
+        [1, 2, 3].includes(4);     // false
+
+        // forEach方法
+        [,'a'].forEach((x,i) => console.log(i)); // 1
+      </script>
+    </body>
+</html>
