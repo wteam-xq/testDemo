@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第九章 对象的扩展
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>对象的扩展</h3>
+
+      <h4>1.属性的简洁表示法</h4>
+      <div>ES6 允许直接写入变量和函数，作为对象的属性和方法。</div>
+
+      <h4>2.属性名表达式</h4>
+      <div>JavaScript语言定义对象的属性，有两种方法。</div>
+      <div>方法一是直接用标识符作为属性名，方法二是用表达式作为属性名，这时要将表达式放在方括号之内。</div>
+      <div>ES6 允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。</div>
+
+      <h4>3.方法的 name 属性</h4>
+      <div>函数的name属性，返回函数名。对象方法也是函数，因此也有name属性。</div>
+
+      <h4>4.Object.is()</h4>
+      <div>ES6提出“Same-value equality”（同值相等）算法，用来解决这个问题。Object.is就是部署这个算法的新方法。它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致。</div>
+
+      <h4>5.Object.assign()</h4>
+      <div>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。</div>
+
+      <h4>6.属性的可枚举性</h4>
+      <div>对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。</div>
+
+      <h4>7.属性的遍历</h4>
+      <div>ES6一共有5种方法可以遍历对象的属性。</div>
+      <div>for...in循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）。</div>
+      <div>Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性）。</div>
+      <div>Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含Symbol属性，但是包括不可枚举属性）。</div>
+      <div>Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有Symbol属性。</div>
+      <div>Reflect.ownKeys返回一个数组，包含对象自身的所有属性，不管属性名是Symbol或字符串，也不管是否可枚举。</div>
+
+      <h4>8.__proto__属性，Object.setPrototypeOf()，Object.getPrototypeOf()</h4>
+      <div>__proto__属性（前后各两个下划线），用来读取或设置当前对象的prototype对象。目前，所有浏览器（包括 IE11）都部署了这个属性。</div>
+
+      <h4>9.Object.keys()，Object.values()，Object.entries()</h4>
+      <div>ES5 引入了Object.keys方法，返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键名。</div>
+      <div>ES2017 引入了跟Object.keys配套的Object.values和Object.entries，作为遍历一个对象的补充手段，供for...of循环使用。</div>
+
+      <h4>10.对象的扩展运算符</h4>
+      <div>《数组的扩展》一章中，已经介绍过扩展运算符（...）。</div>
+
+      <h4>11.Object.getOwnPropertyDescriptors()</h4>
+      <div>ES5有一个Object.getOwnPropertyDescriptor方法，返回某个对象属性的描述对象（descriptor）。</div>
+      <div>ES2017 引入了Object.getOwnPropertyDescriptors方法，返回指定对象所有自身属性（非继承属性）的描述对象。</div>
+
+      <h4>12.Null 传导运算符</h4>
+      <div>编程实务中，如果读取对象内部的某个属性，往往需要判断一下该对象是否存在。比如，要读取message.body.user.firstName，安全的写法非常麻烦。</div>
+      <div>ES6引入了“Null 传导运算符”（null propagation operator）?.，简化上面的写法。</div>
+
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
+
+        var foo = 'bar';
+        var baz = {foo};
+        // 等同于
+        // var baz = {foo: foo};
+
+        let propKey = 'foo';
+        let obj = {
+            [propKey]: true,
+            ['a' + 'bc']: 123
+        };
+
+        const person = {
+            sayName() {
+                console.log('hello!');
+            },
+        };
+        person.sayName.name;   // "sayName"
+
+        Object.is(+0, -0); // false
+        Object.is(NaN, NaN); // true
+
+        var target = { a: 1 };
+        var source1 = { b: 2 };
+        var source2 = { c: 3 };
+        Object.assign(target, source1, source2);
+        target; // {a:1, b:2, c:3}
+
+        let objSix = { foo: 123 };
+        Object.getOwnPropertyDescriptor(objSix, 'foo');
+        //  {
+        //    value: 123,
+        //    writable: true,
+        //    enumerable: true,
+        //    configurable: true
+        //  }
+
+        Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 });
+        // ['2', '10', 'b', 'a', Symbol()]
+
+        var objNine = { foo: 'bar', baz: 42 };
+        Object.keys(objNine);
+        // ["foo", "baz"]
+
+        const [a, ...b] = [1, 2, 3];
+        a // 1
+        b // [2, 3]
+
+        const objEleven = {
+          foo: 123,
+          get bar() { return 'abc' }
+        };
+        Object.getOwnPropertyDescriptors(objEleven)
+        // { foo:
+        //    { value: 123,
+        //      writable: true,
+        //      enumerable: true,
+        //      configurable: true },
+        //   bar:
+        //    { get: [Function: bar],
+        //      set: undefined,
+        //      enumerable: true,
+        //      configurable: true } }
+
+        // const firstName = message?.body?.user?.firstName || 'default';
+        // 如果 a 是 null 或 undefined，下面的语句不产生任何效果
+        // 否则执行 a.b = 42
+        // a?.b = 42;
+      </script>
+    </body>
+</html>

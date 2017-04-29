@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第八章 函数的扩展
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>函数的扩展</h3>
+
+      <h4>1.函数参数的默认值</h4>
+      <div>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</div>
+
+      <h4>2.rest参数</h4>
+      <div>ES6 引入 rest 参数（形式为“...变量名”），用于获取函数的多余参数，这样就不需要使用arguments对象了。</div>
+
+      <h4>3.扩展运算符</h4>
+      <div>扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</div>
+
+      <h4>4.严格模式</h4>
+      <div>ES2016 做了一点修改，规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。</div>
+
+      <h4>5.name 属性</h4>
+      <div>函数的name属性，返回该函数的函数名。</div>
+
+      <h4>6.箭头函数</h4>
+      <div>ES6允许使用“箭头”（=>）定义函数。</div>
+
+      <h4>7.绑定 this(还是ES7的一个提案)</h4>
+      <div>箭头函数可以绑定this对象，大大减少了显式绑定this对象的写法（call、apply、bind）</div>
+
+      <h4>8.尾调用优化</h4>
+      <div>尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。</div>
+
+      <h4>9.函数参数的尾逗号</h4>
+      <div>ES2017 允许函数的最后一个参数有尾逗号（trailing comma）。</div>
+
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
+        function log(x, y = 'World') {
+            console.log(x, y);
+        }
+        log('Hello', 'China') // Hello China
+
+        function add(...values) {
+          let sum = 0;
+
+          for (var val of values) {
+            sum += val;
+          }
+
+          return sum;
+        }
+        add(2, 5, 3); // 10
+
+        console.log(...[1, 2, 3]);
+
+        // 报错
+        // function doSomething(a, b = a) {
+        //   'use strict';
+        //   // code
+        // }
+
+        function foo() {}
+        console.log(foo.name); // "foo"
+
+        var f = v => v;
+        // var f = function(v) {
+        //   return v;
+        // };
+
+        // foo::bar;
+        // 等同于
+        // bar.bind(foo);
+
+        // 尾部调用
+        // function f(x){
+        //   return g(x);
+        // }
+
+      </script>
+    </body>
+</html>
