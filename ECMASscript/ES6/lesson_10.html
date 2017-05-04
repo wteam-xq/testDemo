@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十章 Symbol
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>Symbol</h3>
+
+      <h4>1.概述</h4>
+      <div>对象属性名都是字符串，这容易造成属性名的冲突。Symbol 保证每个属性的名字都是独一无二，这样就从根本上防止属性名的冲突。</div>
+
+      <h4>2.作为属性名的 Symbol</h4>
+      <div>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</div>
+
+      <h4>3.实例：消除魔术字符串</h4>
+      <div>魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。</div>
+
+      <h4>4.属性名的遍历</h4>
+      <div>Symbol 作为属性名，该属性不会出现在for...in、for...of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回。</div>
+      <div>但是，它也不是私有属性，有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有 Symbol 属性名。</div>
+
+      <h4>5.Symbol.for()，Symbol.keyFor()</h4>
+      <div>有时，我们希望重新使用同一个Symbol值，Symbol.for方法可以做到这一点。</div>
+      <div>Symbol.keyFor方法返回一个已登记的 Symbol 类型值的key。</div>
+      <div>Symbol.for()与Symbol()这两种写法，都会生成新的Symbol。</div>
+      <div>区别：调用Symbol.for("cat")30次，每次都会返回同一个 Symbol 值，但是调用Symbol("cat")30次，会返回30个不同的Symbol值。</div>
+
+      <h4>6.实例：模块的 Singleton 模式 </h4>
+      <div>Singleton模式指的是调用一个类，任何时候返回的都是同一个实例。 </div>
+
+      <h4>7.内置的Symbol值 </h4>
+      <div>除了定义自己使用的Symbol值以外，ES6还提供了11个内置的Symbol值，指向语言内部使用的方法。 </div>
+      <div>对象的Symbol.hasInstance属性，指向一个内部方法。当其他对象使用instanceof运算符，判断是否为该对象的实例时，会调用这个方法。</div>
+      <div>对象的Symbol.isConcatSpreadable属性等于一个布尔值，表示该对象使用Array.prototype.concat()时，是否可以展开。</div>
+      <div>对象的Symbol.species属性，指向当前对象的构造函数。</div>
+      <div>对象的Symbol.match属性，指向一个函数。当执行str.match(myObject)时，如果该属性存在，会调用它，返回该方法的返回值。</div>
+      <div>对象的Symbol.replace属性，指向一个方法，当该对象被String.prototype.replace方法调用时，会返回该方法的返回值。</div>
+      <div>对象的Symbol.search属性，指向一个方法，当该对象被String.prototype.search方法调用时，会返回该方法的返回值。</div>
+      <div>对象的Symbol.split属性，指向一个方法，当该对象被String.prototype.split方法调用时，会返回该方法的返回值。</div>
+      <div>对象的Symbol.iterator属性，指向该对象的默认遍历器方法。</div>
+      <div>对象的Symbol.toPrimitive属性，指向一个方法。该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。</div>
+      <div>对象的Symbol.toStringTag属性，指向一个方法。在该对象上面调用Object.prototype.toString方法时，如果这个属性存在，它的返回值会出现在toString方法返回的字符串之中，表示对象的类型。</div>
+      <div>对象的Symbol.unscopables属性，指向一个对象。该对象指定了使用with关键字时，哪些属性会被with环境排除。</div>
+
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
+      let s = Symbol();
+      typeof s; // "symbol"
+
+      var mySymbol = Symbol();
+      var a = {};
+      a[mySymbol] = 'Hello!';
+
+      var shapeType = {
+        triangle: 'Triangle'
+      };
+      function getArea(shape, options) {
+          var area = 0;
+          switch (shape) {
+            case shapeType.triangle:
+              area = .5 * options.width * options.height;
+              break;
+          }
+          return area;
+      }
+      getArea(shapeType.triangle, { width: 100, height: 100 });
+
+      var obj = {};
+      var foo = Symbol("foo");
+      Object.defineProperty(obj, foo, {
+          value: "foobar",
+      });
+      Object.getOwnPropertySymbols(obj);// [Symbol(foo)]
+      var s1 = Symbol.for("foo");
+      Symbol.keyFor(s1); // "foo"
+
+      // mod.js
+    //   const FOO_KEY = Symbol.for('foo');
+    //   function A() {
+    //     this.foo = 'hello';
+    //   }
+    //   if (!global[FOO_KEY]) {
+    //     global[FOO_KEY] = new A();
+    //   }
+    //   module.exports = global[FOO_KEY];
+
+        let objSeven = {length: 2, 0: 'c', 1: 'd'};
+        ['a', 'b'].concat(objSeven, 'e'); // ['a', 'b', obj, 'e']
+        objSeven[Symbol.isConcatSpreadable] = true;
+        ['a', 'b'].concat(objSeven, 'e'); // ['a', 'b', 'c', 'd', 'e']
+
+      </script>
+    </body>
+</html>
