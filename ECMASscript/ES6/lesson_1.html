@@ -36,10 +36,8 @@
       <div>Google公司的Traceur转码器，也可以将 ES6 代码转为 ES5 代码。</div>
       <div>本目录调试代码，用的就是Traceur 转码器</div>
 
-      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
-      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
-      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
-      <script type="module">
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
         class Calc {
           constructor() {
             console.log('Calc constructor');

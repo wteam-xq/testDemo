@@ -52,10 +52,8 @@
       <h4>10.Unicode属性类</h4>
       <div>ES6有一个提案，引入了一种新的类的写法\p{...}和\P{...}，允许正则表达式匹配符合Unicode某种属性的所有字符。</div>
 
-      <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
-      <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
-      <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
-      <script type="module">
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script type="text/babel">
         var regOne = new RegExp(/abc/ig, 'i');
         // "i"
 
@@ -78,7 +76,7 @@
         r2.exec(sFour); // null
 
         var rFive = /hello\d/y;
-        rFive.sticky // true
+        rFive.sticky; // true
 
         // ES5的source属性
         // 返回正则表达式的正文
@@ -94,8 +92,8 @@
         /foo.bar/.test('foo\nbar');
         // false
 
-        /(?<=\$)\d+/.exec('Benjamin Franklin is on the $100 bill');  // ["100"]
-        /(?<!\$)\d+/.exec('it’s is worth about €90');                // ["90"]
+        // /(?<=\$)\d+/.exec('Benjamin Franklin is on the $100 bill');  // ["100"]
+        // /(?<!\$)\d+/.exec('it’s is worth about €90');                // ["90"]
 
         // \p{Script=Greek}指定匹配一个希腊文字母，所以匹配π成功。
         // const regexGreekSymbol = /\p{Script=Greek}/u;
