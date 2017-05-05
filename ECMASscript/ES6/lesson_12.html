@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十二章 Proxy
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Proxy</h3>
+        <h4>1.概述</h4>
+        <div>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。</div>
+
+        <h4>2.Proxy 实例的方法</h4>
+        <div>get方法用于拦截某个属性的读取操作。</div>
+        <div>set方法用来拦截某个属性的赋值操作。</div>
+        <div>apply方法拦截函数的调用、call和apply操作。</div>
+        <div>has方法用来拦截HasProperty操作，即判断对象是否具有某个属性时，这个方法会生效。</div>
+        <div>construct方法用于拦截new命令，下面是拦截对象的写法。</div>
+        <div>deleteProperty方法用于拦截delete操作，如果这个方法抛出错误或者返回false，当前属性就无法被delete命令删除。</div>
+        <div>defineProperty方法拦截了Object.defineProperty操作。</div>
+        <div>getOwnPropertyDescriptor方法拦截Object.getOwnPropertyDescriptor()，返回一个属性描述对象或者undefined。</div>
+        <div>getPrototypeOf方法主要用来拦截获取对象原型。</div>
+        <div>isExtensible方法拦截Object.isExtensible操作。</div>
+        <div>ownKeys方法用来拦截对象自身属性的读取操作。</div>
+        <div>preventExtensions方法拦截Object.preventExtensions()。</div>
+        <div>setPrototypeOf方法主要用来拦截Object.setPrototypeOf方法。</div>
+
+        <h4>3.Proxy.revocable()</h4>
+        <div>Proxy.revocable方法返回一个可取消的 Proxy 实例。</div>
+
+        <h4>4.this 问题</h4>
+        <div>虽然 Proxy 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证与目标对象的行为一致。</div>
+
+        <h4>5.实例：Web 服务的客户端</h4>
+        <div>Proxy 对象可以拦截目标对象的任意属性，这使得它很合适用来写 Web 服务的客户端。</div>
+
+        <div id="logo" class="logo"></div>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            var objOne = new Proxy({}, {
+                get: function (target, key, receiver) {
+                    console.log(`getting ${key}!`);
+                    return Reflect.get(target, key, receiver);
+                },
+                set: function (target, key, value, receiver) {
+                    console.log(`setting ${key}!`);
+                    return Reflect.set(target, key, value, receiver);
+                }
+            });
+            objOne.count = 1
+            //  setting count!
+            ++objOne.count
+            //  getting count!
+            //  setting count!
+            //  2
+
+
+        </script>
+    </body>
+</html>
