@@ -8,6 +8,22 @@
         .move_obj{ width:200px; height:200px; background-color:#CCC; font-size:16px; color:#fff; position:relative; }
         .radius-btn{ width:150px; text-align:center;}
         .test_append{ margin-top:20px; }
+
+        .banner_wrap{
+            width: 300px;
+            text-align: left;
+            position: relative;
+        }
+        .banner_wrap .banner_top{
+            width:0px;
+            height: 100px;
+            background-color: #8dd9e7;
+        }
+        .banner_wrap .banner_bottom{
+            width:0px;
+            height: 100px;
+            background-color: #f9c4ce;
+        }
     </style>
 </head>
 <body>
@@ -17,16 +33,27 @@
 
     <div class="test_append" id="testAppend">Test_append</div>
 
+    <div class="banner_wrap" id="bannerWrap">
+        <!-- <div class="banner_content">
+            <div class="banner_top">top</div>
+            <div class="banner_bottom">bottom</div>
+        </div> -->
+    </div>
+
     <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function(){
             var $startBtn = $('#startBtn'),
                 count = 0,
-                distance = 300, 
+                distance = 300,
                 $moveObj = $('#moveObj');
             var $testAppend = $('#testAppend');
+            var bannerShowTimer = null,
+                bannerHideTimer = null;
 
             $startBtn.on('click', startAnimate);
+            apendTest();
+            testBanner();
 
             function startAnimate(e){
                 distance += 300;
@@ -59,7 +86,38 @@
                 $a.remove();
                 console.log($tmpA.length);
             }
-            apendTest();
+
+            function testBanner(){
+                var $bannerWrap = $('#bannerWrap'),
+                    $bannerT = null,
+                    $bannerB = null;
+                var domStr = '<div class="banner_content"><div class="banner_top">top</div><div class="banner_bottom">bottom</div></div>';
+                $bannerWrap.append(domStr);
+                $bannerT = $bannerWrap.find('.banner_top');
+                $bannerB = $bannerWrap.find('.banner_bottom');
+                $bannerWrap.css({'opacity': 1, 'top':'0px'});
+                $bannerT.animate({
+                    'width': '150px'
+                }, 500, function(){
+                });
+                $bannerB.animate({
+                    'width': '300px'
+                }, 500, function(){
+                    clearTimeout(bannerHideTimer);
+                    bannerHideTimer = setTimeout(function(){
+                        $bannerWrap.animate({
+                            'top': '-5px',
+                            'opacity': '0'
+                        },500, function(){
+                            $bannerWrap.find('.banner_content').remove();
+                            clearTimeout(bannerShowTimer);
+                            bannerShowTimer = setTimeout(function(){
+                                testBanner();
+                            }, 1000);
+                        });
+                    }, 2000);
+                });
+            }
         });
     </script>
 </body>
