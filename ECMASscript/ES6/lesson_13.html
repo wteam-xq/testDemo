@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十三章 Reflect
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Reflect</h3>
+        <h4>1.概述</h4>
+        <div>某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。（比如Object.defineProperty）</div>
+        <div>Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</div>
+        <div>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。</div>
+
+        <h4>2.静态方法</h4>
+        <div>Reflect对象一共有13个静态方法。</div>
+        <div>Reflect.apply(target,thisArg,args)</div>
+        <div>Reflect.construct(target,args)</div>
+        <div>Reflect.get(target,name,receiver)</div>
+        <div>Reflect.set(target,name,value,receiver)</div>
+        <div>Reflect.defineProperty(target,name,desc)</div>
+        <div>Reflect.deleteProperty(target,name)</div>
+        <div>Reflect.has(target,name)</div>
+        <div>Reflect.ownKeys(target)</div>
+        <div>Reflect.isExtensible(target)</div>
+        <div>Reflect.preventExtensions(target)</div>
+        <div>Reflect.getOwnPropertyDescriptor(target, name)</div>
+        <div>Reflect.getPrototypeOf(target)</div>
+        <div>Reflect.setPrototypeOf(target, prototype)</div>
+
+        <h4>实例：使用 Proxy 实现观察者模式</h4>
+        <div>观察者模式（Observer mode）指的是函数自动观察数据对象，一旦对象有变化，函数就会自动执行。</div>
+        
+        
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            // 新写法
+            // if (Reflect.defineProperty(target, property, attributes)) {
+            //   // success
+            // } else {
+            //   // failure
+            // }
+            var myObject = {
+              foo: 1,
+              bar: 2,
+              get baz() {
+                return this.foo + this.bar;
+              },
+            };
+            Reflect.get(myObject, 'foo'); // 1
+            Reflect.set(myObject, 'foo', 2);
+            myObject.foo; // 2
+            Reflect.has(myObject, 'foo'); // true
+            Reflect.deleteProperty(myObj, 'foo');
+
+            function Greeting(name) {
+              this.name = name;
+            }
+            const instance = Reflect.construct(Greeting, ['张三']);
+        </script>
+    </body>
+</html>
