@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十五章 Iterator和for...of循环
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Iterator和for...of循环</h3>
+        <h4>1.Iterator（遍历器）的概念</h4>
+        <div>JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。这样就有了四种数据集合，用户还可以组合使用它们，定义自己的数据结构，比如数组的成员是Map，Map的成员是对象。这样就需要一种统一的接口机制，来处理所有不同的数据结构。</div>
+        <div>遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。</div>
+
+        <h4>2.数据结构的默认Iterator接口</h4>
+        <div>Iterator接口的目的，就是为所有数据结构，提供了一种统一的访问机制，即for...of循环（详见下文）。当使用for...of循环遍历某种数据结构时，该循环会自动去寻找Iterator接口。</div>
+
+        <h4>3.调用Iterator接口的场合</h4>
+        <div>有一些场合会默认调用Iterator接口（即Symbol.iterator方法）:</div>
+        <div>(1）解构赋值</div>
+        <div>对数组和Set结构进行解构赋值时，会默认调用Symbol.iterator方法。</div>
+        <div>（2）扩展运算符</div>
+        <div>扩展运算符（...）也会调用默认的iterator接口。</div>
+        <div>（3）yield*</div>
+        <div>yield*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。</div>
+        <div>（4）其他场合</div>
+        <div>for...of</div>
+        <div>Array.from()</div>
+        <div>Map(), Set(), WeakMap(), WeakSet()（比如new Map([['a',1],['b',2]])）</div>
+        <div>Promise.all()</div>
+        <div>Promise.race()</div>
+
+        <h4>4.字符串的Iterator接口</h4>
+        <div>字符串是一个类似数组的对象，也原生具有Iterator接口。</div>
+
+        <h4>5.Iterator接口与Generator函数</h4>
+        <div>Generator函数可以很简单的实现Symbol.iterator方法</div>
+
+        <h4>6.遍历器对象的return()，throw()</h4>
+        <div>遍历器对象除了具有next方法，还可以具有return方法和throw方法。如果你自己写遍历器对象生成函数，那么next方法是必须部署的，return方法和throw方法是否部署是可选的。</div>
+
+        <h4>7.for...of循环</h4>
+        <div>ES6 借鉴 C++、Java、C# 和 Python 语言，引入了for...of循环，作为遍历所有数据结构的统一的方法。</div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            let set = new Set().add('a').add('b').add('c');
+            let [x,y] = set;
+            // x='a'; y='b'
+            let [first, ...rest] = set;
+            // first='a'; rest=['b','c'];
+
+            const arr = ['red', 'green', 'blue'];
+            for(let v of arr) {
+              console.log(v); // red green blue
+            }
+        </script>
+    </body>
+</html>
