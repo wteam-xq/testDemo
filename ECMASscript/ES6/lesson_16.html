@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十六章 Generator 函数的语法
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Generator 函数的语法</h3>
+        <h4>1.简介</h4>
+        <div>Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。</div>
+        <div>执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态。</div>
+
+        <h4>2.next 方法的参数</h4>
+        <div>yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。</div>
+
+        <h4>3.for...of 循环</h4>
+        <div>for...of循环可以自动遍历 Generator 函数时生成的Iterator对象，且此时不再需要调用next方法。</div>
+
+        <h4>4.Generator.prototype.throw()</h4>
+        <div>Generator 函数返回的遍历器对象，都有一个throw方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。</div>
+
+        <h4>5.Generator.prototype.return()</h4>
+        <div>Generator函数返回的遍历器对象，还有一个return方法，可以返回给定的值，并且终结遍历Generator函数。</div>
+
+        <h4>6.yield* 表达式</h4>
+        <div>如果在 Generator 函数内部，调用另一个 Generator 函数，默认情况下是没有效果的。</div>
+
+        <h4>7.作为对象属性的Generator函数</h4>
+        <div>如果一个对象的属性是 Generator 函数，可以简写；</div>
+
+        <h4>8.Generator 函数的this</h4>
+        <div>Generator 函数总是返回一个遍历器，ES6 规定这个遍历器是 Generator 函数的实例，也继承了 Generator 函数的prototype对象上的方法。</div>
+
+        <h4>9.含义</h4>
+        <div>Generator 与状态机： Generator 是实现状态机的最佳结构。</div>
+        <div>Generator与协程： Generator 函数是 ES6 对协程的实现，但属于不完全实现。Generator 函数被称为“半协程”（semi-coroutine），意思是只有 Generator 函数的调用者，才能将程序的执行权还给 Generator 函数。如果是完全执行的协程，任何函数都可以让暂停的协程继续执行。</div>
+
+        <h4>10.应用</h4>
+        <div>1）异步操作的同步化表达；</div>
+        <div>2）控制流管理；</div>
+        <div>3）部署 Iterator 接口；</div>
+        <div>4）作为数据结构；</div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            function* helloWorldGenerator() {
+                yield 'hello';
+                yield 'world';
+                return 'ending';
+            }
+            var hw = helloWorldGenerator();
+            hw.next();
+            // { value: 'hello', done: false }
+            hw.next();
+            // { value: 'world', done: false }
+            hw.next();
+            // { value: 'ending', done: true }
+            hw.next();
+            // { value: undefined, done: true }
+
+            function* foo(x) {
+              var y = 2 * (yield (x + 1));
+              var z = yield (y / 3);
+              return (x + y + z);
+            }
+            var b = foo(5);
+            b.next(); // { value:6, done:false }
+            b.next(12); // { value:8, done:false }
+            b.next(13); // { value:42, done:true }
+
+            function *fooThree() {
+              yield 1;
+              yield 2;
+              yield 3;
+              yield 4;
+              yield 5;
+              return 6;
+            }
+
+            for (let v of fooThree()) {
+              console.log(v);
+            }
+            // 1 2 3 4 5
+
+            var g = function* () {
+              while (true) {
+                try {
+                  yield;
+                } catch (e) {
+                  if (e != 'a') throw e;
+                  console.log('内部捕获', e);
+                }
+              }
+            };
+            var i = g();
+            i.next();
+            try {
+              throw new Error('a');
+              throw new Error('b');
+            } catch (e) {
+              console.log('外部捕获', e);
+            }
+            // 外部捕获 [Error: a]
+        </script>
+    </body>
+</html>
