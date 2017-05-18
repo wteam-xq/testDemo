@@ -24,6 +24,30 @@
             height: 100px;
             background-color: #f9c4ce;
         }
+
+        .move_left_wrap{
+            position: absolute;
+            top:475px;
+            width: 300px;
+            height: 100px;
+            background-color:#8dd9e7;
+        }
+        .move_left_wrap.no_2{
+            top: 600px;
+        }
+        .move_item{
+            float: left;
+            text-align: right;
+            height: 100px;
+            line-height: 100px;
+            margin-left: 10px;
+        }
+        .move_item img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 25px 5px;
+        }
     </style>
 </head>
 <body>
@@ -36,6 +60,18 @@
     <div class="banner_wrap" id="bannerWrap">
     </div>
 
+    <div class="move_left_wrap" id="moveLeftWrap">
+        <div class="move_item">left text!</div>
+        <div class="move_item"><img src="../images/dlam.jpg" title="img" alt="img"/></div>
+        <div class="move_item">right text!</div>
+    </div>
+
+    <div class="move_left_wrap no_2" id="moveLeftWrap2">
+        <div class="move_item">left text!</div>
+        <div class="move_item"><img src="../images/dlam.jpg" title="img" alt="img"/></div>
+        <div class="move_item">right text!</div>
+    </div>
+
     <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -45,11 +81,14 @@
                 $moveObj = $('#moveObj');
             var $testAppend = $('#testAppend');
             var bannerShowTimer = null,
-                bannerHideTimer = null;
+                bannerHideTimer = null,
+                luckyPopScrollTimer = null;
 
             $startBtn.on('click', startAnimate);
             apendTest();
             testBanner();
+            testMoveLeft();
+            testMoveLeft2();
 
             function startAnimate(e){
                 distance += 300;
@@ -94,25 +133,79 @@
                 $bannerWrap.css({'opacity': 1, 'top':'0px'});
                 $bannerT.animate({
                     'width': '150px'
-                }, 500, function(){
+                }, 300, function(){
                 });
                 $bannerB.animate({
                     'width': '300px'
-                }, 500, function(){
+                }, 300, function(){
                     clearTimeout(bannerHideTimer);
                     bannerHideTimer = setTimeout(function(){
                         $bannerWrap.animate({
-                            'top': '-5px',
                             'opacity': '0'
-                        },500, function(){
+                        },300, function(){
                             $bannerWrap.find('.banner_content').remove();
                             clearTimeout(bannerShowTimer);
                             bannerShowTimer = setTimeout(function(){
                                 testBanner();
                             }, 1000);
                         });
-                    }, 2000);
+                    }, 1000);
                 });
+            }
+
+            function testMoveLeft(){
+                var $moveLeftWrap = $('#moveLeftWrap');
+                $moveLeftWrap.animate({
+                    'left': '350px'
+                },
+                15000,
+                function(){
+                    $moveLeftWrap.css({'left': '0px'});
+                    testMoveLeft();
+                });
+            }
+
+            function testMoveLeft2(){
+                var $moveLeftWrap = $('#moveLeftWrap2'),
+                    scrollTime = 0;
+
+                scrollTime = 350/15;
+                startScroll({
+                    offset: 350,
+                    scrollTime: scrollTime,
+                    targetDom: $moveLeftWrap,
+                    succCallback: function(){
+                        $moveLeftWrap.css({'left': '0px'});
+                        testMoveLeft2();
+                    }
+                });
+            }
+            // 手动实现滚动...(解决动画库 实现滚动图片抖动bug)
+            // opt.offset 滚动距离（必填项）
+            // opt.scrollTime 滚动速度（必填项）
+            // opt.targetDom 滚动节点（必填项）
+            // opt.succCallback 滚动完成回调函数
+            function startScroll(opt) {
+                var left = 0;
+                var scrollStep = 1,
+                    offset = opt.offset,
+                    scrollTime = opt.scrollTime,
+                    targetDom = opt.targetDom,
+                    succCallback = opt.succCallback;
+                //防止重复添加定时器
+                clearTimeout(luckyPopScrollTimer);
+                luckyPopScrollTimer = window.setTimeout(function() {
+                    left = parseInt(targetDom.css('left'), 10);
+                    if (Math.abs(left) >= offset) {
+                        if (succCallback) {
+                            succCallback();
+                        }
+                        return false;
+                    }
+                    left += scrollStep;
+                    targetDom.css('left', left);
+                    startScroll(opt);
+                }, scrollTime);
             }
         });
     </script>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom类库 动画操作</title>
+    <style type="text/css">
+        .banner_wrap{
+            width: 300px;
+            text-align: left;
+            position: relative;
+        }
+        .banner_wrap .banner_top{
+            width:0px;
+            height: 100px;
+            background-color: #8dd9e7;
+        }
+        .banner_wrap .banner_bottom{
+            width:0px;
+            height: 100px;
+            background-color: #f9c4ce;
+        }
+        .move_left_wrap{
+            position: absolute;
+            top:250px;
+            width: 300px;
+            height: 100px;
+            background-color:#8dd9e7;
+        }
+        .move_left_wrap.no_2{
+            top: 370px;
+        }
+        .move_item{
+            float: left;
+            text-align: right;
+            height: 100px;
+            line-height: 100px;
+            margin-left: 10px;
+        }
+        .move_item img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 25px 5px;
+        }
+    </style>
+    <script src="../lib/bowl_v2.js"></script>
+</head>
+<body>
+
+    <div class="banner_wrap" id="bannerWrap">
+    </div>
+
+    <div class="move_left_wrap" id="moveLeftWrap">
+        <div class="move_item">left text!</div>
+        <div class="move_item"><img src="../images/dlam.jpg" title="img" alt="img"/></div>
+        <div class="move_item">right text!</div>
+    </div>
+
+    <div class="move_left_wrap no_2" id="moveLeftWrap2">
+        <div class="move_item">left text!</div>
+        <div class="move_item"><img src="../images/dlam.jpg" title="img" alt="img"/></div>
+        <div class="move_item">right text!</div>
+    </div>
+
+    <script>
+        require('./dom_animate');
+    </script>
+</body>
