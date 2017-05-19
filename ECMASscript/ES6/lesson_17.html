@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十七章 Generator 函数的异步应用
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Generator 函数的异步应用</h3>
+        <h4>1.传统方法</h4>
+        <div>ES6 诞生以前，异步编程的方法，大概有下面四种。</div>
+        <div>回调函数</div>
+        <div>事件监听</div>
+        <div>发布/订阅</div>
+        <div>Promise 对象</div>
+
+        <h4>2.基本概念</h4>
+        <div>所谓"异步"，简单说就是一个任务不是连续完成的，可以理解成该任务被人为分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。</div>
+
+        <h4>3.Generator 函数</h4>
+        <div>协程： 协程有点像函数，又有点像线程。它的运行流程大致如下。</div>
+        <div>第一步，协程A开始执行。</div>
+        <div>第二步，协程A执行到一半，进入暂停，执行权转移到协程B。</div>
+        <div>第三步，（一段时间后）协程B交还执行权。</div>
+        <div>第四步，协程A恢复执行。</div>
+        <div>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</div>
+        <div>Generator 函数可以暂停执行和恢复执行，这是它能封装异步任务的根本原因。</div>
+
+        <h4>4.Thunk 函数</h4>
+        <div>"传值调用"（call by value），即在进入函数体之前，就计算x + 5的值（等于6），再将这个值传入函数f。JS/C语言就采用这种策略。</div>
+        <div>“传名调用”（call by name），即直接将表达式x + 5传入函数体，只在用到它的时候求值。Haskell 语言采用这种策略。</div>
+        <div>编译器的“传名调用”实现，往往是将参数放到一个临时函数之中，再将这个临时函数传入函数体。这个临时函数就叫做 Thunk 函数。</div>
+
+        <h4>5.co 模块</h4>
+        <div>co 模块是著名程序员 TJ Holowaychuk 于2013年6月发布的一个小工具，用于 Generator 函数的自动执行。</div>
+
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            function* gen(x) {
+                var y = yield x + 2;
+                return y;
+            }
+            var g = gen(1);
+            g.next(); // { value: 3, done: false }
+            g.next(); // { value: undefined, done: true }
+
+        </script>
+    </body>
+</html>
