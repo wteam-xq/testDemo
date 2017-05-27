@@ -17,9 +17,46 @@
         <h4>1.含义</h4>
         <div>async 函数是什么？一句话，它就是 Generator 函数的语法糖。</div>
 
+        <h4>2.用法</h4>
+        <div>async函数返回一个 Promise 对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</div>
+
+        <h4>3.语法</h4>
+        <div>async函数的语法规则总体上比较简单，难点是错误处理机制。</div>
+        <div>返回 Promise 对象。</div>
+        <div>Promise 对象的状态变化</div>
+        <div>await 命令</div>
+        <div>错误处理</div>
+
+        <h4>4.async 函数的实现原理</h4>
+        <div>async 函数的实现原理，就是将 Generator 函数和自动执行器，包装在一个函数里。</div>
+
+        <h4>5.与其他异步处理方法的比较</h4>
+        <div>与 Promise、Generator 函数相比，Async函数的实现最简洁，最符合语义，几乎没有语义不相关的代码。</div>
+
+        <h4>6.实例：按顺序完成异步操作</h4>
+        <div>实际开发中，经常遇到一组异步操作，需要按照顺序完成。</div>
+
+        <h4>7.异步遍历器 </h4>
+        <div>为异步操作提供原生的遍历器接口，即value和done这两个属性都是异步产生，这称为”异步遍历器“（Async Iterator）。</div>
+        <div>异步遍历器的最大的语法特点，就是调用遍历器的next方法，返回的是一个 Promise 对象。</div>
+
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
         <script type="text/babel">
-            
+            // var fs = require('fs');
+            // var readFile = function (fileName) {
+            //     return new Promise(function (resolve, reject) {
+            //         fs.readFile(fileName, function(error, data) {
+            //           if (error) reject(error);
+            //           resolve(data);
+            //         });
+            //     });
+            // };
+            // var asyncReadFile = async function () {
+            //   var f1 = await readFile('/etc/fstab');
+            //   var f2 = await readFile('/etc/shells');
+            //   console.log(f1.toString());
+            //   console.log(f2.toString());
+            // };
         </script>
     </body>
 </html>
