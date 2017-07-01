@@ -103,8 +103,6 @@
                     // 计时器的速度
                     time : 1000,
                     countDownObj : null,
-                    //标识倒计时是否已经开始
-                    starting : false,
                     /**
                      * 初始化
                      * 初始化节点，需要传父节点对象作为参数
@@ -114,8 +112,6 @@
                         if (parent && parent.length > 0) {
                             this.initDom(parent);
                         }
-                        //标识倒计时已经开始了
-                        this.starting = true;
                     },
                     minObj : null,
                     secObj : null,
@@ -213,6 +209,24 @@
                 function timeOutFn(){
                   alert('倒计时间到，处理业务吧！');
                 }
+
+                // 计时器写法3（xxx天xxx时xxx分xxx秒）
+                // opt.type（int 非必填）
+                // 0: 默认方式  单一dom节点显示“xxx天xxx时xxx分xxx秒”
+                // 1: 扩展方式 xxx天  xxx时 xxx分 xxx秒 四个dom节点显示
+                // opt.startTime(int 非必填)  倒计时起始时间默认为当前系统时间（业务上一般传入服务器获取的北京时间）的时间戳
+                // opt.endTime（int 必填）  倒计时结束时间的时间戳
+                // opt.countdownEvent(非必填) 每过一秒回调函数，回调函数包含参数{'d': 'xxx','h':'xxx','m':'xxx','s':'xxx'}
+                var CountDown3 = {
+                    startTime : 0,
+                    endTime: 0,
+                    init: function(opt){},
+                    start: function(){},
+                    stop: function(){},
+                    reset: function(){}
+                };
+                // 计时器3 私有方法(待更新：将使用寄生组合式继承实现：https://www.zhihu.com/question/22232912)
+
 
                 // 计时器1启动
                 countDown1_init();
