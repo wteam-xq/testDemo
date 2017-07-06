@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第十九章 Class 基本语法
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Class 基本语法</h3>
+        <h4>1.简介</h4>
+        <div>JavaScript 语言中，生成实例对象的传统方法是通过构造函数。</div>
+        <div>ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。</div>
+
+        <h4>2.严格模式</h4>
+        <div>类和模块的内部，默认就是严格模式，所以不需要使用use strict指定运行模式。只要你的代码写在类或模块之中，就只有严格模式可用。</div>
+
+        <h4>3.constructor 方法</h4>
+        <div>constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。</div>
+        <div>一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。</div>
+
+        <h4>4.类的实例对象</h4>
+        <div>生成类的实例对象的写法，与 ES5 完全一样，也是使用new命令。</div>
+
+        <h4>5.Class 表达式</h4>
+        <div>与函数一样，类也可以使用表达式的形式定义。</div>
+
+        <h4>6.不存在变量提升</h4>
+        <div>类不存在变量提升（hoist），这一点与 ES5 完全不同。</div>
+
+        <h4>7.私有方法</h4>
+        <div>私有方法是常见需求，但 ES6 不提供，只能通过变通方法模拟实现。</div>
+
+        <h4>8.私有属性</h4>
+        <div>与私有方法一样，ES6 不支持私有属性。目前，有一个提案，为class加了私有属性。方法是在属性名之前，使用#表示。</div>
+
+        <h4>9.this 的指向</h4>
+        <div>类的方法内部如果含有this，它默认指向类的实例。</div>
+
+        <h4>10.name 属</h4>
+        <div>由于本质上，ES6 的类只是 ES5 的构造函数的一层包装，所以函数的许多特性都被Class继承，包括name属性。</div>
+
+        <h4>11.Class 的取值函数（getter）和存值函数（setter）</h4>
+        <div>与 ES5 一样，在“类”的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。</div>
+
+        <h4>12.Class 的 Generator 方法</h4>
+        <div>如果某个方法之前加上星号（*），就表示该方法是一个 Generator 函数。</div>
+
+        <h4>13.Class 的静态方法</h4>
+        <div>类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</div>
+
+        <h4>14.Class 的静态属性和实例属性</h4>
+        <div>静态属性指的是 Class 本身的属性，即Class.propName，而不是定义在实例对象（this）上的属性。</div>
+        <div>1）类的实例属性</div>
+        <div>类的实例属性可以用等式，写入类的定义之中。</div>
+        <div>2）类的静态属性</div>
+        <div>类的静态属性只要在上面的实例属性写法前面，加上static关键字就可以了。</div>
+
+        <h4>15.new.target属性</h4>
+        <div>ES6 为new命令引入了一个new.target属性，该属性一般用在在构造函数之中，返回new命令作用于的那个构造函数。</div>
+
+        <script src="../../lib/babel.min.js"></script>
+        <script type="text/babel">
+            //定义类
+            class Point {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+                toString() {
+                    return '(' + this.x + ', ' + this.y + ')';
+                }
+            }
+            // class Point {
+            // }
+            // // 等同于
+            // class Point {
+            //   constructor() {}
+            // }
+
+            // 报错
+            // var point = Point(2, 3);
+            // // 正确
+            // var point = new Point(2, 3);
+
+            let person = new class {
+              constructor(name) {
+                this.name = name;
+              }
+              sayName() {
+                console.log(this.name);
+              }
+            }('张三');
+            person.sayName(); // "张三"
+
+            // 模拟实现私有方法
+            // const bar = Symbol('bar');
+            // const snaf = Symbol('snaf');
+            // export default class myClass{
+            //   // 公有方法
+            //   foo(baz) {
+            //     this[bar](baz);
+            //   }
+            //   // 私有方法
+            //   [bar](baz) {
+            //     return this[snaf] = baz;
+            //   }
+            //   // ...
+            // };
+            // // 私有属性、私有方法写法
+            // class Foo {
+            //   #a;
+            //   #b;
+            //   #sum() { return #a + #b; }
+            //   printSum() { console.log(#sum()); }
+            //   constructor(a, b) { #a = a; #b = b; }
+            // }
+
+            class Foo {
+              static classMethod() {
+                return 'hello';
+              }
+            }
+            console.log( Foo.classMethod() ); // 'hello'
+            // var foo = new Foo();
+            // foo.classMethod()
+            // TypeError: foo.classMethod is not a function
+
+            function PersonF(name) {
+              if (new.target !== undefined) {
+                this.name = name;
+                console.log('正确写法');
+              } else {
+                throw new Error('必须使用new生成实例');
+              }
+            }
+            // 另一种写法
+            // function Person(name) {
+            //   if (new.target === Person) {
+            //     this.name = name;
+            //   } else {
+            //     throw new Error('必须使用 new 生成实例');
+            //   }
+            // }
+            var personf = new PersonF('张三'); // 正确
+            // var notAPerson = Person.call(person, '张三');  // 报错
+
+        </script>
+    </body>
+</html>
