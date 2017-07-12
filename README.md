@@ -63,6 +63,9 @@
 * 21.flash与js通信
   * [flashDemo](https://github.com/wteam-xq/testDemo/blob/master/flashDemo/index.html)
 
+* 22.字体图标
+  * [webFontDemo](https://github.com/wteam-xq/testDemo/blob/master/webfont/index.html)
+
 * other:
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
   * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
