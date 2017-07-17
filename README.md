@@ -64,7 +64,7 @@
   * [flashDemo](https://github.com/wteam-xq/testDemo/blob/master/flashDemo/index.html)
 
 * 22.字体图标
-  * [webFontDemo](https://github.com/wteam-xq/testDemo/blob/master/webfont/index.html)
+  * [webFontDemo](https://github.com/wteam-xq/testDemo/blob/master/iconfont/index.html)
 
 * other:
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
