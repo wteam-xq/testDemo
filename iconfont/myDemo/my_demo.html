@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IconFont</title>
+    <link rel="stylesheet" href="demo.css">
+
+    <style type="text/css">
+
+        @font-face {
+          font-family: "iconfont";
+          src: url('iconfont.eot'); /* IE9*/
+          src: url('iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('iconfont.woff') format('woff'), /* chrome, firefox */
+          url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+          url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+
+        .iconfont {
+          font-family:"iconfont" !important;
+          font-size:16px;
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -webkit-text-stroke-width: 0.2px;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main markdown">
+        <h1>IconFont 实践demo</h1>
+        <ul class="icon_lists clear">
+            <li>
+                <i class="icon iconfont">&#xe69c;</i>
+                <div class="name">cry</div>
+                <div class="code">&amp;#xe69c;</div>
+            </li>
+            <li>
+                <i class="icon iconfont">&#xe6a3;</i>
+                <div class="name">help</div>
+                <div class="code">&amp;#xe6a3;</div>
+            </li>
+        </ul>
+        <h2 id="unicode-">unicode引用</h2>
+        <hr>
+        <p>unicode是字体在网页端最原始的应用方式，特点是：</p>
+        <ul>
+        <li>兼容性最好，支持ie6+，及所有现代浏览器。</li>
+        <li>支持按字体的方式去动态调整图标大小，颜色等等。</li>
+        <li>但是因为是字体，所以不支持多色。只能使用平台里单色的图标，就算项目里有多色图标也会自动去色。</li>
+        </ul>
+        <blockquote>
+        <p>注意：新版iconfont支持多色图标，这些多色图标在unicode模式下将不能使用，如果有需求建议使用symbol的引用方式</p>
+</body>
+</html>
