@@ -10,13 +10,21 @@
       <link rel="icon" href="../favicon.ico" type="image/x-icon" />
       <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
       <link rel="stylesheet" href="iconfontDemo/demo.css">
+      <style>
+            a:hover{
+                text-decoration: none;
+            }
+            a{
+                color: #cb9c64;
+            }
+      </style>
     </head>
     <body>
       <div class="main markdown">
           <h1>图标字体开发流程</h1>
           <ul>
             <li>
-              <p>1.从网上下载免费图标字体；</p>
+              <h3>1.从网上下载免费图标字体；</h3>
               <ul>
                 <li>
                     <a href="http://www.iconfont.cn/icons/upload?spm=a313x.7781069.1998910419.d059fa781" target="_blank">从 阿里巴巴iconfont+ 获取免费图标字体</a>
@@ -31,18 +39,19 @@
             </li>
 
             <li>
-              <p>2.或者使用PS + AI + iconfont生成自定义图标字体；</p>
+              <h3>2.或者使用PS + AI + iconfont生成自定义图标字体；</h3>
               <ul>
                 <li>实际开发基本都是使用自定义生成的图标字体,步骤如下：</li>
                 <li>1）使用PS-矩形工具 生成图标；</li>
-                <li>2）PS-文件-导出-Illustrator 导出AI文件；</li>
-                <li>3）AI软件打开AI文件，File->Scripts->SaveDocsAsSVG 生成SVG文件；</li>
-                <li>4）访问阿里巴巴iconfont+(或iconMoon)上传SVG生成字体文件；</li>
+                <li>2）AI软件打开PSD文件，File->Scripts->SaveDocsAsSVG 生成SVG文件；</li>
+                <li>3）访问阿里巴巴iconfont+(或iconMoon)上传SVG生成字体文件；</li>
+                <li>PS: 教程：<a href="http://www.cnblogs.com/yincheng/p/icon-font-practice.html" target="_blank">雪碧图vs图标字体 </a>
+                    中多了PS导出AI文件的步骤，经实践PS生成的AI文件打开容易显示空白，该步骤可省略.</li>
               </ul>
             </li>
 
             <li>
-              <p>3.将生成的字体文件（TTF/WOFF/EOT/SVG）放入工程；</p>
+              <h3>3.将生成的字体文件（TTF/WOFF/EOT/SVG）放入工程；</h3>
               <ul>
                 <li>调用方式有如下三种：</li>
                 <li><a href="iconfontDemo/demo_unicode.html" target="_blank">unicode引用</a></li>
