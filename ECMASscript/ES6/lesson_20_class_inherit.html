@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第二十章 Class 的继承
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Class 继承</h3>
+        <h4>1.简介</h4>
+        <div>Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</div>
+        <div>在子类的构造函数中，只有调用super之后，才可以使用this关键字，否则会报错。</div>
+
+        <h4>2.Object.getPrototypeOf() </h4>
+        <div>Object.getPrototypeOf方法可以用来从子类上获取父类。可以使用这个方法判断，一个类是否继承了另一个类。</div>
+
+        <h4>3.super 关键字 </h4>
+        <div>super这个关键字，既可以当作函数使用，也可以当作对象使用。</div>
+        <div>super作为函数调用时，代表父类的构造函数。（只能在子类构造方法中使用）</div>
+        <div>super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。</div>
+
+        <h4>4.类的 prototype 属性和__proto__属性</h4>
+        <div>Class 作为构造函数的语法糖，同时有prototype属性和__proto__属性，因此同时存在两条继承链。</div>
+        <div>子类的__proto__属性，表示构造函数的继承，总是指向父类。</div>
+        <div>子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。</div>
+
+        <h4>5.原生构造函数的继承</h4>
+        <div>原生构造函数是指语言内置的构造函数，通常用来生成数据结构。ECMAScript 的原生构造函数大致有下面这些。</div>
+        <div>Boolean()</div>
+        <div>Number()<div>
+        <div>String()</div>
+        <div>Array()</div>
+        <div>Date()</div>
+        <div>Function()</div>
+        <div>RegExp()</div>
+        <div>Error()</div>
+        <div>Object()</div>
+        <div>ES5原生构造函数是无法继承，原生构造函数的this无法绑定，导致拿不到内部属性。</div>
+        <div>ES6 允许继承原生构造函数定义子类。</div>
+
+        <h4>6.Mixin 模式的实现</h4>
+        <div>Mixin 模式指的是，将多个类的接口“混入”（mix in）另一个类。</div>
+
+        <script src="../../lib/babel.min.js"></script>
+        <script type="text/babel">
+            class Point {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                }
+            }
+            class ColorPoint extends Point {
+                constructor(x, y, color) {
+                    // this.color = color; // ReferenceError
+                    super(x, y);
+                    this.color = color; // 正确
+                }
+            }
+            let cp = new ColorPoint(25, 8, 'green');
+            console.log( cp instanceof ColorPoint ); // true
+            console.log( cp instanceof Point ); // true
+
+            class A {
+              constructor() {
+                console.log(new.target.name);
+              }
+            }
+            class B extends A {
+              constructor() {
+                super();
+              }
+            }
+            new A(); // A
+            // new B(); // B
+            // 作为一个对象，子类（B）的原型（__proto__属性）是父类（A）；
+            console.log( B.__proto__ === A ); // true
+            // 作为一个构造函数，子类（B）的原型（prototype属性）是父类的实例。
+            console.log( B.prototype.__proto__ === A.prototype ); // true
+
+            class VersionedArray extends Array {
+              constructor() {
+                super();
+                this.history = [[]];
+              }
+              commit() {
+                this.history.push(this.slice());
+              }
+              revert() {
+                this.splice(0, this.length, ...this.history[this.history.length - 1]);
+              }
+            }
+
+            var x = new VersionedArray();
+            x.push(1);
+            x.push(2);
+            console.log(x); // [1, 2]
+            console.log(x.history); // [[]]
+            // x.commit(); // 调用报错原因： x无commit方法
+            console.log( typeof x.commit )
+            // console.log(x.history); // [[], [1, 2]]
+
+        </script>
+    </body>
+</html>
