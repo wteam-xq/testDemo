@@ -42,7 +42,7 @@
         <div>Proxy 对象可以拦截目标对象的任意属性，这使得它很合适用来写 Web 服务的客户端。</div>
 
         <div id="logo" class="logo"></div>
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="../../lib/babel.min.js"></script>
         <script type="text/babel">
             var objOne = new Proxy({}, {
                 get: function (target, key, receiver) {

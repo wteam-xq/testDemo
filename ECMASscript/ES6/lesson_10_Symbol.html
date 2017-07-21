@@ -51,7 +51,7 @@
       <div>对象的Symbol.toStringTag属性，指向一个方法。在该对象上面调用Object.prototype.toString方法时，如果这个属性存在，它的返回值会出现在toString方法返回的字符串之中，表示对象的类型。</div>
       <div>对象的Symbol.unscopables属性，指向一个对象。该对象指定了使用with关键字时，哪些属性会被with环境排除。</div>
 
-      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+      <script src="../../lib/babel.min.js"></script>
       <script type="text/babel">
       let s = Symbol();
       typeof s; // "symbol"

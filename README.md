@@ -1,5 +1,7 @@
 ### 前端代码集合
 
+* [本代码集合演示地址](http://wteam-xq.github.io/testDemo/index.html)
+
 * 1.判断用户点击还是js点击；
   * [isTrusted.html](https://github.com/wteam-xq/testDemo/blob/master/isTrusted.html)
 
@@ -63,7 +65,7 @@
 * 21.flash与js通信
   * [flashDemo](https://github.com/wteam-xq/testDemo/blob/master/flashDemo/index.html)
 
-* 22.字体图标
+* 22.图标字体
   * [iconfontDemo](https://github.com/wteam-xq/testDemo/blob/master/iconfont/index.html)
 
 * other:
