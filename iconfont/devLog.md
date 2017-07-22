@@ -20,3 +20,5 @@
 * 2017-07-17 按照图标字体开发流程， 生成自定义小图标；
 * 预计demo功能： 三个小图标：笑脸、黑脸、帽子； 默认显示笑脸+帽子，鼠标hover，变成黑脸+帽子（颜色变绿）；
 * 2017-07-20 demo中的图标字体尝试变成 base64 样式中存放图标字体源文件；
+* 方式一：使用[在线工具网页](http://www.css-js.com/tools/base64.html) 完成图标字体转base64；(方便、限制100K)
+* 方式二：使用[gulp扩展工具](http://www.w3cplus.com/workflow/gulp-tutorial-7-base64.html)本地完成图标字体转base64；

@@ -1,8 +1,8 @@
 /*
 参考代码网址：
-http://www.ido321.com/1622.html           
-http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename            
-https://github.com/nimojs/gulp-book  
+http://www.ido321.com/1622.html
+http://colobu.com/2014/11/17/gulp-plugins-introduction/#gulp-rename
+https://github.com/nimojs/gulp-book
  */
 // 获取 gulp
 var gulp = require('gulp'),
@@ -21,6 +21,8 @@ var gulp = require('gulp'),
     concat = require("gulp-concat"),
     // html 文件对合并文件后的替换处理插件
     htmlReplace = require("gulp-html-replace"),
+    // 图片转成base64样式显示
+    base64 = require('gulp-base64'),
     // 复制文件（文件拷贝）
     copy = require('copy');
 
@@ -37,7 +39,7 @@ gulp.task('script', function() {
         .pipe(uglify())
     // new: 压缩前修改压缩后新文件名字
         .pipe(rename( function(path){
-          path.basename += "_" + APP_VERSION; 
+          path.basename += "_" + APP_VERSION;
         } ) )
     // 3. 另存压缩后的文件
         .pipe(gulp.dest('dist/js'))
@@ -114,7 +116,7 @@ gulp.task('copy', function(cb){
 
 
 /*************************************************************
- *                         组合任务      
+ *                         组合任务
  ************************************************************/
 
 // js 压缩合并任务
@@ -127,7 +129,7 @@ gulp.task('ugconjs', function(){
         .pipe( concat('all.js') )
     // 4. 改名
         .pipe(rename( function(path){
-          path.basename += "_" + APP_VERSION; 
+          path.basename += "_" + APP_VERSION;
         } ) )
     // 5. 另存压缩后的文件
         .pipe(gulp.dest('dist/js'))
@@ -160,7 +162,7 @@ gulp.task('default', ['clean'], function(){
 });
 
 /*************************************************************
- *               本地js  html css本地压缩      
+ *               本地js  html css本地压缩
  ************************************************************/
 // 字符串拷贝进 js/str.js 中, 然后运行 `gulp str-js`
 gulp.task('str-js', function() {
@@ -193,3 +195,16 @@ gulp.task('str-html', function () {
         .pipe(htmlmin(options))
         .pipe(gulp.dest('dist'));
 });
+/*************************************************************
+ *               本地图标字体生成base64样式
+ ************************************************************/
+ gulp.task('base64', function () {
+    return gulp.src('../iconfont/myDemo/iconfont_gulp_base64.css')
+        .pipe(base64({
+             baseDir: '../iconfont/myDemo/',
+             extensions: ['woff'],
+             maxImageSize: 200*1024, // bytes
+             debug: true
+        }))
+        .pipe(gulp.dest('../iconfont/myDemo/'));
+ });
