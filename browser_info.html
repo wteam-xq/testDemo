@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          浏览器信息
+      </title>
+      <link rel="icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      <link rel="stylesheet" href="./iconfont/iconfontDemo/demo.css">
+      <script type="text/javascript" src="utils/client.js"></script>
+      <style>
+            a:hover{
+                text-decoration: none;
+            }
+            a{
+                color: #cb9c64;
+            }
+      </style>
+    </head>
+    <body>
+      <div class="main markdown">
+          <h1>浏览器信息</h1>
+          <ul>
+            <li>
+              <h3>1.您的浏览器版本是：<span id="browserInfoTxt"></span></h3>
+            </li>
+
+            <li>
+              <h3>2.主流浏览器内核介绍</h3>
+              <ul>
+                <li>Chrome浏览器：28.0.1469.0版本前是WebKit内核（html_css渲染：WebCore + 脚本渲染：v8），后续版本：Blink内核； </li>
+                <li>IE浏览器：IE6~IE11使用的是Trident内核，win10开始自带的浏览器Edge, 内核：EdgeHTML内核；（IE9开始脚本渲染使用Chakra引擎）</li>
+                <li>Firefox浏览器： Gecko内核；(脚本渲染引擎：22以上版本 OdinMonkey引擎)</li>
+                <li>Safari浏览器： WebKit内核；（基于KHTML, html_css渲染：WebCore + 脚本渲染：JSCore）</li>
+                <li>Opera浏览器： 4~6使用Elektra内核，7~15使用Presto内核，15~now 使用Blink内核；（10.50版本开始脚本渲染使用：Carakan）</li>
+              </ul>
+            </li>
+
+            <li>
+                <h3>3.参考网址：</h3>
+                <ul>
+                  <li><a href="http://www.cnblogs.com/vajoy/p/3735553.html" target="_blank">博客园：主流浏览器内核介绍 </a></li>
+                  <li><a href="https://www.zhihu.com/question/29985708" target="_blank">知乎：如何评价Edge浏览器 </a></li>
+                  <li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank">阮一峰：网页性能管理详解 </a></li>
+                  <li><a href="https://zhuanlan.zhihu.com/p/27628685" target="_blank">知乎专栏：认识V8引擎 </a></li>
+                </ul>
+            </li>
+          </ul>
+      </div>
+
+      <script>
+        var browserInfoDom = document.getElementById('browserInfoTxt');
+        var browserName = '',
+            browserVersion = 0;
+        try {
+            if (client && client.browser) {
+                if (client.browser.chrome) {
+                    browserName = '谷歌浏览器：Chrome';
+                } else if (client.browser.firefox) {
+                    browserName = '火狐浏览器：Firefox';
+                } else if (client.browser.ie) {
+                    browserName = '微软浏览器：IE';
+                } else if (client.browser.opera) {
+                    browserName = '欧朋浏览器：Opera';
+                } else if (client.browser.safari) {
+                    browserName = '苹果浏览器：Safari';
+                } else {
+                    browserName = '未知浏览器';
+                }
+                browserVersion = client.browser.ver;
+            }
+        } catch (e){
+            browserInfoDom.innerHTML = browserName + ', 版本：' + browserVersion;
+        }
+        browserInfoDom.innerHTML = browserName + ', 版本：' + browserVersion;
+      </script>
+    </body>
+</html>

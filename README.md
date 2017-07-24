@@ -54,7 +54,7 @@
   * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)
 
 * 18.浏览器检测:
-  * [client.js](https://github.com/wteam-xq/testDemo/blob/master/utils/client.js)
+  * [browser_info.html](https://github.com/wteam-xq/testDemo/blob/master/browser_info.html)
 
 * 19.浏览器兼容
   * [IESupport.html](https://github.com/wteam-xq/testDemo/blob/master/IESupport.html)
