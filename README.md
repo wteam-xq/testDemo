@@ -53,7 +53,7 @@
 * 17.css3 伸缩布局盒：
   * [cssFlexBox.html](https://github.com/wteam-xq/testDemo/blob/master/cssFlexBox.html)
 
-* 18.浏览器检测:
+* 18.浏览器信息:
   * [browser_info.html](https://github.com/wteam-xq/testDemo/blob/master/browser_info.html)
 
 * 19.浏览器兼容

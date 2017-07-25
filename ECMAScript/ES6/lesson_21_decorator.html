@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第二十一章 decorator(修饰器)
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>修饰器</h3>
+        <h4>1.类是修饰</h4>
+        <div>修饰器（Decorator）是一个函数，用来修改类的行为。</div>
+
+        <h4>2.方法的修饰</h4>
+        <div>修饰器不仅可以修饰类，还可以修饰类的属性。</div>
+
+        <h4>3.为什么修饰器不能用于函数</h4>
+        <div>修饰器只能用于类和类的方法，不能用于函数，因为存在函数提升。</div>
+
+        <h4>4.core-decorators.js</h4>
+        <div>core-decorators.js是一个第三方模块，提供了几个常见的修饰器，通过它可以更好地理解修饰器。</div>
+
+        <h4>5.使用修饰器实现自动发布事件</h4>
+        <div>我们可以使用修饰器，使得对象的方法被调用时，自动发出一个事件。</div>
+
+        <h4>6.Mixin</h4>
+        <div>在修饰器的基础上，可以实现Mixin模式。</div>
+        <div>所谓Mixin模式，就是对象继承的一种替代方案，中文译为“混入”（mix in），意为在一个对象之中混入另外一个对象的方法。</div>
+
+        <h4>7.Trait</h4>
+        <div>Trait也是一种修饰器，效果与Mixin类似，但是提供更多功能，比如防止同名方法的冲突、排除混入某些方法、为混入的方法起别名等等。</div>
+
+        <h4>8.Babel转码器的支持</h4>
+        <div>目前，Babel转码器已经支持Decorator。</div>
+        <div>Babel的官方网站提供一个在线转码器，只要勾选Experimental，就能支持Decorator的在线转码。</div>
+
+        <script src="../../lib/babel.min.js"></script>
+        <script type="text/babel">
+            // 本babel还不能支持修饰器 
+            // function testable(isTestable) {
+            //     return function(target) {
+            //         target.isTestable = isTestable;
+            //     }
+            // }
+            // @testable(true)
+            // class MyTestableClass {}
+            // console.log(MyTestableClass.isTestable); // true
+            //
+            // @testable(false)
+            // class MyClass {}
+            // console.log(MyClass.isTestable); // false
+
+            // 让类属性不可遍历
+            // class Person {
+            //   @nonenumerable
+            //   get kidCount() { return this.children.length; }
+            // }
+            //
+            // function nonenumerable(target, name, descriptor) {
+            //   descriptor.enumerable = false;
+            //   return descriptor;
+            // }
+
+        </script>
+    </body>
+</html>
