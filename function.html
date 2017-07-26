@@ -11,6 +11,50 @@
 
     <body>
         <h3>函数理解</h3>
+        <div>1. 函数 add可以实现连续的加法运算， 函数add的语法如下：</div>
+        <div>add(num1)(num2)(num3)...;</div>
+        <div>使用举例：</div>
+        <div>add(10)(10) = 20</div>
+        <div>add(10)(20)(50) = 80</div>
+        <div>add(10)(20)(50)(100) = 180</div>
+        <hr>
+
+        <div>2.递归函数</div>
+        <div>斐波那契数列实现, 实现递归的两种方式：</div>
+        <div>调用自身函数名（推荐），调用参数对象的方法（严格模式下报错，有时万不得已得用该方法）</div>
+        <hr>
+
+        <div>3.call apply 用法区别：参数个数的区别；</div>
+        <div> callFun.call(a, 1, 2, 3);</div>
+        <div>applyFun.apply(a, [1,2,3]);</div>
+        <hr>
+
+        <div>4.有关javascript函数对象（函数当对象字面量使用竟然不报错！） </div>
+        <div><a href="http://www.zhihu.com/question/31863910" target="_blank">来源</a></div>
+        <div>"age:"被看作了标签语句（label statement）不会起作用</div>
+        <hr>
+
+        <div>5. 如何在JavaScript里指定一个对象作为上下文去eval字符串？</div>
+        <div><a href="http://www.zhihu.com/question/31930691" target="_blank">来源</a></div>
+        <div>比如 d = {x: 1, y: 2} , expr = "x * 2 + y" , 然后evalWith(d, expr) 就返回4</div>
+        <hr>
+
+        <div>6. 关键字"new" 执行时，构造函数的执行过程</div>
+        <div>6.1 创建一个新对象；</div>
+        <div>6.2 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）</div>
+        <div>6.3 执行构造函数中的代码（为这个心对象添加属性、方法）</div>
+        <div>6.4 返回新对象</div>
+        <hr>
+
+        <div>7.在Javascript中,每一个函数实际上都是一个函数对象.(函数 与 对象的关系) </div>
+        <hr>
+
+        <div>8.arguments、caller 和 callee 介绍</div>
+        <div> <a href="http://blog.csdn.net/oscar999/article/details/8511335" target="_blank">来源</a></div>
+        <div>arguments.caller 指向调用该函数的 函数;</div>
+        <div>arguments.callee 指向当前函数;</div>
+        <hr>
+
         <script>
           // 1. 函数 add可以实现连续的加法运算， 函数add的语法如下：
           // add(num1)(num2)(num3)...;
@@ -129,6 +173,24 @@
           console.log(obj instanceof Function)//false
           console.log(Function instanceof  Object); // true
           console.log(Object instanceof Function);  // true
+
+        // 8.arguments、caller 和 callee 介绍
+        // http://blog.csdn.net/oscar999/article/details/8511335
+        // arguments.caller 指向调用该函数的 函数
+        function testCaller() {
+            var caller = testCaller.caller;
+            console.log(caller);
+        }
+        function aCaller() {
+            testCaller();
+        }
+        aCaller();
+        // arguments.callee 指向当前函数
+        function testCallee(arg) {
+          console.log(arguments.callee);
+        }
+        function aCallee(arg1, arg2) { testCallee();}
+        aCallee();
 
         </script>
     </body>
