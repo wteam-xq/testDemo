@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第二十三章 Module 的加载实现
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>Module 的加载实现</h3>
+        <h4>1.浏览器加载</h4>
+        <div>传统脚本：</div>
+        <div>在 HTML 网页中，浏览器通过&lt;script&gt;标签加载 JavaScript 脚本。</div>
+        <div>ES6模块脚本：</div>
+        <div>浏览器加载 ES6 模块，也使用&lt;script&gt;标签，但是要加入type="module"属性。</div>
+
+        <h4>2.ES6 模块与 CommonJS 模块的差异</h4>
+        <div>两个重大差异：</div>
+        <div>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</div>
+        <div>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。</div>
+
+        <h4>3.Node加载</h4>
+        <div>Node 对 ES6 模块的处理比较麻烦，因为它有自己的 CommonJS 模块格式，与 ES6 模块格式是不兼容的。</div>
+        <div>目前的解决方案是，将两者分开，ES6 模块和 CommonJS 采用各自的加载方案。</div>
+
+        <h4>4.循环加载(相互调用处理)</h4>
+        <div>“循环加载”（circular dependency）指的是，a脚本的执行依赖b脚本，而b脚本的执行又依赖a脚本。</div>
+        <div>CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</div>
+        <div>ES6 处理“循环加载”与CommonJS有本质的不同。ES6模块是动态引用，如果使用import从一个模块加载变量（即import foo from 'foo'），</div>
+        <div>那些变量不会被缓存，而是成为一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值。</div>
+
+
+        <h4>5.ES6模块的转码</h4>
+        <div>浏览器目前还不支持ES6模块，为了现在就能使用，可以将转为ES5的写法。除了Babel可以用来转码之外，还有以下两个方法，也可以用来转码。</div>
+        <div>ES6 module transpiler</div>
+        <div>square 公司开源的一个转码器，可以将 ES6 模块转为 CommonJS 模块或 AMD 模块的写法，从而在浏览器中使用。</div>
+        <div>SystemJS</div>
+        <div>另一种解决方法是使用 SystemJS。它是一个垫片库（polyfill），可以在浏览器内加载 ES6 模块、AMD 模块和 CommonJS 模块，将其转为 ES5 格式。它在后台调用的是 Google 的 Traceur 转码器。</div>
+        <!-- 页面内嵌的脚本 -->
+        <!-- <script type="application/javascript">
+        // module code
+        </script> -->
+        <!-- 外部脚本 -->
+        <!-- <script type="application/javascript" src="path/to/myModule.js">
+        </script> -->
+
+        <script src="../../lib/babel.min.js"></script>
+        <script type="text/babel">
+
+        </script>
+    </body>
+</html>
