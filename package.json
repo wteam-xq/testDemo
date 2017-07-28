@@ -30,6 +30,7 @@
     "gulp-uglify": "^1.4.1",
     "gulp.spritesmith": "^6.2.1",
     "merge-stream": "^1.0.0",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^3.13.0",
     "postcss-loader": "^1.1.1",
     "postcss-sprites": "^4.1.0",
@@ -43,7 +44,8 @@
     "webpack-spritesmith": "^0.3.0"
   },
   "scripts": {
-    "test": "gulp"
+    "test": "gulp",
+    "mock1":"node mock/demo1.js"
   },
   "repository": {
     "type": "git",
