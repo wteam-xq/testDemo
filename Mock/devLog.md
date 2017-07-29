@@ -19,3 +19,6 @@
 ```
 * 4.启动mock拦截监听服务；
 * 5.postMan访问mock拦截的URL；
+
+* 2017-07-28 以json-server作为 mock 服务器；
+* 相关教程：[纯手工打造前端后端分离项目中的mock-server](http://www.jianshu.com/p/284590b5b717)
