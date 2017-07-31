@@ -15,7 +15,8 @@
     <body>
         <h3>Reflect</h3>
         <h4>1.概述</h4>
-        <div>某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。（比如Object.defineProperty）</div>
+        <div>某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。
+            （比如Object.defineProperty）</div>
         <div>Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。</div>
         <div>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。</div>
 

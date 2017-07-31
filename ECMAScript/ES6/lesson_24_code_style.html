@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <h3>块级作用域</h3>
+        <h3>编程风格</h3>
         <h4>1.概述</h4>
         <div>1）let 取代 var</div>
         <div>ES6提出了两个新的声明变量的命令：let和const。其中，let完全可以取代var，因为两者语义相同，而且let没有副作用。</div>
@@ -53,6 +53,14 @@
         <div>总是用Class，取代需要prototype的操作。因为Class的写法更简洁，更易于理解。</div>
         <div>使用extends实现继承，因为这样更简单，不会有破坏instanceof运算的危险。</div>
 
+        <h4>9.模块</h4>
+        <div>首先，Module语法是JavaScript模块的标准写法，坚持使用这种写法。使用import取代require。</div>
+        <div>使用export取代module.exports。</div>
+        <div>如果模块默认输出一个函数，函数名的首字母应该小写。</div>
+        <div>如果模块默认输出一个对象，对象名的首字母应该大写。</div>
+
+        <h4>10.ESLint的使用</h4>
+        <div>ESLint是一个语法规则和代码风格的检查工具，可以用来保证写出语法正确、风格统一的代码。</div>
 
         <script src="../../lib/babel.min.js"></script>
         <script type="text/babel">
@@ -86,7 +94,7 @@
             const t_c = 'foobar';
 
             // 3.1 使用数组成员对变量赋值时，优先使用解构赋值。
-            // const arr = [1, 2, 3, 4];
+            const arr = [1, 2, 3, 4];
             // bad
             // const first = arr[0];
             // const second = arr[1];
@@ -107,14 +115,14 @@
             }
             // 3.3 如果函数返回多个值，优先使用对象的解构赋值，而不是数组的解构赋值。
             // bad
-            // function processInput(input) {
+            // function processInput() {
             //   return [left, right, top, bottom];
             // }
             // good
-            function processInput(input) {
-              return { left, right, top, bottom };
+            function processInput() {
+              return { left:1, right:2, top:3, bottom:4 };
             }
-            const { left, right } = processInput(input);
+            const { left, right } = processInput();
 
             // 4.1 单行定义的对象，最后一个成员不以逗号结尾。多行定义的对象，最后一个成员以逗号结尾。
             // bad
@@ -124,10 +132,10 @@
             //   k2: v2
             // };
             // good
-            const f_a = { k1: v1, k2: v2 };
+            const f_a = { k1: 'v1', k2: 'v2' };
             const f_b = {
-              k1: v1,
-              k2: v2,
+              k1: 'v1',
+              k2: 'v2',
             };
             // 4.2 对象尽量静态化，一旦定义，就不得随意添加新的属性。如果添加属性不可避免，要使用Object.assign方法。
             // bad
@@ -147,6 +155,9 @@
             // };
             // obj[getKey('enabled')] = true;
             // good
+            function getKey (){
+                return 'enabled';
+            }
             const obj = {
               id: 5,
               name: 'San Francisco',
@@ -237,6 +248,97 @@
               // ...
             }
 
+            // 7 注意区分Object和Map，只有模拟现实世界的实体对象时，才使用Object。如果只是需要key: value的数据结构，使用Map结构。因为Map有内建的遍历机制。
+            let map = new Map([
+              ['name', '张三'],
+              ['title', 'Author']
+            ]);
+            for (let key of map.keys()) {
+              console.log(key);
+            }
+            for (let value of map.values()) {
+              console.log(value);
+            }
+            for (let item of map.entries()) {
+              console.log(item[0], item[1]);
+            }
+
+            // 8.1 总是用Class，取代需要prototype的操作。因为Class的写法更简洁，更易于理解。
+            // bad
+            // function Queue(contents = []) {
+            //   this._queue = [...contents];
+            // }
+            // Queue.prototype.pop = function() {
+            //   const value = this._queue[0];
+            //   this._queue.splice(0, 1);
+            //   return value;
+            // }
+            // good
+            class Queue {
+              constructor(contents = []) {
+                this._queue = [...contents];
+              }
+              pop() {
+                const value = this._queue[0];
+                this._queue.splice(0, 1);
+                return value;
+              }
+            }
+            // 8.2 使用extends实现继承，因为这样更简单，不会有破坏instanceof运算的危险。
+            // bad
+            // const inherits = require('inherits');
+            // function PeekableQueue(contents) {
+            //   Queue.apply(this, contents);
+            // }
+            // inherits(PeekableQueue, Queue);
+            // PeekableQueue.prototype.peek = function() {
+            //   return this._queue[0];
+            // }
+            // good
+            class PeekableQueue extends Queue {
+              peek() {
+                return this._queue[0];
+              }
+            }
+
+            // 9.1 首先，Module语法是JavaScript模块的标准写法，坚持使用这种写法。使用import取代require。
+            // bad
+            // const moduleA = require('moduleA');
+            // const func1 = moduleA.func1;
+            // const func2 = moduleA.func2;
+            // good
+            // import { func1, func2 } from 'moduleA';
+            // 9.2 使用export取代module.exports。
+            // commonJS的写法
+            // var React = require('react');
+            //
+            // var Breadcrumbs = React.createClass({
+            //   render() {
+            //     return <nav />;
+            //   }
+            // });
+            //
+            // module.exports = Breadcrumbs;
+
+            // ES6的写法
+            // import React from 'react';
+            // class Breadcrumbs extends React.Component {
+            //   render() {
+            //     return <nav />;
+            //   }
+            // };
+            // export default Breadcrumbs;
+
+            // 9.3 如果模块默认输出一个函数，函数名的首字母应该小写。
+            // function makeStyleGuide() {
+            // }
+            // export default makeStyleGuide;
+            // 9.4 如果模块默认输出一个对象，对象名的首字母应该大写。
+            // const StyleGuide = {
+            //   es6: {
+            //   }
+            // };
+            // export default StyleGuide;
         </script>
     </body>
 </html>
