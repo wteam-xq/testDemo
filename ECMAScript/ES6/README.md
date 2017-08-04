@@ -74,3 +74,6 @@
 
 * 25.ES6规格（标准文档）:
 * [lesson_25_ES6_standard](https://github.com/wteam-xq/testDemo/blob/master/ECMAScript/ES6/lesson_25_ES6_standard.html)
+
+* 26.ArrayBuffer（二进制数组处理）:
+* [ArrayBuffer](https://github.com/wteam-xq/testDemo/blob/master/ECMAScript/ES6/lesson_26_ArrayBuffer.html)

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第二十六章 ArrayBuffer
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+        <h3>ArrayBuffer</h3>
+        <h4>1.ArrayBuffer 对象</h4>
+        <div>ArrayBuffer对象代表储存二进制数据的一段内存，它不能直接读写，</div>
+        <div>只能通过视图（TypedArray视图和DataView视图)来读写，视图的作用是以指定格式解读二进制数据。</div>
+
+        <h4>2.TypedArray视图</h4>
+        <div>ArrayBuffer对象作为内存区域，可以存放多种类型的数据。同一段内存，不同数据有不同的解读方式，这就叫做“视图”（view）。</div>
+        <div>ArrayBuffer有两种视图，一种是TypedArray视图，另一种是DataView视图。</div>
+        <div>与普通数组相比，TypedArray数组的最大优点就是可以直接操作内存，不需要数据类型转换，所以速度快得多。</div>
+
+        <h4>3.复合视图</h4>
+        <div>由于视图的构造函数可以指定起始位置和长度，所以在同一段内存之中，可以依次存放不同类型的数据，这叫做“复合视图”。</div>
+
+        <h4>4.DataView视图</h4>
+        <div>如果一段数据包括多种类型（比如服务器传来的HTTP数据），这时除了建立ArrayBuffer对象的复合视图以外，还可以通过DataView视图进行操作。</div>
+
+        <h4>5.二进制数组的应用</h4>
+        <div>大量的Web API用到了ArrayBuffer对象和它的视图对象。</div>
+        <div>AJAX, XMLHttpRequest第二版XHR2允许服务器返回二进制数据</div>
+        <div>Canvas, 网页Canvas元素输出的二进制像素数据，就是TypedArray数组。</div>
+        <div>WebSocket, WebSocket可以通过ArrayBuffer，发送或接收二进制数据。</div>
+        <div>Fetch API, Fetch API取回的数据，就是ArrayBuffer对象。</div>
+        <div>File API, 如果知道一个文件的二进制数据类型，也可以将这个文件读取为ArrayBuffer对象。</div>
+
+        <h4>6.SharedArrayBuffer</h4>
+        <div>JavaScript 是单线程的，Web worker 引入了多线程：主线程用来与用户互动，Worker 线程用来承担计算任务。</div>
+        <div>SharedArrayBuffer的 API 与ArrayBuffer一模一样，唯一的区别是后者无法共享。</div>
+
+        <h4>7.Atomics 对象</h4>
+        <div>多线程共享内存，最大的问题就是如何防止两个线程同时修改某个地址，或者说，当一个线程修改共享内存以后，必须有一个机制让其他线程同步。</div>
+        <div>SharedArrayBuffer API 提供Atomics对象，保证所有共享内存的操作都是“原子性”的，并且可以在所有线程内同步。</div>
+
+        <script src="../../lib/babel.min.js"></script>
+        <script type="text/babel">
+            // ArrayBuffer构造函数的参数是所需要的内存大小（单位字节）。
+            // 为了读写这段内容，需要为它指定视图。
+            // DataView视图的创建，需要提供ArrayBuffer对象实例作为参数。
+            var buf = new ArrayBuffer(32);
+            var dataView = new DataView(buf);
+            dataView.getUint8(0) // 0
+
+
+        </script>
+    </body>
+</html>
