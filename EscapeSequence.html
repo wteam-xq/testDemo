@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            HTML转义字符串
+        </title>
+        <style type="text/css">
+          .demo-title{ text-align: center; }
+          .table-f-one { width:25%; border-right: 1px solid #ccc; }
+          .table-f-one-first, .table-f-one-last{ border-right: 0px; }
+          .table-l { width: 30%;font-weight: bold; }
+          .table-r { width: 70%; font-weight: bold; }
+          .demo-cont{ width:80%; margin: 10px auto; }
+          .table-h{ color: blue; }
+          .demo-cont table{ width:100%; border:1px solid #ccc; border-collapse: collapse; }
+          .demo-cont tr{ line-height: 2em; border: 1px solid #ccc; }
+          .demo-cont tr:hover{ background-color: #f5f5f5; }
+          .demo-cont td{ padding-left:10px; }
+          td:first-child{ border-right: 1px solid #ccc; }
+          td.no-border{ border-right: 0px; }
+          .nav-btns{ text-align:center; margin:0 0 35px 0; height:50px; line-height: 50px; padding:0px; }
+          .nav-btn{ list-style-type:none;float:left; width:20%; }
+          .nav-btn a{ border-bottom:1px solid #ddd; border-radius:4px 4px 0 0; text-align:center; display:block; padding:10px 15px; color:#337ab7; text-decoration: none; }
+          .nav-btn.active a{ border:1px solid #ddd; border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
+          .nav-btn a:hover{ background-color:#eee; }
+          .nav-btn.active a:hover{ border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
+        </style>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    
+    <body>
+        <h3 class="demo-title">HTML转义字符串</h3>
+        <div class="demo-cont">
+          <ul class="nav-btns" id="navBtns">
+            <li class="nav-btn active" data-id="1"><a href="#">转义字符列表</a></li>
+            <li class="nav-btn" data-id="2"><a href="#">转义字符串使用场景</a></li>
+            <li class="nav-btn" data-id="3"><a href="#">转义字符串的组成</a></li>
+            <li class="nav-btn" data-id="4"><a href="#">显示空格</a></li>
+            <li class="nav-btn" data-id="5"><a href="#">编码转换</a></li>
+          </ul>
+          <table class="table-panel" id="table_1">
+            <tr class="table-h">
+              <td class="table-f-one table-f-one-first">显示</td>
+              <td class="table-f-one">说明</td>
+              <td class="table-f-one">实体名称</td>
+              <td class="table-f-one table-f-one-last">实体编号</td>
+            </tr>
+            <tr>
+              <td class="table-f-one table-f-one-first">&#8194;</td>
+              <td class="table-f-one">半方大的空白</td>
+              <td class="table-f-one">&#38;ensp;</td>
+              <td class="table-f-one table-f-one-last">&#38;#8194;</td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_2">
+            <tr class="table-h">
+              <td class="table-l no-border">为什么要用转义字符串？</td>
+            </tr>
+            <tr>
+              <td class="no-border">
+                  &nbsp;&nbsp;HTML中&#60;，&#62;，&#38;等有特殊含义（&#60;，&#62;，用于链接签，&#38;用于转义），不能直接使用。这些符号是不显示在我们最终看到的网页里的，那如果我们希望在网页中显示这些符号，该怎么办呢？<br/>
+                  &nbsp;&nbsp;这就要说到HTML转义字符串（Escape Sequence）了。<br/>
+                  &nbsp;&nbsp;转义字符串（Escape Sequence）也称字符实体(Character Entity)。在HTML中，定义转义字符串的原因有两个：<br/>
+                  &nbsp;&nbsp;第一个原因是像“<”和“>”这类符号已经用来表示HTML标签，因此就不能直接当作文本中的符号来使用。为了在HTML文档中使用这些符号，就需要定义它的转义字符串。当解释程序遇到这类字符串时就把它解释为真实的字符。在输入转义字符串时，要严格遵守字母大小写的规则。<br/>
+                  &nbsp;&nbsp;第二个原因是，有些字符在ASCII字符集中没有定义，因此需要使用转义字符串来表示。
+              </td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_3">
+            <tr class="table-h">
+                <td class="table-l no-border">转义字符串的组成</td>
+            </tr>
+            <tr>
+                <td class="no-border">
+                    &nbsp;&nbsp;转义字符串（Escape Sequence），即字符实体（Character Entity）分成三部分：第一部分是一个&#38;符号，英文叫ampersand；第二部分是实体（Entity）名字或者是#加上实体（Entity）编号；第三部分是一个分号。<br/>
+                    &nbsp;&nbsp;比如，要显示小于号（&#60;），就可以写 &#38;lt; 或者 &#38;#60; 。<br />
+                    &nbsp;&nbsp;用实体（Entity）名字的好处是比较好理解，一看lt，大概就猜出是less than的意思，但是其劣势在于并不是所有的浏览器都支持最新的Entity名字。而实体(Entity)编号，各种浏览器都能处理。<br />
+                    &nbsp;&nbsp;提示：实体名称（Entity）是区分大小写的。 <br />          
+                    &nbsp;&nbsp;备注：同一个符号，可以用“实体名称”和“实体编号”两种方式引用，“实体名称”的优势在于便于记忆，但不能保证所有的浏览器都能顺利识别它，而“实体编号”则没有这种担忧，但它实在不方便记忆。
+                </td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_4">
+            <tr class="table-h">
+                <td class="table-l no-border">如何显示空格？</td>
+            </tr>
+            <tr>
+                <td class="no-border">
+                    &nbsp;&nbsp;通常情况下，HTML会自动截去多余的空格。不管你加多少空格，都被看做一个空格。比如你在两个字之间加了10个空格，HTML会截去9个空格，只保留一个。为了在网页中增加空格，你可以使用&#38;nbsp;表示空格。
+                </td>
+            </tr>
+          </table>
+
+          <table class="table-panel" id="table_5">
+          </table>
+
+        </div>
+        
+        <script type="text/javascript" src="utils/base.js"></script>
+        <script>
+        init();
+        function init() {
+          var navBtns = document.getElementById('navBtns'),
+              navLis = navBtns.getElementsByTagName('li'),
+              i, navLi, len;
+
+          for(i = 0, len = navLis.length; i < len; i++) {
+            navLi = navLis[i];
+            navLi.onclick = navEvent;
+          }
+          // 显示第一张表
+          showTable(1);
+
+          function navEvent() {
+            var navNo = this.getAttribute('data-id'),
+                len, i, navLi;
+            navNo = parseInt(navNo, 10);
+            for(i = 0, len = navLis.length; i < len; i++) {
+              navLi = navLis[i];
+              if ( i != navNo - 1) {
+                removeClass(navLi, 'active');
+              } else {
+                addClass(navLi, 'active');
+              }
+            }
+            showTable(navNo);
+          }
+        }
+        function showTable(tableNo) {
+          var tId = 'table_' + tableNo,
+              table = document.getElementById(tId);
+          hideTables();
+          if (table) {
+            table.style.display = 'table';
+          }
+        }
+        function hideTables(){
+          var tables = document.getElementsByClassName('table-panel'),
+              i, len, table;
+          for (i = 0, len = tables.length; i < len; i++) {
+            table = tables[i];
+            table.style.display = 'none';
+          }
+        }
+
+        </script>
+
+    </body>
+</html>

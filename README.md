@@ -68,6 +68,9 @@
 * 22.图标字体
   * [iconfontDemo](https://github.com/wteam-xq/testDemo/blob/master/iconfont/index.html)
 
+* 23.HTML转义字符
+  * [EscapeSequence](https://github.com/wteam-xq/testDemo/blob/master/EscapeSequence.html)
+
 * other:
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
   * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
