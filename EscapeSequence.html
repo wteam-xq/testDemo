@@ -25,14 +25,22 @@
           .nav-btn.active a{ border:1px solid #ddd; border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
           .nav-btn a:hover{ background-color:#eee; }
           .nav-btn.active a:hover{ border-bottom-color:#fff; color:#555; cursor:default; background-color:#fff; }
+
+          .table-1-wrap {
+            width: 100%;
+          }
+          .table-1-wrap .title {
+            text-align: center;
+          }
         </style>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
     
     <body>
-        <h3 class="demo-title">HTML转义字符串</h3>
+        <!-- http://114.xixik.com/character/  -->
         <div class="demo-cont">
+          
           <ul class="nav-btns" id="navBtns">
             <li class="nav-btn active" data-id="1"><a href="#">转义字符列表</a></li>
             <li class="nav-btn" data-id="2"><a href="#">转义字符串使用场景</a></li>
@@ -40,20 +48,90 @@
             <li class="nav-btn" data-id="4"><a href="#">显示空格</a></li>
             <li class="nav-btn" data-id="5"><a href="#">编码转换</a></li>
           </ul>
-          <table class="table-panel" id="table_1">
-            <tr class="table-h">
-              <td class="table-f-one table-f-one-first">显示</td>
-              <td class="table-f-one">说明</td>
-              <td class="table-f-one">实体名称</td>
-              <td class="table-f-one table-f-one-last">实体编号</td>
-            </tr>
-            <tr>
-              <td class="table-f-one table-f-one-first">&#8194;</td>
-              <td class="table-f-one">半方大的空白</td>
-              <td class="table-f-one">&#38;ensp;</td>
-              <td class="table-f-one table-f-one-last">&#38;#8194;</td>
-            </tr>
-          </table>
+
+          <div class="table-panel table-1-wrap" id="table_1">
+            <table>
+              <h4 class="title">最常用的字符实体（Character Entities）</h4>
+              <tr class="table-h">
+                <td class="table-f-one table-f-one-first">显示</td>
+                <td class="table-f-one">说明</td>
+                <td class="table-f-one">实体名称</td>
+                <td class="table-f-one table-f-one-last">实体编号</td>
+              </tr>
+              <tr>
+                <td class="table-f-one table-f-one-first">&#8194;</td>
+                <td class="table-f-one">半方大的空白</td>
+                <td class="table-f-one">&#38;ensp;</td>
+                <td class="table-f-one table-f-one-last">&#38;#8194;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#8195;</td>
+                <td class="table-f-one">全方大的空白</td>
+                <td class="table-f-one">&#38;emsp;</td>
+                <td class="table-f-one table-f-one-last">&#38;#8195;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#160;</td>
+                <td class="table-f-one">不断行的空白格</td>
+                <td class="table-f-one">&#38;nbsp;</td>
+                <td class="table-f-one table-f-one-last">&#38;#160;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#60;</td>
+                <td class="table-f-one">小于</td>
+                <td class="table-f-one">&#38;lt;</td>
+                <td class="table-f-one table-f-one-last">&#38;#60;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#62;</td>
+                <td class="table-f-one">大于</td>
+                <td class="table-f-one">&#38;gt;</td>
+                <td class="table-f-one table-f-one-last">&#38;#62;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#38;</td>
+                <td class="table-f-one">&#38;符号</td>
+                <td class="table-f-one">&amp;amp;</td>
+                <td class="table-f-one table-f-one-last">&#38;#38;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#34;</td>
+                <td class="table-f-one">双引号</td>
+                <td class="table-f-one">&#38;quot;</td>
+                <td class="table-f-one table-f-one-last">&#38;#34;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#169;</td>
+                <td class="table-f-one">版权</td>
+                <td class="table-f-one">&#38;copy;</td>
+                <td class="table-f-one table-f-one-last">&#38;#169;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#174;</td>
+                <td class="table-f-one">已注册商标</td>
+                <td class="table-f-one">&#38;reg;</td>
+                <td class="table-f-one table-f-one-last">&#38;#174;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#8482;</td>
+                <td class="table-f-one">商标（美国）</td>
+                <td class="table-f-one">™</td>
+                <td class="table-f-one table-f-one-last">&#38;#8482;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#215;</td>
+                <td class="table-f-one">乘号</td>
+                <td class="table-f-one">&#38;times;</td>
+                <td class="table-f-one table-f-one-last">&#38;#215;</td>
+              </tr>
+              <tr>
+                <td class="table-f-one">&#247;</td>
+                <td class="table-f-one">除号</td>
+                <td class="table-f-one">&#38;divide;</td>
+                <td class="table-f-one table-f-one-last">&#38;#247;</td>
+              </tr>
+            </table>
+          </div>
 
           <table class="table-panel" id="table_2">
             <tr class="table-h">
@@ -91,7 +169,7 @@
             </tr>
             <tr>
                 <td class="no-border">
-                    &nbsp;&nbsp;通常情况下，HTML会自动截去多余的空格。不管你加多少空格，都被看做一个空格。比如你在两个字之间加了10个空格，HTML会截去9个空格，只保留一个。为了在网页中增加空格，你可以使用&#38;nbsp;表示空格。
+                  &nbsp;&nbsp;通常情况下，HTML会自动截去多余的空格。不管你加多少空格，都被看做一个空格。比如你在两个字之间加了10个空格，HTML会截去9个空格，只保留一个。为了在网页中增加空格，你可以使用&#38;nbsp;表示空格。
                 </td>
             </tr>
           </table>

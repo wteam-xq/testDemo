@@ -40,8 +40,8 @@
     "url-loader": "^0.5.7",
     "vinyl-buffer": "^1.0.0",
     "vinyl-paths": "^2.1.0",
-    "webpack": "^1.13.3",
-    "webpack-spritesmith": "^0.3.0"
+    "webpack": "^3.11.0",
+    "webpack-spritesmith": "^0.4.1"
   },
   "scripts": {
     "test": "gulp",

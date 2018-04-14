@@ -28,6 +28,15 @@
 * 2017-06-29 后续研究： 1.字体图标实践+博文； 2.mock学习；
 * 2017-07-18 gitHub演示地址： wteam-xq.github.io/testDemo/index.html；
 
+* 2018-04-14 目前工程依赖包越来越大，需要整理项目依赖包， 将依赖包分散到各自Demo文件夹内， 
+* 例如: gulp 相关依赖包放置gulp文件夹， webpack 相关依赖包放置 webpack文件夹；
+* 另： 所有依赖包需要升级到兼容node 8.x;
+```
+"engines": {
+  "node": ">=8.9.0"
+},
+```
+
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）
 2.IE7 中（模拟）使用json2.js 堆栈溢出报错；
