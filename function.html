@@ -24,9 +24,14 @@
         <div>调用自身函数名（推荐），调用参数对象的方法（严格模式下报错，有时万不得已得用该方法）</div>
         <hr>
 
-        <div>3.call apply 用法区别：参数个数的区别；</div>
+        <div>3.call apply bind用法区别：参数个数的区别；</div>
+        <div>都指定作用域（指向this，指向对象），
+        <div>call 与 apply 实现的功能相同: 将callFun， applyFun 方法在a对象作用域运行；</div>
+        <div>bind实现功能:bindFun方法会创建一个新的函数，称为绑定函数,applyFun方法在this环境下调用
+          该方法可传入两个参数，第一个参数作为this，第二个及以后的参数则作为函数的参数调用</div>
         <div> callFun.call(a, 1, 2, 3);</div>
         <div>applyFun.apply(a, [1,2,3]);</div>
+        <div>bindFun.bind(this, 1, 2, 3);</div>
         <hr>
 
         <div>4.有关javascript函数对象（函数当对象字面量使用竟然不报错！） </div>

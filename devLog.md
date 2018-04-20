@@ -36,6 +36,7 @@
   "node": ">=8.9.0"
 },
 ```
+* 待添加： CSS 渲染原理， 解析原理；
 
 ### 遗留bug:
 1.项目中 IE8下，弹出层bug无法重现；（challenge_case/IE8_position）

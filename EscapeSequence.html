@@ -33,6 +33,8 @@
             text-align: center;
           }
         </style>
+        <script src="lib/rainbow/rainbow.js"></script>
+        <link href="lib/rainbow/rainbow.css" ref="stylesheet" type="text/css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
@@ -175,6 +177,15 @@
           </table>
 
           <table class="table-panel" id="table_5">
+            <tr>
+              <td>
+                <pre><code data-language="python">def openFile(path):
+                    file = open(path, "r")
+                    content = file.read()
+                    file.close()
+                    return content</code></pre>
+              </td>
+            </tr>
           </table>
 
         </div>
