@@ -138,7 +138,11 @@
           .t-margin-wrap2{ background-color:#ccc; margin:20px; height:100%; }
 
           /* 给div添加border 不占用宽度，例如原来是50%， 不想因为添加了brder导致div宽度大于50%; box-sizing IE8才开始支持（ie8 得加-ms前缀）*/
-
+          .no-change-width {
+            box-sizing:border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+          }
           /* div 标签实现自适应宽度： 使用Float浮动； div 默认样式宽度为100%， 只有浮动起来后才会变成自适应； */
 
           /*...样式实现，兼容IE6+，火狐下显示有点小问题*/

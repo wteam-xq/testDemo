@@ -19,6 +19,11 @@
       <h2 class="h2_offset_top_2" id="h2_offset_top_2">点击某坐标 各相对位置图</h2>
       <img src="images/js_offsetTop.png" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..."/>
 
+      <h2>原生 JS 获取元素的宽高</h2>
+      <div>var box = document.getElementById("box")</div>
+      <div>var contentHeight = window.getComputedStyle(box).height //输出 '60px' 内容高度</div>
+      <div>box.clientHeight //输出110 (内容高度+padding * 2)</div>
+      <div>box.offsetHeight //输出160 (内容高度 + 内边距*2 +边框*2)</div>
       <script>
         // 元素距离顶端的高度
         var h2Top1 = document.getElementById('h2_offset_top'),

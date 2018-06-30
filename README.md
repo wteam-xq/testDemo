@@ -16,6 +16,7 @@
 
 * 5.原生js 节点操作：
   * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/nodeOperate.html)
+  * [DOM_demo.html](https://github.com/wteam-xq/testDemo/blob/master/DOM_demo.html)
 
 * 6.正则用法：
   * [nodeOperate.html](https://github.com/wteam-xq/testDemo/blob/master/regexp.html)
