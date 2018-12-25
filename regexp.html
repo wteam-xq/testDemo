@@ -70,6 +70,10 @@
           // https://msdn.microsoft.com/zh-cn/library/24th3sah(v=VS.94).aspx
           var regArray = /(\w+)@(\w+)\.(\w+)/g.exec("Please send mail to george@contoso.com and someone@example.com. Thanks!"); // ["george@contoso.com", "george", "contoso", "com"]
           console.log(RegExp['$1']);
+
+          // 是否为url地址
+          var isUrl = /^https?:\/\//.test("http://www.sogou.com");
+          console.log("isUrl:", isUrl);
         </script>
 
     </body>
