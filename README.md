@@ -81,3 +81,6 @@
 
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)
+
+* react:
+  * [React 开发](https://github.com/wteam-xq/testDemo/blob/master/react/index.html)
