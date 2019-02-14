@@ -4,11 +4,24 @@
   "description": "none",
   "main": "index.js",
   "scripts": {
-    "build_1": "browserify --debug --extension=js -o bundle_1.js index_1.js",
+    "build_1": "browserify --debug --extension=js -o demo_1/bundle.js demo_1/index.js",
     "start": "http-server -p 8000"
   },
   "author": "wteam-xq",
   "license": "ISC",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "react"
+          ]
+        }
+      ]
+    ]
+  },
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^15.0.2",
