@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build_1": "browserify --debug --extension=js -o demo_1/bundle.js demo_1/index.js",
+    "build_2": "browserify --debug --extension=js -o demo_2/bundle.js demo_1/index.js",
     "start": "http-server -p 8000"
   },
   "author": "wteam-xq",

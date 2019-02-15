@@ -1,35 +1,30 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
+import PropTypes from 'prop-types'
 
 class App extends Component {
+  static propTypes = {
+    inputValue: PropTypes.string, // 自定义todo值
+    list: PropTypes.string.isRequired, // todo 列表
+    onAddTodo: PropTypes.func, // 新增todo
+    onTodoFinish: PropTypes.func, // todo 达成
+    handleInputChange: PropTypes.func, // 自定义todo更新
+  };
+  static defaultProps = {
+    inputValue: "",
+    list: [],
+  };
   constructor(props) {
     super(props);
-    this.state = {
-      list: [],
-      inputValue: ""
-    };
-  }
-
-  onAddTodo() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
-      inputValue: ""
-    });
-  }
-  handleInputChange(e) {
-    this.setState({ inputValue: e.target.value });
-  }
-  onTodoFinish(index) {
-    console.log("demo2 - finish:", index)
-    const list = [...this.state.list];
-    list.splice(index, 1);
-    this.setState({
-      list: list
-    });
   }
 
   render() {
-    let { list } = this.state;
+    let { 
+      list, inputValue, 
+      handleInputChange,
+      onAddTodo,
+      onTodoFinish,
+    } = this.props;
     return (
       <div>
         <div>
@@ -39,8 +34,8 @@ class App extends Component {
               lineHeight: "34px",
               width: "250px"
             }}
-            value={this.state.inputValue}
-            onChange={this.handleInputChange.bind(this)}
+            value={inputValue}
+            onChange={handleInputChange}
           />
           <button
             style={{
@@ -51,12 +46,12 @@ class App extends Component {
               height: "34px",
               width: "50px"
             }}
-            onClick={this.onAddTodo.bind(this)}
+            onClick={onAddTodo}
           >
             add
           </button>
         </div>
-        <TodoList list={list} onTodoFinish={this.onTodoFinish.bind(this)} />
+        <TodoList list={list} onTodoFinish={onTodoFinish} />
       </div>
     );
   }
