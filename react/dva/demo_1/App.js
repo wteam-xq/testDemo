@@ -20,7 +20,7 @@ class App extends Component {
     this.setState({ inputValue: e.target.value });
   }
   onTodoFinish(index) {
-    console.log("demo2 - finish:", index)
+    console.log("demo1 - finish:", index)
     const list = [...this.state.list];
     list.splice(index, 1);
     this.setState({

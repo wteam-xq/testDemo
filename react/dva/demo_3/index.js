@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import { Provider, connect } from 'react-redux'
 // React component
 import App from "./App";
+import Server from "./Server";
 
 // Action
 const onAddTodoAction = { type: 'onAddTodo' }
@@ -16,10 +18,11 @@ function app(state = { inputValue: "", list: [] }, action) {
   const { inputValue, list } = state
   switch (action.type) {
     case 'onAddTodo':
+      console.log("msg:", action.msg)
       return { list: [...list, inputValue] }
     case 'onTodoFinish':
       let index = action.index;
-      console.log("demo2 - finish:", index)
+      console.log("demo3 - finish:", index)
       list.splice(index, 1);
       return { list }
     case 'inputChange':
@@ -30,8 +33,12 @@ function app(state = { inputValue: "", list: [] }, action) {
   }
 }
 
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
 // Store
-const store = createStore(app)
+const store = createStore(app, applyMiddleware(sagaMiddleware))
+// then run the saga
+sagaMiddleware.run(Server)
 
 // Map Redux state to component props
 function mapStateToProps(state) {
@@ -44,9 +51,7 @@ function mapStateToProps(state) {
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
   return {
-    onAddTodo: () => {
-      dispatch(onAddTodoAction)
-    },
+    onAddTodo: () => dispatch(onAddTodoAction),
     onTodoFinish: (index) => {
       onTodoFinishAction.index = index;
       dispatch(onTodoFinishAction)

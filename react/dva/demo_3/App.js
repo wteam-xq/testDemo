@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 class App extends Component {
   constructor(props) {
@@ -8,12 +8,11 @@ class App extends Component {
   }
 
   render() {
-    let {
-      list,
-      inputValue,
+    let { 
+      list, inputValue, 
       handleInputChange,
       onAddTodo,
-      onTodoFinish
+      onTodoFinish,
     } = this.props;
     return (
       <div>
