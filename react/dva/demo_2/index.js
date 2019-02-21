@@ -13,7 +13,10 @@ const inputChangeAction = { type: 'inputChange' }
 
 // Reducer
 function app(state = { inputValue: "", list: [] }, action) {
-  const { inputValue, list } = state
+  let { inputValue, list } = state;
+  if (!list) {
+    list = [];
+  }
   switch (action.type) {
     case 'onAddTodo':
       return { list: [...list, inputValue] }
@@ -24,7 +27,7 @@ function app(state = { inputValue: "", list: [] }, action) {
       return { list }
     case 'inputChange':
       let value = action.value;
-      return { inputValue: value }
+      return { inputValue: value, list }
     default:
       return state
   }
@@ -35,6 +38,7 @@ const store = createStore(app)
 
 // Map Redux state to component props
 function mapStateToProps(state) {
+  console.log("state:", state);
   return {
     inputValue: state.inputValue,
     list: state.list,
