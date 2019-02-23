@@ -15,19 +15,23 @@ const inputChangeAction = { type: 'inputChange' }
 
 // Reducer
 function app(state = { inputValue: "", list: [] }, action) {
-  const { inputValue, list } = state
+  let { inputValue, list } = state;
+  if (!list) {
+    list = [];
+  }
   switch (action.type) {
     case 'onAddTodo':
-      console.log("msg:", action.msg)
+      console.log("msg:", action.msg);
       return { list: [...list, inputValue] }
     case 'onTodoFinish':
       let index = action.index;
-      console.log("demo3 - finish:", index)
-      list.splice(index, 1);
-      return { list }
+      let newList = list.slice(0);
+      console.log("demo2 - finish:", index)
+      newList.splice(index, 1);
+      return { list: newList }
     case 'inputChange':
       let value = action.value;
-      return { inputValue: value }
+      return { inputValue: value, list }
     default:
       return state
   }

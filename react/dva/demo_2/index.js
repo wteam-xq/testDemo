@@ -22,9 +22,10 @@ function app(state = { inputValue: "", list: [] }, action) {
       return { list: [...list, inputValue] }
     case 'onTodoFinish':
       let index = action.index;
+      let newList = list.slice(0);
       console.log("demo2 - finish:", index)
-      list.splice(index, 1);
-      return { list }
+      newList.splice(index, 1);
+      return { list: newList }
     case 'inputChange':
       let value = action.value;
       return { inputValue: value, list }
