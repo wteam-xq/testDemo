@@ -20,9 +20,6 @@ function app(state = { inputValue: "", list: [] }, action) {
     list = [];
   }
   switch (action.type) {
-    case 'onAddTodo':
-      console.log("msg:", action.msg);
-      return { list: [...list, inputValue] }
     case 'onTodoFinish':
       let index = action.index;
       let newList = list.slice(0);
@@ -32,6 +29,11 @@ function app(state = { inputValue: "", list: [] }, action) {
     case 'inputChange':
       let value = action.value;
       return { inputValue: value, list }
+    case 'onAddTodoResult':
+      // 根据 action.status 编写业务逻辑
+      console.log("msg:", action.msg);
+      console.log("status:", action.status);
+      return { list: [...list, inputValue] }
     default:
       return state
   }

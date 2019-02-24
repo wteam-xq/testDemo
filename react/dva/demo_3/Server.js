@@ -1,13 +1,13 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 
 // worker Saga: will be fired on onAddTodo actions
 function* fetchUser(action) {
   try {
     const user = yield call("/api/get-user-info", "123");
     console.log("user:", user);
-    yield put({ type: "onAddTodo", msg: "success" });
+    yield put({ type: "onAddTodoResult", msg: "success", status: 1 });
   } catch (e) {
-    yield put({ type: "onAddTodo", msg: e.message });
+    yield put({ type: "onAddTodoResult", msg: e.message, status: 0 });
   }
 }
 
