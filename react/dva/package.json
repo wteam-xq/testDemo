@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "prop-types": "^15.5.10",
+    "dva": "^2.4.1",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
