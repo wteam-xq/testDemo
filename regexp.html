@@ -74,6 +74,11 @@
           // 是否为url地址
           var isUrl = /^https?:\/\//.test("http://www.sogou.com");
           console.log("isUrl:", isUrl);
+
+          // 是否为youtube地址
+					var isYoutube = /(?:www\.)?youtube.com\/watch\?(?=.*v=-{0,1}\w+)(?:\S+)?$/.test("https://www.youtube.com/watch?v=iI0U7_LzGlY");
+          // 是否包含字母、数字、_外其他特殊字符
+					var hasSpecialChar = /ad/.test("a");
         </script>
 
     </body>
