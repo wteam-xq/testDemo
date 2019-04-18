@@ -78,6 +78,7 @@
   * [sass学习Demo](https://github.com/wteam-xq/testDemo/blob/master/sass)
   * [ES6学习笔记](https://github.com/wteam-xq/testDemo/blob/master/ECMAScript/ES6/README.md)
   * [收藏的面试题连接大全](https://github.com/wteam-xq/testDemo/blob/master/exam_questions.md)
+  * [个人书单](https://github.com/wteam-xq/testDemo/blob/master/my_books.md)
 
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)

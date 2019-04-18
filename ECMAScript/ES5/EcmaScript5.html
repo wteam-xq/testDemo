@@ -103,6 +103,12 @@
             // Safari 刷新页面、页面跳转之后会执行，但关闭浏览器不能执行；
             // Opera、Chrome 任何情况都不执行。
           }
+
+          function aboutStrSub() {
+            // String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。
+            // slice(start, end) 比 substring(start,stop) 要灵活一些，因为它允许使用负数作为参数。
+            // slice(start,end) 与 substr(start,length) 有所不同，因为它用两个字符的位置来指定子串，而 substr(start,length) 则用字符位置和长度来指定子串。
+          }
       </script>
     </body>
 </html>
