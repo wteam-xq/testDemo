@@ -328,3 +328,11 @@ function insertScript(url, callback){
     head.insertBefore(script, head.firstChild);
     script[scriptOnloadEvent] = scriptOnload;
 }
+
+/* 从地址栏获取参数 */
+function getQueryString() {
+  const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  const r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]);
+  return null;
+}
