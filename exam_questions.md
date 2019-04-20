@@ -19,6 +19,9 @@
   [2018大厂高级前端面试题](http://web.jobbole.com/95403/)
   [2018 web前端经典面试题](https://www.cnblogs.com/vsmart/p/8889130.html)
 
+* 2019 面试题：
+  [寒冬求职季之你必须要懂的原生JS(上)](https://segmentfault.com/a/1190000018799827?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly)
+
 ### 分类题库：
 * HTML：  
   [前端面试总结-HTML](https://www.jianshu.com/p/872f8fb425ce)  

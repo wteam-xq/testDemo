@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
+      <meta charset="utf-8">
+      <title>
+          ECMAScript6 理解 第九章 对象的新增方法
+      </title>
+      <style type="text/css">
+        h3{ text-align: center; }
+      </style>
+    </head>
+
+    <body>
+      <h3>对象的新增方法</h3>
+
+      <div><a target="_blank" href="http://es6.ruanyifeng.com/#docs/object-methods">原文地址</a></div>
+
+      <h4>1.Object.is() </h4>
+      <div>ES5 比较两个值是否相等，只有两个运算符：相等运算符（==）和严格相等运算符（===）。它们都有缺点，前者会自动转换数据类型，后者的NaN不等于自身，以及+0等于-0。JavaScript 缺乏一种运算，在所有环境中，只要两个值是一样的，它们就应该相等。</div>
+
+      <h4>2.Object.assign()</h4>
+      <div>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。</div>
+      <div>注意点：1）浅拷贝； 2）同名属性的替换；3）数组处理；4）取值函数处理</div>
+      <div>常见用途：1）为对象添加属性； 2）为对象添加方法；3）克隆对象；4）合并多个对象；5）为属性指定默认值；</div>
+
+      <h4>3.Object.getOwnPropertyDescriptors()</h4>
+      <div>ES5 的Object.getOwnPropertyDescriptor()方法会返回某个对象属性的描述对象（descriptor）。ES2017 引入了Object.getOwnPropertyDescriptors()方法，返回指定对象所有自身属性（非继承属性）的描述对象。</div>
+      
+      <h4>4.__proto__属性，Object.setPrototypeOf()，Object.getPrototypeOf()</h4>
+      <div>JavaScript 语言的对象继承是通过原型链实现的。ES6 提供了更多原型对象的操作方法。</div>
+
+      <h4>5.Object.keys()，Object.values()，Object.entries()</h4>
+      <div>ES5 引入了Object.keys方法，返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键名。</div>
+      <div>ES2017 引入了跟Object.keys配套的Object.values和Object.entries，作为遍历一个对象的补充手段，供for...of循环使用。</div>
+
+      <h4>6.Object.fromEntries()</h4>
+      <div>Object.fromEntries()方法是Object.entries()的逆操作，用于将一个键值对数组转为对象。</div>
+
+      <script src="../../lib/babel.min.js"></script>
+      <script type="text/babel">
+        // ES5 实现Object.is()
+        Object.defineProperty(Object, 'is', {
+          value: function(x, y) {
+            if (x === y) {
+              // 针对+0 不等于 -0的情况
+              return x !== 0 || 1 / x === 1 / y;
+            }
+            // 针对NaN的情况
+            return x !== x && y !== y;
+          },
+          configurable: true,
+          enumerable: false,
+          writable: true
+        });
+        // ES5 实现Object.getOwnPropertyDescriptors()
+        function getOwnPropertyDescriptors(obj) {
+          const result = {};
+          for (let key of Reflect.ownKeys(obj)) {
+            result[key] = Object.getOwnPropertyDescriptor(obj, key);
+          }
+          return result;
+        }
+        
+      </script>
+    </body>
+</html>
