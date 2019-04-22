@@ -17,13 +17,22 @@
         <h4>1.概述</h4>
         <div>规格文件是计算机语言的官方标准，详细描述语法规则和实现方法。</div>
 
-        <h4>2.相等运算符</h4>
-        <div>相等运算符（==）是一个很让人头痛的运算符，它的语法行为多变，不符合直觉。</div>
+        <h4>2.术语</h4>
+        <div>ES6 规格使用了一些专门的术语，了解这些术语，可以帮助你读懂规格。本节介绍其中的几个。</div>
 
-        <h4>3.数组的空位</h4>
+        <h4>3.抽象操作的标准流程</h4>
+        <div>Let resultCompletionRecord be AbstractOp().</div>
+        <div>If resultCompletionRecord is an abrupt completion, return resultCompletionRecord.</div>
+        <div>Let result be resultCompletionRecord.[[Value]].</div>
+        <div>return result.</div>
+
+        <h4>4.相等运算符</h4>
+        <div>相等运算符（==）是一个很让人头痛的运算符，它的语法行为多变，不符合直觉。这个小节就看看规格怎么规定它的行为。</div>
+
+        <h4>5.数组的空位</h4>
         <div>数组的成员是undefined或空位，到底有什么不同？</div>
 
-        <h4>4.数组的map方法</h4>
+        <h4>6.数组的map方法</h4>
         <div>规格的<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-22.1.3.15" target="_blank">22.1.3.15小节</a>定义了数组的map方法。</div>
 
 
