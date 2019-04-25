@@ -1,13 +1,14 @@
 "use strict";
+const path = require("path");
 // 测试按需加载，以及 antdesign info, message 方法源码分析
 const config = {
   entry: {
-    base: "./info_demo/index.js",
+    index: "./info_demo/index.js",
   },
   output: {
     // 输出，只可指定一个输出配置
     filename: "[name]_bundle.js", // 输出文件名
-    path: "./info_demo/"
+    path: path.resolve(__dirname, "info_demo/") // 输出文件所在的目录
   },
   module: {
     // 如何处理项目中不同类型的模块
@@ -50,7 +51,7 @@ const config = {
         use: {
           loader: "babel-loader?cacheDirectory=true",
           query: {
-            presets: ["es2015", "stage-0", "react"]
+            presets: ["react", "es2015", "stage-0"]
           }
         }
       }
@@ -65,8 +66,8 @@ module.exports = (env, argv) => {
       lazy: true,
       hotOnly: true,
       contentBase: [
-        "./info_demo/",
-        "./info_demo/"
+        path.resolve(__dirname, "info_demo/"),
+        path.resolve(__dirname, "info_demo/")
       ],
       disableHostCheck: true,
       compress: true,
