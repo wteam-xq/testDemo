@@ -30,10 +30,11 @@
     ]
   },
   "dependencies": {
+    "antd": "^3.16.4",
     "prop-types": "^15.5.10",
     "dva": "^2.4.1",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-saga": "^1.0.1"
