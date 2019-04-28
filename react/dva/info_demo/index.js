@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { message } from "antd";
+// import { message, Modal } from "antd";
 // const { info } = Modal;
 
 class Demo extends React.Component {
@@ -31,6 +31,7 @@ class Demo extends React.Component {
     });
   }
   showMessage() {
+    // console.log("message:", message);
     message.info("this is a info!");
     // message.error("there are a error!");
     // message.warn("just a waring!");

@@ -3,7 +3,7 @@ const path = require("path");
 // 测试按需加载，以及 antdesign info, message 方法源码分析
 const config = {
   entry: {
-    index: "./info_demo/index.js",
+    index: "./info_demo/index.js"
   },
   output: {
     // 输出，只可指定一个输出配置
@@ -14,19 +14,33 @@ const config = {
     // 如何处理项目中不同类型的模块
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.less$/,
         use: [
           {
-            loader: "style-loader" // 将 JS 字符串生成为 style 节点
-          },
-          {
-            loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
-          },
-          {
-            loader: "sass-loader" // 将 Sass 编译成 CSS
-          },
-          {
             loader: "postcss-loader"
+          },
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader"
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader"
           }
         ]
       },
@@ -51,7 +65,17 @@ const config = {
         use: {
           loader: "babel-loader?cacheDirectory=true",
           query: {
-            presets: ["react", "es2015", "stage-0"]
+            presets: ["react", "es2015", "stage-0"],
+            plugins: [
+              [
+                "import",
+                {
+                  libraryName: "antd",
+                  libraryDirectory: "es",
+                  style: "css"
+                }
+              ]
+            ]
           }
         }
       }
@@ -71,7 +95,7 @@ module.exports = (env, argv) => {
       ],
       disableHostCheck: true,
       compress: true,
-      port: 7103,
+      port: 7001,
       clientLogLevel: "warning"
     };
   }
