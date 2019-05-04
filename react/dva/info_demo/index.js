@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { message, Modal } from "antd";
+import { message } from "antd";
 // const { info } = Modal;
 
 class Demo extends React.Component {
@@ -31,11 +31,13 @@ class Demo extends React.Component {
     });
   }
   showMessage() {
-    // console.log("message:", message);
-    message.info("this is a info!");
+    message.info("this is a info!", 5);
     // message.error("there are a error!");
-    // message.warn("just a waring!");
+    // message.warn("show warn!");
+    // message.warning("show waring!");
     // message.success("show success!");
+    // const hide = message.loading('Action in progress..', 0);
+    // setTimeout(hide, 2500);
   }
 
   render() {
@@ -43,7 +45,7 @@ class Demo extends React.Component {
     let demoPage = (<div className="demo-wrap">
       {demoTxt}
       {/* <div style={{fontSize: '18px'}} onClick={this.showInfo.bind(this)}>show info</div> */}
-      {/* <div style={{fontSize: '18px'}} onClick={this.showMessage.bind(this)}>show message</div> */}
+      <div style={{fontSize: '18px'}} onClick={this.showMessage.bind(this)}>show message</div>
     </div>);
     return demoPage;
   }
