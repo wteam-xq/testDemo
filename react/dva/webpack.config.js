@@ -51,8 +51,8 @@ const config = {
           {
             loader: "file-loader",
             options: {
-              outputPath: "./info_demo/",
-              publicPath: "./info_demo/",
+              outputPath: "./img/",
+              publicPath: "./img/",
               name: "[name][hash].[ext]"
             }
           }
