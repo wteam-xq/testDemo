@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import message from "./message/message"
-// import { message } from "antd";
+// import message from "./message/message"
+import { message } from "antd";
 // const { info } = Modal;
 
 class Demo extends React.Component {

@@ -60,14 +60,58 @@
   background: url("./img/info_icon.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  font-size: 16px;
 }
 .ant-message .check-circle {
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: url("./img/info_icon.png");
+  background: url("./img/check_icon.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.ant-message .close-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("./img/close_icon.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.ant-message .exclamation-circle {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("./img/exclamation_icon.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.ant-message .loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("./img/loading_icon.gif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  font-size: 16px;
 }
 
 .move-up-enter{
@@ -80,14 +124,6 @@
   opacity: 0;
   -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
   animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.move-up-leave {
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-play-state: paused;
-  animation-play-state: paused;
 }
 .move-up-enter.move-up-enter-active {
   -webkit-animation-name: antMoveUpIn;
