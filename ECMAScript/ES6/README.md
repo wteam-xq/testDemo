@@ -1,4 +1,4 @@
-### 前端代码集合
+### ES6 学习笔记目录
 
 * 1.ES6 简介:
   * [lesson_1_ECMAScript6_intro.html](https://github.com/wteam-xq/testDemo/blob/master/ECMAScript/ES6/lesson_1_ECMAScript6_intro.html.html)
