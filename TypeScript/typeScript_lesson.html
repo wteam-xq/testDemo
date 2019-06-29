@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>
+      TypeScript 学习
+    </title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../markdown.css" />
+    <style>
+      a:hover {
+        text-decoration: none;
+      }
+      a {
+        color: #cb9c64;
+      }
+      .title {
+        font-weight: bold;
+      }
+      .markdown h3 {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main markdown">
+      <h1>git book - TypeScript入门教程</h1>
+      <a
+        href="https://ts.xcatliu.com/introduction/hello-typescript"
+        target="_blank"
+        >学习地址</a
+      >
+      <div>个人学习笔记，以下内容与原内容有微小区别；</div>
+      <ul>
+        <li>
+          <h3>1.简介</h3>
+          <ul>
+            <li class="title">什么是TypeScript?</li>
+            <li>
+              定义： TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对
+              ES6 的支持，它由 Microsoft 开发，代码开源于 GitHub 上。
+            </li>
+            <li>
+              优点: 1.增加了代码可维护性；2.包容，可兼容JS代码；3.活跃的社区；
+            </li>
+            <li>
+              缺点:
+              1.增加集成到构建的成本：例如编译代码过慢、部署流程更加复杂；2.与部分JS库兼容问题；3.学习成本；
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">安装TypeScript</li>
+            <li>安装指令：</li>
+            <li>npm install -g typescript</li>
+            <li>编译指令：</li>
+            <li>tsc hello.ts</li>
+            <li>
+              推荐编辑器：
+              <a href="https://code.visualstudio.com/" target="_blank"
+                >Visual Studio Code</a
+              >
+              该编辑器也是用typeScript编写！
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">Hello TypeScript</li>
+            <li>第一个简单的Demo</li>
+            <li>
+              TypeScript 只会进行静态检查，如果发现有错误，编译的时候就会报错。
+            </li>
+            <li>TypeScript 编译的时候即使报错了，还是会生成编译结果</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>2.基础</h3>
+          <ul>
+            <li class="title">原始数据类型</li>
+            <li>
+              JavaScript 的类型分为两种：原始数据类型（Primitive data
+              types）和对象类型（Object types）。
+            </li>
+            <li>
+              原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6
+              中的新类型 Symbol。
+            </li>
+            <li>let isDone: boolean = false;</li>
+            <li>let decLiteral: number = 6;</li>
+            <li>let myName: string = 'wteamxq';</li>
+            <li>function alertName(): void { alert('My name is Tom'); }</li>
+            <li>let u: undefined = undefined;</li>
+            <li>let n: null = null;</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">任意值</li>
+            <li>
+              变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型;
+            </li>
+            <li>let something; something = 'seven'; something = 7;</li>
+            <li>
+              声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。
+            </li>
+            <li>
+              let anyThing: any = 'hello'; anyThing.myName.setFirstName('Cat');
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类型推论</li>
+            <li>
+              变量声明时赋了某一类型值，则默认变量为该类型， 后续更改会报错;
+            </li>
+            <li>let myFavoriteNumber = 'seven';myFavoriteNumber = 7;</li>
+            <li>
+              // index.ts(2,1): error TS2322: Type 'number' is not assignable to
+              type 'string'.
+            </li>
+            <li>
+              如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any
+              类型而完全不被类型检查：
+            </li>
+            <li>let myFavoriteNumber; myFavoriteNumber = 7; // 不会报错</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">联合类型</li>
+            <li>联合类型（Union Types）表示取值可以为多种类型中的一种。</li>
+            <li>
+              let myFavoriteNumber: string | number; myFavoriteNumber = 'seven';
+              myFavoriteNumber = 7;
+            </li>
+            <li>
+              当 TypeScript
+              不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：
+            </li>
+            <li>
+              function getLength(something: string | number): number { return
+              something.length; }
+            </li>
+            <li>// 报错， length方法只属于 string, number 类型没该方法;</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">对象的类型 - 接口</li>
+            <li>
+              在 TypeScript 中，我们使用接口（Interfaces）来定义对象的类型。
+            </li>
+            <li>
+              在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。
+            </li>
+            <li>TypeScript 中的接口理解成一个形状：「对象的形状（Shape）」</li>
+            <li>
+              interface Person { name: string; age: number; } //
+              注意字段间分隔符是分号';', 而不是逗号','
+            </li>
+            <li>
+              let User: Person = {name: 'wteamxq', age: 25, };
+            </li>
+            <li>
+              可选属性: 有时我们希望不要完全匹配一个形状，那么可以用可选属性;
+            </li>
+            <li>interface Person { name: string; age?:number; }</li>
+            <li>任意属性：有时候我们希望一个接口允许有任意的属性;</li>
+            <li>
+              interface Psersion { name: string; [propName: string]: any; } //
+              类型为string的任意属性名
+            </li>
+            <li>
+              只读属性：有时候我们希望对象中的一些字段只能在创建的时候被赋值，那么可以用
+              readonly 定义只读属性;
+            </li>
+            <li>interface Psersion { readonly id: number; name: string; }</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">数组的类型</li>
+            <li>
+              在 TypeScript 中，数组类型有多种定义方式，比较灵活。
+            </li>
+            <li>「类型 + 方括号」表示法</li>
+            <li>let fibonacci: number[] = [1, 1, 2, 3, 5];// 定义只有数字的数组</li>
+            <li>数组泛型（Array Generic）: Array<elemType> 来表示数组</li>
+            <li>let fibonacci: Array<number> = [1, 1, 2, 3, 5]; // 更多范型细节: 在 进阶 - 泛型</li>
+            <li>用接口表示数组</li>
+            <li>interface NumberArray { [index: number]: number; } </li>
+            <li>let fibonacci: NumberArray = [1, 2, 3, 5];</li>
+            <li>any 在数组中的应用</li>
+            <li>let list: any[] = ['Xcat Liu', 25, { website: 'http://xcatliu.com' }];</li>
+            <li>类数组（Array-like Object）: 不是数组类型，比如 arguments:</li>
+            <li>function sum() { let args: number[] = arguments; } </li>
+            <li>// 报错，类数组不是数组；</li>
+            <li>// index.ts(2,7): error TS2322: Type 'IArguments' is not assignable to type 'number[]'.</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">函数的类型</li>
+            <li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#%E4%B8%BA%E4%BD%95%E9%92%9F%E7%88%B1%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91" target="_blank">函数是 JavaScript中的一等公民</a></li>
+            <li>在 JavaScript 中，有两种常见的定义函数的方式——函数声明（Function Declaration）和函数表达式（Function Expression）：</li>
+            <li>函数声明</li>
+            <li>对函数的输入、输出进行约束：</li>
+            <li>function sum(x: number, y: number) : number { return x + y; }</li>
+            <li>函数表达式</li>
+            <li>let mySum: (x: number, y: number) => number = function (x: number, y: number): number { return x +y }</li>
+            <li>不要混淆了 TypeScript 中的 => 和 ES6 中的 =></li>
+            <li>TypeScript 的类型定义中，=> 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。</li>
+            <li>在 ES6 中，=> 叫做箭头函数，应用十分广泛，可以参考 <a href="http://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0" target="_blank">ES6 中的箭头函数</a>。</li>
+            <li>用接口定义函数的形状</li>
+            <li>interface SearchFunc { (source: string, subString: string): boolean; }</li>
+            <li>let mySearch: SearchFunc; mySearch = function(source: string, subString:string) { return source.search(subString) !== -1; }</li>
+            <li>可选参数</li>
+            <li>function buildName(firstName: string, lastName?:string) { if (lastName) { return firstName + lastName;} else { return firstName; } }</li>
+            <li>let tomcat = buildName('Tom', 'Cat'); let tom = buildName('Tom');</li>
+            <li>可选参数后面不允许再出现必须参数了;</li>
+            <li>参数默认值</li>
+            <li>function buildName(firstName: string = 'Tom', lastName: string) { return firstName + lastName; }</li>
+            <li>TypeScript 会将添加了默认值的参数识别为可选参数, 不受「可选参数必须接在必需参数后面」的限制;</li>
+            <li>剩余参数</li>
+            <li>ES6 中，可以使用 ...rest 的方式获取函数中的剩余参数（rest 参数）;</li>
+            <li>事实上，items 是一个数组。所以我们可以用数组的类型来定义它：</li>
+            <li>
+              function push(array: any[], ...items: any[]) { 
+                items.forEach(function (item) { 
+                  array.push(item);}
+                ); 
+              }
+            </li>
+            <li>重载</li>
+            <li>重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。</li>
+            <li>比如，我们需要实现一个函数 reverse，输入数字 123 的时候，输出反转的数字 321，输入字符串 'hello' 的时候，输出反转的字符串 'olleh'。</li>
+            <li>function reverse(x: number): number;</li>
+            <li>function reverse(x: string): string;</li>
+            <li>
+              function reverse(x: number | string): number | string {
+                if (typeof x === 'number') {
+                    return Number(x.toString().split('').reverse().join(''));
+                } else if (typeof x === 'string') {
+                    return x.split('').reverse().join('');
+                }
+              }
+            </li>
+            <li>TypeScript 会优先从最前面的函数定义开始匹配，所以多个函数定义如果有包含关系，需要优先把精确的定义写在前面。</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">类型断言</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">声明文件</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">内置对象</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>3.进阶</h3>
+          <ul></ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>4.工程</h3>
+          <ul></ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
