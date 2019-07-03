@@ -249,14 +249,46 @@
           <br/>
           <ul>
             <li class="title">类型断言</li>
+            <li>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：</li>
+            <li>而有时候，我们确实需要在还不确定类型的时候就访问其中一个类型的属性或方法;</li>
+            <li>类型断言 就能解决以上问题；</li>
+            <li>
+              function getLength(something: string | number): number {
+                  if ((&lt;string&gt;something).length) {
+                      return (&lt;string&gt;something).length;
+                  } else {
+                      return something.toString().length;
+                  }
+              }
+            </li>
+            <li>类型断言不是类型转换，断言成一个联合类型中不存在的类型是不允许的;</li>
           </ul>
           <br/>
           <ul>
             <li class="title">声明文件</li>
+            <li>当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。
+            </li>
+            <li>声明语句：将第三方库例如JQ声明为全局变量防止编译报错；</li>
+            <li>声明文件：放置声明语句的单独文件，*.d.ts 格式，必须.d.ts后缀；</li>
+            <li>书写声明文件；</li>
+            <li>6场景：1.全局变量；2.npm包；3.UMD库；4.直接扩展全局变量；5.在npm包或UMD库改变全局变量；6.模块插件；</li>
+            <li>全局变量：npm install @types/xxx --save-dev 安装类不需要配置；</li>
+            <li>npm包：一般来说，npm 包的声明文件可能存在于两个地方：1.与该 npm 包绑定在一起。2.发布到 @types 里。 </li>
+            <li>UMD库：既可以通过 &lt;script&gt; 标签引入，又可以通过 import 导入的库，称为 UMD 库。</li>
+            <li>直接扩展全局变量: 有的第三方库扩展了一个全局变量，可是此全局变量的类型却没有相应的更新过来，就会导致 ts 编译错误，此时就需要扩展全局变量的类型。</li>
+            <li>在 npm 包或 UMD 库中扩展全局变量: 一个 npm 包或者 UMD 库的声明文件，只有 export 导出的类型声明才能被导入。所以对于 npm 包或 UMD 库，如果导入此库之后会扩展全局变量，则需要使用另一种语法在声明文件中扩展全局变量的类型，那就是 declare global。</li>
+            <li>自动生成声明文件：如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。</li>
+            <li>发布声明文件：两种方案：1.将声明文件和源码放在一起；2.将声明文件发布到 @types 下；</li>
           </ul>
           <br/>
           <ul>
             <li class="title">内置对象</li>
+            <li>JavaScript 中有很多内置对象，它们可以直接在 TypeScript 中当做定义好了的类型。</li>
+            <li>ECMAScript 的内置对象: Boolean、Error、Date、RegExp等</li>
+            <li>DOM 和 BOM 的内置对象: Document、HTMLElement、Event、NodeList 等。</li>
+            <li>用 TypeScript 写 Node.js  Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：
+            </li>
+            <li>npm install @types/node --save-dev</li>
           </ul>
         </li>
       </ul>
