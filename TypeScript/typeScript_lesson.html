@@ -295,7 +295,118 @@
       <ul>
         <li>
           <h3>3.进阶</h3>
-          <ul></ul>
+          <ul>
+            <li class="title">类型别名</li>
+            <li>类型别名用来给一个类型起个新名字。</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">字符串字面量类型</li>
+            <li>字符串字面量类型用来约束取值只能是某几个字符串中的一个。</li>
+            <li>type EventNames = 'click' | 'scroll' | 'mousemove';</li>
+            <li>
+              function handleEvent(ele: Element, event: EventNames) {
+                // do something
+              }
+            </li>
+            <li>handleEvent(document.getElementById('hello'), 'scroll');  // 没问题</li>
+            <li>handleEvent(document.getElementById('world'), 'dbclick'); // 报错，event 不能为 'dbclick'</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">元组</li>
+            <li>数组合并了相同类型的对象，而元组（Tuple）合并了不同类型的对象。</li>
+            <li>let xcatliu: [string, number] = ['Xcat Liu', 25];</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">枚举</li>
+            <li>枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。</li>
+            <li>enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};</li>
+            <li>手动赋值</li>
+            <li>enum Days {Sun = 7, Mon = 1, Tue, Wed, Thu, Fri, Sat};</li>
+            <li>枚举项有两种类型：常数项（constant member）和计算所得项（computed member）。</li>
+            <li>上述例子就是 常数项；</li>
+            <li>计算所得项： enum Color {Red, Green, Blue = "blue".length};</li>
+            <li>常数枚举是使用 const enum 定义的枚举类型：</li>
+            <li>外部枚举（Ambient Enums）是使用 declare enum 定义的枚举类型：</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类</li>
+            <li>面向对象（OOP）的三大特性：封装、继承、多态</li>
+            <li>类的概念： 封装、继承、多态、存取器、修饰符、抽象类、接口；</li>
+            <li> ES6 中类的用法，更详细的介绍可以参考 <a href="http://es6.ruanyifeng.com/#docs/class" target="_blank">ECMAScript 6 入门</a> - Class </li>
+            <li>属性和方法</li>
+            <li>类的继承</li>
+            <li>存取器</li>
+            <li>静态方法</li>
+            <li>ES7 中类的用法</li>
+            <li>ES6 中实例的属性只能通过构造函数中的 this.xxx 来定义，ES7 提案中可以直接在类里面定义：</li>
+            <li>ES7 提案中，可以使用 static 定义一个静态属性：</li>
+            <li>TypeScript 中类的用法</li>
+            <li>TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 public、private 和 protected。</li>
+            <li>抽象类: 抽象类是不允许被实例化的;抽象类中的抽象方法必须被子类实现;</li>
+            <li></li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类和接口</li>
+            <li>类实现接口: 实现（implements）是面向对象中的一个重要概念。一般来讲，一个类只能继承自另一个类，有时候不同类之间可以有一些共有的特性，这时候就可以把特性提取成接口（interfaces），用 implements 关键字来实现。这个特性大大提高了面向对象的灵活性。</li>
+            <li>interface Alarm {
+                alert();
+            }
+            </li>
+            <li>class Door {
+              }</li>
+            <li>class SecurityDoor extends Door implements Alarm {
+                alert() {
+                    console.log('SecurityDoor alert');
+                }
+            }</li>
+            <li>class Car implements Alarm {
+                alert() {
+                    console.log('Car alert');
+                }
+            }</li>
+            <li>一个类可以实现多个接口：</li>
+            <li>class Car implements Alarm, Light {}</li>
+            <li>接口与接口之间可以是继承关系：</li>
+            <li>interface Alarm {
+                alert();
+            }</li>
+            <li>interface LightableAlarm extends Alarm {
+                lightOn();
+                lightOff();
+            }</li>
+            <li>接口也可以继承类：</li>
+            <li>class Point{} interface Point3d extends Point{}</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">泛型</li>
+            <li>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</li>
+            <li>例如：实现一个函数 createArray，它可以创建一个指定长度的数组，同时将每一项都填充一个默认值：</li>
+            <li>function createArray(length: number, value: any): Array<any> {}</li>
+            <li>这段代码编译不会报错，但是一个显而易见的缺陷是，它并没有准确的定义返回值的类型：
+                Array&lt;any&gt; 允许数组的每一项都为任意类型。但是我们预期的是，数组中每一项都应该是输入的 value 的类型。
+                这时候，泛型就派上用场了：
+            </li>
+            <li>function createArray<T>(length: number, value: T): Array<T> {}</li>
+            <li>定义泛型的时候，可以一次定义多个类型参数：</li>
+            <li>在函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法</li>
+            <li>通过接口，可以对泛型进行约束；</li>
+            <li>泛型接口：使用含有泛型的接口来定义函数的形状。</li>
+            <li>泛型类：泛型也可以用于类的类型定义中。</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">声明合并</li>
+            <li>如果定义了两个相同名字的函数、接口或类，那么它们会合并成一个类型：</li>
+            <li>函数的合并：可以使用重载定义多个函数类型；具体参考： 基础 -> 函数类型 -> 重载；</li>
+            <li>接口的合并：合并的属性的类型必须是唯一的；</li>
+            <li>类的合并： 类的合并与接口的合并规则一致。</li>
+          </ul>
         </li>
       </ul>
       <ul>
