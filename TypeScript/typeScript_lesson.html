@@ -412,7 +412,12 @@
       <ul>
         <li>
           <h3>4.工程</h3>
-          <ul></ul>
+          <ul>
+            <li class="title">代码检查</li>
+            <li>TSLint 与 ESLint 作为检查 TypeScript 代码的工具，各自有各自的优点：</li>
+            <li>TSLint 的优点: 1.专为 TypeScript 服务，bug 比 ESLint 少; 2.不受限于 ESLint 使用的语法树 ESTree;3.能直接通过 tsconfig.json 中的配置编译整个项目，使得在一个文件中的类型定义能够联动到其他文件中的代码检查;</li>
+            <li>ESLint 的优点: 1.基础规则比 TSLint 多很多（249 : 151）; 社区繁荣，插件众多（50+ : 9）;</li>
+          </ul>
         </li>
       </ul>
     </div>
