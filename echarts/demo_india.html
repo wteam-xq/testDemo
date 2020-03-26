@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    .citymap {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script src="./echarts.min_map.js"></script>
+  <script src="./India.js"></script>
+</head>
+
+<body>
+  <div id='map' class='citymap'></div>
+  <script>
+    function make_map(cityname, dom_id) {
+      achart = echarts.init(document.getElementById(dom_id));
+      var option = {
+        "legend": [
+          {
+            "selectedMode": "multiple",
+            "top": "top",
+            "orient": "horizontal",
+            "data": [
+              ""
+            ],
+            "left": "center",
+            "show": true
+          }
+        ],
+        "backgroundColor": "#fff",
+        "series": [
+          {
+            "mapType": cityname,
+            "data": [],
+            "name": "",
+            "symbol": "circle",
+            "type": "map",
+            "roam": true
+          }
+        ]
+      };
+      achart.setOption(option);
+    }
+    make_map('印度', 'map');
+  </script>
+</body>
+
+</html>
