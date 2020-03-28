@@ -1,4 +1,8 @@
 <html>
+<!-- 
+  地区配置API
+  https://www.echartsjs.com/zh/option.html#geo.regions  
+-->
 
 <head>
   <meta charset="utf-8" />
@@ -15,9 +19,21 @@
 <body>
   <div id='map' class='citymap'></div>
   <script>
-    function make_map(cityname, dom_id) {
-      achart = echarts.init(document.getElementById(dom_id));
+    function make_map(dom_id) {
+      var achart = echarts.init(document.getElementById(dom_id));
       var option = {
+        "title": [
+          {
+            textStyle: {
+              color: "#000",
+              fontSize: 18
+            },
+            show: true,
+            text: "confirm count",
+            top: "top",
+            left: "center"
+          }
+        ],
         "legend": [
           {
             "selectedMode": "multiple",
@@ -33,8 +49,10 @@
         "backgroundColor": "#fff",
         "series": [
           {
-            "mapType": cityname,
-            "data": [],
+            "mapType": 'India',
+            "data": [
+              { name: 'Kerala', selected: true, silent: true }
+            ],
             "name": "",
             "symbol": "circle",
             "type": "map",
@@ -44,7 +62,7 @@
       };
       achart.setOption(option);
     }
-    make_map('印度', 'map');
+    make_map('map');
   </script>
 </body>
 

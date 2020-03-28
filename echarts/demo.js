@@ -1,43 +1,41 @@
-function make_map(cityname, dom_id){
+function make_map(cityname, dom_id) {
   achart = echarts.init(document.getElementById(dom_id));
-  var option =  {
-    "title": [
+  var option = {
+    title: [
       {
-	"textStyle": {
-	  "color": "#000",
-	  "fontSize": 18
-	},
-	"subtext": "",
-	"text": cityname,
-	"top": "auto",
-	"subtextStyle": {
-	  "color": "#aaa",
-	  "fontSize": 12
-	},
-	"left": "auto"
+        textStyle: {
+          color: "#000",
+          fontSize: 18
+        },
+        subtext: "",
+        text: cityname,
+        top: "auto",
+        subtextStyle: {
+          color: "#aaa",
+          fontSize: 12
+        },
+        left: "auto"
       }
     ],
-    "legend": [
+    legend: [
       {
-	"selectedMode": "multiple",
-	"top": "top",
-	"orient": "horizontal",
-	"data": [
-	  ""
-	],
-	"left": "center",
-	"show": true
+        selectedMode: "multiple",
+        top: "top",
+        orient: "horizontal",
+        data: [""],
+        left: "center",
+        show: true
       }
     ],
-    "backgroundColor": "#fff",
-    "series": [
+    backgroundColor: "#fff",
+    series: [
       {
-	"mapType": cityname,
-	"data": [],
-	"name": "",
-	"symbol": "circle",
-	"type": "map",
-	"roam": true
+        mapType: cityname,
+        data: [],
+        name: "",
+        symbol: "circle",
+        type: "map",
+        roam: true
       }
     ]
   };
