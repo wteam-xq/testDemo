@@ -4,12 +4,137 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <style>
-    .doc{margin:25px;color:#000;font-size:16pt}.doc dt{border-bottom:1px dotted #999}.doc dd{padding:8px 5px}.doc dl{margin-bottom:15px}div.table{padding:20px;color:#000;background:#fff}div.table table{width:95%;text-align:center;margin:0 auto}div.table thead{background:#eee;text-align:center}div.table h3{border-bottom:1px solid #333}div.table th{font-weight:700}div.table td,th{border:1px solid #ccc;padding:5px}div.table p,pre{margin:.4em 0 .5em;line-height:1.5em;font-size:15px}div.table h2{font-size:22px;line-height:1.5em;border-bottom:1px solid #aaa}div.table h1{font-size:26px;line-height:1.5em}@media(max-width:800px){#main .left{display:none}#main .middle{margin-left:0}#bdshare{display:none}#main .wc{margin:2px}}.adslot_1{width:970px;height:90px}@media(min-width:300px){.adslot_1{width:320px;height:100px}}@media(min-width:500px){.adslot_1{width:468px;height:60px}}@media(min-width:800px){.adslot_1{width:728px;height:90px}}@media(min-width:1000px){.adslot_1{width:970px;height:90px}}
+    .doc {
+      margin: 25px;
+      color: #000;
+      font-size: 16pt
+    }
+
+    .doc dt {
+      border-bottom: 1px dotted #999
+    }
+
+    .doc dd {
+      padding: 8px 5px
+    }
+
+    .doc dl {
+      margin-bottom: 15px
+    }
+
+    div.table {
+      padding: 20px;
+      color: #000;
+      background: #fff
+    }
+
+    div.table table {
+      width: 95%;
+      text-align: center;
+      margin: 0 auto
+    }
+
+    div.table thead {
+      background: #eee;
+      text-align: center
+    }
+
+    div.table h3 {
+      border-bottom: 1px solid #333
+    }
+
+    div.table th {
+      font-weight: 700
+    }
+
+    div.table td,
+    th {
+      border: 1px solid #ccc;
+      padding: 5px
+    }
+
+    div.table p,
+    pre {
+      margin: .4em 0 .5em;
+      line-height: 1.5em;
+      font-size: 15px
+    }
+
+    div.table h2 {
+      font-size: 22px;
+      line-height: 1.5em;
+      border-bottom: 1px solid #aaa
+    }
+
+    div.table h1 {
+      font-size: 26px;
+      line-height: 1.5em
+    }
+
+    @media(max-width:800px) {
+      #main .left {
+        display: none
+      }
+
+      #main .middle {
+        margin-left: 0
+      }
+
+      #bdshare {
+        display: none
+      }
+
+      #main .wc {
+        margin: 2px
+      }
+    }
+
+    .adslot_1 {
+      width: 970px;
+      height: 90px
+    }
+
+    @media(min-width:300px) {
+      .adslot_1 {
+        width: 320px;
+        height: 100px
+      }
+    }
+
+    @media(min-width:500px) {
+      .adslot_1 {
+        width: 468px;
+        height: 60px
+      }
+    }
+
+    @media(min-width:800px) {
+      .adslot_1 {
+        width: 728px;
+        height: 90px
+      }
+    }
+
+    @media(min-width:1000px) {
+      .adslot_1 {
+        width: 970px;
+        height: 90px
+      }
+    }
   </style>
 </head>
 <script src="../lib/jquery-1.10.2.min.js"></script>
 <script>
-  $(document).ready(function(){
+  let aObj = { 'CN': 'China', 'IT': 'Italy', 'US': 'United States of America', 'ES': 'Spain', 'DE': 'Germany', 'IR': 'Iran', 'FR': 'France', 'CH': 'Switzerland', 'UK': 'United Kingdom', 'KR': 'Korea', 'NL': 'Netherlands', 'AT': 'Austria', 'BE': 'Belgium', 'CA': 'Canada', 'NO': 'Norway', 'PT': 'Portugal', 'BR': 'Brazil', 'SE': 'Sweden', 'TR': 'Turkey', 'AU': 'Australia', 'IL': 'Israel', 'DK': 'Denmark', 'MY': 'Malaysia', 'CZ': 'Czech Republic', 'LU': 'Luxembourg', 'IE': 'Ireland', 'JP': 'Japan', 'EC': 'Ecuador', 'CL': 'Chile', 'PL': 'Poland', 'PK': 'Pakistan', 'TH': 'Thailand', 'RO': 'Romania', 'SA': 'Saudi Arabia', 'GR': 'Greece', 'FI': 'Finland', 'ID': 'Indonesia', 'IS': 'Iceland', 'ZA': 'South Africa', 'RU': 'Russia', 'PH': 'Philippines', 'SG': 'Singapore', 'PA': 'Panama', 'QA': 'Qatar', 'SI': 'Slovenia', 'PE': 'Peru', 'MX': 'Mexico', 'CO': 'Colombia', 'EG': 'Egypt', 'HR': 'Croatia', 'BH': 'Bahrain', 'EE': 'Estonia', 'DO': 'Dominica Rep.', 'RS': 'Serbia', 'LB': 'Lebanon', 'IQ': 'Iraq', 'AR': 'Argentina', 'NZ': 'New Zealand', 'AM': 'Armenia', 'DZ': 'Algeria', 'LT': 'Lithuania', 'BG': 'Bulgaria', 'HU': 'Hungary', 'MA': 'Morocco', 'LV': 'Latvia', 'UY': 'Uruguay', 'SK': 'Slovakia', 'SM': 'San Marino', 'CR': 'Costa Rica', 'KW': 'Kuwait', 'AD': 'Andorra', 'MK': 'North Macedonia', 'TN': 'Tunisia', 'JO': 'Jordan', 'MD': 'Moldova, Republic of', 'VN': 'Vietnam', 'AL': 'Albania', 'BF': 'Burkina Faso', 'UA': 'Ukraine', 'CY': 'Cyprus', 'MT': 'Malta', 'BN': 'Brunei', 'VE': 'Venezuela', 'LK': 'Sri Lanka', 'SN': 'Senegal', 'OM': 'Oman', 'KH': 'Kampuchea (Cambodia )', 'AZ': 'Azerbaijan', 'KZ': 'Kazakhstan', 'BY': 'Belarus', 'AF': 'Afghanistan', 'CI': 'Ivory Coast', 'GE': 'Georgia', 'XK': 'Kosovo', 'CM': 'Cameroon', 'GH': 'Ghana', 'UZ': 'Uzbekistan', 'PS': 'Palestine', 'CU': 'Cuba', 'TT': 'Trinidad and Tobago', 'LI': 'Liechtenstein', 'PR': 'Puerto Rico', 'NE': 'Niger', 'MU': 'Mauritius', 'CD': 'DR Congo', 'KG': 'Kyrgyzstan', 'RW': 'Rwanda', 'BD': 'Bangladesh', 'PY': 'Paraguay', 'HN': 'Honduras', 'BO': 'Bolivia', 'GU': 'Guam', 'KE': 'Kenya', 'GF': 'French Guiana', 'MC': 'Monaco', 'JM': 'Jamaica', 'GT': 'Guatemala', 'TG': 'Togo', 'MG': 'Madagascar', 'BB': 'Barbados', 'UG': 'Uganda', 'MV': 'Maldives', 'ZM': 'Zambia', 'TZ': 'Tanzania', 'ET': 'Ethiopia', 'DJ': 'Djibouti', 'MN': 'Mongolia', 'GQ': 'Equatorial Guinea', 'HT': 'Haiti', 'SR': 'Suriname', 'SC': 'Seychelles', 'DM': 'Dominica', 'NA': 'Namibia', 'BJ': 'Benin', 'GA': 'Gabon', 'GY': 'Guyana', 'FJ': 'Fiji', 'BS': 'Bahamas', 'SY': 'Syria', 'MZ': 'Mozambique', 'SZ': 'Swaziland', 'GN': 'Guinea', 'CG': 'Congo', 'VA': 'Vatican', 'ER': 'Eritrea', 'CV': 'Cape Verde', 'AG': 'Antigua and Barbuda', 'AO': 'Angola', 'SD': 'Sudan', 'GM': 'Gambia', 'LA': 'Laos', 'LR': 'Liberia', 'TD': 'Chad', 'ZW': 'Zimbabwe', 'CF': 'Central African Republic', 'NP': 'Nepal', 'MM': 'Burma', 'GW': 'Guinea-Bissau', 'BT': 'Bhutan', 'ML': 'Mali', 'MR': 'Mauritania', 'NI': 'Nicaragua', 'TL': 'East Timor', 'SO': 'Somali', 'LY': 'Libya', 'BZ': 'Belize', 'GD': 'Grenada', 'PG': 'Papua New Cuinea', 'WW': 'Global', 'IN': 'India', 'AE': 'United Arab Emirates', 'YE': 'Yemen', 'AI': 'Anguilla', 'BM': 'Bermuda Is.', 'BW': 'Botswana', 'BI': 'Burundi', 'CK': 'Cook Is.', 'GI': 'Gibraltar', 'LS': 'Lesotho', 'MW': 'Malawi', 'MS': 'Montserrat Is', 'NR': 'Nauru', 'KP': 'North Korea', 'PF': 'French Polynesia', 'LC': 'St.Lucia', 'VC': 'St.Vincent', 'ST': 'Sao Tome and Principe', 'SL': 'Sierra Leone', 'SB': 'Solomon Is', 'TJ': 'Tajikstan', 'TO': 'Tonga', 'TM': 'Turkmenistan', 'YU': 'Yugoslavia', 'ZR': 'Zaire', 'BA': 'BiH' };
+  let keyArray = Object.keys(aObj);
+  let valArray = Object.values(aObj);
+  valArray.sort();
+  let newObj = {};
+  function getKeyByVal(val) { let result = ""; for (let i = 0; i < keyArray.length; i++) { let key = keyArray[i]; if (aObj[key] === val) { return key; } } }
+  valArray.forEach((val)=> {newObj[getKeyByVal(val)] = val;});
+  console.log("newObj:", newObj);
+
+  $(document).ready(function () {
     var $trDom = $("#cn_body");
     var $trList = $trDom.find("tr");
     var len = $trList.length;
@@ -85,7 +210,7 @@
           <td>ATG</td>
           <td>028</td>
           <td>ISO 3166-2:AG</td>
-          <td>Antigua  Barbuda</td>
+          <td>Antigua Barbuda</td>
           <td>安提瓜和巴布达</td>
           <td>安提瓜和巴布达</td>
           <td>安提瓜和巴布达</td>
@@ -227,7 +352,7 @@
           <td>BIH</td>
           <td>070</td>
           <td>ISO 3166-2:BA</td>
-          <td>Bosnia  Herzegovina</td>
+          <td>Bosnia Herzegovina</td>
           <td>波黑</td>
           <td>波黑</td>
           <td>波黑</td>
@@ -2018,7 +2143,7 @@
           <td>STP</td>
           <td>678</td>
           <td>ISO 3166-2:ST</td>
-          <td>Sao Tome  Principe</td>
+          <td>Sao Tome Principe</td>
           <td>圣多美和普林西比</td>
           <td>圣多美普林西比</td>
           <td>圣多美及普林西比</td>
@@ -2062,7 +2187,7 @@
           <td>TCA</td>
           <td>796</td>
           <td>ISO 3166-2:TC</td>
-          <td>Turks  Caicos Islands</td>
+          <td>Turks Caicos Islands</td>
           <td>特克斯和凯科斯群岛</td>
           <td>土克斯及开科斯群岛</td>
           <td>特克斯和凯科斯群岛</td>
@@ -2525,7 +2650,7 @@
           <td>TTO</td>
           <td>780</td>
           <td>ISO 3166-2:TT</td>
-          <td>Trinidad  Tobago</td>
+          <td>Trinidad Tobago</td>
           <td>特立尼达和多巴哥</td>
           <td>特立尼达和多巴哥</td>
           <td>特立尼达和多巴哥</td>
@@ -2536,7 +2661,7 @@
           <td>VCT</td>
           <td>670</td>
           <td>ISO 3166-2:VC</td>
-          <td>St. Vincent  the Grenadines</td>
+          <td>St. Vincent the Grenadines</td>
           <td>圣文森特和格林纳丁斯</td>
           <td>圣文森特和格林纳丁斯</td>
           <td>圣文森特和格林纳丁斯</td>
@@ -2679,7 +2804,7 @@
           <td>KNA</td>
           <td>659</td>
           <td>ISO 3166-2:KN</td>
-          <td>St. Kitts  Nevis</td>
+          <td>St. Kitts Nevis</td>
           <td>圣基茨和尼维斯</td>
           <td>圣基茨和尼维斯</td>
           <td>圣基茨和尼维斯</td>
@@ -2701,7 +2826,7 @@
           <td>SHN</td>
           <td>654</td>
           <td>ISO 3166-2:SH</td>
-          <td>St. Helena  Dependencies</td>
+          <td>St. Helena Dependencies</td>
           <td>圣赫勒拿</td>
           <td>圣赫勒拿岛</td>
           <td>圣赫勒拿</td>
