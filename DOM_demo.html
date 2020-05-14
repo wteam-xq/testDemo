@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta name="renderer" content="webkit">
-      <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/>
-      <meta charset="utf-8">
-      <title>
-        DOM理解
-      </title>
-      <link rel="icon" href="favicon.ico" type="image/x-icon" />
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    </head>
-    
-    <body>
-      <h1>DOM理解</h1>
-      <h2 class="h2_offset_top" id="h2_offset_top">元素到顶部（显示屏、浏览器、body）距离</h2>
-      <img src="images/js_offsetTop.jpg" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..."/>
 
-      <h2 class="h2_offset_top_2" id="h2_offset_top_2">点击某坐标 各相对位置图</h2>
-      <img src="images/js_offsetTop.png" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..."/>
+<head>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+  <meta charset="utf-8">
+  <title>
+    DOM理解
+  </title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
 
-      <h2>原生 JS 获取元素的宽高</h2>
-      <div>var box = document.getElementById("box")</div>
-      <div>var contentHeight = window.getComputedStyle(box).height //输出 '60px' 内容高度</div>
-      <div>box.clientHeight //输出110 (内容高度+padding * 2)</div>
-      <div>box.offsetHeight //输出160 (内容高度 + 内边距*2 +边框*2)</div>
-      <script>
-        // 元素距离顶端的高度
-        var h2Top1 = document.getElementById('h2_offset_top'),
-            h2Top2 = document.getElementById('h2_offset_top_2');
+<body>
+  <h1>DOM理解</h1>
+  <h2 class="h2_offset_top" id="h2_offset_top">元素到顶部（显示屏、浏览器、body）距离</h2>
+  <img src="images/js_offsetTop.jpg" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..." />
 
-        console.log('h2_o_t_2_scrollTop:' + h2Top2.scrollTop + '\n');
-        console.log('h2_o_t_2_clientTop:' + h2Top2.clientTop + '\n');
-        console.log('h2_o_t_2_offsetTop:' + h2Top2.offsetTop + '\n');
-      </script>
+  <h2 class="h2_offset_top_2" id="h2_offset_top_2">点击某坐标 各相对位置图</h2>
+  <img src="images/js_offsetTop.png" title="offsetTop、scrollTop..." alt="offsetTop、scrollTop..." />
 
-    </body>
+  <h2>原生 JS 获取元素的宽高</h2>
+  <div>var box = document.getElementById("box")</div>
+  <div>var contentHeight = window.getComputedStyle(box).height //输出 '60px' 内容高度</div>
+  <div>box.clientHeight //输出110 (内容高度+padding * 2)</div>
+  <div>box.offsetHeight //输出160 (内容高度 + 内边距*2 +边框*2)</div>
+  <script>
+    // 元素距离顶端的高度
+    var h2Top1 = document.getElementById('h2_offset_top'),
+      h2Top2 = document.getElementById('h2_offset_top_2');
+
+    console.log('h2_o_t_2_scrollTop:' + h2Top2.scrollTop + '\n');
+    console.log('h2_o_t_2_clientTop:' + h2Top2.clientTop + '\n');
+    console.log('h2_o_t_2_offsetTop:' + h2Top2.offsetTop + '\n');
+    // 后去浏览器滚动条高度
+    window.addEventListener("scroll", function (e) {
+      var h = document.documentElement.scrollTop || document.body.scrollTop;
+      console.log(h)
+      if (h <= 0) {
+        alert("到顶部了")
+      }
+    });
+    // $(window).scroll(function () {
+    //   var scrollTo = $(window).scrollTop(),
+    //     docHeight = $(document).height(),
+    //     windowHeight = $(window).height();
+    //   scrollPercent = (scrollTo / (docHeight - windowHeight)) * 100;
+    //   scrollPercent = scrollPercent.toFixed(1);
+    //   console.log(scrollPercent + "%")
+    //   //请求数据
+    //   if (scrollPercent > 90) {
+    //     ty_videoXJCKD(numbers += 10)
+    //   }
+    // }).trigger('scroll');
+  </script>
+
+</body>
+
 </html>
