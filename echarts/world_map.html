@@ -1,0 +1,61 @@
+<html>
+  <!-- https://codepen.io/jiujiale/pen/RwwpGvE -->
+  <!-- https://github.com/honkerzhou/resource-library/tree/master/data-visualization/echarts/map-world -->
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      background-color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px; 
+      color: #000;
+    }
+    a:link, a:visited {
+      color: #4682b4;
+    }
+    a:hover {
+      color: #4169e1;
+    }
+    #main	{
+      width: 1200px;
+      height: 800px;
+    }
+  </style>
+  <script src="./echarts.min.js"></script>
+  <script src="./world_2.js"></script>
+</head>
+
+<body>
+  <div id="main"></div>
+  <script>
+    var chart = echarts.init(document.getElementById('main'));
+    var option = {
+      "backgroundColor": "#fff",
+      visualMap: {
+        pieces:[
+          {value:0, color:'#fff'},
+          {min:0, max:99, color:'#FFE4DC'},
+          {min:100, max:999, color:'#FEC29F'},
+          {min:1000, max:9999, color:'#FF9260'},
+          {min:10000, max:99999, color:'#FB6511'},
+          {min:100000, max:199999, color:'#C64000'},
+          {min:200000, color:'#71220A'},
+        ],
+        show:false
+      },
+      series: [{
+        "type": 'map',
+        "mapType": 'world',
+        "data": [
+          {name: "Italy",  value: 110574 },
+          {name: "China", value:82773 },
+          {name: "France", value:0 },
+        ],
+        "zoom": 1,
+      }]
+    };
+    chart.setOption(option);
+  </script>
+</body>
+
+</html>

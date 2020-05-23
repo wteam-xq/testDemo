@@ -27,3 +27,14 @@ http://localhost:8000/
 ```
 <script type="text/javascript" src="demo_1/bundle.js"></script>
 ```
+
+## Ant Design message Demo 
+* 开发编译
+```
+npm run dev_info
+```
+
+* 部署
+```
+npm run build_info
+```

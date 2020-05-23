@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>
+      《深入理解TypeScript 》学习
+    </title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../markdown.css" />
+    <style>
+      a:hover {
+        text-decoration: none;
+      }
+      a {
+        color: #cb9c64;
+      }
+      .title {
+        font-weight: bold;
+      }
+      .markdown h3 {
+        font-size: 18px;
+      }
+      .img-wrap {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main markdown">
+      <h1>《深入理解TypeScript 》</h1>
+      <a
+        href="https://weread.qq.com/web/reader/6393276071bc6e966392234kc81322c012c81e728d9d180"
+        target="_blank"
+        >学习地址</a
+      >
+      <div>个人学习笔记，以下内容与原内容有微小区别；</div>
+      <ul>
+        <li>
+          <h3>前言</h3>
+          <ul>
+            <li class="title">TypeScript趋势图</li>
+            <li>TypeScript是一种由微软开发的、开源的编程语言，自2012年10月发布首个公开版本以来，它已得到了人们的广泛认可。</li>
+            <div class="img-wrap">
+              <img src="./img/type_trends.jpeg"/>
+            </div>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>1.为什么要使用TypeScript</h3>
+          <ul>
+            <li class="title">微软推出TypeScript 为了实现两个目标</li>
+            <li>
+              为JavaScript提供可选的类型系统；（提高代码质量和可维护性）
+            </li>
+            <li>
+              兼容当前及未来的JavaScript特性；（ES6、ES7、自定义等新特性支持，提高开发效率）
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>2.JavaScript常见语法</h3>
+          <ul>
+            <li class="title">TypeScript 和 JavaScript 的关系</li>
+            <div class="img-wrap">
+              <img src="./img/typescript_javascript.jpeg"/>
+            </div>
+          </ul>
+          <ul>
+            <li class="title"> JavaScript 语法</li>
+            <div>相等(==, ===)</div>
+            <div>引用(对象、函数、数组、正则等都是一个引用)</div>
+            <div>null 和 undefined（变量没有初始化 undefined, 变量不可用 null）</div>
+            <div>this(this与函数调用上下文相关，箭头函数断开这种上下文链接)</div>
+            <div>闭包(闭包是指一个函数有权利访问定义它外部作用域的任何变量)</div>
+            <div>数字(javascript只有一个数据类型：双精度64位number; .1 + .2 = 0.30000000000000004, big.js 修正或未来ES语法支持)</div>
+            <div>truthy(定义在某些位置上被评估为true的代码)</div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

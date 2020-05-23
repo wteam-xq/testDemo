@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>HTML5 read files hash</title>
+  <meta name="author" content="Mofei">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <script src="./js-spark-md5-master/spark-md5.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div>
+    <header>
+      <h1>HTML5 read files hash</h1>
+    </header>
+    <div>
+      <input type="file" id="file">
+      <div id="box"></div>
+      <div  style="margin-top:10px;">Spend Time: <span id="spead_time"></span></div>
+      <div>MD5-bse64: <span id="md5_base64"></span></div>
+      <div>MD5-binary: <span id="md5_binary"></span></div>
+    </div>
+    <footer>
+      <p>&copy; Copyright by Percy(<a href="http://www.cnblogs.com/Percy_Lee/">www.cnblogs.com/Percy_Lee</a>)</p>
+    </footer>
+  </div>
+
+  <script>
+    /**
+     *   hex to base64
+     * **/
+    if (!window.atob) {
+      var tableStr =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+      var table = tableStr.split("");
+      window.atob = function (base64) {
+        if (/(=[^=]+|={3,})$/.test(base64))
+          throw new Error("String contains an invalid character");
+        base64 = base64.replace(/=/g, "");
+        var n = base64.length & 3;
+        if (n === 1) throw new Error("String contains an invalid character");
+        for (var i = 0, j = 0, len = base64.length / 4, bin = []; i < len; ++i) {
+          var a = tableStr.indexOf(base64[j++] || "A"),
+            b = tableStr.indexOf(base64[j++] || "A");
+          var c = tableStr.indexOf(base64[j++] || "A"),
+            d = tableStr.indexOf(base64[j++] || "A");
+          if ((a | b | c | d) < 0)
+            throw new Error("String contains an invalid character");
+          bin[bin.length] = ((a << 2) | (b >> 4)) & 255;
+          bin[bin.length] = ((b << 4) | (c >> 2)) & 255;
+          bin[bin.length] = ((c << 6) | d) & 255;
+        }
+        return String.fromCharCode.apply(null, bin).substr(0, bin.length + n - 4);
+      };
+
+      window.btoa = function (bin) {
+        for (var i = 0, j = 0, len = bin.length / 3, base64 = []; i < len; ++i) {
+          var a = bin.charCodeAt(j++),
+            b = bin.charCodeAt(j++),
+            c = bin.charCodeAt(j++);
+          if ((a | b | c) > 255)
+            throw new Error("String contains an invalid character");
+          base64[base64.length] =
+            table[a >> 2] +
+            table[((a << 4) & 63) | (b >> 4)] +
+            (isNaN(b) ? "=" : table[((b << 2) & 63) | (c >> 6)]) +
+            (isNaN(b + c) ? "=" : table[c & 63]);
+        }
+        return base64.join("");
+      };
+    }
+
+    function hexToBase64(str) {
+      return btoa(
+        String.fromCharCode.apply(
+          null,
+          str
+            .replace(/\r|\n/g, "")
+            .replace(/([\da-fA-F]{2}) ?/g, "0x$1 ")
+            .replace(/ +$/, "")
+            .split(" ")
+        )
+      );
+    }
+
+    function base64ToHex(str) {
+      for (
+        var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = [];
+        i < bin.length;
+        ++i
+      ) {
+        var tmp = bin.charCodeAt(i).toString(16);
+        if (tmp.length === 1) tmp = "0" + tmp;
+        hex[hex.length] = tmp;
+      }
+      return hex.join(" ");
+    }
+  </script>
+  <script type="text/javascript">
+    document.getElementById("file").addEventListener("change", function () {
+      var fileReader = new FileReader(),
+        box = document.getElementById('box'),
+        blobSlice = File.prototype.mozSlice || File.prototype.webkitSlice || File.prototype.slice,
+        file = document.getElementById("file").files[0],
+        // 2M
+        chunkSize = 2097152,
+        chunks = Math.ceil(file.size / chunkSize),
+        currentChunk = 0,
+        // https://www.cnblogs.com/Percy_Lee/p/5018825.html
+        // 原代码：
+        // bs = fileReader.readAsBinaryString, spark = bs ? new SparkMD5() : new SparkMD5.ArrayBuffer();
+        // 经实践这种方式比较老，计算时间较长，且计算出的MD5 值不对，readAsBinaryString 为浏览器即将废弃API；
+        // https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsBinaryString
+        spark = new SparkMD5();
+        // spark = new SparkMD5.ArrayBuffer();
+
+      fileReader.onload = function (ee) {
+        // spark.append(ee.target.result);
+        spark.appendBinary(ee.target.result);
+        currentChunk++;
+        if (currentChunk < chunks) {
+          loadNext();
+        } else {
+          var endTime = new Date().getTime();
+          var md5Val = spark.end();
+          box.innerText = 'MD5:  ' + md5Val;
+          document.getElementById("spead_time").innerHTML = ((endTime - startTime) / 1000).toFixed(2) + " seconds";
+          document.getElementById('md5_base64').innerHTML = hexToBase64(md5Val);
+          document.getElementById('md5_binary').innerHTML = SparkMD5.hashBinary(md5Val, true);
+        }
+      }
+
+      function loadNext() {
+        var start = currentChunk * chunkSize, end = start + chunkSize >= file.size ? file.size : start + chunkSize;
+        fileReader.readAsBinaryString(blobSlice.call(file, start, end));
+        // fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+      }
+      var startTime = new Date().getTime();
+      loadNext();
+    });
+
+    // 相关文档
+    // https://www.cnblogs.com/wingzw/p/7562989.html
+    // https://tool.oschina.net/commons/
+    // https://blog.csdn.net/weixin_34032621/article/details/91442592
+  </script>
+</body>
+
+</html>

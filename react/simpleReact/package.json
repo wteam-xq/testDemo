@@ -1,0 +1,41 @@
+{
+  "name": "simple_react_demo",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "index.js",
+  "scripts": {
+    "webpack-dev": "webpack --watch --mode development",
+    "webpack": "webpack --mode production",
+    "start": "http-server -p 8001"
+  },
+  "author": "wteam-xq",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "prop-types": "^15.5.10",
+    "@babel/polyfill": "^7.2.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^7.3.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "rc-notification": "~3.3.0",
+    "happypack": "^5.0.0",
+    "clean-webpack-plugin": "^3.0.0"
+  }
+}

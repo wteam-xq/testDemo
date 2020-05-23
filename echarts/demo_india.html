@@ -1,0 +1,69 @@
+<html>
+<!-- 
+  地区配置API
+  https://www.echartsjs.com/zh/option.html#geo.regions  
+-->
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    .citymap {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script src="./echarts.min_map.js"></script>
+  <script src="./India.js"></script>
+</head>
+
+<body>
+  <div id='map' class='citymap'></div>
+  <script>
+    function make_map(dom_id) {
+      var achart = echarts.init(document.getElementById(dom_id));
+      var option = {
+        "title": [
+          {
+            textStyle: {
+              color: "#000",
+              fontSize: 18
+            },
+            show: true,
+            text: "confirm count",
+            top: "top",
+            left: "center"
+          }
+        ],
+        "legend": [
+          {
+            "selectedMode": "multiple",
+            "top": "top",
+            "orient": "horizontal",
+            "data": [
+              ""
+            ],
+            "left": "center",
+            "show": true
+          }
+        ],
+        "backgroundColor": "#fff",
+        "series": [
+          {
+            "mapType": 'India',
+            "data": [
+              { name: 'Kerala', selected: true, silent: true }
+            ],
+            "name": "",
+            "symbol": "circle",
+            "type": "map",
+            "roam": true
+          }
+        ]
+      };
+      achart.setOption(option);
+    }
+    make_map('map');
+  </script>
+</body>
+
+</html>

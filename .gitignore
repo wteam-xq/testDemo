@@ -12,6 +12,8 @@ npm-debug.log
 grunt/node_modules/*
 react/dva/node_modules/*
 react/redux/node_modules/*
+react/simpleReact/node_modules/*
+react/simpleReact/dist/*
 webpack/node_modules/*
 socket.io/server/node_modules/*
 .sass-cache/

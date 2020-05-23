@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>
+      TypeScript 学习
+    </title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../markdown.css" />
+    <style>
+      a:hover {
+        text-decoration: none;
+      }
+      a {
+        color: #cb9c64;
+      }
+      .title {
+        font-weight: bold;
+      }
+      .markdown h3 {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main markdown">
+      <h1>git book - TypeScript入门教程</h1>
+      <a
+        href="https://ts.xcatliu.com/introduction/hello-typescript"
+        target="_blank"
+        >学习地址</a
+      >
+      <div>个人学习笔记，以下内容与原内容有微小区别；</div>
+      <ul>
+        <li>
+          <h3>1.简介</h3>
+          <ul>
+            <li class="title">什么是TypeScript?</li>
+            <li>
+              定义： TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对
+              ES6 的支持，它由 Microsoft 开发，代码开源于 GitHub 上。
+            </li>
+            <li>
+              优点: 1.增加了代码可维护性；2.包容，可兼容JS代码；3.活跃的社区；
+            </li>
+            <li>
+              缺点:
+              1.增加集成到构建的成本：例如编译代码过慢、部署流程更加复杂；2.与部分JS库兼容问题；3.学习成本；
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">安装TypeScript</li>
+            <li>安装指令：</li>
+            <li>npm install -g typescript</li>
+            <li>编译指令：</li>
+            <li>tsc hello.ts</li>
+            <li>
+              推荐编辑器：
+              <a href="https://code.visualstudio.com/" target="_blank"
+                >Visual Studio Code</a
+              >
+              该编辑器也是用typeScript编写！
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">Hello TypeScript</li>
+            <li>第一个简单的Demo</li>
+            <li>
+              TypeScript 只会进行静态检查，如果发现有错误，编译的时候就会报错。
+            </li>
+            <li>TypeScript 编译的时候即使报错了，还是会生成编译结果</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>2.基础</h3>
+          <ul>
+            <li class="title">原始数据类型</li>
+            <li>
+              JavaScript 的类型分为两种：原始数据类型（Primitive data
+              types）和对象类型（Object types）。
+            </li>
+            <li>
+              原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6
+              中的新类型 Symbol。
+            </li>
+            <li>let isDone: boolean = false;</li>
+            <li>let decLiteral: number = 6;</li>
+            <li>let myName: string = 'wteamxq';</li>
+            <li>function alertName(): void { alert('My name is Tom'); }</li>
+            <li>let u: undefined = undefined;</li>
+            <li>let n: null = null;</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">任意值</li>
+            <li>
+              变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型;
+            </li>
+            <li>let something; something = 'seven'; something = 7;</li>
+            <li>
+              声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。
+            </li>
+            <li>
+              let anyThing: any = 'hello'; anyThing.myName.setFirstName('Cat');
+            </li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类型推论</li>
+            <li>
+              变量声明时赋了某一类型值，则默认变量为该类型， 后续更改会报错;
+            </li>
+            <li>let myFavoriteNumber = 'seven';myFavoriteNumber = 7;</li>
+            <li>
+              // index.ts(2,1): error TS2322: Type 'number' is not assignable to
+              type 'string'.
+            </li>
+            <li>
+              如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any
+              类型而完全不被类型检查：
+            </li>
+            <li>let myFavoriteNumber; myFavoriteNumber = 7; // 不会报错</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">联合类型</li>
+            <li>联合类型（Union Types）表示取值可以为多种类型中的一种。</li>
+            <li>
+              let myFavoriteNumber: string | number; myFavoriteNumber = 'seven';
+              myFavoriteNumber = 7;
+            </li>
+            <li>
+              当 TypeScript
+              不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：
+            </li>
+            <li>
+              function getLength(something: string | number): number { return
+              something.length; }
+            </li>
+            <li>// 报错， length方法只属于 string, number 类型没该方法;</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">对象的类型 - 接口</li>
+            <li>
+              在 TypeScript 中，我们使用接口（Interfaces）来定义对象的类型。
+            </li>
+            <li>
+              在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。
+            </li>
+            <li>TypeScript 中的接口理解成一个形状：「对象的形状（Shape）」</li>
+            <li>
+              interface Person { name: string; age: number; } //
+              注意字段间分隔符是分号';', 而不是逗号','
+            </li>
+            <li>
+              let User: Person = {name: 'wteamxq', age: 25, };
+            </li>
+            <li>
+              可选属性: 有时我们希望不要完全匹配一个形状，那么可以用可选属性;
+            </li>
+            <li>interface Person { name: string; age?:number; }</li>
+            <li>任意属性：有时候我们希望一个接口允许有任意的属性;</li>
+            <li>
+              interface Psersion { name: string; [propName: string]: any; } //
+              类型为string的任意属性名
+            </li>
+            <li>
+              只读属性：有时候我们希望对象中的一些字段只能在创建的时候被赋值，那么可以用
+              readonly 定义只读属性;
+            </li>
+            <li>interface Psersion { readonly id: number; name: string; }</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">数组的类型</li>
+            <li>
+              在 TypeScript 中，数组类型有多种定义方式，比较灵活。
+            </li>
+            <li>「类型 + 方括号」表示法</li>
+            <li>let fibonacci: number[] = [1, 1, 2, 3, 5];// 定义只有数字的数组</li>
+            <li>数组泛型（Array Generic）: Array<elemType> 来表示数组</li>
+            <li>let fibonacci: Array<number> = [1, 1, 2, 3, 5]; // 更多范型细节: 在 进阶 - 泛型</li>
+            <li>用接口表示数组</li>
+            <li>interface NumberArray { [index: number]: number; } </li>
+            <li>let fibonacci: NumberArray = [1, 2, 3, 5];</li>
+            <li>any 在数组中的应用</li>
+            <li>let list: any[] = ['Xcat Liu', 25, { website: 'http://xcatliu.com' }];</li>
+            <li>类数组（Array-like Object）: 不是数组类型，比如 arguments:</li>
+            <li>function sum() { let args: number[] = arguments; } </li>
+            <li>// 报错，类数组不是数组；</li>
+            <li>// index.ts(2,7): error TS2322: Type 'IArguments' is not assignable to type 'number[]'.</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">函数的类型</li>
+            <li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#%E4%B8%BA%E4%BD%95%E9%92%9F%E7%88%B1%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91" target="_blank">函数是 JavaScript中的一等公民</a></li>
+            <li>在 JavaScript 中，有两种常见的定义函数的方式——函数声明（Function Declaration）和函数表达式（Function Expression）：</li>
+            <li>函数声明</li>
+            <li>对函数的输入、输出进行约束：</li>
+            <li>function sum(x: number, y: number) : number { return x + y; }</li>
+            <li>函数表达式</li>
+            <li>let mySum: (x: number, y: number) => number = function (x: number, y: number): number { return x +y }</li>
+            <li>不要混淆了 TypeScript 中的 => 和 ES6 中的 =></li>
+            <li>TypeScript 的类型定义中，=> 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。</li>
+            <li>在 ES6 中，=> 叫做箭头函数，应用十分广泛，可以参考 <a href="http://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0" target="_blank">ES6 中的箭头函数</a>。</li>
+            <li>用接口定义函数的形状</li>
+            <li>interface SearchFunc { (source: string, subString: string): boolean; }</li>
+            <li>let mySearch: SearchFunc; mySearch = function(source: string, subString:string) { return source.search(subString) !== -1; }</li>
+            <li>可选参数</li>
+            <li>function buildName(firstName: string, lastName?:string) { if (lastName) { return firstName + lastName;} else { return firstName; } }</li>
+            <li>let tomcat = buildName('Tom', 'Cat'); let tom = buildName('Tom');</li>
+            <li>可选参数后面不允许再出现必须参数了;</li>
+            <li>参数默认值</li>
+            <li>function buildName(firstName: string = 'Tom', lastName: string) { return firstName + lastName; }</li>
+            <li>TypeScript 会将添加了默认值的参数识别为可选参数, 不受「可选参数必须接在必需参数后面」的限制;</li>
+            <li>剩余参数</li>
+            <li>ES6 中，可以使用 ...rest 的方式获取函数中的剩余参数（rest 参数）;</li>
+            <li>事实上，items 是一个数组。所以我们可以用数组的类型来定义它：</li>
+            <li>
+              function push(array: any[], ...items: any[]) { 
+                items.forEach(function (item) { 
+                  array.push(item);}
+                ); 
+              }
+            </li>
+            <li>重载</li>
+            <li>重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。</li>
+            <li>比如，我们需要实现一个函数 reverse，输入数字 123 的时候，输出反转的数字 321，输入字符串 'hello' 的时候，输出反转的字符串 'olleh'。</li>
+            <li>function reverse(x: number): number;</li>
+            <li>function reverse(x: string): string;</li>
+            <li>
+              function reverse(x: number | string): number | string {
+                if (typeof x === 'number') {
+                    return Number(x.toString().split('').reverse().join(''));
+                } else if (typeof x === 'string') {
+                    return x.split('').reverse().join('');
+                }
+              }
+            </li>
+            <li>TypeScript 会优先从最前面的函数定义开始匹配，所以多个函数定义如果有包含关系，需要优先把精确的定义写在前面。</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">类型断言</li>
+            <li>当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：</li>
+            <li>而有时候，我们确实需要在还不确定类型的时候就访问其中一个类型的属性或方法;</li>
+            <li>类型断言 就能解决以上问题；</li>
+            <li>
+              function getLength(something: string | number): number {
+                  if ((&lt;string&gt;something).length) {
+                      return (&lt;string&gt;something).length;
+                  } else {
+                      return something.toString().length;
+                  }
+              }
+            </li>
+            <li>类型断言不是类型转换，断言成一个联合类型中不存在的类型是不允许的;</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">声明文件</li>
+            <li>当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。
+            </li>
+            <li>声明语句：将第三方库例如JQ声明为全局变量防止编译报错；</li>
+            <li>声明文件：放置声明语句的单独文件，*.d.ts 格式，必须.d.ts后缀；</li>
+            <li>书写声明文件；</li>
+            <li>6场景：1.全局变量；2.npm包；3.UMD库；4.直接扩展全局变量；5.在npm包或UMD库改变全局变量；6.模块插件；</li>
+            <li>全局变量：npm install @types/xxx --save-dev 安装类不需要配置；</li>
+            <li>npm包：一般来说，npm 包的声明文件可能存在于两个地方：1.与该 npm 包绑定在一起。2.发布到 @types 里。 </li>
+            <li>UMD库：既可以通过 &lt;script&gt; 标签引入，又可以通过 import 导入的库，称为 UMD 库。</li>
+            <li>直接扩展全局变量: 有的第三方库扩展了一个全局变量，可是此全局变量的类型却没有相应的更新过来，就会导致 ts 编译错误，此时就需要扩展全局变量的类型。</li>
+            <li>在 npm 包或 UMD 库中扩展全局变量: 一个 npm 包或者 UMD 库的声明文件，只有 export 导出的类型声明才能被导入。所以对于 npm 包或 UMD 库，如果导入此库之后会扩展全局变量，则需要使用另一种语法在声明文件中扩展全局变量的类型，那就是 declare global。</li>
+            <li>自动生成声明文件：如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。</li>
+            <li>发布声明文件：两种方案：1.将声明文件和源码放在一起；2.将声明文件发布到 @types 下；</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">内置对象</li>
+            <li>JavaScript 中有很多内置对象，它们可以直接在 TypeScript 中当做定义好了的类型。</li>
+            <li>ECMAScript 的内置对象: Boolean、Error、Date、RegExp等</li>
+            <li>DOM 和 BOM 的内置对象: Document、HTMLElement、Event、NodeList 等。</li>
+            <li>用 TypeScript 写 Node.js  Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：
+            </li>
+            <li>npm install @types/node --save-dev</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>3.进阶</h3>
+          <ul>
+            <li class="title">类型别名</li>
+            <li>类型别名用来给一个类型起个新名字。</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">字符串字面量类型</li>
+            <li>字符串字面量类型用来约束取值只能是某几个字符串中的一个。</li>
+            <li>type EventNames = 'click' | 'scroll' | 'mousemove';</li>
+            <li>
+              function handleEvent(ele: Element, event: EventNames) {
+                // do something
+              }
+            </li>
+            <li>handleEvent(document.getElementById('hello'), 'scroll');  // 没问题</li>
+            <li>handleEvent(document.getElementById('world'), 'dbclick'); // 报错，event 不能为 'dbclick'</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">元组</li>
+            <li>数组合并了相同类型的对象，而元组（Tuple）合并了不同类型的对象。</li>
+            <li>let xcatliu: [string, number] = ['Xcat Liu', 25];</li>
+          </ul>
+          <br/>
+          <ul>
+            <li class="title">枚举</li>
+            <li>枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天，颜色限定为红绿蓝等。</li>
+            <li>enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};</li>
+            <li>手动赋值</li>
+            <li>enum Days {Sun = 7, Mon = 1, Tue, Wed, Thu, Fri, Sat};</li>
+            <li>枚举项有两种类型：常数项（constant member）和计算所得项（computed member）。</li>
+            <li>上述例子就是 常数项；</li>
+            <li>计算所得项： enum Color {Red, Green, Blue = "blue".length};</li>
+            <li>常数枚举是使用 const enum 定义的枚举类型：</li>
+            <li>外部枚举（Ambient Enums）是使用 declare enum 定义的枚举类型：</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类</li>
+            <li>面向对象（OOP）的三大特性：封装、继承、多态</li>
+            <li>类的概念： 封装、继承、多态、存取器、修饰符、抽象类、接口；</li>
+            <li> ES6 中类的用法，更详细的介绍可以参考 <a href="http://es6.ruanyifeng.com/#docs/class" target="_blank">ECMAScript 6 入门</a> - Class </li>
+            <li>属性和方法</li>
+            <li>类的继承</li>
+            <li>存取器</li>
+            <li>静态方法</li>
+            <li>ES7 中类的用法</li>
+            <li>ES6 中实例的属性只能通过构造函数中的 this.xxx 来定义，ES7 提案中可以直接在类里面定义：</li>
+            <li>ES7 提案中，可以使用 static 定义一个静态属性：</li>
+            <li>TypeScript 中类的用法</li>
+            <li>TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 public、private 和 protected。</li>
+            <li>抽象类: 抽象类是不允许被实例化的;抽象类中的抽象方法必须被子类实现;</li>
+            <li></li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">类和接口</li>
+            <li>类实现接口: 实现（implements）是面向对象中的一个重要概念。一般来讲，一个类只能继承自另一个类，有时候不同类之间可以有一些共有的特性，这时候就可以把特性提取成接口（interfaces），用 implements 关键字来实现。这个特性大大提高了面向对象的灵活性。</li>
+            <li>interface Alarm {
+                alert();
+            }
+            </li>
+            <li>class Door {
+              }</li>
+            <li>class SecurityDoor extends Door implements Alarm {
+                alert() {
+                    console.log('SecurityDoor alert');
+                }
+            }</li>
+            <li>class Car implements Alarm {
+                alert() {
+                    console.log('Car alert');
+                }
+            }</li>
+            <li>一个类可以实现多个接口：</li>
+            <li>class Car implements Alarm, Light {}</li>
+            <li>接口与接口之间可以是继承关系：</li>
+            <li>interface Alarm {
+                alert();
+            }</li>
+            <li>interface LightableAlarm extends Alarm {
+                lightOn();
+                lightOff();
+            }</li>
+            <li>接口也可以继承类：</li>
+            <li>class Point{} interface Point3d extends Point{}</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">泛型</li>
+            <li>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</li>
+            <li>例如：实现一个函数 createArray，它可以创建一个指定长度的数组，同时将每一项都填充一个默认值：</li>
+            <li>function createArray(length: number, value: any): Array<any> {}</li>
+            <li>这段代码编译不会报错，但是一个显而易见的缺陷是，它并没有准确的定义返回值的类型：
+                Array&lt;any&gt; 允许数组的每一项都为任意类型。但是我们预期的是，数组中每一项都应该是输入的 value 的类型。
+                这时候，泛型就派上用场了：
+            </li>
+            <li>function createArray<T>(length: number, value: T): Array<T> {}</li>
+            <li>定义泛型的时候，可以一次定义多个类型参数：</li>
+            <li>在函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法</li>
+            <li>通过接口，可以对泛型进行约束；</li>
+            <li>泛型接口：使用含有泛型的接口来定义函数的形状。</li>
+            <li>泛型类：泛型也可以用于类的类型定义中。</li>
+          </ul>
+          <br />
+          <ul>
+            <li class="title">声明合并</li>
+            <li>如果定义了两个相同名字的函数、接口或类，那么它们会合并成一个类型：</li>
+            <li>函数的合并：可以使用重载定义多个函数类型；具体参考： 基础 -> 函数类型 -> 重载；</li>
+            <li>接口的合并：合并的属性的类型必须是唯一的；</li>
+            <li>类的合并： 类的合并与接口的合并规则一致。</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>4.工程</h3>
+          <ul>
+            <li class="title">代码检查</li>
+            <li>TSLint 与 ESLint 作为检查 TypeScript 代码的工具，各自有各自的优点：</li>
+            <li>TSLint 的优点: 1.专为 TypeScript 服务，bug 比 ESLint 少; 2.不受限于 ESLint 使用的语法树 ESTree;3.能直接通过 tsconfig.json 中的配置编译整个项目，使得在一个文件中的类型定义能够联动到其他文件中的代码检查;</li>
+            <li>ESLint 的优点: 1.基础规则比 TSLint 多很多（249 : 151）; 社区繁荣，插件众多（50+ : 9）;</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
