@@ -27,6 +27,9 @@
         text-align: center;
         margin: 0 auto;
       }
+      .sub-chapter {
+        margin-bottom: 15px;
+      }
     </style>
   </head>
   <body>
@@ -52,7 +55,7 @@
       </ul>
       <ul>
         <li>
-          <h3>1.为什么要使用TypeScript</h3>
+          <h3>第一章.为什么要使用TypeScript</h3>
           <ul>
             <li class="title">微软推出TypeScript 为了实现两个目标</li>
             <li>
@@ -66,7 +69,7 @@
       </ul>
       <ul>
         <li>
-          <h3>2.JavaScript常见语法</h3>
+          <h3>第二章.JavaScript常见语法</h3>
           <ul>
             <li class="title">TypeScript 和 JavaScript 的关系</li>
             <div class="img-wrap">
@@ -82,6 +85,180 @@
             <div>闭包(闭包是指一个函数有权利访问定义它外部作用域的任何变量)</div>
             <div>数字(javascript只有一个数据类型：双精度64位number; .1 + .2 = 0.30000000000000004, big.js 修正或未来ES语法支持)</div>
             <div>truthy(定义在某些位置上被评估为true的代码)</div>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>第三章.JavaScript新语法特性</h3>
+          <ul class="sub-chapter">
+            <li class="title">3.1 类</li>
+            <div>1.继承（extends）</div>
+            <div>2.静态（static）</div>
+            <div>3.访问修饰符</div>
+            <div>4.抽象</div>
+            <div>5.构造器（constructor）</div>
+            <div>6.属性初始化</div>
+            <div>7.IIFE发生了什么</div>
+            <div>8.__extends</div>
+            <div>JavaScript中的所有对象都包含一个__proto__成员.JavaScript中所有的函数都有一个prototype属性，而在prototype上有一个指向函数本身的构造器属性。</div>
+            <div>1)d.prototype.__proto__=b.prototype</div>
+            <div>2)d.prototype.__proto__=b.prototype的重要性</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.2 箭头函数</li>
+            <div>箭头函数作用：1、简洁； 2、包含了this的意义， 包含了argument意义；</div>
+            <div>一位智者曾经说过：我讨厌JavaScript，因为它太容易丢失this的意义。胖箭头函数通过使用捕获上下文的this的意义的方式，修复了此问题.</div>
+            <li>
+              <div>1.箭头函数的用处: 简洁， this 拥有上下文;</div>
+            </li>
+            <li>
+              <div>2.箭头函数是危险的: 如果你想让this成为调用时的上下文，你并不应该使用箭头函数。</div>
+            </li>
+            <li>
+              <div>3.箭头函数和使用this库: _self临时变量处理；</div>
+            </li>
+            <li>
+              <div>4.箭头函数和继承：子类不能通过super重写父类的this.xxx函数，super只适用于原型成员；通过在子类中重写函数来绕过这条规则</div>
+            </li>
+            <li>
+              <div>5.快速返回对象；</div>
+            </li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.3 rest 参数</li>
+            <div>rest参数，即用...+参数名的形式表示最后一个参数，能让你在函数中快速获取多个参数，并将它们转化为数组;</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.4 let</li>
+            <div>TypeScript和ES6推荐你在一个真实的块作用域内使用let来定义变量;用let代替var，可以让你得到一个与外界变量相隔离的、真实的、唯一的元素.</div>
+            <li>
+              <div>1.函数会创建新的作用域;(没使用 ES6 或 TypeScript 唯一隔离作用域方式)</div>
+            </li>
+            <li>
+              <div>2.生成JavaScript; （ES6、TypeScript使用let后编译代码解析）</div>
+            </li>
+            <li>
+              <div>3.switch;</div>
+            </li>
+            <li>
+              <div>4.闭包中的let: 循环调用函数问题， IIFE模式：（function（）{/*body*/}）（）；使用let 轻松解决；</div>
+            </li>
+            <li>5.小结：let对绝大多数代码都非常有用。它可以极大地加强代码的可读性，并能降低发生错误的概率。</li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.5 const</li>
+            <div>const是ES6/TypeScript提供的一个非常受欢迎的功能。它可以让你创建不可变的变量。</div>
+            <li><div>1.const 必须初始化;</div></li>
+            <li><div>2.赋值符号的左边不能是一个常量;</div></li>
+            <li><div>3.块作用域;</div></li>
+            <li><div>4.深层次的不变性;</div></li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.6 解构</li>
+            <div>TypeScript支持对象解构和数组解构。字面量的意思是分解结构，即会打破原有结构.</div>
+            <li>
+              <div>1.对象解构</div>
+              <code>
+                let rect = { x:0, y: 40, width: 15, height: 20 };
+              </code>
+              <br />
+              <code>let { x, y, width, height } = rect;</code>
+              <br />
+              <code>console.log(x, y, width,, height);</code>
+            </li>
+            <li>
+              <div>2.数组解构</div>
+              <div>如何在不使用第3个变量的情况下交换两个变量:</div>
+              <code>
+                let x = 2, y = 3;
+              </code>
+              <br />
+              <code>[x,y] = [y, x];</code>
+              <br />
+              <code>console.log(x, y);</code>
+            </li>
+            <li>
+              <div>3.生成JavaScript</div>
+              <div>以上数组解构demo代码，编译成原生JavaScript解析；（还是使用了第三个变量[狗头]）</div>
+            </li>
+            <li>
+              <div>4.小结: 通过减少代码的体积并使它具有更清晰的目标，解构可以使代码的可读性和可维护性大大提高。数组解构可以让你像使用元组一样使用数组。</div>
+            </li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.7 扩展运算符</li>
+            <div>扩展运算符的主要目标是扩展数组或对象中的元素。</div>
+            <li><div>1.apply: fn.apply(null, args) 简洁写法： fn(...args)</div></li>
+            <li><div>2.在解构中使用：</div></li>
+            <li><div>3.数组扩展：扩展运算符允许你轻松地将扩展后的数组放入另一个数组；（concat简洁、增强版写法）</div></li>
+            <li><div>4.对象扩展：使用扩展运算符把一个对象放入另一个对象。</div></li>
+            <li><div>5.小结：apply是一个你经常在JavaScript中使用的功能，所以当有一个不需要在this代码关键字上使用“丑陋”的null的新语法时，感觉是非常棒的。此外，当你在部分数组上对数组进行操作时，这提供了一种简洁的语法，专门用于将数组移出（解构）或将其写入（分配）另外的数组。。</div></li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.8 for...of</li>
+            <div>JavaScript开发人员经常遇到的一个错误是：for...in不能迭代数组成员。但是，它会迭代传入对象的键名。如下面的例子所示，你期望得到9，2，5，但是实际得到了索引0，1，2。</div>
+            <li><div>1.生成JavaScript, 编译后是for (var i = 0; i < someArray.length; i++)</div></li>
+            <li><div>2.限制： 只能字符串 或 数组等有长度类型使用，别再拿来给JSON对象使用了！注意，将来的TypeScript版本可能会删除此限制。</div></li>
+            <li><div>小结：你可能会惊讶于迭代数组元素的次数。下次当你想这样做时，就让for...of来替你完成吧。这可能会让审核你的代码的人感到高兴。</div></li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.9 迭代</li>
+            <div>迭代本身不是TypeScript/ES6的功能。迭代是面向对象编程语言常见的设计模式。通常，它是一个实现接口的对象。</div>
+            <div>迭代本身并不是TypeScript的功能，这些代码可以在没有明确实现Iterator和IteratorResult接口的情况下正常工作。而这对于使用常见的ES6接口来实现代码的一致性非常有用。</div>
+            <div>ES6定义了iterable协议，如果它实现了Iterable接口，那么它就包含了[Symbol.iterator]。</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.10 模板字符串</li>
+            <div>这些模板字符串使用反引号（即'），而不是使用单引号（’）或双引号（"）。设计模板字符串的目的有3个: 1)字符串插值;2)多行字符串;3)标记模板。</div>
+            <li><div>1.字符串插值；从一些静态字符串+一些变量中生成字符串时，你需要使用一些模板逻辑，这就是模板字符串名字的由来。</div></li>
+            <li><div>2.多行字符串；（吐槽：这里没写清楚， 还是得看回<a target="_blank" href="https://es6.ruanyifeng.com/?search=%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2&x=0&y=0#docs/string#%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2">《ECMAScript6 入门》</a>）</div></li>
+            <li><div>3.标记模板: 可以在模板字符串前放置一个函数，它被称为tag。它将预处理模板字符串及其占位符的表达式，然后返回一个值。</div></li>
+            <li><div>4.生成JavaScript；</div></li>
+            <li><div>5.多行字符串和字符串插值在任何语言中都是很受欢迎的。现在你可以在JavaScript中使用它们，这很棒，感谢TypeScript。标记模板允许你创建功能强大的字符串实用程序；</div></li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.11 Promise</li>
+            <div>Promise类存在于许多现代的JavaScript引擎中，可以轻松地被polyfill。Promise的主要目的是用同步的代码替换异步/回调函数的代码。</div>
+            <li>
+              <div>1.回调函数风格的代码；</div>
+              <div>使用基于回调的异步函数时，要记住以下两点:1)永远不要调用两次回调函数;2)永远不要抛出错误;</div>
+            </li>
+            <li>
+              <div>2.使用Promise处理异步和回调函数;</div>
+              <div>1）创建一个Promise</div>
+              <div>2）订阅Promise的状态</div>
+              <div>3）Promise的链式调用</div>
+              <div>4）TypeScript和Promise</div>
+              <div>5）转换回调风格的函数以返回Promise</div>
+              <div>6）重温JSON的例子</div>
+            </li>
+            <li><div>3.并行流程控制: Promise提供了一个静态的Promise.all函数，你可以使用该函数等待n个Promise完成。如果你提供一个含有n个Promise的数组，它将返回一个包含n个已resolved的值的数组.</div></li>
+            <li>
+              <div>4.将回调函数转为Promise: 将回调函数转为Promise，最可靠的方法是手写，例如将setTimeout转换为Promise形式的delay函数。</div>
+              <code>const delay = (ms: number) => new Promise(res => setTimeout(res, ms)); </code>
+            </li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.12 generators</li>
+            <div>function*是一个用来创建generators函数的语法。调用一个generators函数将会返回一个generators对象。而这个generators对象只是遵循了迭代器的接口（即next、return和throw函数）。</div>
+            <li><div>1.惰性迭代器;</div></li>
+            <li><div>2.外部控制执行: 这是generators的一个真正令人兴奋的特性。它实际上可以让一个函数暂停执行，并将继续执行的权力交给调用者。</div></li>
+            <li>
+              <div>3.总结：</div>
+              <div>yield允许一个generators函数暂停执行，并且将恢复执行的权力交给外部系统。</div>
+              <div>外部系统可以将值推入generators函数体。</div>
+              <div>外部系统可以将一个异常抛入generators函数体。</div>
+            </li>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">3.13 async/await</li>
+            <div>使用Promise时，有一种方式告诉运行时的JavaScript暂停执行await关键字之后的内容，直到Promise从一个函数中执行完成。async/await在JavaScript/TypeScript中正是这么实现的，它的背后只是使用了generators。</div>
+            <li><div>1.产生JavaScript</div></li>
+            <li>
+              <div>2.TypeScript对async/await的支持</div>
+              <div>TypeScript从1.7版本之后开始支持async/await。异步函数以async关键字为前缀，await将暂停执行，直到异步函数返回Promise执行完成的结果，并且返回非Promise包装后的值。它只有在编译目标为ES6时支持async/await，并将其编译成ES6 generators。</div>
+            </li>
           </ul>
         </li>
       </ul>
