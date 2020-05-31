@@ -1,4 +1,8 @@
-// 从浏览器地址栏获取指定参数
+
+/**
+ * 从浏览器地址栏获取指定参数
+ * new URL 浏览器支持： https://developer.mozilla.org/zh-CN/docs/Web/API/URL/URL
+ */
 (function(){
   window.URLParamsObj = {
     UrlObj:null,
@@ -11,6 +15,18 @@
         value = this.UrlOriginObj[key];
       }
       return value;
+    },
+    // 从非浏览器地址栏URL 获取指定参数
+    getQueryString: function(name, url) {
+      try {
+        let URLObj = new URL(url);
+        return URLObj.searchParams.get(name);
+      } catch (error) {
+        let reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)", "i");
+        let result = url.match(reg);
+        if (result != null) return decodeURI(result[2]);
+        return null;
+      }
     }
   };
   try {
