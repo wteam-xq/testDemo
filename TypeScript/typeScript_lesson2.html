@@ -262,6 +262,277 @@
           </ul>
         </li>
       </ul>
+      <ul>
+        <li>
+          <h3>第4章 TypeScript项目构成</h3>
+          <ul class="sub-chapter">
+            <li class="title">4.1 编译上下文</li>
+            <div>tsconfig.json</div>
+            <div class="img-wrap">
+              <img src="./img/typescript_4_1.jpeg"/>
+            </div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">4.2 声明空间</li>
+            <div>1.类型声明空间</div>
+            <div>
+              <cod>class Foo{}</cod>
+              <cod>interface Bar{}</cod>
+              <cod>type Bas = {}</cod>
+            </div>
+            <div>2.变量声明空间</div>
+            <div>
+              <code>class Foo{}</code>
+              <code>const someVar = Foo;</code>
+              <code>class someOtherVar = 123;</code>
+            </div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">4.3 模块</li>
+            <div>1.全局模块: 当你开始在一个新的TypeScript文件中写下代码时，它处于全局命名空间中。</div>
+            <div>2.文件模块: 在TypeScript文件的根级别位置含有import或export，那么它会在这个文件中创建一个本地的作用域。</div>
+            <div>调用： CommonJS、AMD、ES模块，以及其他</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">4.4 命名空间</li>
+            <div>确保创建的变量不会泄漏至全局变量：</div>
+            <div class="img-wrap">
+              <img src="./img/typescript_4_4.jpeg"/>
+            </div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">4.5 动态导入表达式</li>
+            <div>动态导入表达式是ECMAScript的一个新功能，它允许你在程序的任意位置异步加载一个模块。</div>
+            <div>TypeScript 2.4 动态导入表达式将自动生成包块，并自动对最终生成的JavaScript代码进行拆分。</div>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>第5章 快速创建TypeScript项目</h3>
+          <ul class="sub-chapter">
+            <li class="title">5.1 在Node.js中使用TypeScript</li>
+            <div>1.创建一个Node.js项目的package.json文件;</div>
+            <div>2.添加TypeScript;</div>
+            <div>3.为TypeScript选项初始化一个tsconfig.json文件，并添加一些选项;</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">5.2 在浏览器中使用TypeScript</li>
+            <div>1.通用设置; 安装Node, Git;</div>
+            <div>2.快速开始;打开GitHub网页，搜索“typescript-react”</div>
+            <div>3.项目设置详解;</div>
+            <div>4.发布应用;</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">5.3 创建一个TypeScript模块</li>
+            <div>包所需的文件夹结构如下：</div>
+            <div class="img-wrap">
+              <img src="./img/typescript_5_3.jpeg"/>
+            </div>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <h3>第6章 TypeScript类型系统</h3>
+          <ul class="sub-chapter">
+            <li class="title">6.1 基本概念</li>
+            <div>1.基本注解;</div>
+            <div>2.基本类型注解;</div>
+            <div>3.数组注解;</div>
+            <div>4.接口注解;</div>
+            <div>5.内联类型注解;</div>
+            <div>6.特殊类型;</div>
+            <div>7.泛型;</div>
+            <div>8.联合类型注解;</div>
+            <div>9.交叉类型;</div>
+            <div>10.元组类型;</div>
+            <div>11.类型别名.</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.2 迁移JavaScript代码至TypeScript</li>
+            <div>1.减少错误: 用any解决大部分报错问题</div>
+            <div>2.第三方JavaScript代码： 创建一个vendor.d.ts文件作为开始（.d.ts文件扩展名指定这个文件是一个声明文件），然后向文件里添加东西。</div>
+            <div>3.第三方npm模块: 与全局变量的声明相似，你可以快速定义一个全局模块。</div>
+            <div><code>declare module 'jquery'</code></div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.3 @types</li>
+            <div>1.使用@types</div>
+            <div>2.全局@types</div>
+            <div>3.模块@types</div>
+            <div>4.控制全局</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.4 环境声明</li>
+            <div>1.声明文件</div>
+            <div>2.声明变量</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.5 接口</li>
+            <div>1.类可以实现接口</div>
+            <div>2.注意：并非每个接口都很容易实现</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.6 枚举</li>
+            <div>1.数字枚举与数字类型</div>
+            <div>2.数字枚举与字符串类型</div>
+            <div>3.改变与数字枚举相关联的数字</div>
+            <div>4.使用数字枚举做标记</div>
+            <div>5.字符串枚举</div>
+            <div>6.常量枚举</div>
+            <div>7.有静态方法的枚举</div>
+            <div>8.开放式枚举</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.7 lib.d.ts</li>
+            <div>1.观察lib.d.ts的内容</div>
+            <div>2.修改本地类型</div>
+            <div>3.使用你自己定义的lib.d.ts</div>
+            <div>4.编译目标对lib.d.ts的影响</div>
+            <div>5.--lib选项</div>
+            <div>6.在旧JavaScript引擎中使用polyfill</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.8 函数</li>
+            <div>1.参数注解</div>
+            <div>2.返回类型注解</div>
+            <div>3.可选参数</div>
+            <div>4.重载</div>
+            <div>5.声明函数</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.9 可调用</li>
+            <div>1.一个实例</div>
+            <div>2.箭头函数</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.10 类型断言</li>
+            <div>1.as Foo与＜foo＞</div>
+            <div class="img-wrap">
+              <img src="./img/typescript_5_3.jpeg"/>
+            </div>
+            <div>2.类型断言与类型转换</div>
+            <div>3.类型断言被认为是有害的</div>
+            <div>4.双重断言</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.11 Freshness</li>
+            <div>PS: 更严格的对象字面量检查</div>
+            <div>1.允许额外的属性</div>
+            <div>2.用例：React state</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.12 类型保护</li>
+            <div>1.typeof</div>
+            <div>2.instanceof</div>
+            <div>3.in</div>
+            <div>4.字面量类型保护</div>
+            <div>5.strictNullChecks编译属性下的null和undefined</div>
+            <div>6.使用自定义的类型保护</div>
+            <div>7.类型保护和回调函数</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.13 字面量类型</li>
+            <div>1.字符串字面量</div>
+            <div>2.boolean和number字面量</div>
+            <div>3.推断</div>
+            <div>4.用例：基于字符串的枚举</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.14 readonly</li>
+            <div>1.readonly用例</div>
+            <div>2.其他用例</div>
+            <div>3.readonly与const: readonly用于属性， const 用于变量</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.15 泛型</li>
+            <div>设计泛型的关键动机是在成员之间提供有意义的类型约束，这些成员可以是类的实例成员、类的方法、函数的参数、函数返回值。</div>
+            <div>1.动机和示例</div>
+            <div>2.设计模式</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.16 类型推断</li>
+            <div>TypeScript可以根据一些简单的规则来推断（然后检查）变量的类型，你可以通过实践，很快地了解它们。</div>
+            <div>1.定义变量</div>
+            <div>2.函数返回类型</div>
+            <div>3.赋值</div>
+            <div>4.结构化</div>
+            <div>5.解构</div>
+            <div>6.警告</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.17 类型兼容性</li>
+            <div>类型兼容性用于确定一个类型能否赋值给其他类型。</div>
+            <div>1.稳定性</div>
+            <div>2.结构化</div>
+            <div>3.变体</div>
+            <div>4.函数</div>
+            <div>5.枚举</div>
+            <div>6.类</div>
+            <div>7.泛型</div>
+            <div>8.脚注：不变性（Invariance）</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.18 never</li>
+            <div>never类型就是TypeScript中的底部类型，它自然被分配的一些例子如下。</div>
+            <div>一个从来不会有返回值的函数，例如，如果函数内含有while（true）{}的话。</div>
+            <div>一个总会抛出错误的函数，如function foo（）{throw new Error（'Not Implemented'）}，foo的返回类型是never。</div>
+            <div>1.用例：详细的检查</div>
+            <div>2.never与void的差异:void表示没有任何类型，never表示永远不存在的值的类型。</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.19 辨析联合类型</li>
+            <div>当类中含有字面量成员时，我们可以用该类的属性来辨析联合类型。</div>
+            <div>1.详细的检查</div>
+            <div>2.switch</div>
+            <div>3.strictNullChecks</div>
+            <div>4.版本控制</div>
+            <div>5.Redux</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.20 索引签名</li>
+            <div>可以用字符串访问JavaScript中的对象（在TypeScript中也一样），并保存对其他对象的引用.</div>
+            <div>1.TypeScript索引签名</div>
+            <div>2.声明一个索引签名</div>
+            <div>3.所有成员必须符合字符串索引签名</div>
+            <div>4.使用一组有限的字符串字面量</div>
+            <div>5.同时拥有string和number类型的索引签名</div>
+            <div>6.设计模式：索引签名的嵌套</div>
+            <div>7.从索引签名中排除某些属性</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.21 类型移动</li>
+            <div>TypeScript类型系统非常强大，它允许以某种方式进行类型移动和类型切片，这在其他任何单一语言里都是无法实现的。</div>
+            <div>1.复制类型和值</div>
+            <div>2.捕获变量的类型</div>
+            <div>3.捕获类成员的类型</div>
+            <div>4.捕获字符串类型</div>
+            <div>5.捕获键的名称</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.22 异常处理</li>
+            <div>JavaScript有一个Error类，它用于处理异常。你可以通过throw关键字来抛出一个错误，然后通过try/catch块来捕获此错误。</div>
+            <div>1.错误子类型</div>
+            <div>2.尽量使用Error</div>
+            <div>3.并不是一定要throw一个错误</div>
+            <div>4.exceptional的用例</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.23 混合</li>
+            <div>从可重用组件中构建类的另一种方式是，通过基类来构建它们，这种方式称为“混合”。</div>
+            <div>1.创建一个构造函数</div>
+            <div>2.扩展一个类并返回它</div>
+          </ul>
+          <ul class="sub-chapter">
+            <li class="title">6.24 ThisType</li>
+            <div>通过ThisType，我们可以在对象字面量中输入this，并提供通过上下文类型控制this类型的便捷方式，它只有在--noImplicitThis的选项下才有效。</div>
+            <div class="img-wrap">
+              <img src="./img/typescript_6_24.jpeg"/>
+            </div>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

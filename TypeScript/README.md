@@ -5,3 +5,6 @@
 
 * 2.TypeScript 入门教程: 
   * [git book - TypeScript入门教程](https://ts.xcatliu.com/introduction/hello-typescript)
+
+* 2.《深入理解TypeScript》: 
+  * [深入理解TypeScript](https://weread.qq.com/web/reader/6393276071bc6e966392234kc81322c012c81e728d9d180)
