@@ -79,7 +79,7 @@
   * [ES6学习笔记](https://github.com/wteam-xq/testDemo/blob/master/ECMAScript/ES6/README.md)
   * [TypeScript学习笔记](https://github.com/wteam-xq/testDemo/blob/master/TypeScript/README.md)
   * [前端笔试、面试题](https://github.com/wteam-xq/testDemo/blob/master/exam_questions.md)
-  * [个人书单](https://github.com/wteam-xq/testDemo/blob/master/my_books.md)
+  * [个人书单](https://github.com/wteam-xq/testDemo/blob/master/my_books/my_books.md)
 
 * angular:
   * [angularjs 路由demo](https://github.com/wteam-xq/testDemo/blob/master/angular/angularRoute.html)
