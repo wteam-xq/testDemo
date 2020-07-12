@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "test gulp",
   "main": "gulpfile.js",
-  "dependencies": {},
   "devDependencies": {
     "copy": "^0.1.2",
     "css-loader": "^0.26.0",
@@ -44,8 +43,7 @@
     "webpack-spritesmith": "^0.4.1"
   },
   "scripts": {
-    "test": "gulp",
-    "mock1":"node mock/demo1.js"
+    "test": "gulp"
   },
   "repository": {
     "type": "git",
