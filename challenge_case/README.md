@@ -14,3 +14,6 @@
 
 * 5.canvas实现飘落效果：
     * [网友实现](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/canvas_falling.html)
+
+* 6.数据管理系统：
+    * [LuckysheetDemo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/DMS/Luckysheet/demo.html)

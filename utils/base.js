@@ -330,7 +330,7 @@ function insertScript(url, callback){
 }
 
 /* 从地址栏获取参数 */
-function getQueryString() {
+function getQueryString(name) {
   const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
   const r = window.location.search.substr(1).match(reg);
   if (r != null) return unescape(r[2]);
