@@ -56,6 +56,7 @@
       //配置项
       var options = {
         container: 'luckysheet', //luckysheet为容器id
+        allowEdit: false,
         title: 'Welcome to Luckysheet Demo',
         lang: 'zh',
         showtoolbar: false,
@@ -77,7 +78,7 @@
         cellRightClickConfig: {
           copy: true, // 复制
           copyAs: true, // 复制为
-          sort: false, // 排序选区
+          sort: true, // 排序选区
           paste: false, // 粘贴
           insertRow: false, // 插入行
           insertColumn: false, // 插入列
@@ -90,7 +91,7 @@
           columnWidth: false, // 列宽
           clear: false, // 清除内容
           matrix: false, // 矩阵操作选区
-          filter: false, // 筛选选区
+          filter: true, // 筛选选区
           chart: false, // 图表生成
           image: false, // 插入图片
           link: false, // 插入链接
@@ -107,6 +108,10 @@
             "hide": 1,//是否隐藏
             "row": 36, //行数
             "column": 18, //列数
+            "filter_select": {
+              "row": [ 0, 3 ],
+              "column": [ 0, 2 ]
+            },
             "defaultRowHeight": 19, //自定义行高
             "defaultColWidth": 73, //自定义列宽
             "celldata": [
@@ -135,8 +140,10 @@
             "scrollTop": 0, //上下滚动条位置
             "config": {
               "authority": {
-                editObjects: -1,
-                editScenarios: -1
+                selectLockedCells:0,
+                editObjects: 0,
+                editScenarios: 0,
+                sheet: 1,
               }
             },
           }
