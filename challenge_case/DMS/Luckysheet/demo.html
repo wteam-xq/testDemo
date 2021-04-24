@@ -42,7 +42,7 @@
 </head>
 
 <body>
-  <h1>Welcome Luckysheet Demo!</h1>
+  <h1>Welcome Luckysheet Demo XXX!</h1>
   <div>
     <div class="left-sider">left menu</div>
     <div class="main-container">
@@ -56,7 +56,6 @@
       //配置项
       var options = {
         container: 'luckysheet', //luckysheet为容器id
-        allowEdit: false,
         title: 'Welcome to Luckysheet Demo',
         lang: 'zh',
         showtoolbar: false,
@@ -101,25 +100,32 @@
         data: [
           {
             "name": "Cell", //工作表名称
-            "color": "", //工作表颜色
+            "color": "#313449", //工作表颜色
             "index": 0, //工作表索引
             "status": 1, //激活状态
             "order": 0, //工作表的下标
             "hide": 1,//是否隐藏
             "row": 36, //行数
             "column": 18, //列数
-            "filter_select": {
-              "row": [ 0, 3 ],
-              "column": [ 0, 2 ]
-            },
+            "filter_select": {},
             "defaultRowHeight": 19, //自定义行高
             "defaultColWidth": 73, //自定义列宽
             "celldata": [
               {
                 "r": 0,
                 "c": 0,
-                "v": "lkjsdj, jlkwejglkjwlegkj ,jwgewkj, 明明可以靠颜值我却要拼实力，这就是我和明明的区别!",
+                "v": {
+                  "v": "lkjsdj, jlkwejglkjwlegkj ,jwgewkj, 明明可以靠颜值我却要拼实力，这就是我和明明的区别!",
+                  "bg": "#f6b26b", //背景为 "#f6b26b"
+                  "ff": 1, // 字体为 "Arial"
+                  "fc": "#990000", //字体颜色为 "#990000"
+                },
               }, 
+              {
+                "r": 1,
+                "c": 0,
+                "v": 'value_0_1'
+              },
               {
                 "r": 0,
                 "c": 1,
@@ -150,6 +156,9 @@
         ]
       };
       luckysheet.create(options);
+      setTimeout(function(){
+        luckysheet.setCellValue(1, 1, {bg: '#f6b26b'});
+      }, 500);
     })()
   </script>
 </body>

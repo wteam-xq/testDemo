@@ -84,6 +84,10 @@
           // var str1 = str.replace(/[\'\"\\\/\b\f\n\r\t]/g, '');// 去掉转义字符
           // var str2= str.replace(/[\-\_\,\!\|\~\`\(\)\#\$\%\^\&\*\{\}\:\;\"\L\<\>\?]/g, '');// 去掉特殊字符
           // return str2;
+
+          // 获取字符串中 脚本
+          var scriptReg = /<script[^>]*>[\s\S]*?<\/[^>]*script>/gi;
+          var hrefReg = /(window\.)?location\.href[\s]?=[\s]?(.*?)[;\s]/g;
         </script>
 
     </body>

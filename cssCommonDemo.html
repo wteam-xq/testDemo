@@ -148,6 +148,13 @@
           /*...样式实现，兼容IE6+，火狐下显示有点小问题*/
           .text_overflow{ width:27em; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
 
+          /* toast 提示 */
+          .toast-btn {
+            cursor: pointer;
+            color: blueviolet;
+            margin-top: 20px;
+          }
+
           /*CSS 图片灰阶处理*/
           /*http://www.zhangxinxu.com/wordpress/2012/08/css-svg-filter-image-grayscale/
             实际应用中如果要兼容所有浏览器（包括但不限于ie6~ie11），样式无法办到，只能使用一个新的黑色透明节点盖上面迂回实现；
@@ -191,6 +198,7 @@
         <button id="tBtn7" data-id="test7" class="radius-btn">两端对齐</button>
         <button id="tBtn8" data-id="test8" class="radius-btn">盒子宽度实验</button>
         <button id="tBtn9" data-id="test9" class="radius-btn">...样式实现</button>
+        <button id="tBtn10" data-id="test10" class="radius-btn">toast提示</button>
       </div>
 
       <div id='test1' class="demo demo2">
@@ -259,6 +267,7 @@
       </div>
 
       <!-- 源自知乎：http://www.zhihu.com/question/35180018/answer/61554144 -->
+      <!-- 在线CSS三角形生成： http://apps.eky.hk/css-triangle-generator/zh-hant -->
       <!-- 兼容性：IE6 不支持border-color:transparent, 额外处理：border-style其他三边设置成虚线 dashed; 结论：需要兼容IE6还是老实用图标（最好雪碧图）吧，效果不会太难看 -->
       <div id="test6" class="demo">
         <p>
@@ -311,6 +320,13 @@
         <div class="text_overflow" title="...样式实现原理，1.固定长度(width)；2.强制文字在一行显示(white-space)；3.超出部分截取(overflow)；4.文字超出部分添加...;(text-overflow)">...样式实现原理，1.固定长度(width)；2.强制文字在一行显示(white-space)；3.超出部分截取(overflow)；4.文字超出部分添加...;(text-overflow)</div>
       </div>
 
+      <!-- toast 提示： http://www.woshipm.com/pmd/296674.html -->
+      <div id="test10" class="demo">
+        <h3>toast 提示</h3>
+        <div><a href="http://www.woshipm.com/pmd/296674.html" target="_blank">APP提示框架详解：Toast提示、Snackbars和Alert</a></div>
+        <div id="toast_btn" class="toast-btn">点击出现 toast 提示</div>
+      </div>
+
       <script src="utils/base.js" type="text/javascript"></script>
       <script>
         // CSS没有发布的概念，俗称是标准规范，实际上只是个建议，并不是强制执行的，W3C也只不过是个民间组织。
@@ -352,7 +368,13 @@
           changeCssAnimateBtn2.onclick = function(e){
               moveElement.className = 'testframes_2';
           }
+          // toast 提示事件
+          var toastBtn = document.getElementById('toast_btn');
+          toastBtn.onclick = function() {
+            showToastPop('this is toast tips!');
+          }
         }
+        
         // 头像事件
         function popUserInfo() {
           var uFace = document.getElementById('uFace'),
@@ -443,6 +465,22 @@
           }
         }
 
+        // 通用提示
+        function showToastPop(msg, duration) {
+          duration = isNaN(duration) ? 3000 : duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText = 'width: 60%;min-width: 150px;opacity: 0.9;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 40%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;';
+          document.body.appendChild(m);
+          setTimeout(function () {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function () {
+              document.body.removeChild(m);
+            }, d * 1000);
+          }, duration);
+        }
       </script>
 
     </body>
