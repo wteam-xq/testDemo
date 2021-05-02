@@ -66,6 +66,8 @@
         enableAddRow: false,
         enableAddBackTop: false,
         gridKey: 'xq_cell_' + Date.now(),
+        // rowHeaderWidth: 0,
+        // columnHeaderHeight: 0,
         hook: {
           cellEditBefore:function(range){
             console.info(range);
@@ -116,9 +118,8 @@
                 "c": 0,
                 "v": {
                   "v": "lkjsdj, jlkwejglkjwlegkj ,jwgewkj, 明明可以靠颜值我却要拼实力，这就是我和明明的区别!",
-                  "bg": "#f6b26b", //背景为 "#f6b26b"
-                  "ff": 1, // 字体为 "Arial"
-                  "fc": "#990000", //字体颜色为 "#990000"
+                  "bg": "#24263e", //背景色
+                  "fc": "#a3a4ae", //字体颜色
                 },
               }, 
               {
@@ -141,24 +142,55 @@
                 "c": 1,
                 "v": 'value0'
               },
+              {
+                "r": 3,
+                "c": 0,
+                "v": {
+                  "bg": "#24263e"
+                }
+              },
             ], //初始化使用的单元格数据
             "scrollLeft": 0, //左右滚动条位置
             "scrollTop": 0, //上下滚动条位置
+            "color": "#24263e",
+            "rowHeaderWidth": 0,
+            "columnHeaderHeight": 0,
             "config": {
-              "authority": {
-                selectLockedCells:0,
-                editObjects: 0,
-                editScenarios: 0,
-                sheet: 1,
-              }
+              borderInfo: [
+                {
+                  rangeType: "cell",
+                  value: {
+                    row_index: -1,
+                    col_index: -1,
+                    b:{style:1, color:"#19192c"},
+                    l:{style:1, color:"#19192c"},
+                    r:{style:1, color:"#19192c"},
+                    t:{style:1, color:"#19192c"},
+                  }
+                },
+                {
+                  rangeType: "cell",
+                  value: {
+                    row_index: 5,
+                    col_index: 3,
+                    b:{style:1, color:"#19192c"},
+                    l:{style:1, color:"#19192c"},
+                    r:{style:1, color:"#19192c"},
+                    t:{style:1, color:"#19192c"},
+                  }
+                }
+              ]
+              // "authority": {
+              //   selectLockedCells:0,
+              //   editObjects: 0,
+              //   editScenarios: 0,
+              //   sheet: 1,
+              // }
             },
           }
         ]
       };
       luckysheet.create(options);
-      setTimeout(function(){
-        luckysheet.setCellValue(1, 1, {bg: '#f6b26b'});
-      }, 500);
     })()
   </script>
 </body>
