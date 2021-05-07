@@ -32,13 +32,32 @@
       width: 100%;
       position: relative;
     }
+    #luckysheet .luckysheet-loading-mask {
+      background-color: #24263e;
+    }
   </style>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/pluginsCss.css' />
+
+  <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/css/pluginsCss.css' />
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/plugins.css' />
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/css/luckysheet.css' />
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/assets/iconfont/iconfont.css' />
   <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/plugins/js/plugin.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luckysheet@2.1.13/dist/luckysheet.umd.js"></script> -->
+
+  <!-- <link rel='stylesheet' href='./Luckysheet/dist/plugins/css/pluginsCss.css' />
+  <link rel='stylesheet' href='./Luckysheet/dist/plugins/plugins.css' />
+  <link rel='stylesheet' href='./Luckysheet/dist/css/luckysheet.css' />
+  <link rel='stylesheet' href='./Luckysheet/dist/assets/iconfont/iconfont.css' />
+  <script src="./Luckysheet/dist/plugins/js/plugin.js"></script>
+  <script src="./Luckysheet/dist/luckysheet.umd.js"></script> -->
+
+  <link rel='stylesheet' href='https://dsp-adcreative.mobshark.net/luckysheet/plugins/css/pluginsCss.css' />
+  <link rel='stylesheet' href='https://dsp-adcreative.mobshark.net/luckysheet/plugins/plugins.css' />
+  <link rel='stylesheet' href='https://dsp-adcreative.mobshark.net/luckysheet/css/luckysheet.css' />
+  <link rel='stylesheet' href='https://dsp-adcreative.mobshark.net/luckysheet/assets/iconfont/iconfont.css' />
+  <script src="https://dsp-adcreative.mobshark.net/luckysheet/plugins/js/plugin.js"></script>
+  <script src="https://dsp-adcreative.mobshark.net/luckysheet/luckysheet.umd.js"></script>
+
 </head>
 
 <body>
@@ -66,11 +85,13 @@
         enableAddRow: false,
         enableAddBackTop: false,
         gridKey: 'xq_cell_' + Date.now(),
-        // rowHeaderWidth: 0,
-        // columnHeaderHeight: 0,
+        // theme: 'darkly-theme',
+        // rowHeaderWidth: 0, // 行标题宽度设置为 0， 不显示行标题
+        // columnHeaderHeight: 0, // 列标题高度设置为 0， 不显示列标题
         hook: {
           cellEditBefore:function(range){
-            console.info(range);
+            console.info('cellEditBefore:', range);
+            return false;
           },
           // cellUpdateBefore:function() {
           //   return false;
