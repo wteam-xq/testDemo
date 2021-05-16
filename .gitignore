@@ -16,5 +16,6 @@ react/simpleReact/node_modules/*
 react/simpleReact/dist/*
 webpack/node_modules/*
 socket.io/server/node_modules/*
+challenge_case/DMS/Luckysheet/*
 .sass-cache/
 *.css.map
