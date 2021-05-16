@@ -40,7 +40,104 @@
         <li>6）全链路质量监控</li>
       </ul>
 
+      <h4>01课程介绍</h4>
+      <div>讲师10年前端开发经验， 系统学习前端优化；</div>
+      <div>根据讲师内容 + 个人理解，系统整理前端优化链路；</div>
+
+      <h4>02课程综述， 六大部分；</h4>
+      <div>静态资源优化</div>
+      <div>页面渲染架构设计</div>
+      <div>原生APP优化</div>
+      <div>原生APP优化</div>
+      <div>研发开发流程优化</div>
+      <div>全链路质量监控</div>
+
       <h3>1）静态资源优化：</h3>
+      <h4>03图片优化： 图片格式</h4>
+      <div>图片格式场景； jpg,png,gif,webp；</div>
+      <div>最新格式图片 下一代图片格式 AVIF（AV1 Image File Format）已经来了，此格式比 JPEG 小 50% 左右、比 WebP 小 20% 左右，相关性能跑分见此，目前 Chrome 85、Firefox 77 已支持；</div>
+
+      <h4>04图片优化：加速图片加载</h4>
+      <div>压缩图片,<a href="https://tinypng.com/" target="_blank">tinypng</a>, <a href="https://www.npmjs.com/package/imagemin-webpack-plugin" target="_blank">imagemin-webpack-plugin</a></div>
+      <div>图片占位符（默认图片）</div>
+      <div>压缩图片,低质图片占位符，<a href="https://www.npmjs.com/package/lqip" target="_blank">LQIP</a>, <a href="https://www.npmjs.com/package/sqip" target="_blank">SQIP</a></div>
+
+      <h4>05图片优化：服务器端图片优化</h4>
+      <div>图片裁剪：按长边、短边、填充、拉伸等缩放</div>
+      <div>图片格式转换： 支持 jpg,png,gif,webp 相互转换，不同图片压缩率等</div>
+      <div>图片处理：添加图片水印、高斯模糊、重心处理、裁剪边框等</div>
+      <div>AI能力：智能排版、智能鉴黄、智能配色、智能合成、智能抠图等</div>
+      <div>业界低成本 - 使用 阿里云图片服务；</div>
+      <div>不同业务，使用不同域名</div>
+
+      <h4>06HTML优化</h4>
+      <div>骨架屏：页面渲染前呈现用户内容</div>
+      <div>压缩合并HTML</div>
+      <div>减少HTML嵌套、使用语义化标签 等</div>
+      <div>CSS样式内容放页面头部、JS放HTML底部</div>
+
+      <h4>07CSS 优化</h4>
+      <div>减少嵌套样式、text-content:-9999px; CSS3动画 等属性少用；</div>
+      <div>避免使用通配选择符：body li { font-size: 14px; }</div>
+      <div>压缩CSS代码</div>
+      <div>体积小于5KB图标使用base64图，大型站点使用字体图标</div>
+
+      <h4>08JS 执行优化</h4>
+      <div>requestAnimationFrame 取代 setTimeout, setInterval,考虑兼容性，该API支持情况：(IE 10+)</div>
+      <div>压缩JS代码</div>
+      <div><a href="https://zhuanlan.zhihu.com/p/38313717" target="_blank"></a>节流、防抖函数</div>
+      <div>使用CSS动画替代JS动画、数量庞大的表格等使用Canvas画板</div>
+
+      <h4>09JS 缓存优化</h4>
+      <div>Cookies 存储体积较小，不同浏览器：3Kb ~ 5Kb</div>
+      <div>LocalStorage</div>
+      <div>SessionStorage</div>
+      <div>IndexedDB(google doc, 石墨文档等);</div>
+
+      <h4>10JS模块化</h4>
+      <div>Command JS Node.js 模块化方案</div>
+      <div>AMD 前端异步模块定义，实现库：Require.js</div>
+      <div>CMD 前端通用模块定义，实现库：Sea.js</div>
+      <div>ES6 import, 未来主流方式</div>
+
+      <h4>11减少回流、重绘： </h4>
+      <div>谷歌浏览器，开发调试工具， 查看回流、重绘 选项；<a href="https://juejin.cn/book/6844733783166418958/section/6844733783187390477" target="_blank">你不知道的Chrome调试技巧</a></div>
+      <div>CSS 使用绝对定位(fixed, absolute),让更新频繁节点脱离文档流</div>
+      <div>JS 避免频繁操作DOM，多次DOM节点操作可合并成一个</div>
+      <div><a href="https://juejin.cn/post/6953029989306466317#heading-0" target="_blank">避免回流和重绘的必要性</a></div>
+
+      <h4>12DOM 编程优化</h4>
+      <div>简化DOM操作, 多次操作合并成一个；</div>
+      <div>控制DOM节点数量，参考React，Vue等前端框架虚拟DOM；</div>
+
+      <h4>13压缩工具</h4>
+      <div>
+        HTML:<a href="https://www.npmjs.com/package/html-minifier" target="_blank">html-minifier</a>, 
+        CSS:<a href="https://www.npmjs.com/package/clean-css" target="_blank">clean-css</a>, 
+        JS:<a href="https://www.npmjs.com/package/uglify" target="_blank">uglify</a></div>
+      <div>在线工具1：<a href="https://www.345tool.com/zh-hans" target="_blank">345tool在线工具</a></div>
+      <div>在线工具2：<a href="https://www.baidufe.com/fehelper/index/index.html" target="_blank">FeHelper</a></div>
+
+      <h4>14静态打包工具： </h4>
+      <div>压缩、合并 CSS， JS；Combo 方案： domain/xxxx?a.js,b.js</div>
+      <div>webpack 代码切割配置, <a href="https://segmentfault.com/a/1190000017066322" target="_blank">webpack4 optimization总结</a></div>
+
+      <h4>15版本号更新策略；</h4>
+      <div>eg: 大版本 v1，小版本 v1.2.0, 时间节点（例如年底）收拢版本， 旧版本302重定向到最新版本</div>
+      <div>现有较成熟的版本管理机制当属语义化版本号[2]，表现形式为 {主版本}.{次版本}.{补丁版本} - <a href="https://mp.weixin.qq.com/s/zxXod2FyRqg93TkvP_2Bdw" target="_blank">如何打造一款标准的 JS SDK ？</a></div>
+
+      <h4>16常用构建工具：</h4>
+      <div>grunt, gulp, webpack， FIS， 以及 讲师着重介绍的 JDF（小众构建工具）</div>
+      <div>ES, Vite JS, Rome等; 详细参见 -  <a href="https://risingstars.js.org/2020/zh#section-build" target="_blank">2020年GitHub 明星项目-构建工具</a></div>
+
+      <h4>17webpack打包优化： </h4>
+      <div>优化4个小技巧：</div>
+      <div>定位大模块、删除无用模块、生产模式公共模块抽离、开发模式DLL & DllReference优化；</div>
+      <div><a href="https://segmentfault.com/a/1190000019404454" target="_blank">webpack-打包优化</a></div>
+
+      <h4></h4>
+      <div></div>
+      <a href="" target="_blank"></a>
 
       <h3>2）页面渲染架构设计：</h3>
     </div>
