@@ -88,6 +88,17 @@
           // 获取字符串中 脚本
           var scriptReg = /<script[^>]*>[\s\S]*?<\/[^>]*script>/gi;
           var hrefReg = /(window\.)?location\.href[\s]?=[\s]?(.*?)[;\s]/g;
+          // 判断苹果浏览器
+          var isSafri = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+          // 判断谷歌浏览器
+          var isChrome = navigator.userAgent.match(/Chrome\/([\d.]+)/) || navigator.userAgent.match(/CriOS\/([\d.]+)/);
+          // 替换指定传入参数的值,oUrl为链接,paramName为参数,replaceWith为新值
+          function  replaceParamVal (oUrl, paramName, replaceWith) {
+            var re = new RegExp('(' + paramName + '=)([^&]*)', 'gi')
+            var nUrl = oUrl.replace(re, paramName + '=' + replaceWith)
+            console.log('replaceParamVal:' + nUrl)
+            return nUrl
+          }
         </script>
 
     </body>
