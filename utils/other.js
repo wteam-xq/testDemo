@@ -45,4 +45,36 @@
     }
     console.error("browser not support new URL");
   }
+
+  /**  
+   * 网上教程: https://www.cnblogs.com/cc-freiheit/p/10827372.html 
+   * lodash方法: https://www.lodashjs.com/docs/lodash.debounce
+   * */
+  // 防抖函数
+  function debounce(fn, wait) {
+    var timer = null;
+    return function () {
+      var context = this
+      var args = arguments
+      if (timer) {
+          clearTimeout(timer);
+          timer = null;
+      }
+      timer = setTimeout(function () {
+        fn.apply(context, args)
+      }, wait)
+    }
+  }
+
+  // 节流函数
+  function throttle(fn, gapTime) {
+    let _lastTime = null;
+    return function () {
+      let _nowTime = + new Date()
+      if (_nowTime - _lastTime > gapTime || !_lastTime) {
+        fn();
+        _lastTime = _nowTime
+      }
+    }
+  }
 })()
