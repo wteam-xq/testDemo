@@ -24,6 +24,7 @@ Object.hasOwn(object, "foo")
 * Chrome 92 起将支持随机 UUID 生成接口 crypto.randomUUID()
 
 ### 奇舞周刊
+* 400 期
 * [性能优化]使用 GPU.js 提高 JS 性能
 * [CSS]文字垂直排版；[做了这个活动，感觉自己成了垂直排版大师](https://mp.weixin.qq.com/s/d2YZ2K02LYYRVld_VTCV-Q)
 * [CSS]主题色切换小技巧， [前端站点一键支持暗夜模式](https://mp.weixin.qq.com/s/pupBwNqKEI0WesFrDyPhEw)
@@ -32,7 +33,29 @@ Object.hasOwn(object, "foo")
 * [混合开发] 各种跨端开发探讨 [跨端平台的本质](https://mp.weixin.qq.com/s/IyQPf3yn-mjBmWqeb8dYMg)
 
 ### 政采云前端周刊
+* 135期
 * [CSS] [你了解过移动端适配么？](https://www.jianshu.com/p/2869d0306752/)
 ```
 CSS 移动端适配方案 小总结
 ```
+
+
+## 20210710
+### [科技爱好者周刊 - 166期](https://github.com/ruanyf/weekly/blob/master/docs/issue-166.md)
+* 视频学习VS读书， 视频学习适合入门， 读书学习深入进阶；
+* 前端工程化：优化开发流程、提高项目可维护性、自动化测试、自动化构建、发布管理、线上故障告警等 - 工作流自动化 Github Action;
+* 全球气候变暖： 今年美国、加拿大最高温度达40多度；
+* 美国科学家发现，早睡可以减轻忧郁症风险，早睡早起照到更多阳光，改变体内荷尔蒙分泌，影响情绪；
+* 谷歌宣布，2021年8月份开始，提交到Play应用商店的安卓应用后缀名必须是 .aab 而不是 .apk, 以后 .apk包将不通用！
+* [ES 2021新语法： 5个新语法](https://h3manth.com/ES2021/)
+* [SQL 查询顺序](https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/)
+* [CSS 动画生成代码 - 实用：类似 CSS三角形生成页](https://animista.net/)
+
+### 知乎： 前端快爆
+* WWDC21 苹果官方介绍了 Safari 更多特性， Swift5.5 语法支持了 async/await 功能（ES6 特性，语言间的借鉴随处可见）；
+* Chrome 实验性语法： CSS关系伪类选择器 `:has()` 可以用来选择父级元素;
+
+### 奇舞周刊
+
+
+### 政采云前端周刊

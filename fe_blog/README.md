@@ -13,3 +13,12 @@
 
 ## 分类
 ### [CSS](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/CSS.md)
+### [JS](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/JS.md)
+### [HTML](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/HTML.md)
+### [SQL](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/SQL.md)
+### [性能优化](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/optimize.md)
+### [跨端开发](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/hybrid_app.md)
+### [前端库](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/lib.md)
+### [开发工具](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/tool.md)
+### [业界新闻](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/news.md)
+### [其他](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/other.md)
