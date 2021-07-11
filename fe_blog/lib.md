@@ -3,3 +3,4 @@
 
 * [Day.js - Moment.js的替代库](https://dayjs.gitee.io/zh-CN/)
 * [React Hook原理](https://juejin.cn/post/6944863057000529933#heading-0)
+* [React Hooks 踩坑之-- Capture Value 特性](https://mp.weixin.qq.com/s/eyFKOi3PTux6aTF0s557Rg)

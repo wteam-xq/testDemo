@@ -24,7 +24,7 @@ Object.hasOwn(object, "foo")
 * Chrome 92 起将支持随机 UUID 生成接口 crypto.randomUUID()
 
 ### 奇舞周刊
-* 400 期
+* 399 期
 * [性能优化]使用 GPU.js 提高 JS 性能
 * [CSS]文字垂直排版；[做了这个活动，感觉自己成了垂直排版大师](https://mp.weixin.qq.com/s/d2YZ2K02LYYRVld_VTCV-Q)
 * [CSS]主题色切换小技巧， [前端站点一键支持暗夜模式](https://mp.weixin.qq.com/s/pupBwNqKEI0WesFrDyPhEw)
@@ -61,8 +61,29 @@ CSS 移动端适配方案 小总结:
 * Chrome 实验性语法： CSS关系伪类选择器 `:has()` 可以用来选择父级元素;
 
 ### 奇舞周刊
-
+* 400 期
+* [组件库按需加载原理分析](https://mp.weixin.qq.com/s/ty4IUtLlTgxdc8-7_UGyiQ)
+* [React Hooks 踩坑之-- Capture Value 特性](https://mp.weixin.qq.com/s/eyFKOi3PTux6aTF0s557Rg)
+* [canvas实现微信“炸屎”功能](https://mp.weixin.qq.com/s/sUDz1PgIsYlVOcXyjsb-7Q)
+* [一个让 git clone 提速几十倍的小技巧](https://mp.weixin.qq.com/s/2Eyg9ExBWicBwuQq5VoGug)
+* [我们是如何在CI流水线统计web前端FPS的？](https://mp.weixin.qq.com/s/fD-jtZ0ETUWwyL3YhmA3kw)
+* [云凤蝶低代码之路](https://mp.weixin.qq.com/s/uWLwjJ-fjDL2BR2i7aebVw)
 
 ### 政采云前端周刊
-* 136期 ~ 138期
+* 136期
 * [Nginx 图文详解](https://mp.weixin.qq.com/s/vZkXcMOOWu0tsZ_5a6gtew)
+* [从零构建前端脚手架/CLI知识体系](https://juejin.cn/post/6966119324478079007#heading-22)
+* [15种常用的JS遍历](https://juejin.cn/post/6966390357005172773#comment)
+* [Node 框架 - Nest](https://docs.nestjs.cn/8/introduction)
+* [一个优秀前端应该看这些文章](https://juejin.cn/post/6844903896637259784#heading-16)
+* [国外10款低代码平台](https://mp.weixin.qq.com/s/asve-Hocy1bCksvExRzQeg)
+
+
+## 20210712 ~ 20210718
+### [科技爱好者周刊 - 167期]
+
+### 奇舞周刊
+* 401期 ~ 405期
+
+### 政采云前端周刊
+* 137期 ~ 142期
