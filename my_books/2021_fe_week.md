@@ -35,8 +35,12 @@ Object.hasOwn(object, "foo")
 ### 政采云前端周刊
 * 135期
 * [CSS] [你了解过移动端适配么？](https://www.jianshu.com/p/2869d0306752/)
+* [JS 引擎深入剖析 - JSValue 内部实现（1）](https://www.infoq.cn/article/e8CdMSWKcDJSk3JhrGus)
 ```
-CSS 移动端适配方案 小总结
+CSS 移动端适配方案 小总结:
+1) rem 
+2) vh/vw
+3) px + 媒体查询
 ```
 
 
@@ -50,6 +54,7 @@ CSS 移动端适配方案 小总结
 * [ES 2021新语法： 5个新语法](https://h3manth.com/ES2021/)
 * [SQL 查询顺序](https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/)
 * [CSS 动画生成代码 - 实用：类似 CSS三角形生成页](https://animista.net/)
+* [Chrome://inspect 调试 Android 设备webview; ](https://www.jianshu.com/p/66896bec620e)
 
 ### 知乎： 前端快爆
 * WWDC21 苹果官方介绍了 Safari 更多特性， Swift5.5 语法支持了 async/await 功能（ES6 特性，语言间的借鉴随处可见）；
@@ -59,3 +64,5 @@ CSS 移动端适配方案 小总结
 
 
 ### 政采云前端周刊
+* 136期 ~ 138期
+* [Nginx 图文详解](https://mp.weixin.qq.com/s/vZkXcMOOWu0tsZ_5a6gtew)
