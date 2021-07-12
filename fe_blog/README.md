@@ -4,7 +4,6 @@
 经常看前端周刊等学习资料， 累计笔记比较零散， 需要时回查不方便； 需有个地方归类整理，方便回查；
 每周收录部分精品文章， 每篇文章仔细阅读确认高质后收录；
 
-
 ## 内容来源
 ### [科技爱好者周刊 - 阮一峰](https://github.com/ruanyf/weekly)
 ### [阿里妈妈前端快爆](https://www.zhihu.com/column/mm-fe)
@@ -22,5 +21,6 @@
 ### [前端库](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/lib.md)
 ### [开发工具](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/tool.md)
 ### [前端工程化](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/deploy.md)
+### [安全](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/security.md)
 ### [业界新闻](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/news.md)
 ### [其他](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/other.md)

@@ -9,3 +9,4 @@
 * [JS引擎哪家强？美国硅谷找...](https://mp.weixin.qq.com/s/2cxe1L9_vyB8oNg2jr2rkg)
 * [15种常用的JS遍历](https://juejin.cn/post/6966390357005172773#comment)
 * [canvas实现微信“炸屎”功能](https://mp.weixin.qq.com/s/sUDz1PgIsYlVOcXyjsb-7Q)
+* [V8 执行 JavaScript过程](https://mp.weixin.qq.com/s/Y1kc5K7kr8y7jKC0mXg1Bw)
