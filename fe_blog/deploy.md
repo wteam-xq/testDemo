@@ -10,3 +10,5 @@
 * [我们是如何在CI流水线统计web前端FPS的？](https://mp.weixin.qq.com/s/fD-jtZ0ETUWwyL3YhmA3kw)
 * [云凤蝶低代码之路](https://mp.weixin.qq.com/s/uWLwjJ-fjDL2BR2i7aebVw)
 * [模块化系列 - 彻底理清 AMD,CommonJS,CMD,UMD,ES6](https://zhuanlan.zhihu.com/p/108217164)
+* [字节跳动：现代Web开发实践](https://mp.weixin.qq.com/s/0VDBAgEvqB1xiUs540Fu9A)
+* [rollup - 构建原理及简易实现](https://mp.weixin.qq.com/s/diE0M-TWtGoYUUTfTNN26A)
