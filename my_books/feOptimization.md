@@ -2,6 +2,7 @@
 
 * [极客时间链接](https://time.geekbang.org/course/intro/257)
 * [MARKSHOW 演示](https://mark.show/#)
+* 该课程大概发布时间： 2019年12月
 
 ---
 ### 01课程介绍
@@ -238,6 +239,36 @@
 - 接口域名上CDN
 - 接口降级，垫底数据输出
 - 接口监控， 钉钉告警、邮箱告警、短信告警等
+
+### 30 接口缓存优化
+- Ajax 缓存，请求时带cache参数
+- 实时性数据，本地LocalStorage 缓存
+- 后端 也能添加 Redis 缓存
+
+### 31 Webview 内核
+- IOS UIWebView , 2018年 IOS 12 后不维护， WKWebView 2014年推出， 页面性能和JS解析性能都比 UIWebView提高一倍左右；
+- Android Webkit(4.4以下)， Chromium(4.4以上), 微信 X5 内核（现在微信webview内核还是X5， 2016年4月19 内核升级为Blink）
+
+### 32 设置全局 Webview
+- 可设置打开 APP 时默认打开 webview, 可省略 70 ~ 800ms 时间
+
+### 33 Webview 导航栏预加载
+- 加载Webview时 一起加载导航栏
+
+### 34 打通登录态
+- 旧：HTML5每次打开都是无登录状态，需进入 APP 登录页， 登录成功跳转后，写入Cookies，两次跳转；
+- 新：APP 将登录Cookies存储，在有效期内，不用重新登录（具体看视频如何改 Webview源码）
+
+### 35 WebView URL 预加载
+- 旧：URL 准备好再加载
+- 新：准备过程中并行加载， 图片、视频、动画等提前加载
+
+### 36 WebView 提升滚动条体验
+- 旧：系统自带滚动条（加载过程中的横向滚动条）
+- 新：自定义滚动条
+
+### 36 JS SDK 优化
+- 
 
 
 
