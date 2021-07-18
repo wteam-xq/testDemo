@@ -11,3 +11,5 @@
 * [canvas实现微信“炸屎”功能](https://mp.weixin.qq.com/s/sUDz1PgIsYlVOcXyjsb-7Q)
 * [V8 执行 JavaScript过程](https://mp.weixin.qq.com/s/Y1kc5K7kr8y7jKC0mXg1Bw)
 * [JS 多进程， 单线程文章](https://zhuanlan.zhihu.com/p/33230026?utm_source=wechat_session&utm_medium=social&s_r=0)
+* [字节跳动 - 汉字笔画顺序实现原理](https://mp.weixin.qq.com/s/dhh5UVXPD9d9bD3JfYOU9w)
+* [CANVAS增量渲染：裁剪和拼接，小数与残影](https://mp.weixin.qq.com/s/dbL62keGESFeNvyGYqFrPw) 

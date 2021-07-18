@@ -7,3 +7,5 @@
 * [一个优秀前端应该看这些文章](https://juejin.cn/post/6844903896637259784#heading-16)
 * [直观比较四种NLP模型 - 神经网络，RNN，CNN，LSTM](https://juejin.cn/post/6969394206414471175/)
 * [重新认识Pixel/DPI/PPI 以及像素密度](https://blog.infolink.com.tw/2021/rediscover-pixel-dpi-ppi-and-pixel-density/)
+* [前端项目负责人在项目初期需要做什么](https://mp.weixin.qq.com/s/UwZ3BcdGG8vZccY0RtHY4w) 关于前端负责人 进入新团队 完整思路，比较实用
+* [玉伯： 开源给我带来了什么？](https://mp.weixin.qq.com/s/B2gfoxnPo0P0dY1DaIjehQ)

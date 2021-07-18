@@ -4,3 +4,6 @@
 * [Day.js - Moment.js的替代库](https://dayjs.gitee.io/zh-CN/)
 * [React Hook原理](https://juejin.cn/post/6944863057000529933#heading-0)
 * [React Hooks 踩坑之-- Capture Value 特性](https://mp.weixin.qq.com/s/eyFKOi3PTux6aTF0s557Rg)
+* [你可能不知道的五个React关键点](https://mp.weixin.qq.com/s/Brp0TECsGpdBdv1686TPiQ)
+* [Vue 3 的 SFC Style CSS Variable Injection 提案实现的背后](https://mp.weixin.qq.com/s/cj2gqZGCtUnFtkoSOqClvw)
+* [Vue+微前端(QianKun)落地实施和最后部署上线总结](https://juejin.cn/post/6973156414210441247)

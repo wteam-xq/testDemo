@@ -12,3 +12,4 @@
 * [模块化系列 - 彻底理清 AMD,CommonJS,CMD,UMD,ES6](https://zhuanlan.zhihu.com/p/108217164)
 * [字节跳动：现代Web开发实践](https://mp.weixin.qq.com/s/0VDBAgEvqB1xiUs540Fu9A)
 * [rollup - 构建原理及简易实现](https://mp.weixin.qq.com/s/diE0M-TWtGoYUUTfTNN26A)
+* [现代浏览器观察者 Observer API指南](https://juejin.cn/post/6844903976937209863#heading-4)
