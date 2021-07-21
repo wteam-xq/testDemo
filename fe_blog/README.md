@@ -23,4 +23,5 @@
 ### [前端工程化](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/deploy.md)
 ### [安全](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/security.md)
 ### [业界新闻](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/news.md)
+### [编码技巧](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/code_idea.md)
 ### [其他](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/other.md)

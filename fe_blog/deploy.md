@@ -13,3 +13,5 @@
 * [字节跳动：现代Web开发实践](https://mp.weixin.qq.com/s/0VDBAgEvqB1xiUs540Fu9A)
 * [rollup - 构建原理及简易实现](https://mp.weixin.qq.com/s/diE0M-TWtGoYUUTfTNN26A)
 * [现代浏览器观察者 Observer API指南](https://juejin.cn/post/6844903976937209863#heading-4)
+* [从0到1实现浏览器端沙箱运行环境](https://mp.weixin.qq.com/s/7CD_F0hEZtYRK0fvBWb_gQ)
+* [Vite 你不知道的小妙招](https://mp.weixin.qq.com/s/J_HBCBATgVEexbhzKvb2wQ)

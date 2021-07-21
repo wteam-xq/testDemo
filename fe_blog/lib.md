@@ -7,3 +7,4 @@
 * [你可能不知道的五个React关键点](https://mp.weixin.qq.com/s/Brp0TECsGpdBdv1686TPiQ)
 * [Vue 3 的 SFC Style CSS Variable Injection 提案实现的背后](https://mp.weixin.qq.com/s/cj2gqZGCtUnFtkoSOqClvw)
 * [Vue+微前端(QianKun)落地实施和最后部署上线总结](https://juejin.cn/post/6973156414210441247)
+* [手把手教你打造前端智能图标识别工具](https://mp.weixin.qq.com/s/Xz234s6ZHhxV5LxdqPfWBg) 前端机器学习入门教程

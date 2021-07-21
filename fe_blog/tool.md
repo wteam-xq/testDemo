@@ -7,3 +7,4 @@
 * [国外10款低代码平台](https://mp.weixin.qq.com/s/asve-Hocy1bCksvExRzQeg)
 * [浏览器可视化操作网站，生成React代码](https://utopia.app/)
 * [我工作中如何使用git](https://juejin.cn/post/6974184935804534815#comment) 关于Git高质量文章
+* [Flowy](https://github.com/alyssaxuu/flowy)，是一个轻松创建漂亮的流程图的 Javascript 库。

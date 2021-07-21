@@ -6,3 +6,4 @@
 * [2020年JavaScript明星项目](https://risingstars.js.org/2020/zh)
 * [RenderingNG](https://developer.chrome.com/blog/renderingng/)是 Chrome 的下一代 Web 渲染架构，性能大大超过了之前的架构。
 * [React 18发布计划](https://zh-hans.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html)
+* [2021 年大前端技术趋势解读](https://www.infoq.cn/article/dT002EZ7BiXGtMeU49qo)

@@ -6,3 +6,4 @@
 * [JS如何实现二叉堆](https://www.zoo.team/article/binary-heap-with-js)
 * [组件库按需加载原理分析](https://mp.weixin.qq.com/s/ty4IUtLlTgxdc8-7_UGyiQ)
 * [一个让 git clone 提速几十倍的小技巧](https://mp.weixin.qq.com/s/2Eyg9ExBWicBwuQq5VoGug)
+* [我优化了进度条，页面性能竟提高了70%](https://mp.weixin.qq.com/s/yk7llzupEwkKdMwwGeenzQ) 关于前端动画很有启发的博文
