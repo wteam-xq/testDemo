@@ -5,3 +5,4 @@
 * [iconfont 支持全新的彩色字体图标](https://zhuanlan.zhihu.com/p/377136770?utm_source=wechat_session&utm_medium=social&utm_oi=27714312470528&s_r=0) 
 * [单页面应用history路由实现原理](https://cloud.tencent.com/developer/article/1653836)
 * [浏览器 HTML parse解析实现](https://mp.weixin.qq.com/s/ku6yNZqIKH9wBSGbUdhW0A)
+* [SVG基础及其动画应用浅析](https://mp.weixin.qq.com/s/y7ixXeUcyDkTMCpP9V9Ygw) 

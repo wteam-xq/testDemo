@@ -8,3 +8,4 @@
 * [Vue 3 的 SFC Style CSS Variable Injection 提案实现的背后](https://mp.weixin.qq.com/s/cj2gqZGCtUnFtkoSOqClvw)
 * [Vue+微前端(QianKun)落地实施和最后部署上线总结](https://juejin.cn/post/6973156414210441247)
 * [手把手教你打造前端智能图标识别工具](https://mp.weixin.qq.com/s/Xz234s6ZHhxV5LxdqPfWBg) 前端机器学习入门教程
+* [换个角度思考React Hooks](https://mp.weixin.qq.com/s/_uCquHuFaAk8W2bVjaC7Sg)
