@@ -9,3 +9,5 @@
 * [Vue+微前端(QianKun)落地实施和最后部署上线总结](https://juejin.cn/post/6973156414210441247)
 * [手把手教你打造前端智能图标识别工具](https://mp.weixin.qq.com/s/Xz234s6ZHhxV5LxdqPfWBg) 前端机器学习入门教程
 * [换个角度思考React Hooks](https://mp.weixin.qq.com/s/_uCquHuFaAk8W2bVjaC7Sg)
+* [VUE3的13个全局API](https://juejin.cn/post/6979394726927532068)
+* [VUE2 如何快速迁移 Vite 作为开发工具](https://mp.weixin.qq.com/s/IFZUSPRnPJfT_2KQrB3gLw)

@@ -9,3 +9,4 @@
 * [重新认识Pixel/DPI/PPI 以及像素密度](https://blog.infolink.com.tw/2021/rediscover-pixel-dpi-ppi-and-pixel-density/)
 * [前端项目负责人在项目初期需要做什么](https://mp.weixin.qq.com/s/UwZ3BcdGG8vZccY0RtHY4w) 关于前端负责人 进入新团队 完整思路，比较实用
 * [玉伯： 开源给我带来了什么？](https://mp.weixin.qq.com/s/B2gfoxnPo0P0dY1DaIjehQ)
+* [我不是大神](https://mp.weixin.qq.com/s/RW8FjuUfqYxw_V4a8U__6w) 前端大佬经历分享， 简短但能有所收获
