@@ -10,3 +10,4 @@
 * [前端项目负责人在项目初期需要做什么](https://mp.weixin.qq.com/s/UwZ3BcdGG8vZccY0RtHY4w) 关于前端负责人 进入新团队 完整思路，比较实用
 * [玉伯： 开源给我带来了什么？](https://mp.weixin.qq.com/s/B2gfoxnPo0P0dY1DaIjehQ)
 * [我不是大神](https://mp.weixin.qq.com/s/RW8FjuUfqYxw_V4a8U__6w) 前端大佬经历分享， 简短但能有所收获
+* [尤雨溪：做技术哪有什么两全之策，都是取舍和平衡](https://mp.weixin.qq.com/s/_q_SnCbGyXrNnXA876tXbA)

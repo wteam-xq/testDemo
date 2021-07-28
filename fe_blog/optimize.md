@@ -11,3 +11,4 @@
 * [从场景倒推我们要什么样的微前端体系](https://mp.weixin.qq.com/s/Xb-P9ubzrXGmtTE8xhK8TQ) 这篇文章面向的是还没有在业务中使用过微前端的同学或团队，通过这篇概览，可以简单的建立对 「微前端」的整体认知；
 * [Serverless Custom (Container) Runtime](https://mp.weixin.qq.com/s/AinmCj3iJEkP4Fwq5mSTQw) Serverless 相关文章
 * [Vision 内核大升级——可视化搭建引擎 Gems 应运而生](https://mp.weixin.qq.com/s/iwYN4a_YNosyjTGBodCm9Q)
+* [“硬核JS” - 你的程序中可能存在漏洞](https://juejin.cn/post/6984188410659340324) - 关于前端（可能不止前端）内存泄露讲解的很不错

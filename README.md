@@ -72,6 +72,9 @@
 * 23.HTML转义字符
   * [EscapeSequence](https://github.com/wteam-xq/testDemo/blob/master/EscapeSequence.html)
 
+* 24.Vite 新一代打包工具
+  * [Vite](https://github.com/wteam-xq/testDemo/blob/master/Vite/index.html)
+
 * other:
   * [项目开发中遇到的bug小demo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case)
   * [socket.io测试demo](https://github.com/wteam-xq/testDemo/blob/master/socket.io)
