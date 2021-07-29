@@ -14,3 +14,4 @@
 * [最熟悉的陌生人 rc-form](https://mp.weixin.qq.com/s/6yvJxLldYiabATtM6OH0pA) - 关于通用表单库源码分析，分析的挺透彻
 * [Slate 架构分析与总结](https://mp.weixin.qq.com/s/yx6eOcCX-dQlv-dNvy6aSA) - 又认识了一款 新理念Web编辑器
 * [SolidJS硬气的说：我比React还react](https://mp.weixin.qq.com/s/A_IYySoUmTQ7MLYp2IS_VA) 关于React框架与新库对比小博文
+* [精读《12 个评估 JS 库你需要关心的事》](https://zhuanlan.zhihu.com/p/45264866)

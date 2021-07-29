@@ -87,4 +87,38 @@ Wind 库，底层实现： eval() 函数
 ```
 
 ## 第五章 内存控制
+* 5.1 V8的垃圾回收机制与内存限制
+```
+Node 与 V8 历史：V8 作者--Lars Bak曾在Sun公司工作开发过JAVA、Self等语言高性能虚拟机，V8一出就超越当时所有的JavaScript虚拟机；
+V8 的内存限制： 64位系统下约为1.4GB，32位系统下约为0.7GB， 原因 - V8的垃圾回收机制；
+V8垃圾回收机制： 内存分为新生代空间（小、变化大、运行速度快） 和 老生代空间（大、稳定、运行速度慢）；
+新生代内存空间使用 Scavenge 算法（主要采用1970年发表的Cheney算法）：空间换时间，将空间一分为二， From运行空间， To复制空间， 每次运行排除无用对象后两空间进行翻转、对换。
+新生代空间对象可晋升到老生代空间两条件： 1）已经历过翻转； 2）To空间已使用超过25%；
+老生代空间垃圾回收方式：Mark-Sweep 和 Mark-Compact 相结合方式， Mark-Sweep：标记对象 没标记的将被清理；Mark-Compact 整理对象，将移动存活对象清理碎片空间；
+三种垃圾回收算法： Scavenge， Mark-Sweep， Mark-Compact，避免“全停顿”（stop-the-world）使用功能“增量标记”垃圾回收算法与运行逻辑交替运行。
+```
+* 延伸：V8垃圾回收机制相关博文：
+* [2020 -  V8 引擎垃圾回收与内存分配](https://segmentfault.com/a/1190000000440270?utm_source=sf-similar-article)
+* [2018 -  聊聊V8引擎的垃圾回收](https://segmentfault.com/a/1190000014383214?utm_source=sf-similar-article)
+* [2014 - 浅谈V8引擎中的垃圾回收机制](https://segmentfault.com/a/1190000038594837)
+* 国外V8引擎垃圾回收机制文档：
+* [2019 -  Trash talk: the Orinoco garbage collector](https://v8.dev/blog/trash-talk)
+* [2020 -  Visualizing memory management in V8 Engine (JavaScript, NodeJS, Deno, WebAssembly)](https://deepu.tech/memory-management-in-v8/)
+* [V8动态网站](https://v8.dev/)
+
+* 5.2 高效使用内存
+```
+1、作用域（scope）: 在JavaScript中能形成作用域的有 函数、with、全局作用域；
+标识符查找： 即变量名查找；
+作用域链：查找变量像走阶梯一样，逐级往上查找；
+变量的主动释放： 全局变量常驻内存 - 老生代内存空间；
+2、闭包(closure)：实现外部作用域访问内部作用域中变量的方法叫闭包；
+闭包是JavaScript的高级特性，一旦有变量引用中间函数（闭包），中间函数不会释放，对应作用域中变量内存占用也不会释放，除非不再由引用。
+```
+
+* 5.3 内存指标
+```
+1、查看内存使用情况；
+process.memoryUsage(), os 模块的totalmem() 和 freemem() 方法都可以查看内存使用情况；
+```
 
