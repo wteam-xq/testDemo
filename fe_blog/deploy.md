@@ -16,3 +16,4 @@
 * [从0到1实现浏览器端沙箱运行环境](https://mp.weixin.qq.com/s/7CD_F0hEZtYRK0fvBWb_gQ)
 * [Vite 你不知道的小妙招](https://mp.weixin.qq.com/s/J_HBCBATgVEexbhzKvb2wQ)
 * [手把手教你搭建一个无框架埋点体系](https://mp.weixin.qq.com/s/TcaOUBMBBEGQoQPAjYXb_Q)
+* [如何搭建适合自己团队的构建部署平台](https://mp.weixin.qq.com/s/sI-2j9kxAFbZdGSdDnMtVA) 关于公司内部构件系统 比较完善的博文

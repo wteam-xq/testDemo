@@ -14,3 +14,4 @@
 * [字节跳动 - 汉字笔画顺序实现原理](https://mp.weixin.qq.com/s/dhh5UVXPD9d9bD3JfYOU9w)
 * [CANVAS增量渲染：裁剪和拼接，小数与残影](https://mp.weixin.qq.com/s/dbL62keGESFeNvyGYqFrPw) 
 * [V8 引擎主题网站 - 实时关注V8动态](https://v8.dev/)
+* [V8 引擎垃圾回收与内存分配](https://segmentfault.com/a/1190000038594837)

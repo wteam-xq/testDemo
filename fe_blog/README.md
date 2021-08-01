@@ -14,6 +14,7 @@
 ### [CSS](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/CSS.md)
 ### [JS](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/JS.md)
 ### [HTML](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/HTML.md)
+### [WebAssembly](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/WebAssembly.md)
 ### [SQL](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/SQL.md)
 ### [Node](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/Node.md)
 ### [性能优化](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/optimize.md)

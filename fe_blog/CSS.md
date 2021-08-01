@@ -7,3 +7,5 @@
 * [CSS 动画生成代码 - 实用：类似 CSS三角形生成页](https://animista.net/)
 * [2021你可能不知道的CSS特性 - 上](https://juejin.cn/post/6971617175886888997/)
 * [CSS瀑布流实现 - CSS新特性](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout)
+* [产品经理：鸿蒙开场动画挺帅的，给咱们页面也整一个呗](https://juejin.cn/post/6979042510400126983)
+* [CSS 动画实现星球环绕效果](https://juejin.cn/post/6987043290444988424)
