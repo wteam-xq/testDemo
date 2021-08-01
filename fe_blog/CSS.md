@@ -9,3 +9,4 @@
 * [CSS瀑布流实现 - CSS新特性](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout)
 * [产品经理：鸿蒙开场动画挺帅的，给咱们页面也整一个呗](https://juejin.cn/post/6979042510400126983)
 * [CSS 动画实现星球环绕效果](https://juejin.cn/post/6987043290444988424)
+* [产品经理：能不能让这串数字滚动起来](https://juejin.cn/post/6986453616517185567)

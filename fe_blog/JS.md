@@ -15,3 +15,4 @@
 * [CANVAS增量渲染：裁剪和拼接，小数与残影](https://mp.weixin.qq.com/s/dbL62keGESFeNvyGYqFrPw) 
 * [V8 引擎主题网站 - 实时关注V8动态](https://v8.dev/)
 * [V8 引擎垃圾回收与内存分配](https://segmentfault.com/a/1190000038594837)
+* [【干货】私藏的这些高级工具函数，你拥有几个?](https://juejin.cn/post/6987166546502090788#heading-19)

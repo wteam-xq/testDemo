@@ -10,3 +10,5 @@
 * [Flowy](https://github.com/alyssaxuu/flowy)，是一个轻松创建漂亮的流程图的 Javascript 库。
 * [有了这些轮子库，我的工作效率提升了N倍！](https://mp.weixin.qq.com/s/3u1HHGjBaxzMoMkkVAqk-A)
 * [GitHub Copilot体验：AI辅助编程提前看](https://mp.weixin.qq.com/s/hZIK_IC0K9eGInh4POr-6g) 关于 GitHub Copilot 更客观的博文
+* [5分钟手摸手教你写个可以操控 Chrome 的插件](https://juejin.cn/post/6986437856348602382#heading-0) 如何编写一个 chrome 扩展插件
+* [我是如何写出优雅的业务代码的？](https://www.yuque.com/docs/share/75ab949d-5273-4759-b2ef-3b1f1c662668)

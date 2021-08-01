@@ -12,4 +12,3 @@
 * [Serverless Custom (Container) Runtime](https://mp.weixin.qq.com/s/AinmCj3iJEkP4Fwq5mSTQw) Serverless 相关文章
 * [Vision 内核大升级——可视化搭建引擎 Gems 应运而生](https://mp.weixin.qq.com/s/iwYN4a_YNosyjTGBodCm9Q)
 * [“硬核JS” - 你的程序中可能存在漏洞](https://juejin.cn/post/6984188410659340324) - 关于前端（可能不止前端）内存泄露讲解的很不错
-* [微前端qiankun从搭建到部署的实践总结](https://mp.weixin.qq.com/s/0ox_sLQluMR6gL88yzfIkg) 微前端 qiankun 实践博文

@@ -12,3 +12,4 @@
 * [我不是大神](https://mp.weixin.qq.com/s/RW8FjuUfqYxw_V4a8U__6w) 前端大佬经历分享， 简短但能有所收获
 * [尤雨溪：做技术哪有什么两全之策，都是取舍和平衡](https://mp.weixin.qq.com/s/_q_SnCbGyXrNnXA876tXbA)
 * [和winter聊完前端，我总结了这20句掏心窝子的话](https://mp.weixin.qq.com/s/GMrunxdE27IYwwoP6PnIyg) 工作正能量相关
+* [业务前端如何突破困境](https://fed.taobao.org/blog/taofed/do71ct/front-end-problems/)

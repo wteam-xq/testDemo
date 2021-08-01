@@ -17,3 +17,5 @@
 * [Vite 你不知道的小妙招](https://mp.weixin.qq.com/s/J_HBCBATgVEexbhzKvb2wQ)
 * [手把手教你搭建一个无框架埋点体系](https://mp.weixin.qq.com/s/TcaOUBMBBEGQoQPAjYXb_Q)
 * [如何搭建适合自己团队的构建部署平台](https://mp.weixin.qq.com/s/sI-2j9kxAFbZdGSdDnMtVA) 关于公司内部构件系统 比较完善的博文
+* [从场景倒推，在字节我们要怎样的微前端](https://mp.weixin.qq.com/s/pTjaje1LUQ2K6VnfsM2eSg) 很熟悉的博文，之前前端早早聊 视频已看过
+* [微前端qiankun从搭建到部署的实践总结](https://mp.weixin.qq.com/s/0ox_sLQluMR6gL88yzfIkg) 微前端 qiankun 实践博文
