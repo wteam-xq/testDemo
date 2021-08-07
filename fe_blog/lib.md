@@ -16,3 +16,4 @@
 * [SolidJS硬气的说：我比React还react](https://mp.weixin.qq.com/s/A_IYySoUmTQ7MLYp2IS_VA) 关于React框架与新库对比小博文
 * [精读《12 个评估 JS 库你需要关心的事》](https://zhuanlan.zhihu.com/p/45264866)
 * [手写系列-实现一个铂金段位的 React](https://mp.weixin.qq.com/s/C4pjEzYPZocRnJOaF1q0Jg) React 源码系列，重新实现React
+* [React.memo() 和 useMemo() 的用法与区别](https://mp.weixin.qq.com/s/zxT2GfujdbQfvrCtRxkbiQ) React 开发，优化需要知道的API

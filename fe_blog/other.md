@@ -13,3 +13,4 @@
 * [尤雨溪：做技术哪有什么两全之策，都是取舍和平衡](https://mp.weixin.qq.com/s/_q_SnCbGyXrNnXA876tXbA)
 * [和winter聊完前端，我总结了这20句掏心窝子的话](https://mp.weixin.qq.com/s/GMrunxdE27IYwwoP6PnIyg) 工作正能量相关
 * [业务前端如何突破困境](https://fed.taobao.org/blog/taofed/do71ct/front-end-problems/)
+* [计算机时间到底是怎么来的？程序员必看的时间知识！](https://mp.weixin.qq.com/s/A9fgd2xnp1YfHZ1iTMyXvw) 关于时间的6个问题解答
