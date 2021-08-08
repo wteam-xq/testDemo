@@ -6,3 +6,4 @@
 * [淘宝详情页分发推荐算法总结：用户即时兴趣强化](https://mp.weixin.qq.com/s/PnxJq9NI_3m0N6fFcssKuQ)
 * [业务前端如何突破困境](https://fed.taobao.org/blog/taofed/do71ct/front-end-problems/)
 * [人人可用的开源数据可视化分析工具](https://github.com/dataease/dataease)
+* [我给鸿星尔克写了一个720°看鞋展厅](https://juejin.cn/post/6989439618877751303?from=main_page) 又骗我写THREEJS , 不过很赞！

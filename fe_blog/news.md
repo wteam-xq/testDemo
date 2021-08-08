@@ -8,3 +8,5 @@
 * [React 18发布计划](https://zh-hans.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html)
 * [2021 年大前端技术趋势解读](https://www.infoq.cn/article/dT002EZ7BiXGtMeU49qo)
 * [2021 Web Worker现状](https://zhuanlan.zhihu.com/p/393428948) 流行API 总结博文
+* [Google 相册中新降噪和锐化算法让您的照片更清晰](https://mp.weixin.qq.com/s/0ppzlUXIaTGG0QQnAJfvmg) 照片处理黑科技，mark下
+* [Deno 内部代码将停用 TypeScript，并公布五项具体理由](https://www.infoq.cn/article/u72qtztgazttfazzihbz) TS 开发，编译时间是个大问题

@@ -12,3 +12,4 @@
 * [GitHub Copilot体验：AI辅助编程提前看](https://mp.weixin.qq.com/s/hZIK_IC0K9eGInh4POr-6g) 关于 GitHub Copilot 更客观的博文
 * [5分钟手摸手教你写个可以操控 Chrome 的插件](https://juejin.cn/post/6986437856348602382#heading-0) 如何编写一个 chrome 扩展插件
 * [我是如何写出优雅的业务代码的？](https://www.yuque.com/docs/share/75ab949d-5273-4759-b2ef-3b1f1c662668)
+* [UIRecorder 自动化测试工具](https://www.yuque.com/artist/uirecorder/hbqzpl) 本季度自动化测试 可考虑引入该工具

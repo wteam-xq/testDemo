@@ -19,3 +19,16 @@
 * [如何搭建适合自己团队的构建部署平台](https://mp.weixin.qq.com/s/sI-2j9kxAFbZdGSdDnMtVA) 关于公司内部构件系统 比较完善的博文
 * [从场景倒推，在字节我们要怎样的微前端](https://mp.weixin.qq.com/s/pTjaje1LUQ2K6VnfsM2eSg) 很熟悉的博文，之前前端早早聊 视频已看过
 * [微前端qiankun从搭建到部署的实践总结](https://mp.weixin.qq.com/s/0ox_sLQluMR6gL88yzfIkg) 微前端 qiankun 实践博文
+* [这三年沉淀的前端错误监控系统，一篇文章讲透给你](https://mp.weixin.qq.com/s/NY72_cRGAPsex78YwVF_hg) 看标题就知道高质量文章系列
+```
+按照 5W1H 法则进行分析这句话，可以发现有几项需要我们关注。
+What，发⽣了什么错误：逻辑错误、数据错误、⽹络错误、语法错误等。
+When，出现的时间段，如时间戳。
+Who，影响了多少用户，包括报错事件数、IP、设备信息。
+Where，出现的页面是哪些，包括页面、广告位（我司）、媒体（我司）。
+Why，错误的原因是为什么，包括错误堆栈、⾏列、SourceMap。
+How，怎么定位解决问题，我们还需要收集系统等信息。
+```
+* [逻辑编排在前端可视化搭建中的实践](https://juejin.cn/post/6942459694430552071) 无代码实践总结
+* [狼叔：F2C 能否让前端像运营配置一样开发？ - iMove项目介绍](https://jishuin.proginn.com/p/763bfbd37be6)偏软文，一般不收录
+* [TypeScript 的另一面：类型编程](https://juejin.cn/post/6989796543880495135?from=main_page#heading-22) TS 实践高质博文
