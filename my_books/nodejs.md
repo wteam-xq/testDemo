@@ -1,4 +1,5 @@
 # 《深入浅出Node》 学习小笔记
+* [深入浅出Node - 微信读书](https://weread.qq.com/web/reader/d1b32290718ff65fd1befcc)
 
 ## 第一章 Node简介
 * JavaScript 发展历史，1995年诞生，10天仓促创作出来。
@@ -98,11 +99,10 @@ V8垃圾回收机制： 内存分为新生代空间（小、变化大、运行�
 三种垃圾回收算法： Scavenge， Mark-Sweep， Mark-Compact，避免“全停顿”（stop-the-world）使用功能“增量标记”垃圾回收算法与运行逻辑交替运行。
 ```
 * 延伸：V8垃圾回收机制相关博文：
+* [2020 - V8 引擎垃圾回收与内存分配](https://segmentfault.com/a/1190000038594837)
 * [2020 -  v8垃圾回收机制](https://zhuanlan.zhihu.com/p/113296268)
-* [2020 -  V8 引擎垃圾回收与内存分配](https://segmentfault.com/a/1190000000440270?utm_source=sf-similar-article)
 * [2018 -  聊聊V8引擎的垃圾回收](https://segmentfault.com/a/1190000014383214?utm_source=sf-similar-article)
 * [2017 -  V8 中的垃圾收集（GC），图文指南](https://zhuanlan.zhihu.com/p/29276031 )
-* [2014 - 浅谈V8引擎中的垃圾回收机制](https://segmentfault.com/a/1190000038594837)
 * 国外V8引擎垃圾回收机制文档：
 * [2019 -  Trash talk: the Orinoco garbage collector](https://v8.dev/blog/trash-talk)
 * [2020 - Demystifying memory management in modern programming languages](https://deepu.tech/memory-management-in-programming/)
