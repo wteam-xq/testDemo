@@ -14,3 +14,4 @@
 * [“硬核JS” - 你的程序中可能存在漏洞](https://juejin.cn/post/6984188410659340324) - 关于前端（可能不止前端）内存泄露讲解的很不错
 * [关于浏览器缓存较全面分享文章](https://www.yuque.com/docs/share/eab142fc-a0e0-432f-921a-eb0f8705dec4?#%20%E3%80%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E3%80%8B) 有干货！
 * [百万PV商城实践系列 - 前端图片资源优化实战](https://juejin.cn/post/6989751020255445005?from=main_page) 业务实践总结博文一般有干货
+* [腾讯企鹅辅导 H5 性能极致优化](https://mp.weixin.qq.com/s/zJMM4SF7pc6LZPCsQfWOxw) 网站性能优化 实践总结，有干货！

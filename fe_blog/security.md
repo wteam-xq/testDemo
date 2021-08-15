@@ -6,3 +6,4 @@
 * [2020年中国互联网网络安全报告](https://www.cert.org.cn/publish/main/46/2021/20210721130944504525772/20210721130944504525772_.html)
 * [前端安全系列（一）：如何防止XSS攻击？](https://tech.meituan.com/2018/09/27/fe-security.html)
 * [前端安全系列（二）：如何防止CSRF攻击？](https://tech.meituan.com/2018/10/11/fe-security-csrf.html) 关于CSRF攻击讲解很详细的博文
+* [浏览器隐身模式下的你，仍然没有任何隐私](https://mp.weixin.qq.com/s/nISm93vAiG3iCqtQIeg7Sg) 挺有意思的博文， 从日常生活、技术角度较全面的讲解了浏览器 隐身模式 各种数据统计 和 技术实现问题。

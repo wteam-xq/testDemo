@@ -272,6 +272,128 @@
       <div>按需加载：常规按需加载（原生JS，JQuery），不同APP按需加载（判断是否在微信APP觉得是否加载对应JS-SDK脚本）， 不同设备按需加载（PC端和H5端样式文件），不同分辨率按需加载（<a href="https://www.runoob.com/cssref/css3-pr-mediaquery.html" target="_blank">CSS Media Query</a>）</div>
       <div>楼层式加载： 楼层页加载、缓存对应数据；</div>
 
+      <h4>29接口服务调用优化</h4>
+      <div>接口合并，减少请求数</div>
+      <div>接口上CDN，不实时更新接口缓存优化方案</div>
+      <div>接口域名上CDN</div>
+      <div>接口降级，垫底数据输出</div>
+      <div>接口监控， 钉钉告警、邮箱告警、短信告警等</div>
+
+      <h4>30 接口缓存优化</h4>
+      <div>Ajax 缓存，请求时带cache参数</div>
+      <div>实时性数据，本地LocalStorage 缓存</div>
+      <div>后端 也能添加 Redis 缓存</div>
+
+      <h4>31 Webview 内核</h4>
+      <div>IOS UIWebView , 2018年 IOS 12 后不维护， WKWebView 2014年推出， 页面性能和JS解析性能都比 UIWebView提高一倍左右；</div>
+      <div>Android Webkit(4.4以下)， Chromium(4.4以上), 微信 X5 内核（现在微信webview内核还是X5， 2016年4月19 内核升级为Blink）</div>
+
+      <h4>32 设置全局 Webview</h4>
+      <div>可设置打开 APP 时默认打开 webview, 可省略 70 ~ 800ms 时间</div>
+
+      <h4>33 Webview 导航栏预加载</h4>
+      <div>加载Webview时 一起加载导航栏</div>
+
+      <h4>34 打通登录态</h4>
+      <div>旧：HTML5每次打开都是无登录状态，需进入 APP 登录页， 登录成功跳转后，写入Cookies，两次跳转；</div>
+      <div>新：APP 将登录Cookies存储，在有效期内，不用重新登录（具体看视频如何改 Webview源码）</div>
+
+      <h4>35 WebView URL 预加载</h4>
+      <div>旧：URL 准备好再加载</div>
+      <div>新：准备过程中并行加载， 图片、视频、动画等提前加载</div>
+
+      <h4>36 WebView 提升滚动条体验</h4>
+      <div>旧：系统自带滚动条（加载过程中的横向滚动条）</div>
+      <div>新：自定义滚动条</div>
+
+      <h4>37 JS SDK 优化</h4>
+      <div>旧：需要JSSDK.js 做桥梁，webview 调用 JS Bridge 实现网页 与 APP 通信等</div>
+      <div>新：无需调用JSSDK.js 实现相同功能，直接修改webview源码实现， 演示调用相册等</div>
+
+      <h4>38 浏览器缓存机制</h4>
+      <div>Web Storage, LocalStorage, SessionStorage, 使用存储简单键值对 数据</div>
+      <div>Web SQL DataBase, 存储复杂数据， 可用SQL语句查询， 建议用Index DB</div>
+      <div>Application Cache, 方便创建离线 APP</div>
+      <div>Index DB, 结构、关系复杂的数据存储，使用较 Web Storage复杂</div>
+      <div>以上在安卓 Webview中 都需要打开开关， IOS 不用 </div>
+
+      <h4>39 HTML 5 离线化方案</h4>
+      <div>全局离线包，所有业务使用功能</div>
+      <div>私有离线包，单个业务使用</div>
+      <div>用户不是 WiFi 网络不会下载， 请求、下载、安装 三步骤；</div>
+      <div>美团：LsLoader, 腾讯：Alloykit,  阿里：极致Hybrid 航旅离线包方案</div>
+
+      <h4>40 混合开发： React Native内核 以及优势</h4>
+      <div>Learn once, Run anywhere</div>
+      <div>优势：IOS， Android, HTML5 共用一套代码， 与Native几乎无异</div>
+      <div>效率：开发时查看效果不用编译，即时查看更改</div>
+      <div>内核： JS组件层 - C++层，JSCore引擎, JS Bridge等 - UI渲染器， 网络通信，图片库，工具库 - Native层 OC（IOS），JAVA（Android）</div>
+      <div>研发两端不同步， IOS， 安卓应用商店审核机制不同， 苹果审核周期长很多</div>
+
+      <h4>41 混合开发： 小程序内核 及 优势</h4>
+      <div>优势：优于H5 不如原生（Native）, 方便： 扫码， 搜索即可，用完即走！</div>
+      <div>内核： View视图层，Service逻辑层 - JSBridge - App能力，离线存储，网络请求， 跳转中心 - Native</div>
+      <div>行业背景： APP侧 流量变现， 打造生态， 类应用分发市场</div>
+
+      <h4>42 混合开发： Flutter内核及优势</h4>
+      <div>愿景：一个图形绘制工具包，一次绘制任何终端运行</div>
+      <div>优势：底层使用Skia绘制引擎，图形性能媲美原生，编译速度快；</div>
+      <div>内核： FrameWork(Dart),这里有五层，不展开了 -  Engine(C++) Skia,Dart, Text</div>
+
+      <h4>43 CDN 缓存优化</h4>
+      <div>内容分发网络（content-Delivery-NetWork CDN）， 找到离用户最近服务器访问静态文件</div>
+      <div>优点：提速、低成本、高可用度</div>
+      <div>CDN 回源， CDN 失效，cookies 过期等直接访问原服务器文件</div>
+      <div>CDN 三级缓存， 浏览器缓存、边缘节点缓存、CDN原站缓存</div>
+      <div>CDN 灰度发布， 部分地区（边缘节点）先发布，选定城市、运营商解析更新</div>
+      <div>CDN 大促备战， 增加运营商流量， 延长缓存更新时间10分钟 to 1小时</div>
+
+      <h4>44 主流DNS优化方案</h4>
+      <div>域名系统（Domain-Name-System DNS）- 网站域名与服务器IP映射系统</div>
+      <div>安卓DNS模块（okHttp）, 支持GZIP压缩，HTTP2不可用自动降级，多路复用一对多连接</div>
+      <div>IOS DNS模块（自研）， APP启动时缓存域名 IP信息，命中缓存可直接访问IP</div>
+      <div>前端，设置多域名，打破浏览器某域名下 请求限制</div>
+
+      <h4>45 减少HTTP 请求数</h4>
+      <div>CSS 精灵， 一个大图取代多小图</div>
+      <div>图片使用DataURI, WebFont(小图标)</div>
+      <div>JS/CSS 合并文件</div>
+      <div>JS/CSS 请求Combo</div>
+      <div>接口合并</div>
+      <div>接口数据存入缓存,eg: LocalStorage</div>
+      <div>静态资源存储LocalStorage</div>
+
+      <h4>46 减小Cookies 大小</h4>
+      <div>策略： 主站首页设置白名单， 定期删除非白名单Cookies</div>
+      <div>减少页面传输大小， 对Cookies进行有效管理</div>
+
+      <h4>47 服务器缓存配置和优化</h4>
+      <div>Expires Cookies 请求头缓存过期时间</div>
+      <div>Cache-Control 请求头设置设置缓存时间</div>
+      <div>Last-Modified 请求头设置上次更新时间</div>
+      <div>Date 设置更新时间</div>
+      <div>Status 5种类型， 100 ~ 199信息响应， 200~299 成功响应， 300~399 重定向， 400~499客户端错误 ， 500~599服务端错误</div>
+
+      <h4>48 如何开启GZIP压缩</h4>
+      <div>对文本压缩， 图片、视频等无法压缩，大概压缩50%~70%</div>
+      <div>Nginx配置：config.conf, gzip:on</div>
+      <div>Apache配置： AddOutPutFilterByType 和 AddOutPutFilter</div>
+      <div>检测：请求头 content-Encode: gzip </div>
+
+      <h4>49 如何开启HTTPS</h4>
+      <div>HTTPS 超文本传输安全协议，安全通信的传输协议</div>
+      <div>步骤： 浏览器发起HTTP请求 - 传输证书 - 浏览器解析证书 - 传送加密信息 - 服务器解密信息 - 传输加密后信息 - 浏览器解密信息</div>
+      <div>优点： SEO， 安全</div>
+      <div>从经销商购买证书： SSLs.com, GoGetSSL.com</div>
+      <div>Nginx 配置： ssl_certificate, ssl_certificate_key 配置信息</div>
+
+      <h4>50 HTTP2</h4>
+      <div>定义：HTTP 协议的第二个版本</div>
+      <div>优点： 二进制格式传输数据， 多路复用，一个HTTP2链接发起多个链接， 对Header压缩，减小传输体积， 服务端推送 服务端能更快推送给客户端</div>
+      <div>降低服务器压力， 提升网站访问速度， 保护网站安全（HTTP2必须开启HTTPS）</div>
+      <div>升级Open SSL， 重新编译Nginx</div>
+      <div>验证， Chrome 查看 NetWork， prottocol 列是否变为 “h2”</div>
+
     </div>
   </body>
 </html>

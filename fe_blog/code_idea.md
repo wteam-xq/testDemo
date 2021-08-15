@@ -9,3 +9,4 @@
 * [前端组件化实战之Button](https://juejin.cn/post/6990511054224621598) 详细讲解如何做一个 Button 组件 - 教如何重复造轮子系列
 * [感谢 compose 函数，让我的代码屎山💩逐渐美丽了起来~](https://juejin.cn/post/6989020415444123662?from=main_page#heading-7)
 * [Web 动画原则及技巧浅析](https://github.com/chokcoco/iCSS/issues/121) 关于 网页动画的十二原则 的展开分析
+* [企业级应用搭建平台是如何设计资产体系的？](https://mp.weixin.qq.com/s/rihJS2GCcQ3wzODw7PHTaA) 低代码、无代码：参考传统行业对比 软件行业如何做流水线？

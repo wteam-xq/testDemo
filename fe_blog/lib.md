@@ -20,3 +20,5 @@
 * [React 中 setState 是一个宏任务还是微任务？](https://juejin.cn/post/6992006476558499853?from=main_page) setState 不是宏任务也不是微任务呢， setState是一个伪异步，或者可以称为defer，即延迟执行但本身还在一个事件循环，所以它的执行顺序在同步代码后、异步代码前。
 * [设置表格列宽 —— 在富文本编辑器中的实现](https://juejin.cn/post/6992231715297034247) 文章不长，干货不少， wangEditor 富文本编辑器的表格 二次开发
 * [尤雨溪国外教程：亲手带你写个简易版的Vue！](https://juejin.cn/post/6992018709439053837?from=main_page) 文笔比较风趣，高质博文
+* [Axios 中的参数为啥没被完全编码](https://mp.weixin.qq.com/s/CYzXi-ZMfVRKNEktY9eKIQ) Axios 库中一个编码的小问题！
+* [前端代码常见的 Provider 究竟是什么](https://mp.weixin.qq.com/s/VlDfWpKE6GFOnLC_nNxOSA)  provider 的思想：获取对象，并不关心对象从哪里来，策略 + 工厂/其他方式就是 Provider。
