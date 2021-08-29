@@ -13,3 +13,4 @@
 * [5分钟手摸手教你写个可以操控 Chrome 的插件](https://juejin.cn/post/6986437856348602382#heading-0) 如何编写一个 chrome 扩展插件
 * [我是如何写出优雅的业务代码的？](https://www.yuque.com/docs/share/75ab949d-5273-4759-b2ef-3b1f1c662668)
 * [UIRecorder 自动化测试工具](https://www.yuque.com/artist/uirecorder/hbqzpl) 本季度自动化测试 可考虑引入该工具
+* [new - 将React 类组件变成 hook 组件的命令行工具](https://github.com/yklydxtt/react-class-to-fc)
