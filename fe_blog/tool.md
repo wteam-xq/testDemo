@@ -14,3 +14,7 @@
 * [我是如何写出优雅的业务代码的？](https://www.yuque.com/docs/share/75ab949d-5273-4759-b2ef-3b1f1c662668)
 * [UIRecorder 自动化测试工具](https://www.yuque.com/artist/uirecorder/hbqzpl) 本季度自动化测试 可考虑引入该工具
 * [new - 将React 类组件变成 hook 组件的命令行工具](https://github.com/yklydxtt/react-class-to-fc)
+* [如何阅读源码](https://mp.weixin.qq.com/s/wD4ERrDIPLweLvNalC8h4A) 关于如何写VS Code 插件 的 干货博文， 不止于 VS Code 插件！
+```
+我刚开始学习 Vetur 的时候只知道这是一个 VS Code 插件，但完全不了解插件怎么写、怎么运行、怎么实现语言特性，所以我做的第一件事情是仔仔细细阅读 VS Code 的官方文档(所幸文档非常齐全，不像某著名打包工具).
+```

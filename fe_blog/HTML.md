@@ -7,3 +7,4 @@
 * [浏览器 HTML parse解析实现](https://mp.weixin.qq.com/s/ku6yNZqIKH9wBSGbUdhW0A)
 * [SVG基础及其动画应用浅析](https://mp.weixin.qq.com/s/y7ixXeUcyDkTMCpP9V9Ygw) 
 * [2021 年 Web 应用程序的最佳图像格式](https://mp.weixin.qq.com/s/KQgp_4l0h3F9X5qDUHkkrQ) 关于2021最新前端图像格式介绍
+* [前端9种图片格式基础知识, 你应该知道的](https://juejin.cn/post/7000154907156152327#comment) 关于前端图片比较全面的博文
