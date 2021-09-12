@@ -16,3 +16,4 @@
 * [百万PV商城实践系列 - 前端图片资源优化实战](https://juejin.cn/post/6989751020255445005?from=main_page) 业务实践总结博文一般有干货
 * [腾讯企鹅辅导 H5 性能极致优化](https://mp.weixin.qq.com/s/zJMM4SF7pc6LZPCsQfWOxw) 网站性能优化 实践总结，有干货！
 * [如何进行Web性能监控](http://www.alloyteam.com/2020/01/14184/) 文章内容大部分与性能优化相关， 分类到该版块！
+* [你的 Tree-Shaking 真的起作用了吗？](https://jishuin.proginn.com/p/763bfbd2de0d) 无关代码移除，代码优化相关

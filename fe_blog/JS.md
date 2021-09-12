@@ -21,3 +21,4 @@
 * [Deno 内部代码将停用 TypeScript，并公布五项具体理由](https://www.infoq.cn/article/u72qtztgazttfazzihbz)
 * [babel原理及插件开发](https://juejin.cn/post/6844903603983892487) 关于babel实现原理讲解， 还不错 
 * [一个神奇的前端动画 API requestAnimationFrame](https://juejin.cn/post/6991297852462858277?from=main_page) 出来好多年，前端实现动画首选API
+* [太震撼了！我把七大JS排序算法做成了可视化！！](https://mp.weixin.qq.com/s/jIYgscACvtfkNqr7UTCOgw) 算法 + 可视化

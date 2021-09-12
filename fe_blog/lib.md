@@ -22,3 +22,5 @@
 * [尤雨溪国外教程：亲手带你写个简易版的Vue！](https://juejin.cn/post/6992018709439053837?from=main_page) 文笔比较风趣，高质博文
 * [Axios 中的参数为啥没被完全编码](https://mp.weixin.qq.com/s/CYzXi-ZMfVRKNEktY9eKIQ) Axios 库中一个编码的小问题！
 * [前端代码常见的 Provider 究竟是什么](https://mp.weixin.qq.com/s/VlDfWpKE6GFOnLC_nNxOSA)  provider 的思想：获取对象，并不关心对象从哪里来，策略 + 工厂/其他方式就是 Provider。
+* [使用 React.memo() 提高组件性能(英文)](https://alexsidorenko.com/blog/react-render-always-rerenders/) 简短但实用的 React 教程
+* [TypeScript 4.4 beta 版本发布](https://www.infoq.cn/article/CKTNFBILCvOFZDNuAkD9) TS 新特性分析

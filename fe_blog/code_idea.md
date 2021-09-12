@@ -11,3 +11,5 @@
 * [Web 动画原则及技巧浅析](https://github.com/chokcoco/iCSS/issues/121) 关于 网页动画的十二原则 的展开分析
 * [企业级应用搭建平台是如何设计资产体系的？](https://mp.weixin.qq.com/s/rihJS2GCcQ3wzODw7PHTaA) 低代码、无代码：参考传统行业对比 软件行业如何做流水线？
 * [电商最小存货 - SKU 和 算法实现](https://mp.weixin.qq.com/s/A2BLVnhas49Z1pj6OubymA) 电商算法干货博文
+* [以生产消费模式设计国际化方案](https://mp.weixin.qq.com/s/QfTf02GrEXrbCnQswnWFuQ) 国际化 线上加载慢 优化思路
+* [All in one：项目级 monorepo 策略最佳实践](https://segmentfault.com/a/1190000039157365) 多个项目 合并成一个项目管理
