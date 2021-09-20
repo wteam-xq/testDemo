@@ -13,3 +13,5 @@
 * [电商最小存货 - SKU 和 算法实现](https://mp.weixin.qq.com/s/A2BLVnhas49Z1pj6OubymA) 电商算法干货博文
 * [以生产消费模式设计国际化方案](https://mp.weixin.qq.com/s/QfTf02GrEXrbCnQswnWFuQ) 国际化 线上加载慢 优化思路
 * [All in one：项目级 monorepo 策略最佳实践](https://segmentfault.com/a/1190000039157365) 多个项目 合并成一个项目管理
+* [如何生成稳定的动态 treemap（矩形树图）关键技术揭晓](https://mp.weixin.qq.com/s/IxfbVPc8Nx_8x-C9g3eyMw) 一个H5活动的实现思路
+* [谈谈这些年我对框架的理解](https://mp.weixin.qq.com/s/mZ7KuFjyCWNCAq7HnXg96A) 关于 React 和 Vue 性能优化思路区别讲解的不错

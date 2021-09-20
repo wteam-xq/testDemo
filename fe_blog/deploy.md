@@ -35,4 +35,6 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [从过去到现在，聊聊 Tree-shaking](https://mp.weixin.qq.com/s/TNXO2ifPymaTxIqzBAmkSQ) Tree-shaking 的前世今生， Tree-shaking，也被称为 Live Code Inclusion，是指 Rollup 消除项目中实际未使用的代码的过程，它是一种 Dead Code Elimation 的方式，但是在输出方面会比其他方法更有效。
 * [前端埋点数据收集及上报方案](https://www.shymean.com/article/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E5%8F%8A%E4%B8%8A%E6%8A%A5%E6%96%B9%E6%A1%88) 前端埋点小总结， 有关于 [Beacon API](https://developer.mozilla.org/zh-CN/docs/Web/API/Beacon_API) 的实践
 * [学习webpack5 之路](https://mp.weixin.qq.com/s/pwynolH0pTtT38f-xBUsXw) webpack 5 缓存方案， 首次构建时间 延长 15%， 第二次构建时间 提升90%？
-* [90行代码 实现模块打包](https://mp.weixin.qq.com/s/jmtLatozjNxQSg9URBs1Vg) 打包编译原理
+* [90行代码 实现模块打包](https://mp.weixin.qq.com/s/jmtLatozjNxQSg9URBs1Vg) webpack 打包编译原理
+* [TypeScript是如何工作的？](https://mp.weixin.qq.com/s/XF8tWJlwZC04WTdmltmXNQ) TS 编译原理
+* [从零到一实现企业级微前端框架，保姆级教学](https://juejin.cn/post/7004661323124441102#heading-0) 微前端 实践高质博文

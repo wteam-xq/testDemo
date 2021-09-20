@@ -24,3 +24,4 @@
 * [前端代码常见的 Provider 究竟是什么](https://mp.weixin.qq.com/s/VlDfWpKE6GFOnLC_nNxOSA)  provider 的思想：获取对象，并不关心对象从哪里来，策略 + 工厂/其他方式就是 Provider。
 * [使用 React.memo() 提高组件性能(英文)](https://alexsidorenko.com/blog/react-render-always-rerenders/) 简短但实用的 React 教程
 * [TypeScript 4.4 beta 版本发布](https://www.infoq.cn/article/CKTNFBILCvOFZDNuAkD9) TS 新特性分析
+* [摩纳哥 在线编辑器](https://microsoft.github.io/monaco-editor/index.html) 政采云 又偷懒了， 微软出的在线编辑器库 硬生生被分类到工具， 而且说明也太敷衍
