@@ -19,3 +19,4 @@
 我刚开始学习 Vetur 的时候只知道这是一个 VS Code 插件，但完全不了解插件怎么写、怎么运行、怎么实现语言特性，所以我做的第一件事情是仔仔细细阅读 VS Code 的官方文档(所幸文档非常齐全，不像某著名打包工具).
 ```
 * [Lighthouse 测试内幕](https://zhuanlan.zhihu.com/p/91365316) Lighthouse 底层代码逻辑功能分析
+* [可视化代码执行](https://pythontutor.com/) 可视化代码执行过程网站， 可用于教学， 儿童编程。

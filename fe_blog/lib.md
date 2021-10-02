@@ -25,3 +25,4 @@
 * [使用 React.memo() 提高组件性能(英文)](https://alexsidorenko.com/blog/react-render-always-rerenders/) 简短但实用的 React 教程
 * [TypeScript 4.4 beta 版本发布](https://www.infoq.cn/article/CKTNFBILCvOFZDNuAkD9) TS 新特性分析
 * [摩纳哥 在线编辑器](https://microsoft.github.io/monaco-editor/index.html) 政采云 又偷懒了， 微软出的在线编辑器库 硬生生被分类到工具， 而且说明也太敷衍
+* [React 框架运行时优化方案的演进](https://mp.weixin.qq.com/s/4Y6DuY5rDohgdCm0MP5WBA) 关于React源码的高质博文；

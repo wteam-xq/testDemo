@@ -38,3 +38,5 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [90行代码 实现模块打包](https://mp.weixin.qq.com/s/jmtLatozjNxQSg9URBs1Vg) webpack 打包编译原理
 * [TypeScript是如何工作的？](https://mp.weixin.qq.com/s/XF8tWJlwZC04WTdmltmXNQ) TS 编译原理
 * [从零到一实现企业级微前端框架，保姆级教学](https://juejin.cn/post/7004661323124441102#heading-0) 微前端 实践高质博文
+* [如何使用 GitHub Actions 自动化开发流程(英文)](https://posthog.com/blog/automating-a-software-company-with-github-actions) 作者介绍他们公司如何使用 GitHub Actions，将各种开发步骤自动化，举了很多例子，演示了测试、代码格式化、构建、部署的配置文件应该怎么写。
+* [Webpack 原理系列十：HMR 原理全解析](https://mp.weixin.qq.com/s/cbYMpuc4hnV9NA4VfqJLvg) 关于webpack底层实现分析博文第十篇
