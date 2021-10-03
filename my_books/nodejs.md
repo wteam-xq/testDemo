@@ -149,11 +149,37 @@ os.totalmem(), os.freemem()
 
 ## 第六章 理解Buffer
 网络协议、操作数据库、处理图片、接受上传图片等，在网络流和文件操作中，需处理大量二级制数据， 字符串无法满足，所以需要Buffer对象。
+Node 端主要处理 文件 和 网络IO，与 JS前端的区别。
 * 6.1 Buffer 结构
 ```
-Buffer 是一类似数组的对象，主要用于操作字节。
+Buffer 是一类似数组的对象，主要用于操作字节， 二级制数据处理；
+模块结构： 类数组类型， 核心模块C++处理， 非核心模块 JavaScript 处理；
+Buffer对象内存不是在V8堆内存，而是在Node的C++层申请的内存块；Node采用了slab分配机制给Buffer对象分配内存；
 
 ```
 * 6.2 Buffer 的转换
+```
+Buffer 可以和 字符串类型相互转换（ASCII， UTF-8 等六种编码）；
+字符串转 Buffer: newBuffer（str, [encoding]）
+Buffer 转字符串: buf.toString([encoding],[start],[end]);
+```
+* 6.3 Buffer 的拼接
+```
+Buffer 通过 ”+“ 拼接， 英文没问题但类似中文这种会出现乱码；
+解决方案： 通过设置编码 或 这使用 Buffer.concat 方法拼接；
+```
+* 6.4 Buffer 与 性能
+```
+Http 请求使  Buffer数据类型 传输速度 比字符串 快月一倍左右；
+```
+* 6.5 总结
+```
+体验过JavaScript友好的字符串操作后，有些开发者可能会形成思维定势，将Buffer当做字符串来理解。但字符串与Buffer之间有实质上的差异，即Buffer是二进制数据，字符串与Buffer之间存在编码关系。因此，理解Buffer的诸多细节十分必要，对于如何高效处理二进制数据十分有用。
+```
 
 
+## 第七章 网络编程
+利用Node可以十分方便地搭建网络服务器。
+Node提供了net、dgram、http、https这4个模块，分别用于处理TCP、UDP、HTTP、HTTPS，适用于服务器端和客户端。
+
+* 7.1 构建TCP服务
