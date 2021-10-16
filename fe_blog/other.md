@@ -16,3 +16,4 @@
 * [计算机时间到底是怎么来的？程序员必看的时间知识！](https://mp.weixin.qq.com/s/A9fgd2xnp1YfHZ1iTMyXvw) 关于时间的6个问题解答
 * [今天聊：大厂如何用一道编程题考察候选人水平](https://juejin.cn/post/6987529814324281380) 
 * [电鸭社区](https://eleduck.com/) 国内最早的远程工作社区，讨论和分享远程、外包、零活、兼职、驻场等工作机会。
+* [GitHub Markdown 现在支持脚注（英文）](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) 这篇是 GitHub 的官方博客，宣布该网站的 Markdown 语法现在支持脚注了，可以看看脚注怎么写

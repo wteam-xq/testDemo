@@ -22,3 +22,4 @@
 * [babel原理及插件开发](https://juejin.cn/post/6844903603983892487) 关于babel实现原理讲解， 还不错 
 * [一个神奇的前端动画 API requestAnimationFrame](https://juejin.cn/post/6991297852462858277?from=main_page) 出来好多年，前端实现动画首选API
 * [太震撼了！我把七大JS排序算法做成了可视化！！](https://mp.weixin.qq.com/s/jIYgscACvtfkNqr7UTCOgw) 算法 + 可视化
+* [一文速览 TypeScript 装饰器 与 IoC 机制](https://mp.weixin.qq.com/s/I34ZmlQ-NdOOOY3F5bA3ig) 想编写优雅的 TS 代码么？装饰器 了解下！
