@@ -21,3 +21,4 @@
 * [Lighthouse 测试内幕](https://zhuanlan.zhihu.com/p/91365316) Lighthouse 底层代码逻辑功能分析
 * [可视化代码执行](https://pythontutor.com/) 可视化代码执行过程网站， 可用于教学， 儿童编程。
 * [Chrome Devtools—Lighthouse](https://juejin.cn/post/7010949955577708558) 谷歌浏览器性能调试 功能分享博文
+* [JS 库的免费公共 CDN](https://www.webfx.com/blog/web-design/free-public-cdns/) 网上有一些 JS 库的公共 CDN，可以从它们加载库脚本。本文列出了主要的名单。
