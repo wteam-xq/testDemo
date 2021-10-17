@@ -23,3 +23,6 @@
 * [一个神奇的前端动画 API requestAnimationFrame](https://juejin.cn/post/6991297852462858277?from=main_page) 出来好多年，前端实现动画首选API
 * [太震撼了！我把七大JS排序算法做成了可视化！！](https://mp.weixin.qq.com/s/jIYgscACvtfkNqr7UTCOgw) 算法 + 可视化
 * [一文速览 TypeScript 装饰器 与 IoC 机制](https://mp.weixin.qq.com/s/I34ZmlQ-NdOOOY3F5bA3ig) 想编写优雅的 TS 代码么？装饰器 了解下！
+* [面试官：请用一句话描述 try catch 能捕获到哪些 JS 异常](https://juejin.cn/post/6844904143891464200) 关于JS try catch 技巧，有干货
+* [你会用ES6，那倒是用啊！](https://juejin.cn/post/7016520448204603423) ES5之后的JS语法统称ES6！！！
+* [javascript 数字处理](https://juejin.cn/post/6844903951876227080) 总结挺好的

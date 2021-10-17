@@ -27,3 +27,4 @@
 * [摩纳哥 在线编辑器](https://microsoft.github.io/monaco-editor/index.html) 政采云 又偷懒了， 微软出的在线编辑器库 硬生生被分类到工具， 而且说明也太敷衍
 * [React 框架运行时优化方案的演进](https://mp.weixin.qq.com/s/4Y6DuY5rDohgdCm0MP5WBA) 关于React源码的高质博文；
 * [你真的了解vue模版编译么？](https://mp.weixin.qq.com/s/Uvi2r3a2KwXrPdNAkexqLg) 本文的初衷是想让更多的同学知道并了解vue模版编译，所以文中主要以阶段流程为主 
+* [Vue 团队公开快如闪电的全新脚手架工具 create-vue，未来将替代 Vue-CLI，才300余行代码，学它！](https://juejin.cn/post/7018344866811740173) 使用了快如闪电般的npm init vue@next，学习npx命令

@@ -20,3 +20,4 @@
 * [中秋节快乐，使用CSS3实现小火箭🚀绕月飞行](https://juejin.cn/post/7006721748368359460?share_token=c34d35cd-3a57-49b7-bc91-443e35bc11f6) CSS3 动画效果
 * [GRID GARDEN](https://cssgridgarden.com/#zh-cn) CSS grid 学习站点
 * [Color Hunt](https://colorhunt.co/) 前端配色工具站点
+* [利用javascript获取并修改伪元素的值](https://segmentfault.com/a/1190000003711146) 可能能用上系列, 伪元素（伪对象）与 JS 配合相关总结

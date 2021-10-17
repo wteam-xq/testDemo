@@ -20,3 +20,5 @@
 * [React Profiler 的使用](https://mp.weixin.qq.com/s/L9sSAR0iaoFSpMnzARfxcw) React 性能优化 工具介绍
 * [Service Worker 简介](https://developers.google.com/web/fundamentals/primers/service-workers) 谷歌官方的 Service Worker 教程，介绍什么是 PWA 应用，以及怎么开发，写得非常好，很容易懂。官方提供中文版翻译。
 * [浏览器渲染之节流重绘](https://mp.weixin.qq.com/s/EFwNP3EK8_D_azXEW-7WMA) 面试必读文章系列， 这文章质量较高
+* [从 fabric 源码来看如何做好一个 canvas 库](https://mp.weixin.qq.com/s/OtKqeE0FnLLxHZUk02dj-w) 源码分析系列，Dom 节点 和 Canvas 节点对比图 比较赞！
+* [防抖节流场景及应用](https://mp.weixin.qq.com/s/XzqwfdG4-whUaAxxnXITmg) 性能优化 实用教程， 防抖 和 节流 函数对比图 不错
