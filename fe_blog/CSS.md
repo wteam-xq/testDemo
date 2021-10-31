@@ -21,3 +21,4 @@
 * [GRID GARDEN](https://cssgridgarden.com/#zh-cn) CSS grid 学习站点
 * [Color Hunt](https://colorhunt.co/) 前端配色工具站点
 * [利用javascript获取并修改伪元素的值](https://segmentfault.com/a/1190000003711146) 可能能用上系列, 伪元素（伪对象）与 JS 配合相关总结
+* [CSS 实现文本"不定行数"截断](https://juejin.cn/post/7022876094608982030) 相对而言， JS 实现简单，且没浏览器兼容问题，（狗头

@@ -5,3 +5,4 @@
 * [好友关系的数据库设计](https://minimalmodeling.substack.com/p/modeling-mutual-friendship)
 * [SQL 表格连接的可视化连接（英文）](https://dataschool.com/how-to-teach-people-sql/sql-join-types-explained-visually/)
 * [MySQL 数据表设计规范](https://zhuanlan.zhihu.com/p/110543466) 数据库操作实践总结博文
+* [PayPal大规模采用GraphQL的探索和实践](https://mp.weixin.qq.com/s/JeONdEN6swrMHJeSZ89zaQ)   GraphQL 国外使用总结博文

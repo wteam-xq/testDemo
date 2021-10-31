@@ -26,3 +26,4 @@
 * [面试官：请用一句话描述 try catch 能捕获到哪些 JS 异常](https://juejin.cn/post/6844904143891464200) 关于JS try catch 技巧，有干货
 * [你会用ES6，那倒是用啊！](https://juejin.cn/post/7016520448204603423) ES5之后的JS语法统称ES6！！！
 * [javascript 数字处理](https://juejin.cn/post/6844903951876227080) 总结挺好的
+* [就因为这三个知识点，我彻底学废了”正则表达式“](https://mp.weixin.qq.com/s/XRIm4b5d10a2os20SRcD4Q) 关于正则 很赞的教程， 值得细看！

@@ -14,3 +14,4 @@
 只要公司达到一定量级，其后端服务之间必定会采用 RPC 而非简单 HTTP 的形式来进行互相调用。因此，对于想做全栈或者后端 Node.js 的同学来说，早点了解与使用 RPC 是非常有必要的。
 ```
 * [npm 实用命令及版本号](https://www.yuque.com/docs/share/ca61dff6-146e-4398-80d7-4b8a1c5226ea?#gLFu2) 日常查询实用博文
+* [关于前端大管家 package.json，你知道多少？](https://juejin.cn/post/7023539063424548872) 详细讲解 package.json 文件的配置（思维导图很赞）；
