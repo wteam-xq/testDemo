@@ -26,4 +26,5 @@
 ### [安全](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/security.md)
 ### [业界新闻](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/news.md)
 ### [编码技巧](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/code_idea.md)
+### [业务相关（电商、物联网等）](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/business.md)
 ### [其他 - 工作生活相关](https://github.com/wteam-xq/testDemo/blob/master/fe_blog/other.md)

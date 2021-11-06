@@ -23,3 +23,4 @@
 * [Chrome Devtools—Lighthouse](https://juejin.cn/post/7010949955577708558) 谷歌浏览器性能调试 功能分享博文
 * [JS 库的免费公共 CDN](https://www.webfx.com/blog/web-design/free-public-cdns/) 网上有一些 JS 库的公共 CDN，可以从它们加载库脚本。本文列出了主要的名单。
 * [使用这些配置规范并格式化你的代码](https://mp.weixin.qq.com/s/JftKCEJeGncF2uI56mne_g) 格式化代码规范 
+* [设计和实现一个 Chrome 插件提升登录效率](https://mp.weixin.qq.com/s/UTbv8ZqGc5IsToYSqWyFKQ) Chrome 插件开发分享

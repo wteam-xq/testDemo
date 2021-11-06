@@ -41,3 +41,4 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [如何使用 GitHub Actions 自动化开发流程(英文)](https://posthog.com/blog/automating-a-software-company-with-github-actions) 作者介绍他们公司如何使用 GitHub Actions，将各种开发步骤自动化，举了很多例子，演示了测试、代码格式化、构建、部署的配置文件应该怎么写。
 * [Webpack 原理系列十：HMR 原理全解析](https://mp.weixin.qq.com/s/cbYMpuc4hnV9NA4VfqJLvg) 关于webpack底层实现分析博文第十篇
 * [Git 飞行规则](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md) 收集各种 Git 操作出现问题后的应对措施
+* [浏览器中的 ESM](https://mp.weixin.qq.com/s/bMgYgS6rWPkerDo-D6vmMw) JS 模块化相关， 有国外博文的味道

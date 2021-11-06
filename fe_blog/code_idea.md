@@ -17,3 +17,5 @@
 * [谈谈这些年我对框架的理解](https://mp.weixin.qq.com/s/mZ7KuFjyCWNCAq7HnXg96A) 关于 React 和 Vue 性能优化思路区别讲解的不错
 * [JavaScript 如何遍历树结构（英文）](https://github.com/ruanyf/weekly/blob/master/docs/issue-179.md) 图文 组织结果很不错的文章
 * [React源码中的位运算技巧](https://mp.weixin.qq.com/s/zrfmXGHK4PG8B6pdGYO6Aw) React源码 学习 位运算符 用法， 涉及 编程思想， 故没放前端库 分类
+* [几个有趣的算法](https://mp.weixin.qq.com/s/6ootL9DEuNa1UPk4jZ_cXg) 根据身份证计算出性别、年龄等
+* [利用 AIST++ 生成音乐条件下的 3D 舞蹈](https://mp.weixin.qq.com/s/qJMmyH3ep197TZ4ECxWWZA) 机器学习最前沿技术博文 - 算法研究

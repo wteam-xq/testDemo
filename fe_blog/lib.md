@@ -28,3 +28,5 @@
 * [React 框架运行时优化方案的演进](https://mp.weixin.qq.com/s/4Y6DuY5rDohgdCm0MP5WBA) 关于React源码的高质博文；
 * [你真的了解vue模版编译么？](https://mp.weixin.qq.com/s/Uvi2r3a2KwXrPdNAkexqLg) 本文的初衷是想让更多的同学知道并了解vue模版编译，所以文中主要以阶段流程为主 
 * [Vue 团队公开快如闪电的全新脚手架工具 create-vue，未来将替代 Vue-CLI，才300余行代码，学它！](https://juejin.cn/post/7018344866811740173) 使用了快如闪电般的npm init vue@next，学习npx命令
+* [奇葩说框架之React编译原理](https://mp.weixin.qq.com/s/utVRZ8arMCWoL8JHxOMCbw) React 编译历史， 写的挺不错
+* [PIXIJs实战之角色关系图](https://mp.weixin.qq.com/s/c7uXSphD3qgAwRCWjmX2RA)  2D 渲染库-- PIXIJS
