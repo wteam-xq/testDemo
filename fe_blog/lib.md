@@ -30,3 +30,4 @@
 * [Vue 团队公开快如闪电的全新脚手架工具 create-vue，未来将替代 Vue-CLI，才300余行代码，学它！](https://juejin.cn/post/7018344866811740173) 使用了快如闪电般的npm init vue@next，学习npx命令
 * [奇葩说框架之React编译原理](https://mp.weixin.qq.com/s/utVRZ8arMCWoL8JHxOMCbw) React 编译历史， 写的挺不错
 * [PIXIJs实战之角色关系图](https://mp.weixin.qq.com/s/c7uXSphD3qgAwRCWjmX2RA)  2D 渲染库-- PIXIJS
+* [Read Aloud](https://github.com/ken107/read-aloud) 开源的浏览器朗读插件，可以朗读整个网页或选定文本，支持40多种语言，包括中文。
