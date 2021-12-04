@@ -22,3 +22,4 @@
 * [Color Hunt](https://colorhunt.co/) 前端配色工具站点
 * [利用javascript获取并修改伪元素的值](https://segmentfault.com/a/1190000003711146) 可能能用上系列, 伪元素（伪对象）与 JS 配合相关总结
 * [CSS 实现文本"不定行数"截断](https://juejin.cn/post/7022876094608982030) 相对而言， JS 实现简单，且没浏览器兼容问题，（狗头
+* [Chrome 88已经支持aspect-ratio属性了，学起来](https://www.zhangxinxu.com/wordpress/2021/02/css-aspect-ratio/) CSS aspect-ratio属性可以明确元素的高宽比例，日后一定是一个高频使用的CSS属性。
