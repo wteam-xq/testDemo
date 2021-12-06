@@ -24,3 +24,4 @@
 * [JS 库的免费公共 CDN](https://www.webfx.com/blog/web-design/free-public-cdns/) 网上有一些 JS 库的公共 CDN，可以从它们加载库脚本。本文列出了主要的名单。
 * [使用这些配置规范并格式化你的代码](https://mp.weixin.qq.com/s/JftKCEJeGncF2uI56mne_g) 格式化代码规范 
 * [设计和实现一个 Chrome 插件提升登录效率](https://mp.weixin.qq.com/s/UTbv8ZqGc5IsToYSqWyFKQ) Chrome 插件开发分享
+* [一键配置开发环境——前端环境管理工具 AppToolkit 正式发布](https://mp.weixin.qq.com/s/phGAlrY7Luu4S_3gf9QmNQ) 换电脑、入职新人 推荐工具
