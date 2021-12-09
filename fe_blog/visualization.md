@@ -19,3 +19,4 @@ Babylon.js
 Babylon.js 是一款国外应用较广泛的 WebGL 库，感兴趣的小伙伴可以自己去了解一下，这里就不做详细介绍了
 ```
 * [上传Excel可自动生成图表()国外站点](https://rawgraphs.io/#step1)
+* [千相千面图形语法](https://zhuanlan.zhihu.com/p/432951280) 本文介绍了一个 Flutter 数据可视化库 Graphic 的使用。通过 Graphic 的图形语法定义变换，一步步将柱状图演变为饼图，展示图形语法的灵活丰富。同时也让初学者了解图形语法基本概念。
