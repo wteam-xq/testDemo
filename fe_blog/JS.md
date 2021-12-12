@@ -5,7 +5,7 @@
 * [ES 2021新语法： 5个新语法](https://h3manth.com/ES2021/)
 * [如何封装不被嫌弃的SDK](https://mp.weixin.qq.com/s/vbRkCgncWZswqnrz30LiLQ)
 * [为什么V8这么快？](https://blog.csdn.net/horkychen/article/details/7761199)
-* [0.1+0.2 !== 0.3？](https://juejin.cn/post/6844903700356399112)
+* [0.1+0.2 !== 0.3？](https://juejin.cn/post/6844903700356399112) 前端精细值计算，浮点误差bug; 小数精度范围问题， IEEE 754标准；
 * [JS引擎哪家强？美国硅谷找...](https://mp.weixin.qq.com/s/2cxe1L9_vyB8oNg2jr2rkg)
 * [15种常用的JS遍历](https://juejin.cn/post/6966390357005172773#comment)
 * [canvas实现微信“炸屎”功能](https://mp.weixin.qq.com/s/sUDz1PgIsYlVOcXyjsb-7Q)
