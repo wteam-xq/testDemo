@@ -8,3 +8,4 @@
 * [前端安全系列（二）：如何防止CSRF攻击？](https://tech.meituan.com/2018/10/11/fe-security-csrf.html) 关于CSRF攻击讲解很详细的博文
 * [浏览器隐身模式下的你，仍然没有任何隐私](https://mp.weixin.qq.com/s/nISm93vAiG3iCqtQIeg7Sg) 挺有意思的博文， 从日常生活、技术角度较全面的讲解了浏览器 隐身模式 各种数据统计 和 技术实现问题。
 * [如何用不可见的字符来实现 JavaScript 代码后门。](https://certitude.consulting/blog/en/invisible-backdoor/)  在存在不受信代码的平台，如 FaaS 平台可能就会遇到这样的问题。
+* [理解log4Shell 漏洞](https://sspai.com/post/70394) 诸如「互联网正在着火」「过去十年最严重的漏洞」「现代计算机历史上最大漏洞」「难以想到哪家公司不受影响」

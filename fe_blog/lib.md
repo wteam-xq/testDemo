@@ -31,3 +31,5 @@
 * [奇葩说框架之React编译原理](https://mp.weixin.qq.com/s/utVRZ8arMCWoL8JHxOMCbw) React 编译历史， 写的挺不错
 * [PIXIJs实战之角色关系图](https://mp.weixin.qq.com/s/c7uXSphD3qgAwRCWjmX2RA)  2D 渲染库-- PIXIJS
 * [Read Aloud](https://github.com/ken107/read-aloud) 开源的浏览器朗读插件，可以朗读整个网页或选定文本，支持40多种语言，包括中文。
+* [在HTML显示Markdown组件](https://github.com/leaverou/md-block)
+* [修复JS 0.1+0.2 != 0.3 bug库](https://github.com/nefe/number-precision)
