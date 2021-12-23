@@ -9,3 +9,4 @@
 * [浏览器隐身模式下的你，仍然没有任何隐私](https://mp.weixin.qq.com/s/nISm93vAiG3iCqtQIeg7Sg) 挺有意思的博文， 从日常生活、技术角度较全面的讲解了浏览器 隐身模式 各种数据统计 和 技术实现问题。
 * [如何用不可见的字符来实现 JavaScript 代码后门。](https://certitude.consulting/blog/en/invisible-backdoor/)  在存在不受信代码的平台，如 FaaS 平台可能就会遇到这样的问题。
 * [理解log4Shell 漏洞](https://sspai.com/post/70394) 诸如「互联网正在着火」「过去十年最严重的漏洞」「现代计算机历史上最大漏洞」「难以想到哪家公司不受影响」
+* [你真的了解 “随机数”？](https://math.haozi.me/random.html) 数学家要做的事，就是要找到一个通项公式，公式完全对你公开，但要推出 seed，需要难度超出攻击的成本。

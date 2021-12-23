@@ -23,3 +23,4 @@
 * [从 fabric 源码来看如何做好一个 canvas 库](https://mp.weixin.qq.com/s/OtKqeE0FnLLxHZUk02dj-w) 源码分析系列，Dom 节点 和 Canvas 节点对比图 比较赞！
 * [防抖节流场景及应用](https://mp.weixin.qq.com/s/XzqwfdG4-whUaAxxnXITmg) 性能优化 实用教程， 防抖 和 节流 函数对比图 不错
 * [Web图像组件设计的最佳实践](https://mp.weixin.qq.com/s/-T5107cpL_HsW-JP6LeHSg) 涉及不少性能相关 细节， 如 CSS新特性：aspect-ratio, <img>元素的 srcset 和 sizes等；
+* [“web资源加载优先级”原来能这么精准控制](https://mp.weixin.qq.com/s/kaT3qAku86_ihSJA8oC0yQ) 系统总结了 浏览器加载资源优先级 内容（包含新特性）
