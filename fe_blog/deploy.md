@@ -9,7 +9,7 @@
 * [从零构建前端脚手架/CLI知识体系](https://juejin.cn/post/6966119324478079007#heading-22)
 * [我们是如何在CI流水线统计web前端FPS的？](https://mp.weixin.qq.com/s/fD-jtZ0ETUWwyL3YhmA3kw)
 * [云凤蝶低代码之路](https://mp.weixin.qq.com/s/uWLwjJ-fjDL2BR2i7aebVw)
-* [模块化系列 - 彻底理清 AMD,CommonJS,CMD,UMD,ES6](https://zhuanlan.zhihu.com/p/108217164)
+* [模块化系列 - 彻底理清 AMD,CommonJS,CMD,UMD,ES6](https://zhuanlan.zhihu.com/p/108217164) 前端模块比较深入和系统总结的博文
 * [字节跳动：现代Web开发实践](https://mp.weixin.qq.com/s/0VDBAgEvqB1xiUs540Fu9A)
 * [rollup - 构建原理及简易实现](https://mp.weixin.qq.com/s/diE0M-TWtGoYUUTfTNN26A)
 * [现代浏览器观察者 Observer API指南](https://juejin.cn/post/6844903976937209863#heading-4)

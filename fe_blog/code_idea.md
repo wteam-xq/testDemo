@@ -21,3 +21,4 @@
 * [利用 AIST++ 生成音乐条件下的 3D 舞蹈](https://mp.weixin.qq.com/s/qJMmyH3ep197TZ4ECxWWZA) 机器学习最前沿技术博文 - 算法研究
 * [如何找到数组里的唯一数？](https://yonatankra.com/how-to-find-a-unique-number-in-a-list-of-pairs/) mark! 有些业务场景需要用到！
 * [JavaScript开发者应懂的33个概念](https://github.com/stephentian/33-js-concepts)
+* [给自己卷一个 LRU 和 LFU 缓存淘汰算法作为礼物吧。](https://halfrost.com/lru_lfu_interview/) 高质量算法博文

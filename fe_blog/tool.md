@@ -28,3 +28,4 @@
 * [Google DNS](https://dns.google/) 谷歌提供的 DNS 查询页面，可以查询某个域名或 IP 地址的 DNS 信息。
 * [树形目录列表生成器](https://devtool.tech/tree) 一个网页小工具，生成文本的树形目录结构，方便将目录结构插入 Markdown 文章。
 * [手绘板 - 在线画板工具](https://www.tldraw.com/) 博文的流程图等 选择更多样！
+* [DevTools 实现原理与性能分析实战](https://mp.weixin.qq.com/s/H8iahg5WUOHXeRzvf0R01w) 浏览器调试工具历史博文
