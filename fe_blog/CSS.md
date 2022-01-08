@@ -25,3 +25,4 @@
 * [Chrome 88已经支持aspect-ratio属性了，学起来](https://www.zhangxinxu.com/wordpress/2021/02/css-aspect-ratio/) CSS aspect-ratio属性可以明确元素的高宽比例，日后一定是一个高频使用的CSS属性。
 * [3D 穿梭效果？使用 CSS 轻松搞定](https://juejin.cn/post/7028757824695959588)
 * [CSS Doodle](https://yuanchuan.dev/polygon-shapes) 一个 Web Component 组件，可以使用 CSS 语法产生各种形状。
+* [冷门布局方法 tabel-cell 的可行性研究](https://mp.weixin.qq.com/s/a3HFIv74PH6LWgHnVRsfKg)  编写邮件HTML样式用的上

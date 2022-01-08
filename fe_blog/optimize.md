@@ -24,3 +24,4 @@
 * [防抖节流场景及应用](https://mp.weixin.qq.com/s/XzqwfdG4-whUaAxxnXITmg) 性能优化 实用教程， 防抖 和 节流 函数对比图 不错
 * [Web图像组件设计的最佳实践](https://mp.weixin.qq.com/s/-T5107cpL_HsW-JP6LeHSg) 涉及不少性能相关 细节， 如 CSS新特性：aspect-ratio, <img>元素的 srcset 和 sizes等；
 * [“web资源加载优先级”原来能这么精准控制](https://mp.weixin.qq.com/s/kaT3qAku86_ihSJA8oC0yQ) 系统总结了 浏览器加载资源优先级 内容（包含新特性）
+* [web性能优化的15条实用技巧](https://mp.weixin.qq.com/s/9FwdceS1x96jLlU93kZBfw) 15个性能优化小结

@@ -12,3 +12,6 @@
 * [Deno 内部代码将停用 TypeScript，并公布五项具体理由](https://www.infoq.cn/article/u72qtztgazttfazzihbz) TS 开发，编译时间是个大问题
 * [咸鱼正在悄悄放弃Flutter](https://juejin.cn/post/6955304605190357005) Flutter 刚更新了大版本，咸鱼团队是 Flutter 国内先驱。
 * [Snowpack 将停止维护？](https://juejin.cn/post/7010922819143860261?utm_source=gold_browser_extension) 又一知名构建工具被淘汰？ Snowpack作者表示很累要放弃！
+* [精益求精，体验创新 | 第十六届 D2 前端技术论坛精彩回顾（附PPT和回放观看方式）](https://mp.weixin.qq.com/s/BQgPuxTdZi06eIpiL93hSQ) 会议包含六大主题：语言框架、跨端技术、前端体验、低代码、Node/Serverless、多样化。
+* [2021 年 JavaScript 大事记](https://mp.weixin.qq.com/s/-BzlW2FWF6YouWn64dOATQ) JS 框架、库、技术栈等 2021总结， 各框架、库、编译工具 大事记
+* [解读大前端的 2021 ：究竟“卷”出了什么名堂？](https://mp.weixin.qq.com/s/qIFi2HQL2QiDab_u0sbEjg) 前端 2021 总结， 对前端各热点技术做了全面总结、梳理！

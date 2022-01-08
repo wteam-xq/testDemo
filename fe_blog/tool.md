@@ -29,3 +29,5 @@
 * [树形目录列表生成器](https://devtool.tech/tree) 一个网页小工具，生成文本的树形目录结构，方便将目录结构插入 Markdown 文章。
 * [手绘板 - 在线画板工具](https://www.tldraw.com/) 博文的流程图等 选择更多样！
 * [DevTools 实现原理与性能分析实战](https://mp.weixin.qq.com/s/H8iahg5WUOHXeRzvf0R01w) 浏览器调试工具历史博文
+* [JS 的 6 种打断点的方式，你用过几种？](https://juejin.cn/post/7041946855592165389) 谷歌浏览器调试工具，复杂问题排查 用的上
+* [低代码工具浅析](https://mp.weixin.qq.com/s/pBS727XUz5Y5upeWvtJ6Lw) 背景部分讲解了为什么最近几年低代码那么火

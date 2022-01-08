@@ -7,3 +7,4 @@
 * [MySQL 数据表设计规范](https://zhuanlan.zhihu.com/p/110543466) 数据库操作实践总结博文
 * [PayPal大规模采用GraphQL的探索和实践](https://mp.weixin.qq.com/s/JeONdEN6swrMHJeSZ89zaQ)   GraphQL 国外使用总结博文
 * [MySQL 数据库索引概览](https://blog.csdn.net/wallace_www/article/details/117264149)
+* [where 与 having 子句的区别(英文)](https://sql-bits.com/the-difference-between-where-and-having/)
