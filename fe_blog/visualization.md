@@ -22,3 +22,4 @@ Babylon.js 是一款国外应用较广泛的 WebGL 库，感兴趣的小伙伴�
 * [千相千面图形语法](https://zhuanlan.zhihu.com/p/432951280) 本文介绍了一个 Flutter 数据可视化库 Graphic 的使用。通过 Graphic 的图形语法定义变换，一步步将柱状图演变为饼图，展示图形语法的灵活丰富。同时也让初学者了解图形语法基本概念。
 * [从WebGL到WebGPU，网页图形的全新时代](https://mp.weixin.qq.com/s/4LfaNHP77s9n9SghucYoaA) WebGPU 替代 WebGL 成为未来的网页图形技术已经是不可改变的事实。 它的核心的关键词是 「跨平台的高性能图形标准」。
 * [动态图片生成方案](https://mp.weixin.qq.com/s/0dWfL3ChIceH6rQ8-Oh6pg) 1）客户端实现 - html2canvas 2）服务端实现 Puppeteer 3）最终方案 - Golang
+* [SVG基础及其动画应用浅析](https://zhuanlan.zhihu.com/p/383245453) SVG 优点： 同样高清的质地，矢量图不畏惧放大，体积小。

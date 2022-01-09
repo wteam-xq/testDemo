@@ -22,3 +22,8 @@
 * [如何找到数组里的唯一数？](https://yonatankra.com/how-to-find-a-unique-number-in-a-list-of-pairs/) mark! 有些业务场景需要用到！
 * [JavaScript开发者应懂的33个概念](https://github.com/stephentian/33-js-concepts)
 * [给自己卷一个 LRU 和 LFU 缓存淘汰算法作为礼物吧。](https://halfrost.com/lru_lfu_interview/) 高质量算法博文
+* [我做系统架构的一些原则](https://coolshell.cn/articles/21672.html) 架构师左耳朵耗子（陈皓）的文章。“工作 20 多年了，看到了很多公司系统架构，也看到了很多问题，今天把我的这些个人的经验和想法总结下来，希望能够让更多的人可以参考和借鉴，并能够做出更好的架构来。
+* [你应该了解的前端标准化](https://mp.weixin.qq.com/s/6zdppvbLyPz9cd8ZWGdUVA) 截止2021年6月，全球已经有48亿互联网用户，占全球总人口的61%。前几天抖音宣布覆盖全球10亿互联网用户，但其实有一款100%覆盖48亿互联网用户的APP，它就是浏览器。
+```
+2021年全球的浏览器市占比：Chrome+Chromium(IE edage, samsung等等)占有72%，Safari占有18.5%，FireFox+Opera占有5.8%，IE内核浏览器0.5%。
+```

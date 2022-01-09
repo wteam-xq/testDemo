@@ -25,3 +25,4 @@
 * [Web图像组件设计的最佳实践](https://mp.weixin.qq.com/s/-T5107cpL_HsW-JP6LeHSg) 涉及不少性能相关 细节， 如 CSS新特性：aspect-ratio, <img>元素的 srcset 和 sizes等；
 * [“web资源加载优先级”原来能这么精准控制](https://mp.weixin.qq.com/s/kaT3qAku86_ihSJA8oC0yQ) 系统总结了 浏览器加载资源优先级 内容（包含新特性）
 * [web性能优化的15条实用技巧](https://mp.weixin.qq.com/s/9FwdceS1x96jLlU93kZBfw) 15个性能优化小结
+* [快速掌握 Performance 性能分析：一个真实的优化案例](https://mp.weixin.qq.com/s/T_Z_xKByZwbrvERoG-1OFw) 性能优化的目标就是找到 Task 中的 long task，然后消除它。因为网页的渲染是一个宏任务，和 JS 的宏任务在同一个 Event Loop 中，是相互阻塞的。

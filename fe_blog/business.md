@@ -4,4 +4,5 @@
 ```
 项目初期一万订单不到， 不用太复杂方案， 最Low反而是成本最低的方案；
 ```
+* [中国SaaS的第二条路](https://mp.weixin.qq.com/s/Z9WRwfwSY-oBvcg3el0Xdg)
 

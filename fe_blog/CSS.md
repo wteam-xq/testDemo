@@ -26,3 +26,4 @@
 * [3D 穿梭效果？使用 CSS 轻松搞定](https://juejin.cn/post/7028757824695959588)
 * [CSS Doodle](https://yuanchuan.dev/polygon-shapes) 一个 Web Component 组件，可以使用 CSS 语法产生各种形状。
 * [冷门布局方法 tabel-cell 的可行性研究](https://mp.weixin.qq.com/s/a3HFIv74PH6LWgHnVRsfKg)  编写邮件HTML样式用的上
+* [看完了 2021 CSS 年度报告，我学到了啥？](https://mp.weixin.qq.com/s/BbH6IleqLly82Mqx_0W1IQ)
