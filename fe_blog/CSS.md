@@ -27,3 +27,4 @@
 * [CSS Doodle](https://yuanchuan.dev/polygon-shapes) 一个 Web Component 组件，可以使用 CSS 语法产生各种形状。
 * [冷门布局方法 tabel-cell 的可行性研究](https://mp.weixin.qq.com/s/a3HFIv74PH6LWgHnVRsfKg)  编写邮件HTML样式用的上
 * [看完了 2021 CSS 年度报告，我学到了啥？](https://mp.weixin.qq.com/s/BbH6IleqLly82Mqx_0W1IQ)
+* [防御性 CSS](https://ishadeed.com/article/defensive-css/) CSS 有时会出现很多奇怪的行为，本文介绍一些常见的技巧，保证 CSS 能够按照预想的方式工作，减少怪异行为。

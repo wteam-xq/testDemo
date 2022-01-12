@@ -15,3 +15,6 @@
 ```
 * [npm 实用命令及版本号](https://www.yuque.com/docs/share/ca61dff6-146e-4398-80d7-4b8a1c5226ea?#gLFu2) 日常查询实用博文
 * [关于前端大管家 package.json，你知道多少？](https://juejin.cn/post/7023539063424548872) 详细讲解 package.json 文件的配置（思维导图很赞）；
+* [Node.js 进程、线程调试和诊断的设计和实现](https://mp.weixin.qq.com/s/bv-ZpzGWVRj1spBTj-uG2Q) 介绍 Node.js 中，关于进程、线程调试和诊断的相关内容。
+* [记一次排错经历——npm缓存浅析](https://juejin.cn/post/6844903785018425351) 关于NPM缓存的问题实践 和 原因分析
+
