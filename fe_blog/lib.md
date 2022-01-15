@@ -33,3 +33,4 @@
 * [Read Aloud](https://github.com/ken107/read-aloud) 开源的浏览器朗读插件，可以朗读整个网页或选定文本，支持40多种语言，包括中文。
 * [在HTML显示Markdown组件](https://github.com/leaverou/md-block)
 * [修复JS 0.1+0.2 != 0.3 bug库](https://github.com/nefe/number-precision)
+* [60+ 实用 React 工具库，助力你高效开发！](https://juejin.cn/post/7036162494573838367?utm_source=gold_browser_extension) React 开发使用工具库列表

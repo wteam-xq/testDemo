@@ -28,3 +28,4 @@
 * [javascript 数字处理](https://juejin.cn/post/6844903951876227080) 总结挺好的
 * [就因为这三个知识点，我彻底学废了”正则表达式“](https://mp.weixin.qq.com/s/XRIm4b5d10a2os20SRcD4Q) 关于正则 很赞的教程， 值得细看！
 * [Web Worker 性能优化初体验](https://mp.weixin.qq.com/s/IJHI9JB3nMQPi46b6yGVWw) Web Worker 实践场景: 日志处理经验分享
+* [深入探究：null 和 undefined 究竟有何区别？](https://mp.weixin.qq.com/s/aKMFjO_N8LoAKiZfW-lYTg) undefined, 这个变量从根本上就没有定义, 隐藏式 空值; null, 这个值虽然定义了，但它并未指向任何内存中的对象, 声明式 空值
