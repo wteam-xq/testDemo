@@ -29,3 +29,7 @@
 * [就因为这三个知识点，我彻底学废了”正则表达式“](https://mp.weixin.qq.com/s/XRIm4b5d10a2os20SRcD4Q) 关于正则 很赞的教程， 值得细看！
 * [Web Worker 性能优化初体验](https://mp.weixin.qq.com/s/IJHI9JB3nMQPi46b6yGVWw) Web Worker 实践场景: 日志处理经验分享
 * [深入探究：null 和 undefined 究竟有何区别？](https://mp.weixin.qq.com/s/aKMFjO_N8LoAKiZfW-lYTg) undefined, 这个变量从根本上就没有定义, 隐藏式 空值; null, 这个值虽然定义了，但它并未指向任何内存中的对象, 声明式 空值
+* [JavaScript Temporal API 简介](https://blog.openreplay.com/is-it-time-for-the-javascript-temporal-api)Temporal API 是 JavaScript 下一代日期和时间的标准库，目前是第三阶段提案。本文对这个 API 做一个简单介绍。
+```
+JavaScript 中的日期处理很丑陋。自 1995 年第一个受 Java 启发的实现以来，该Date()对象Date()一直没有改变。Java 废弃了它，但仍保留在 JavaScript 中以实现向后浏览器兼容性。
+```

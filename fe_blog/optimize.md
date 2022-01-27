@@ -26,3 +26,10 @@
 * [“web资源加载优先级”原来能这么精准控制](https://mp.weixin.qq.com/s/kaT3qAku86_ihSJA8oC0yQ) 系统总结了 浏览器加载资源优先级 内容（包含新特性）
 * [web性能优化的15条实用技巧](https://mp.weixin.qq.com/s/9FwdceS1x96jLlU93kZBfw) 15个性能优化小结
 * [快速掌握 Performance 性能分析：一个真实的优化案例](https://mp.weixin.qq.com/s/T_Z_xKByZwbrvERoG-1OFw) 性能优化的目标就是找到 Task 中的 long task，然后消除它。因为网页的渲染是一个宏任务，和 JS 的宏任务在同一个 Event Loop 中，是相互阻塞的。
+* [从浏览器渲染原理谈动画性能优化](https://mp.weixin.qq.com/s/NU9YcneQYuTjS_izPXmK3w) 动画性能优化实践总结，干货较多！
+```
+《Webkit 技术内幕》指出，如果满足下列条件，则会创建一个 RenderObject：
+DOM 树中的 document 节点；
+DOM 树中的可见节点（webkit 不会为非可视节点创建 RenderObject 节点）；
+为了处理需要，Webkit 建立匿名的 RenderObject 节点，如表示块元素的 RenderBlock（RenderObject 的子类）节点。
+```
