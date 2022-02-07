@@ -44,3 +44,4 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [浏览器中的 ESM](https://mp.weixin.qq.com/s/bMgYgS6rWPkerDo-D6vmMw) JS 模块化相关， 有国外博文的味道
 * [requestAnimationFrame 执行机制探索](https://mp.weixin.qq.com/s/ocFcBRjj8xzizF5ebFepdA)
 * [自己动手写符合自己业务需求的 eslint 规则](https://mp.weixin.qq.com/s/cbWY0BYeNiCuNtpmylOH9g) 开发团队编码规范相关
+* [五种可视化方案分析 webpack 打包性能瓶颈](https://juejin.cn/post/6844904056985485320) 关于 webpack性能观测 插件介绍

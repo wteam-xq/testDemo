@@ -34,3 +34,4 @@
 * [在HTML显示Markdown组件](https://github.com/leaverou/md-block)
 * [修复JS 0.1+0.2 != 0.3 bug库](https://github.com/nefe/number-precision)
 * [60+ 实用 React 工具库，助力你高效开发！](https://juejin.cn/post/7036162494573838367?utm_source=gold_browser_extension) React 开发使用工具库列表
+* [React 体系下关于 Mobx 与 Redux 的一些思考](https://zhuanlan.zhihu.com/p/461844358) 对React 状态管理讲解比较清晰的一篇博文

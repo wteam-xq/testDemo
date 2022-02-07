@@ -17,3 +17,4 @@
 * [今天聊：大厂如何用一道编程题考察候选人水平](https://juejin.cn/post/6987529814324281380) 
 * [电鸭社区](https://eleduck.com/) 国内最早的远程工作社区，讨论和分享远程、外包、零活、兼职、驻场等工作机会。
 * [GitHub Markdown 现在支持脚注（英文）](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) 这篇是 GitHub 的官方博客，宣布该网站的 Markdown 语法现在支持脚注了，可以看看脚注怎么写
+* [如果你想知道什么是 NFT，看这篇就够了](https://mp.weixin.qq.com/s/yfVz-pKJN0ifwOXNDAfhlA) 关于区块链 历史讲解比较透彻的博文

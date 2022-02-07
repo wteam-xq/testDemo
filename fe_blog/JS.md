@@ -33,3 +33,4 @@
 ```
 JavaScript 中的日期处理很丑陋。自 1995 年第一个受 Java 启发的实现以来，该Date()对象Date()一直没有改变。Java 废弃了它，但仍保留在 JavaScript 中以实现向后浏览器兼容性。
 ```
+* [盘点2021年V8发布的新特性和API （ES2021）](https://juejin.cn/post/7054205051421589518?utm_source=gold_browser_extension) V8实现ES2021总结

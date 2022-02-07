@@ -15,3 +15,5 @@
 * [精益求精，体验创新 | 第十六届 D2 前端技术论坛精彩回顾（附PPT和回放观看方式）](https://mp.weixin.qq.com/s/BQgPuxTdZi06eIpiL93hSQ) 会议包含六大主题：语言框架、跨端技术、前端体验、低代码、Node/Serverless、多样化。
 * [2021 年 JavaScript 大事记](https://mp.weixin.qq.com/s/-BzlW2FWF6YouWn64dOATQ) JS 框架、库、技术栈等 2021总结， 各框架、库、编译工具 大事记
 * [解读大前端的 2021 ：究竟“卷”出了什么名堂？](https://mp.weixin.qq.com/s/qIFi2HQL2QiDab_u0sbEjg) 前端 2021 总结， 对前端各热点技术做了全面总结、梳理！
+* [Vue涉及国家安全漏洞？尤雨溪回应：前端框架没有渗透功能](https://mp.weixin.qq.com/s/IBrNvOSXWNGZtvcF4f7F_g) 春节前热点新闻
+* [展望大前端的 2022：VR 大潮来袭，大前端迎来新机遇](https://www.infoq.cn/article/k1Qpf3FaxNHdb7yqQptg) winter 前端趋势采访文
