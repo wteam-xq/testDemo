@@ -35,3 +35,9 @@
 * [修复JS 0.1+0.2 != 0.3 bug库](https://github.com/nefe/number-precision)
 * [60+ 实用 React 工具库，助力你高效开发！](https://juejin.cn/post/7036162494573838367?utm_source=gold_browser_extension) React 开发使用工具库列表
 * [React 体系下关于 Mobx 与 Redux 的一些思考](https://zhuanlan.zhihu.com/p/461844358) 对React 状态管理讲解比较清晰的一篇博文
+* [手写简易版 React 来彻底搞懂 fiber 架构](https://mp.weixin.qq.com/s/sy5ZoXu09_bwhDUb1TcLvw) 源码实现React底层代码，彻底搞懂Fiber
+```
+jsx 通过 babel（render function） 转成 vdom， React 16 前 vdom 直接渲染成 Dom 节点， 16+版本 先转成 fiber（vdom 树变成fiber链表） 再渲染成 Dom 节点；
+vdom 转 fiber 的过程叫做 reconcile，通过 requestIdleCallback 来空闲调度 reconcile， 处理完所有的 vdom 转 fiber 的 reconcile，就开始 commit，也就是更新到 dom。
+reconcile 的过程会提前创建好 dom，还会标记出增删改，那么 commit 阶段就很快了。
+```
