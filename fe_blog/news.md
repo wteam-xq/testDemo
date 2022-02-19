@@ -17,3 +17,4 @@
 * [解读大前端的 2021 ：究竟“卷”出了什么名堂？](https://mp.weixin.qq.com/s/qIFi2HQL2QiDab_u0sbEjg) 前端 2021 总结， 对前端各热点技术做了全面总结、梳理！
 * [Vue涉及国家安全漏洞？尤雨溪回应：前端框架没有渗透功能](https://mp.weixin.qq.com/s/IBrNvOSXWNGZtvcF4f7F_g) 春节前热点新闻
 * [展望大前端的 2022：VR 大潮来袭，大前端迎来新机遇](https://www.infoq.cn/article/k1Qpf3FaxNHdb7yqQptg) winter 前端趋势采访文
+* [关于web3 的介绍(英文)](https://www.odysseydao.com/articles/what-is-web3) Web1: Read，Web2: Read, write， Web3: Read, write, own
