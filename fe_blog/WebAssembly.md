@@ -9,3 +9,5 @@
 * [实践解析 | 如何通过 WebAssembly 在 Web 进行实时视频人像分割](https://juejin.cn/post/6985102448759635981) 前端热点 WebAssembly 相关博文
 * [说一说Web端侧AI](https://mp.weixin.qq.com/s/9PoFZVs7jiI992y6MWLqUQ) 本文介绍什么是端智能，运用场景，以及Web端侧实现 AI 的基本原理概念；
 * [深入 WebAssembly 之解释器实现篇](https://mp.weixin.qq.com/s/hktDuC1nky06tAaAi-mwMA) WebAssembly（为了书写方便，接下来简称为 Wasm）笔者《WebAssembly 原理与核心技术》读后感，如何实现一个 Wasm解释器。
+* [WebAssembly 2021 年回顾与 2022 年展望](https://mp.weixin.qq.com/s/1ZW8_XW1yqqSeBAAYWNUdg) wasm 的总结文章， 这块业界文章还是太少
+* [Wasm 玩出花？在浏览器中运行虚拟机！](https://mp.weixin.qq.com/s/RQq8K7GmLysAx55Vuk-K5A) wasm 应用实践博文

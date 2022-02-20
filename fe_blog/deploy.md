@@ -46,3 +46,4 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [自己动手写符合自己业务需求的 eslint 规则](https://mp.weixin.qq.com/s/cbWY0BYeNiCuNtpmylOH9g) 开发团队编码规范相关
 * [五种可视化方案分析 webpack 打包性能瓶颈](https://juejin.cn/post/6844904056985485320) 关于 webpack性能观测 插件介绍
 * [Webpack to Vite 工具](https://github.com/originjs/webpack-to-vite) 可以先接入 webpack 5, 然后尝试自动化转成 Vite 配置；
+* [浏览器的 5 种 Observer，你用过几种？](https://mp.weixin.qq.com/s/-fLZe164aWAaPJ55iZ_m2w) 信息采集，数据上报相关
