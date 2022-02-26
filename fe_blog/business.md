@@ -6,4 +6,5 @@
 ```
 * [中国SaaS的第二条路](https://mp.weixin.qq.com/s/Z9WRwfwSY-oBvcg3el0Xdg)
 * [初学者的 Web 开发教程（英文）](https://microsoft.github.io/Web-Dev-For-Beginners/#/) 微软提供的一个初级教程，讲授 JavaScript、CSS 和 HTML 的基本知识。
+* [ReolAudio - 基于分帧的 Web 音频工程解决方案](https://mp.weixin.qq.com/s/2VWAbnM-szhIXOx3n7_JfA) 音浮是 Hackathon（字节跳动内部的创新项目比赛）的获奖项目。它是一个可视化的智能音频剪辑工具，会自动将用户输入的音频通过 ASR 引擎转成文字，变“听”为“看”，实现以编辑文本的方式剪辑音频。
 

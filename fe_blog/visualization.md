@@ -23,3 +23,4 @@ Babylon.js 是一款国外应用较广泛的 WebGL 库，感兴趣的小伙伴�
 * [从WebGL到WebGPU，网页图形的全新时代](https://mp.weixin.qq.com/s/4LfaNHP77s9n9SghucYoaA) WebGPU 替代 WebGL 成为未来的网页图形技术已经是不可改变的事实。 它的核心的关键词是 「跨平台的高性能图形标准」。
 * [动态图片生成方案](https://mp.weixin.qq.com/s/0dWfL3ChIceH6rQ8-Oh6pg) 1）客户端实现 - html2canvas 2）服务端实现 Puppeteer 3）最终方案 - Golang
 * [SVG基础及其动画应用浅析](https://zhuanlan.zhihu.com/p/383245453) SVG 优点： 同样高清的质地，矢量图不畏惧放大，体积小。
+* [动手打造一款 canvas 排版引擎](https://mp.weixin.qq.com/s/8I4ZrXysU4NxLVd8Jvdcyg) 实现的库和实现思路都值得借鉴
