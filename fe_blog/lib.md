@@ -41,3 +41,4 @@ jsx 通过 babel（render function） 转成 vdom， React 16 前 vdom 直接渲
 vdom 转 fiber 的过程叫做 reconcile，通过 requestIdleCallback 来空闲调度 reconcile， 处理完所有的 vdom 转 fiber 的 reconcile，就开始 commit，也就是更新到 dom。
 reconcile 的过程会提前创建好 dom，还会标记出增删改，那么 commit 阶段就很快了。
 ```
+* [zx](https://github.com/google/zx) Google 的 zx.js 库有助于使用 Node.js 高效且愉快地编写 shell 脚本。
