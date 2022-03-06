@@ -30,7 +30,7 @@
     "gulp.spritesmith": "^6.2.1",
     "merge-stream": "^1.0.0",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.1",
     "postcss-loader": "^1.1.1",
     "postcss-sprites": "^4.1.0",
     "run-sequence": "^1.2.2",
