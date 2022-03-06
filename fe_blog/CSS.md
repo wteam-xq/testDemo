@@ -34,3 +34,4 @@
 Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用谁知道，原子理念的css方案，表现力很强的语义化类型，处处体现着优雅，FaceBook使用Tailwind CSS重构后，节省了接近70%的css代码，威力惊人，同事再也不同担心css类命名了。注：项目越大，Tailwind CSS节省的css代码越多。
 ```
 * [基于less和sass的在webpack或vite中的动态主题的实现方案](https://juejin.cn/post/6966173655470440456) 使用插件实现换肤
+* [Grid 用于布局，Flexbox 用于组件](https://ishadeed.com/article/grid-layout-flexbox-components/) CSS 的 Grid 布局和 Flexbox 布局，作用相似，经常有人讨论，两者的适用场合是什么。作者提出，Grid 布局应该用于页面，Flexbox 布局应该用于组件。

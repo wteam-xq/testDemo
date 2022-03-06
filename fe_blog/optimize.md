@@ -38,3 +38,4 @@ DOM 树中的可见节点（webkit 不会为非可视节点创建 RenderObject �
 * [HTTP缓存协议实战](https://mp.weixin.qq.com/s/23WJXJFGJ-iMP6x-lFQ8og) 缓存的本质就是用空间换时间，以临时存储的数据暂时代替数据源中读取最新的数据。
 * [HTTP 缓存别再乱用了！推荐一个缓存设置的最佳姿势！](https://mp.weixin.qq.com/s/43pa04szJ2zU_IyVP4LraQ) 前端缓存实践，性能优化相关
 * [从 chromium 源码来窥探浏览器的渲染](https://mp.weixin.qq.com/s/r1nAcEkEoE1D7CgQwqSe2Q) 复习浏览器渲染相关知识
+* [前端技术分享：页面性能优化问题复盘](https://juejin.cn/post/7064405926035324964) 根据火焰图 排查问题的方法值得借鉴
