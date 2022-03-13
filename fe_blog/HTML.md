@@ -11,3 +11,4 @@
 * [w3c 规范检测](http://jigsaw.w3.org/css-validator/#validate_by_uri) 以通过输入你的站点,或者上传你的相关文件,来检测你的代码是否严格符合 w3c 的标准规范.
 * [Shadow DOM 的一次挖掘 —— 揭秘 range input 的内部结构](https://mp.weixin.qq.com/s/sYnU-yUiuRF6gMTV3cvU2w) H5 新特性实践博文
 * [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ) 光标是一种特殊的选区
+* [漫画图解 Chrome 浏览器从输入到渲染的原理（简单易懂）](https://mp.weixin.qq.com/s/KyJZQJsMMGqa91tVLljyvQ) 这。。。，面试题答案还出漫画了？？

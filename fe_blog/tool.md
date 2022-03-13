@@ -41,3 +41,4 @@
 * [如何快速自学Axure（0基础入门教程）](https://zhuanlan.zhihu.com/p/70386005)
 * [processon 在线绘制流程图](https://www.processon.com/diagrams) 付费版在线绘制流程图， 个人版免费
 * [Code2Flow](https://github.com/scottrogowski/code2flow) 这个工具自动分析代码，生成函数调用的流程图，即可视化显示所有函数的调用路径，支持 Python、Javascript、Ruby 和 PHP 等语言。
+* [开发一款专属的 VSCode 代码提示插件](https://mp.weixin.qq.com/s/e2gfSnBrR6rn7x37ZGLplg) 据不完全统计，VsCode插件市场中的插件数量已经超过了3万，由此可见大家的热情有多高。
