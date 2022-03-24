@@ -28,3 +28,4 @@
 2021年全球的浏览器市占比：Chrome+Chromium(IE edage, samsung等等)占有72%，Safari占有18.5%，FireFox+Opera占有5.8%，IE内核浏览器0.5%。
 ```
 * [函数式编程（FP）](https://mp.weixin.qq.com/s/ttQy_v-_QBKjcz2LPZvfNQ) 函数式编程（functional programing）是编程范式之一。我们常见的范式还有面向过程、面向行为、面向对象等。 该博文 对函数式编程 总结很全面。
+* [用DDD(领域驱动设计)和ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/AGfuCxsUPv_5djEXYcuyNw) 项目的代码质量将随着时间和复杂度的增加而急剧下降。再明确的产品需求，再多的开发时间，也很难阻止代码库的腐坏。

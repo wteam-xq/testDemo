@@ -35,3 +35,4 @@ JavaScript 中的日期处理很丑陋。自 1995 年第一个受 Java 启发的
 ```
 * [盘点2021年V8发布的新特性和API （ES2021）](https://juejin.cn/post/7054205051421589518?utm_source=gold_browser_extension) V8实现ES2021总结
 * [淘宝店铺 TypeScript 研发规约落地实践｜技术详解](https://mp.weixin.qq.com/s/4ckz3zBmG6N0XppxZY7e9w) 高质的TS 迁移落地实践博文
+* [JavaScript 新增两个原始数据类型](https://mp.weixin.qq.com/s/Et8VzhYL9amIhbFyUNMWtg) Record 和 Tuple ，这俩是啥呢？其实就是一个只读的 Object 和 Array!
