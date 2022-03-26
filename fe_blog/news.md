@@ -21,3 +21,4 @@
 * [Ant Design Mobile 5.0 来了](https://mp.weixin.qq.com/s/cvsxRtps2wi1pgVRzGF2NA) 5.0 版本是一次彻底的重做，它带来了全新的设计体验和 100% 重写的组件代码实现。推广软文，收录到业界新闻。
 * [2021 大前端技术回顾及未来展望](https://mp.weixin.qq.com/s/HfZDrrqDNUVpnU-aegKxcg) 业界动态总结，TypeScript 是否能得到浏览器和 Node.js 原生支持呢？
 * [来自未来，2022 年的前端人都在做什么?](https://mp.weixin.qq.com/s/triP_hXILSWq37DIGz4VNg) 业界动态总结2， Google 的 zx.js 库有助于使用 Node.js 高效且愉快地编写 shell 脚本。
+* [以反战为名，百万周下载量node-ipc包作者进行供应链投毒](https://mp.weixin.qq.com/s/6gbuBytsehzaMYwx-PxJ9w) Vue 底层依赖库投毒事件总结

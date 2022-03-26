@@ -18,4 +18,5 @@
 * [Node.js 进程、线程调试和诊断的设计和实现](https://mp.weixin.qq.com/s/bv-ZpzGWVRj1spBTj-uG2Q) 介绍 Node.js 中，关于进程、线程调试和诊断的相关内容。
 * [记一次排错经历——npm缓存浅析](https://juejin.cn/post/6844903785018425351) 关于NPM缓存的问题实践 和 原因分析
 * [关于依赖管理的真相 — 前端包管理器探究](https://mp.weixin.qq.com/s/t6RZAKb6mXTfXl7XbpZ_vw) 对Node依赖总结比较完整的博文
+* [zx](https://github.com/google/zx) Google 的 zx.js 库有助于使用 Node.js 高效且愉快地编写 shell 脚本。
 
