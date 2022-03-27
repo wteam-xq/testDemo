@@ -25,3 +25,4 @@ Babylon.js 是一款国外应用较广泛的 WebGL 库，感兴趣的小伙伴�
 * [SVG基础及其动画应用浅析](https://zhuanlan.zhihu.com/p/383245453) SVG 优点： 同样高清的质地，矢量图不畏惧放大，体积小。
 * [动手打造一款 canvas 排版引擎](https://mp.weixin.qq.com/s/8I4ZrXysU4NxLVd8Jvdcyg) 实现的库和实现思路都值得借鉴
 * [【雷火UX数据可视化】浅析网页动画](https://mp.weixin.qq.com/s/tia5gvOqILknMXBx8ebMrw) 常网页开发中使用最多的是CSS补间动画，这也能完成交互反馈等大多数的需求。
+* [S2](https://s2.antv.vision/zh/) 一个表格可视化引擎，可以为数据表制作各种各样的效果

@@ -35,3 +35,5 @@ Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用�
 ```
 * [基于less和sass的在webpack或vite中的动态主题的实现方案](https://juejin.cn/post/6966173655470440456) 使用插件实现换肤
 * [Grid 用于布局，Flexbox 用于组件](https://ishadeed.com/article/grid-layout-flexbox-components/) CSS 的 Grid 布局和 Flexbox 布局，作用相似，经常有人讨论，两者的适用场合是什么。作者提出，Grid 布局应该用于页面，Flexbox 布局应该用于组件。
+* [CSS 一步一步实现烟花动画](https://mp.weixin.qq.com/s/xatT3MVWyT6BVS8up3EVaA) CSS代码动画相关实践
+

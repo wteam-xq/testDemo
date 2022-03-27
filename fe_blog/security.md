@@ -11,3 +11,4 @@
 * [理解log4Shell 漏洞](https://sspai.com/post/70394) 诸如「互联网正在着火」「过去十年最严重的漏洞」「现代计算机历史上最大漏洞」「难以想到哪家公司不受影响」
 * [你真的了解 “随机数”？](https://math.haozi.me/random.html) 数学家要做的事，就是要找到一个通项公式，公式完全对你公开，但要推出 seed，需要难度超出攻击的成本。
 * [通过几行 JS 就可以读取电脑上的所有数据？](https://mp.weixin.qq.com/s/1oDNxf5xHwlUUpJSVkqazg) 浏览器Spectre 漏洞，计算机硬件层面上的漏洞。
+* [一文彻底搞懂前端沙箱](https://mp.weixin.qq.com/s/uu0H2MTO1z1b8nsfuoyLQw) 对前端沙箱比较全面的讲解，可惜CSS隔离没展开，讲解内容较少
