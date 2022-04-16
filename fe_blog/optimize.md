@@ -40,3 +40,4 @@ DOM 树中的可见节点（webkit 不会为非可视节点创建 RenderObject �
 * [从 chromium 源码来窥探浏览器的渲染](https://mp.weixin.qq.com/s/r1nAcEkEoE1D7CgQwqSe2Q) 复习浏览器渲染相关知识
 * [前端技术分享：页面性能优化问题复盘](https://juejin.cn/post/7064405926035324964) 根据火焰图 排查问题的方法值得借鉴
 * [过度使用懒加载对 Web 性能的影响](https://mp.weixin.qq.com/s/Yb4bN_jjVOo2xUDPeKD_GA) 如今懒加载已经是一种 Web 标准，大部分的主流浏览器都支持通过 loading="lazy" 属性使用懒加载。
+* [得物AppH5秒开优化实战](https://mp.weixin.qq.com/s/23ZFPK4CaCkinwpZ3SG9Rw) 开始我们的H5页面秒开率只有30%左右，现在我们的H5页面秒开率达到了 75%。这中间巨大的差异究竟有哪些黑科技在里面？

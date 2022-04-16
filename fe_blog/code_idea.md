@@ -30,4 +30,4 @@
 * [函数式编程（FP）](https://mp.weixin.qq.com/s/ttQy_v-_QBKjcz2LPZvfNQ) 函数式编程（functional programing）是编程范式之一。我们常见的范式还有面向过程、面向行为、面向对象等。 该博文 对函数式编程 总结很全面。
 * [用DDD(领域驱动设计)和ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/AGfuCxsUPv_5djEXYcuyNw) 项目的代码质量将随着时间和复杂度的增加而急剧下降。再明确的产品需求，再多的开发时间，也很难阻止代码库的腐坏。
 * [基于 TypeScript 理解程序设计的 SOLID 原则](https://mp.weixin.qq.com/s/mz5S1iiRWkk-KKJg5lOOJQ) 编程思想： SOLID 原则
-
+* [请问：怎么实现大文件快速上传？](https://juejin.cn/post/7074534222748188685) 大文件快速上传的方案，相信你也有过了解，其实无非就是将 文件变小，也就是通过 压缩文件资源 或者 文件资源分块 后再上传。

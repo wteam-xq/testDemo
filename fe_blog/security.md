@@ -12,3 +12,4 @@
 * [你真的了解 “随机数”？](https://math.haozi.me/random.html) 数学家要做的事，就是要找到一个通项公式，公式完全对你公开，但要推出 seed，需要难度超出攻击的成本。
 * [通过几行 JS 就可以读取电脑上的所有数据？](https://mp.weixin.qq.com/s/1oDNxf5xHwlUUpJSVkqazg) 浏览器Spectre 漏洞，计算机硬件层面上的漏洞。
 * [一文彻底搞懂前端沙箱](https://mp.weixin.qq.com/s/uu0H2MTO1z1b8nsfuoyLQw) 对前端沙箱比较全面的讲解，可惜CSS隔离没展开，讲解内容较少
+* [比 eval 和 iframe 更强的新一代 JavaScript 沙箱！](https://mp.weixin.qq.com/s/wAI-L3we6uK0HvvPtOcIjg) 进入 statge3 的新的 JavaScript 提案：ShadowRealm API。
