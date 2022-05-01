@@ -11,3 +11,4 @@
 * [深入 WebAssembly 之解释器实现篇](https://mp.weixin.qq.com/s/hktDuC1nky06tAaAi-mwMA) WebAssembly（为了书写方便，接下来简称为 Wasm）笔者《WebAssembly 原理与核心技术》读后感，如何实现一个 Wasm解释器。
 * [WebAssembly 2021 年回顾与 2022 年展望](https://mp.weixin.qq.com/s/1ZW8_XW1yqqSeBAAYWNUdg) wasm 的总结文章， 这块业界文章还是太少
 * [Wasm 玩出花？在浏览器中运行虚拟机！](https://mp.weixin.qq.com/s/RQq8K7GmLysAx55Vuk-K5A) wasm 应用实践博文
+* [W3C 发布 WebAssembly 2.0 初版草案](https://www.oschina.net/news/191993/wasm-2-0-public-drafts) wasm 版本迭代官方公布消息

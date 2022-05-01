@@ -39,4 +39,4 @@ Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用�
 * [CSS 纵横比（aspect ratio）解释（英文）](https://css-irl.info/aspect-ratio-is-great/) CSS 新增的属性aspect-ratio，可以设定矩形的长宽比，本文介绍它的用法。
 * [巧用 background-clip 实现超强的文字动效](https://mp.weixin.qq.com/s/nf1PjrsKXCiGiRQsTTqqvA) CSS实现的文字动效
 * [Amazing！巧用 CSS 视差实现酷炫交互动效](https://mp.weixin.qq.com/s/5bNWeGewu67qQ2ICM7O0Sw) 本文将介绍利用 CSS 实现滚动视差效果的一个小技巧
-
+* [现代 CSS 解决方案：CSS 数学函数之 calc](https://mp.weixin.qq.com/s?__biz=Mzg2MDU4MzU3Nw==&mid=2247491089&idx=1&sn=84aecbf783859c930bf57660b46d06ef&chksm=ce257de7f952f4f17b49c890910d995362a1a7247fdf20bd427d868a15cef08e1c3d9e68eba1&token=363949812&lang=zh_CN#rd) CSS calc 用法详解

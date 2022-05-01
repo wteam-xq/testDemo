@@ -43,3 +43,8 @@ reconcile 的过程会提前创建好 dom，还会标记出增删改，那么 co
 ```
 * [sveltejs](https://www.sveltejs.cn/) Svelte 是一种全新的构建用户界面的方法。传统框架如 React 和 Vue 在浏览器中需要做大量的工作，而 Svelte 将这些工作放到构建应用程序的编译阶段来处理。
 * [React Hooks 的原理，有的简单有的不简单](https://mp.weixin.qq.com/s/u89G-Uas0mzZQsiWT_4EZQ) 所有 hooks api 都是基于 fiber 节点上的 memorizedState 链表来存取数据并完成各自的逻辑。
+* [React 18 全览](https://mp.weixin.qq.com/s/N6MBhe4fkHO49ZqVNBPflQ) 在 2022 年 3 月 29 日，React 18 正式版终于和大家见面了
+```
+并发模式， 普通开发（业务代码）不会有任何变化；
+Server Component 叫服务端组件，目前还在开发过程中，没有正式发布
+```
