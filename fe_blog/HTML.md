@@ -12,3 +12,4 @@
 * [Shadow DOM 的一次挖掘 —— 揭秘 range input 的内部结构](https://mp.weixin.qq.com/s/sYnU-yUiuRF6gMTV3cvU2w) H5 新特性实践博文
 * [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ) 光标是一种特殊的选区
 * [漫画图解 Chrome 浏览器从输入到渲染的原理（简单易懂）](https://mp.weixin.qq.com/s/KyJZQJsMMGqa91tVLljyvQ) 这。。。，面试题答案还出漫画了？？
+* [推特 HTML 网页的前10行代码(英文)](https://css-tricks.com/explain-the-first-10-lines-of-twitter-source-code/) HTML 的面试题， 可加入个人面试题库；

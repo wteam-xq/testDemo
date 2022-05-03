@@ -48,3 +48,6 @@ reconcile 的过程会提前创建好 dom，还会标记出增删改，那么 co
 并发模式， 普通开发（业务代码）不会有任何变化；
 Server Component 叫服务端组件，目前还在开发过程中，没有正式发布
 ```
+* [lexical](https://lexical.dev/) 脸书开源了最新的文本编辑器，目前脸书和 Instagram 官网用的都是它。主打轻量、可配置。
+* [React18正式版源码级剖析](https://juejin.cn/post/7080854114141208612) React18最重要的改变必须是Concurrent(并发)
+* [86张脑图，一口气看完 React](https://mp.weixin.qq.com/s/kVTwB1rMRJKay_HpMrbRjw) 关于React18 的86张思维导图，从零学习React学习教程
