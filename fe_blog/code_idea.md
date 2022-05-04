@@ -31,3 +31,6 @@
 * [用DDD(领域驱动设计)和ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/AGfuCxsUPv_5djEXYcuyNw) 项目的代码质量将随着时间和复杂度的增加而急剧下降。再明确的产品需求，再多的开发时间，也很难阻止代码库的腐坏。
 * [基于 TypeScript 理解程序设计的 SOLID 原则](https://mp.weixin.qq.com/s/mz5S1iiRWkk-KKJg5lOOJQ) 编程思想： SOLID 原则
 * [请问：怎么实现大文件快速上传？](https://juejin.cn/post/7074534222748188685) 大文件快速上传的方案，相信你也有过了解，其实无非就是将 文件变小，也就是通过 压缩文件资源 或者 文件资源分块 后再上传。
+* [浅谈控制反转与依赖注入](https://zhuanlan.zhihu.com/p/33492169) 很有趣的技术博文
+* [前端领域的 “干净架构”](https://juejin.cn/post/7054888223830441991) 原作者称它为“干净架构（Clean Architecture）”，文章很长，讲的也很详细，我花了很长时间去读完了它，看完很有收获，翻译给大家，文中也融入了很多我自己的思考，推荐大家看完。
+

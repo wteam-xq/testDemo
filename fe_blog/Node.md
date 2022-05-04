@@ -21,4 +21,6 @@
 * [zx](https://github.com/google/zx) Google 的 zx.js 库有助于使用 Node.js 高效且愉快地编写 shell 脚本。
 * [Pkg](https://github.com/vercel/pkg)这个工具可以将 Node.js 应用打包成单个可执行文件，没有安装 Node.js 也能执行。
 * [前端现代包管理器的进化史](https://mp.weixin.qq.com/s/8C9L_z64NUI9kWan64-qAg) PNPM 为什么能逐渐替换 NPM？
+* [万字长文 | Seneca: 用Node.js搭建你的微服务架构](https://zhuanlan.zhihu.com/p/361134769) Node.js 搭建微服务入门教程
+
 
