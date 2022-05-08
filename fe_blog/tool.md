@@ -44,3 +44,5 @@
 * [开发一款专属的 VSCode 代码提示插件](https://mp.weixin.qq.com/s/e2gfSnBrR6rn7x37ZGLplg) 据不完全统计，VsCode插件市场中的插件数量已经超过了3万，由此可见大家的热情有多高。
 * [使用 Playwright 进行 E2E 测试](https://mp.weixin.qq.com/s/xL-CJRH4UNP7g8bDGJHp9g) Playwright 是由微软开源的一个Web测试和自动化的框架, Puppeteer 的竞品
 * [chrome插件最新版本开发指南来了](https://juejin.cn/post/7051466934948200461) 浏览器扩展开发，最新版（第三版）入门
+* [黑客工具套](https://ctfever.uniiem.com/) 为 CTF 黑客比赛参加者准备的常用工具套件。
+

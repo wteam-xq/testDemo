@@ -13,3 +13,4 @@
 * [Web 中的“选区”和“光标”](https://mp.weixin.qq.com/s/EgWOcjLldO5VQrto5XYNJQ) 光标是一种特殊的选区
 * [漫画图解 Chrome 浏览器从输入到渲染的原理（简单易懂）](https://mp.weixin.qq.com/s/KyJZQJsMMGqa91tVLljyvQ) 这。。。，面试题答案还出漫画了？？
 * [推特 HTML 网页的前10行代码(英文)](https://css-tricks.com/explain-the-first-10-lines-of-twitter-source-code/) HTML 的面试题， 可加入个人面试题库；
+* [不需要 JavaScript 的5件事(英文)](https://lexoral.com/blog/you-dont-need-js/) 有一些网页互动，并不需要用 JavaScript 实现，本文介绍了5种这样的情况，比如折叠显示。
