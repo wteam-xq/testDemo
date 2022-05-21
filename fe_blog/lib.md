@@ -51,3 +51,4 @@ Server Component 叫服务端组件，目前还在开发过程中，没有正式
 * [lexical](https://lexical.dev/) 脸书开源了最新的文本编辑器，目前脸书和 Instagram 官网用的都是它。主打轻量、可配置。
 * [React18正式版源码级剖析](https://juejin.cn/post/7080854114141208612) React18最重要的改变必须是Concurrent(并发)
 * [86张脑图，一口气看完 React](https://mp.weixin.qq.com/s/kVTwB1rMRJKay_HpMrbRjw) 关于React18 的86张思维导图，从零学习React学习教程
+* [代码编辑器比较：Ace、CodeMirror 和 Monaco](https://blog.replit.com/code-editors) 三种在线编辑器比较
