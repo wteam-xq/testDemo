@@ -12,3 +12,4 @@
 * [WebAssembly 2021 年回顾与 2022 年展望](https://mp.weixin.qq.com/s/1ZW8_XW1yqqSeBAAYWNUdg) wasm 的总结文章， 这块业界文章还是太少
 * [Wasm 玩出花？在浏览器中运行虚拟机！](https://mp.weixin.qq.com/s/RQq8K7GmLysAx55Vuk-K5A) wasm 应用实践博文
 * [W3C 发布 WebAssembly 2.0 初版草案](https://www.oschina.net/news/191993/wasm-2-0-public-drafts) wasm 版本迭代官方公布消息
+* [前端视角解读 Why Rust](https://mp.weixin.qq.com/s/AXXJnFdwYDiy5vfZ-fvVDQ) 目前 Rust 对 WebAssembly 的支持是最好的，对于前端开发来说，可以将 CPU 密集型的 JavaScript 逻辑用 Rust 重写，然后再用 WebAssembly 来运行，JavaScript 和 Rust 的结合将会让你获得驾驭一切的力量。

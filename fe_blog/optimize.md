@@ -42,3 +42,4 @@ DOM 树中的可见节点（webkit 不会为非可视节点创建 RenderObject �
 * [过度使用懒加载对 Web 性能的影响](https://mp.weixin.qq.com/s/Yb4bN_jjVOo2xUDPeKD_GA) 如今懒加载已经是一种 Web 标准，大部分的主流浏览器都支持通过 loading="lazy" 属性使用懒加载。
 * [得物AppH5秒开优化实战](https://mp.weixin.qq.com/s/23ZFPK4CaCkinwpZ3SG9Rw) 开始我们的H5页面秒开率只有30%左右，现在我们的H5页面秒开率达到了 75%。这中间巨大的差异究竟有哪些黑科技在里面？
 * [Web页面全链路性能优化指南](https://mp.weixin.qq.com/s?__biz=Mzg4NTE3NTY4Mg==&mid=2247485744&idx=1&sn=fd04230edff9c4291ac132c956266dfd&chksm=cfadadddf8da24cb447d3b5194ee54e19875a2d5974f7f34ec571634e1ea0708c163c4d084cd&token=1008676742&lang=zh_CN#rd) 比较全面的Web性能优化博文
+* [vue项目你一定会用到的性能优化！](https://mp.weixin.qq.com/s?__biz=MzI4OTY2MzE0OA==&mid=2247499195&idx=1&sn=e3f08d9cdbdc1ac97e458b35018228ff&scene=21#wechat_redirect) vue的这些优化，通用适用于React

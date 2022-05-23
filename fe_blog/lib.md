@@ -52,3 +52,5 @@ Server Component 叫服务端组件，目前还在开发过程中，没有正式
 * [React18正式版源码级剖析](https://juejin.cn/post/7080854114141208612) React18最重要的改变必须是Concurrent(并发)
 * [86张脑图，一口气看完 React](https://mp.weixin.qq.com/s/kVTwB1rMRJKay_HpMrbRjw) 关于React18 的86张思维导图，从零学习React学习教程
 * [代码编辑器比较：Ace、CodeMirror 和 Monaco](https://blog.replit.com/code-editors) 三种在线编辑器比较
+* [React 并发渲染的前世今生](https://mp.weixin.qq.com/s/01sTK6w4BFUzoRc2NKCs1w) 详细讲述了 React 实现并发渲染的历史，React团队花费了2161天实现
+* [Server Components：我们即将和 API 告别？](https://mp.weixin.qq.com/s/CL1YMnQ6dJfH-YMY9TBcGw) React Server Component。一种只运行在服务端的 React 组件化能力。我们可以让前端的 React 组件，运行在后端？这就是 React Server Components。
