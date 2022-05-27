@@ -23,3 +23,4 @@
 * [来自未来，2022 年的前端人都在做什么?](https://mp.weixin.qq.com/s/triP_hXILSWq37DIGz4VNg) 业界动态总结2， Google 的 zx.js 库有助于使用 Node.js 高效且愉快地编写 shell 脚本。
 * [以反战为名，百万周下载量node-ipc包作者进行供应链投毒](https://mp.weixin.qq.com/s/6gbuBytsehzaMYwx-PxJ9w) Vue 底层依赖库投毒事件总结
 * [大事件！大事件！浏览器可能支持运行 Typescript啦](https://juejin.cn/post/7073808372239335455) 计划在即将于 2022 年 3 月举行的 TC39 全体会议上提交第 1 阶段的提案。
+* [下月退役！27 年 IE 终落幕，再见 IE，你好 Edge](https://www.infoq.cn/news/BNMm3Yom5HqYmG4iTEVc) IE 退役，Edge 接力

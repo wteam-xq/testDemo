@@ -45,4 +45,5 @@ Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用�
 * [如何使用 CSS 偷取用户信息(英文)](https://scotthelme.co.uk/can-you-get-pwned-with-css/) 本文介绍了几种只使用 CSS 获取用户信息（比如密码）的方法，以及对策。
 * [奇妙的 CSS MASK](https://mp.weixin.qq.com/s?__biz=Mzg2MDU4MzU3Nw==&mid=2247491371&idx=1&sn=f0c87cdbce78fedcef2d616c1da0b340&chksm=ce257cddf952f5cbfe4f735f7f6c801357c8a8a2772167f6ccce910db6fc5494189414e08817&token=1008676742&lang=zh_CN#rd)mask 其实还是属于一个比较冷门的属性。在日常业务中能运用上的机会不多。而且兼容性不算特别好，打开 MDN，可以看到，除了 mask 本身，还有很多与 mask 相关的属性，只是目前大部分还属于实验室阶段。
 * [浅谈逻辑选择器 is、where、not、has](https://mp.weixin.qq.com/s/QBEYNDJz54qcAo1IVZ45pg) CSS新特性用法
+* [Google IO 2022 —— CSS 全览](https://mp.weixin.qq.com/s/Y2L2F1vmRXfacE1KwM00hQ) 2022年将成为 CSS 最伟大的一年。无论是在功能还是合作浏览器的功能发布方面，合作目标是实现 14 个功能。
 

@@ -49,3 +49,4 @@ How，怎么定位解决问题，我们还需要收集系统等信息。
 * [浏览器的 5 种 Observer，你用过几种？](https://mp.weixin.qq.com/s/-fLZe164aWAaPJ55iZ_m2w) 信息采集，数据上报相关
 * [网易云音乐低代码体系建设思考与实践](https://mp.weixin.qq.com/s/9yo-Au3wwsWErBJfFjhxUg) 网易云音乐团队， 低代码建设实践小结
 * [前端部署十五章](https://q.shanyue.tech/deploy/) 一组系列文章，介绍如何部署前端项目。从最原始的部署方案过渡到 Docker 与 Kubernetes，逐步优化，另有配套的 视频讲解；
+* [迄今为止最全的前端监控体系搭建篇(长文预警)](https://mp.weixin.qq.com/s/7c0yqwSxK-FvLm1iKZrjmQ) 比较全的前端性能监控方案

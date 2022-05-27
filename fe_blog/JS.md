@@ -38,4 +38,5 @@ JavaScript 中的日期处理很丑陋。自 1995 年第一个受 Java 启发的
 * [JavaScript 新增两个原始数据类型](https://mp.weixin.qq.com/s/Et8VzhYL9amIhbFyUNMWtg) Record 和 Tuple ，这俩是啥呢？其实就是一个只读的 Object 和 Array!
 * [强大的JSON.stringify，你会使用吗?](https://juejin.cn/post/7072122968087724046) 很常用，但性能消耗大的语法
 * [一文破解正则密码](https://mp.weixin.qq.com/s/T0JFH618B_BVTzTr8m31bw) 关于正则讲解，比较系统全面的博文
+* [1.4w字总结带你重学TypeScript](https://juejin.cn/post/7096695346239111199) 重新学习 TS
 
