@@ -54,3 +54,8 @@ Server Component 叫服务端组件，目前还在开发过程中，没有正式
 * [代码编辑器比较：Ace、CodeMirror 和 Monaco](https://blog.replit.com/code-editors) 三种在线编辑器比较
 * [React 并发渲染的前世今生](https://mp.weixin.qq.com/s/01sTK6w4BFUzoRc2NKCs1w) 详细讲述了 React 实现并发渲染的历史，React团队花费了2161天实现
 * [Server Components：我们即将和 API 告别？](https://mp.weixin.qq.com/s/CL1YMnQ6dJfH-YMY9TBcGw) React Server Component。一种只运行在服务端的 React 组件化能力。我们可以让前端的 React 组件，运行在后端？这就是 React Server Components。
+* [eruda](https://github.com/liriliri/eruda) vconsole 的替换库
+* [JSON 编辑器 - jsoneditor](https://github.com/josdejong/jsoneditor) 可视化编辑 JSON 库
+* [React - 显示、编辑 JSON](https://github.com/mac-s-g/react-json-view) React 的JSON编辑组件
+* [Yaade](https://github.com/EsperoTech/yaade) 一个开源的 API 开发环境，相当于开源的 Postman。
+* [pnpm](https://pnpm.io/zh/)一个老牌的 node.js 包管理器，支持 npm 的所有功能，用来替代 npm。它的模块是全局存储，每个项目内部使用硬链接，所以很省空间，而且安装速度快。

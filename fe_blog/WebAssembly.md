@@ -13,3 +13,4 @@
 * [Wasm 玩出花？在浏览器中运行虚拟机！](https://mp.weixin.qq.com/s/RQq8K7GmLysAx55Vuk-K5A) wasm 应用实践博文
 * [W3C 发布 WebAssembly 2.0 初版草案](https://www.oschina.net/news/191993/wasm-2-0-public-drafts) wasm 版本迭代官方公布消息
 * [前端视角解读 Why Rust](https://mp.weixin.qq.com/s/AXXJnFdwYDiy5vfZ-fvVDQ) 目前 Rust 对 WebAssembly 的支持是最好的，对于前端开发来说，可以将 CPU 密集型的 JavaScript 逻辑用 Rust 重写，然后再用 WebAssembly 来运行，JavaScript 和 Rust 的结合将会让你获得驾驭一切的力量。
+* [硬核冷知识：V8与WebAssembly不得不说的秘密](https://laocuicode.cn/daydream/2022/04/01/202241-%E7%A1%AC%E6%A0%B8%E5%86%B7%E7%9F%A5%E8%AF%86%EF%BC%9AWebAssembly/)
