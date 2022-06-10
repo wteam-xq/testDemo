@@ -47,4 +47,10 @@ Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用�
 * [浅谈逻辑选择器 is、where、not、has](https://mp.weixin.qq.com/s/QBEYNDJz54qcAo1IVZ45pg) CSS新特性用法
 * [Google IO 2022 —— CSS 全览](https://mp.weixin.qq.com/s/Y2L2F1vmRXfacE1KwM00hQ) 2022年将成为 CSS 最伟大的一年。无论是在功能还是合作浏览器的功能发布方面，合作目标是实现 14 个功能。
 * [中后台 CSS Modules 最佳实践](https://mp.weixin.qq.com/s/qUiiUkKOyW-QnBz1WEOTwQ) CSS Modules 无疑是一种彻底解决样式冲突问题的方法。
+* [简单的了解下 css 在 2022 年有哪些新特性](https://mp.weixin.qq.com/s/BKXwuhhYRNBbLFoABUvMsw) CSS 2022总结， 10个CSS新特性
+```
+1）级联层（@layer）; 2）子网格(subgrid)；3）容器查询；4）accent-color;5）缺失 6）Color level 4 and 5； 7）inert;
+8）COLRv1字体； 9）视口单位（dvh,lvh, svh）10）:has()
+```
+
 

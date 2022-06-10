@@ -23,5 +23,4 @@
 * [前端现代包管理器的进化史](https://mp.weixin.qq.com/s/8C9L_z64NUI9kWan64-qAg) PNPM 为什么能逐渐替换 NPM？
 * [万字长文 | Seneca: 用Node.js搭建你的微服务架构](https://zhuanlan.zhihu.com/p/361134769) Node.js 搭建微服务入门教程
 * [pnpm](https://pnpm.io/zh/)一个老牌的 node.js 包管理器，支持 npm 的所有功能，用来替代 npm。它的模块是全局存储，每个项目内部使用硬链接，所以很省空间，而且安装速度快。
-
-
+* [2022 前端包管理方案-pnpm 和 corepack](https://juejin.cn/post/7060448346107805732) 简单总结了Node 包管理器相关 - cnpm,yarn, pnpm, 以及 Corepack

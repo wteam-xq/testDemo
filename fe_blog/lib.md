@@ -58,4 +58,5 @@ Server Component 叫服务端组件，目前还在开发过程中，没有正式
 * [JSON 编辑器 - jsoneditor](https://github.com/josdejong/jsoneditor) 可视化编辑 JSON 库
 * [React - 显示、编辑 JSON](https://github.com/mac-s-g/react-json-view) React 的JSON编辑组件
 * [Yaade](https://github.com/EsperoTech/yaade) 一个开源的 API 开发环境，相当于开源的 Postman。
-* [pnpm](https://pnpm.io/zh/)一个老牌的 node.js 包管理器，支持 npm 的所有功能，用来替代 npm。它的模块是全局存储，每个项目内部使用硬链接，所以很省空间，而且安装速度快。
+* [不再支持 IE，React 18 新特性详细解读](https://mp.weixin.qq.com/s/0ycO5zot5EBcFOl46NwYoA) IE 浏览器停止维护， 相关库也不再支持，归纳了 18的三大更新以及其他小更改
+* [干货 | 携程机票前端Svelte生产实践](https://mp.weixin.qq.com/s/QWwb8PXtdJJUKyicHRmBkw) 近期关于Svelte实践的干货博文，该框架重点在于 “轻”、“快”， 特别适合 H5活动页
