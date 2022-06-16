@@ -52,5 +52,7 @@ Tailwind CSS 是这两年前端工程师们最想尝试的技术之一，谁用�
 1）级联层（@layer）; 2）子网格(subgrid)；3）容器查询；4）accent-color;5）缺失 6）Color level 4 and 5； 7）inert;
 8）COLRv1字体； 9）视口单位（dvh,lvh, svh）10）:has()
 ```
+* [使用 content-visibility 优化渲染性能](https://mp.weixin.qq.com/s/o9lpl7CTwcbjM0q3QMRLTg) 用于无限滚动的新CSS样式
+
 
 

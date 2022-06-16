@@ -15,3 +15,10 @@
 ```
 跨端就是：「我知道我想要什么，但是我没有能力去渲染，我要通知有能力渲染的人来帮助我渲染。」
 ```
+* [APP常用跨端技术栈深入分析](https://mp.weixin.qq.com/s/-IoiOSSMOORzZXLUiZsGtw) APP 跨端技术小结， 不包括 小程序；
+```
+ReactNative 2015年
+Weex 2016年
+Google在2018年发布了Flutter 1.0
+2021年ReactNative新版本对底层进行了重构，可以关注一下，如改变线程模型，引入异步渲染能力，允许多个渲染并简化异步数据处理，简化 JSBridge等。
+```

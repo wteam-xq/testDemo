@@ -34,4 +34,8 @@
 * [浅谈控制反转与依赖注入](https://zhuanlan.zhihu.com/p/33492169) 很有趣的技术博文
 * [前端领域的 “干净架构”](https://juejin.cn/post/7054888223830441991) 原作者称它为“干净架构（Clean Architecture）”，文章很长，讲的也很详细，我花了很长时间去读完了它，看完很有收获，翻译给大家，文中也融入了很多我自己的思考，推荐大家看完。
 * [如何把前端项目写成一座屎山？](https://juejin.cn/post/7086735198942920712) 如何编写低质代码 指南？
+* [自己实现一个大文件切片上传+断点续传](https://mp.weixin.qq.com/s/SyP0zUsRHsTDyEQoab4fXg) 实现上传切片的代码实现思路
+* [关于代码评审(CodeReview)那些不得不说的事儿](https://mp.weixin.qq.com/s/EvQzG5esLfWAWbqflkU0WA) CodeReview 应该是一项类似长期运动的持续行为
+
+
 

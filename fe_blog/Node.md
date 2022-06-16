@@ -24,3 +24,6 @@
 * [万字长文 | Seneca: 用Node.js搭建你的微服务架构](https://zhuanlan.zhihu.com/p/361134769) Node.js 搭建微服务入门教程
 * [pnpm](https://pnpm.io/zh/)一个老牌的 node.js 包管理器，支持 npm 的所有功能，用来替代 npm。它的模块是全局存储，每个项目内部使用硬链接，所以很省空间，而且安装速度快。
 * [2022 前端包管理方案-pnpm 和 corepack](https://juejin.cn/post/7060448346107805732) 简单总结了Node 包管理器相关 - cnpm,yarn, pnpm, 以及 Corepack
+* [用 Node.js 手写一个 DNS 服务器](https://mp.weixin.qq.com/s/Gl94ISY5N4BYyYmVT9-QFQ) DNS 是实现域名到 IP 转换的网络协议，当访问网页的时候，浏览器首先会通过 DNS 协议把域名转换为 IP，然后再向这个 IP 发送 HTTP 请求。
+* [浅析 path 常用工具函数源码](https://mp.weixin.qq.com/s/mbQC-NVlHg-7QW1c8T8xbA) 深入Node.js Path 模块
+
