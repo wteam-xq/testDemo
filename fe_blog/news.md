@@ -24,3 +24,6 @@
 * [以反战为名，百万周下载量node-ipc包作者进行供应链投毒](https://mp.weixin.qq.com/s/6gbuBytsehzaMYwx-PxJ9w) Vue 底层依赖库投毒事件总结
 * [大事件！大事件！浏览器可能支持运行 Typescript啦](https://juejin.cn/post/7073808372239335455) 计划在即将于 2022 年 3 月举行的 TC39 全体会议上提交第 1 阶段的提案。
 * [下月退役！27 年 IE 终落幕，再见 IE，你好 Edge](https://www.infoq.cn/news/BNMm3Yom5HqYmG4iTEVc) IE 退役，Edge 接力
+* [IE 浏览器已“死”，一个时代的终结](https://mp.weixin.qq.com/s/pmd22EIxa7EwzQUw-Zg4jw) 北京时间 2022 年 6 月 16 日，IE 浏览器正式退役，之后将由 Edge 浏览器接棒继续提供服务。
+* [HTTP/3 发布！](https://mp.weixin.qq.com/s/40YBEWZBaHakDuRuh27fMg) 2020年6月6日, 历时 5 年，HTTP/3 终于被标准化为 RFC 9114。
+

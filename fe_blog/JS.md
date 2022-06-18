@@ -39,4 +39,5 @@ JavaScript 中的日期处理很丑陋。自 1995 年第一个受 Java 启发的
 * [强大的JSON.stringify，你会使用吗?](https://juejin.cn/post/7072122968087724046) 很常用，但性能消耗大的语法
 * [一文破解正则密码](https://mp.weixin.qq.com/s/T0JFH618B_BVTzTr8m31bw) 关于正则讲解，比较系统全面的博文
 * [1.4w字总结带你重学TypeScript](https://juejin.cn/post/7096695346239111199) 重新学习 TS
+* [JS 运行机制最全面的一次梳理](https://mp.weixin.qq.com/s/PhuhUtQGz0uPxVrtNB4TCA) 本文适合有一定经验的前端人员，新手请规避，避免受到过多的概念冲击。
 

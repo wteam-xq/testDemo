@@ -1,5 +1,5 @@
 # 其他
-* 无法分类的文章放这里
+* 非技术，生活感悟 或 无法分类的文章放这里
 
 * [一场欧洲杯转播总共有多少个机位？](https://new.qq.com/omn/20210625/20210625A02WJ800.html)
 * [前端专家离你只有一步之遥](https://mp.weixin.qq.com/s/B6csamJzYnOYCIweQ0-b7g)
@@ -19,3 +19,4 @@
 * [GitHub Markdown 现在支持脚注（英文）](https://github.blog/changelog/2021-09-30-footnotes-now-supported-in-markdown-fields/) 这篇是 GitHub 的官方博客，宣布该网站的 Markdown 语法现在支持脚注了，可以看看脚注怎么写
 * [如果你想知道什么是 NFT，看这篇就够了](https://mp.weixin.qq.com/s/yfVz-pKJN0ifwOXNDAfhlA) 关于区块链 历史讲解比较透彻的博文
 * [程序员做饭指南](https://github.com/LeeJim/HowToCookOnMiniprogram) 又刷到这个关注异常高的 gitHub项目哈
+* [程序员延寿指南](https://github.com/geekan/HowToLiveLonger) 养生系列
