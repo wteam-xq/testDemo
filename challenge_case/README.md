@@ -17,3 +17,6 @@
 
 * 6.数据管理系统：
     * [LuckysheetDemo](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/DMS/Luckysheet/demo.html)
+
+* 7.无JS，纯CSS实现拖拽拉伸：
+    * [张鑫旭 - 版本](https://github.com/wteam-xq/testDemo/blob/master/challenge_case/resize_demo.html)
